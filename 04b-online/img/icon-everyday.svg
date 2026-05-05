@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="dayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8b876"/>
+      <stop offset="100%" stop-color="#8a8566"/>
+    </linearGradient>
+    <linearGradient id="calBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff"/>
+      <stop offset="100%" stop-color="#fafaf2"/>
+    </linearGradient>
+    <filter id="calShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <!-- カレンダー本体 -->
+  <g filter="url(#calShadow)">
+    <rect x="30" y="40" width="140" height="135" rx="10" fill="url(#calBg)" stroke="#c8b876" stroke-width="2"/>
+    <!-- ヘッダー -->
+    <rect x="30" y="40" width="140" height="32" rx="10" fill="url(#dayGrad)"/>
+    <rect x="30" y="62" width="140" height="10" fill="url(#dayGrad)"/>
+    <text x="100" y="60" text-anchor="middle" font-family="serif" font-size="16" font-weight="900" fill="#fff" letter-spacing="2">EVERY DAY</text>
+    <!-- リング -->
+    <rect x="50" y="33" width="6" height="16" rx="3" fill="#666"/>
+    <rect x="144" y="33" width="6" height="16" rx="3" fill="#666"/>
+    <!-- 7日分のマス -->
+    <g transform="translate(45, 90)">
+      <!-- 月 -->
+      <circle cx="10" cy="10" r="9" fill="url(#dayGrad)"/>
+      <text x="10" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="900" fill="#fff">月</text>
+      <!-- 火 -->
+      <circle cx="30" cy="10" r="9" fill="url(#dayGrad)"/>
+      <text x="30" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="900" fill="#fff">火</text>
+      <!-- 水 -->
+      <circle cx="50" cy="10" r="9" fill="url(#dayGrad)"/>
+      <text x="50" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="900" fill="#fff">水</text>
+      <!-- 木 -->
+      <circle cx="70" cy="10" r="9" fill="url(#dayGrad)"/>
+      <text x="70" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="900" fill="#fff">木</text>
+      <!-- 金 -->
+      <circle cx="90" cy="10" r="9" fill="url(#dayGrad)"/>
+      <text x="90" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="900" fill="#fff">金</text>
+      <!-- 土 -->
+      <circle cx="110" cy="10" r="9" fill="url(#dayGrad)"/>
+      <text x="110" y="14" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="900" fill="#fff">土</text>
+      <!-- 日 -->
+      <circle cx="14" cy="40" r="9" fill="url(#dayGrad)"/>
+      <text x="14" y="44" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="900" fill="#fff">日</text>
+    </g>
+    <!-- 24時間表記 -->
+    <text x="100" y="160" text-anchor="middle" font-family="serif" font-size="22" font-weight="900" fill="#1a1a1a" letter-spacing="2">毎日</text>
+  </g>
+</svg>
