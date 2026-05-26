@@ -17,7 +17,7 @@
   --fu-bg-muted:    #f6f6f6;
   --fu-ink:         #222222;
   --fu-paper:       #FFFFFF;
-  --fu-accent:      #8C2F2F;
+  --fu-accent:      #722F37;
 
   /* ---- Neutrals ---- */
   --fu-ink-80:      #3C3C3B;
@@ -131,7 +131,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   position: relative;
 }
 .section-cream {
-  background: var(--fu-parchment);
+  background: var(--fu-bg-muted);
   position: relative;
 }
 .section-cream::before {
@@ -156,22 +156,35 @@ h4 { font-size: var(--fu-size-h4); margin-bottom: 12px; font-weight: 500; line-h
 .section-dark h2, .section-dark h3, .section-dark h4 { color: #fff; }
 .section-title {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
   position: relative;
 }
 .section-title small {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   font-family: var(--fu-font-serif);
-  font-size: var(--fu-size-eyebrow);
-  letter-spacing: var(--fu-tracking-wide);
+  font-size: 14px;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--fu-fg-accent);
   font-weight: 500;
   margin-bottom: 20px;
   line-height: 1;
 }
+.section-title small::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fu-main);
+  flex-shrink: 0;
+}
 .section-title h2 {
   display: inline-block;
+  font-size: 32px;
+  margin-bottom: 0;
 }
 .section-dark .section-title small { color: var(--fu-sub); }
 p { margin-bottom: 16px; }
@@ -349,7 +362,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin-bottom: 16px;
   color: #fff;
   font-family: var(--fu-font-serif);
-  background: #722F37;
+  background: var(--fu-accent);
   padding: 2px 12px 4px;
 }
 .fv-subhead em {
@@ -2125,56 +2138,50 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin: 40px 0;
+  margin: 20px 0 20px;
 }
 .empathy-card {
   background: #fff;
   padding: 32px 24px;
-  border-radius: 12px;
+  border-radius: 0;
   text-align: center;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06), 0 0 0 1px rgba(138,133,102,0.1);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.empathy-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(138,133,102,0.25);
-}
-.empathy-card-icon {
-  font-size: 56px;
-  width: 96px; height: 96px;
-  margin: 0 auto 16px;
-  background: var(--fu-sub);
-  border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 20px rgba(232,216,150,0.4);
+  flex-direction: column;
 }
 .empathy-card-text {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 900;
   font-family: 'Zen Old Mincho', serif;
-  color: #333;
+  color: var(--fu-main);
   line-height: 1.6;
-  margin: 0;
+  margin: 0 0 24px;
+}
+.empathy-card-graphic {
+  display: block;
+  width: 70%;
+  height: auto;
+  margin: auto auto -32px;
 }
 .empathy-card-text strong {
   color: var(--fu-main-hover);
-  background: linear-gradient(transparent 60%, var(--fu-sub) 60%);
 }
 .empathy-conclusion {
-  background: var(--fu-bg-gold);
+  background: var(--fu-accent);
   color: var(--fu-sub);
   text-align: center;
-  padding: 32px 24px;
-  border-radius: 12px;
-  margin-top: 40px;
+  padding: 12px 24px 41px;
+  border-radius: 0;
+  margin-top: 24px;
   font-size: 24px;
   font-weight: 900;
   letter-spacing: 0.06em;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
   font-family: 'Zen Old Mincho', serif;
+  text-shadow: 0 0 0.6px currentColor;
+  clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 35px), 50% 100%, 0% calc(100% - 35px));
+}
+.section:has(.empathy-conclusion) {
+  padding-bottom: 48px;
 }
 
 /* === Pictogram 10 people (9割が落ちる) === */
@@ -3091,7 +3098,6 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .timeline-failure-text { font-size: 14px; display: block; margin-top: 4px; }
   .empathy-grid { grid-template-columns: 1fr; gap: 12px; }
   .empathy-card { padding: 20px 16px; display: flex; gap: 16px; text-align: left; align-items: center; }
-  .empathy-card-icon { width: 56px; height: 56px; font-size: 28px; margin: 0; flex-shrink: 0; }
   .empathy-card-text { font-size: 15px; }
   .pictogram-headline { font-size: 36px; }
   .pictogram-person { width: 36px; height: 56px; }
@@ -3149,11 +3155,13 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 
 /* === [2] 共感結論サブ（後半への伏線） === */
 .empathy-conclusion-sub {
-  display: block;
-  margin-top: 12px;
+  display: inline-block;
+  margin-top: 4px;
+  padding: 3px 12px;
   font-size: 18px;
   font-weight: 700;
-  color: #555;
+  color: var(--fu-accent);
+  background: #fff;
   font-family: 'Zen Old Mincho', serif;
   letter-spacing: 0.04em;
 }
