@@ -756,6 +756,9 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .section-achievements .container {
   max-width: 800px;
 }
+.section-cases {
+  background: var(--fu-parchment);
+}
 .section-achievements .section-title { text-align: left; }
 .section-achievements .section-title small { justify-content: flex-start; }
 .section-achievements .stat-item { text-align: left; }
@@ -808,69 +811,213 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 
 /* === Cases (Success Stories) - PREMIUM === */
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* === 逆転合格者（卒業生の声）=== */
+.cases-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   gap: 24px;
-  margin-top: 48px;
 }
-.case-card {
-  background: #fff;
-  padding: 36px 28px 32px;
-  border-radius: 12px;
-  box-shadow:
-    0 8px 24px rgba(0,0,0,0.08),
-    0 0 0 1px rgba(138,133,102,0.1);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s;
+.cases-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--fu-main);
+  margin-bottom: 16px;
 }
-.case-card::before {
+.cases-eyebrow::before {
   content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
   background: var(--fu-main);
 }
-.case-card::after {
-  content: '"';
-  position: absolute;
-  top: 8px; right: 16px;
-  font-size: 80px;
-  color: rgba(138,133,102,0.08);
+.cases-headline {
   font-family: 'Zen Old Mincho', serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--fu-ink);
+}
+.cases-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+.cases-scroll-label {
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--fu-main);
+}
+.cases-scroll-arrow {
+  display: inline-flex;
+  align-items: center;
   line-height: 1;
 }
-.case-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 16px 40px rgba(0,0,0,0.12),
-    0 0 0 1px rgba(138,133,102,0.2);
+.cases-chev {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--fu-main);
+  opacity: 0.25;
+  margin-left: 1px;
+  transform: translateY(-2px);
+  animation: cases-chev-trail 1.2s linear infinite;
 }
-.case-photo-placeholder {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  background: var(--fu-sub);
+.cases-chev:first-child { margin-left: 0; }
+.cases-chev:nth-child(2) { animation-delay: 0.15s; }
+.cases-chev:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cases-chev-trail {
+  0%, 60%, 100% { opacity: 0.25; }
+  30% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cases-chev { animation: none; opacity: 0.7; }
+}
+.cases-carousel {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* コンテナ幅を抜けて画面いっぱいに広げる（フルブリード） */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  /* 先頭カードを画面左端から開始（左右に24pxのゆとり） */
+  padding: 0 24px 12px;
+  scroll-padding-left: 24px;
+}
+.case-card {
+  flex: 0 0 480px;
+  scroll-snap-align: start;
+  background: transparent;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  position: relative;
 }
-.case-photo-icon {
-  font-size: 40px;
+.case-photo {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #DEDCCD;
+}
+/* 人物（透過切り抜き）を中央に配置 */
+.case-person {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 94%;
+  width: auto;
+}
+/* 永井くん（case-06）のみ少し小さく */
+.case-person[src*="case-06"] {
+  height: 90%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+}
+/* 名前・タグ（右上・右揃え） */
+.case-id {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+.case-id-name {
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fu-ink);
+  letter-spacing: 0.04em;
+}
+.case-id-tag {
+  font-size: 11px;
+  color: #6b6b5e;
+  margin-top: -3px;
+  letter-spacing: 0.04em;
+}
+/* 偏差値・大学合格（左下・左揃え・ボックス） */
+.case-result {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.case-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  margin: 0 0 6px 16px;
+  padding: 3px 8px;
+  background: #fff;
+  font-family: 'Zen Old Mincho', serif;
+  font-weight: 900;
+  color: var(--fu-ink);
   line-height: 1;
 }
-.case-photo-label {
-  font-size: 9px;
-  color: #888;
-  font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: 0.1em;
-  margin-top: 2px;
+.case-score-label {
+  writing-mode: vertical-rl;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  align-self: center;
+  margin-right: 2px;
+}
+.case-score-from { font-size: 52px; }
+.case-score-arrow {
+  font-size: 33px;
+  color: var(--fu-main);
+  margin: 0 2px;
+}
+.case-score-to {
+  font-size: 52px;
+  color: var(--fu-main);
+}
+.case-score-up {
+  align-self: baseline;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fu-ink);
+  position: relative;
+  top: -4px;
+}
+.case-univ {
+  display: inline-block;
+  margin: 0 0 16px 16px;
+  padding: 0 6px;
+  background: var(--fu-main);
+  color: #fff;
+  border: none;
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.case-body {
+  padding: 18px 18px 22px 0;
+}
+.case-desc {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #000;
+  font-weight: 700;
+  margin: 0;
 }
 .cases-note {
   text-align: center;
@@ -879,55 +1026,6 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-family: 'Noto Sans JP', sans-serif;
 }
 .cases-note small { font-size: 12px; }
-.case-name {
-  font-size: 18px;
-  font-weight: 900;
-  margin-bottom: 4px;
-  color: #222;
-  text-align: center;
-}
-.case-meta {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 20px;
-  font-family: 'Noto Sans JP', sans-serif;
-  text-align: center;
-}
-.case-stats {
-  background: var(--fu-parchment);
-  padding: 16px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-  text-align: center;
-}
-.case-stats-label {
-  font-size: 12px;
-  color: #666;
-  font-family: 'Noto Sans JP', sans-serif;
-}
-.case-stats-value {
-  font-size: 24px;
-  font-weight: 900;
-  color: var(--fu-main);
-  margin: 4px 0;
-}
-.case-univ {
-  font-size: 17px;
-  font-weight: 900;
-  color: #222;
-  text-align: center;
-  margin-top: 8px;
-  border-top: 1px dashed #ccc;
-  padding-top: 12px;
-}
-.case-quote {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #555;
-  border-top: 1px solid #eee;
-  padding-top: 16px;
-  margin-top: 16px;
-}
 
 /* === Trust block (信頼性3カード) - PREMIUM === */
 .trust-grid {
