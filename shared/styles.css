@@ -126,6 +126,181 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border-bottom: 4px solid #fff;
 }
 .section-light { background: var(--fu-paper); }
+
+/* === [5] 無料診断・個別カウンセリング === */
+.counsel-section {
+  position: relative;
+  background-color: #2a2622;
+  background-image: url('img/counsel-bg.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+.counsel-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 14, 12, 0.74);
+  z-index: 0;
+}
+.counsel-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+.counsel-section .section-title {
+  margin-bottom: 12px;
+}
+.counsel-section .section-title small,
+.counsel-section .section-title h2 {
+  color: #fff;
+}
+.counsel-section .section-title small::before {
+  background: #fff;
+}
+.counsel-section .section-title h2 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #e4dfce, #d7d0b8 45%, #c4bc92);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.counsel-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+.counsel-tag {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border: 0.5px solid #fff;
+  border-radius: 0;
+  color: #fff;
+}
+.counsel-divider {
+  width: 100%;
+  max-width: 600px;
+  height: 0.5px;
+  margin: 0 auto 30px;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.7) 0,
+    rgba(255, 255, 255, 0.7) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+.counsel-list {
+  list-style: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto 38px;
+  text-align: left;
+}
+.counsel-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  background: #fff;
+  color: #222;
+  padding: 5px 18px 5px 12px;
+}
+.counsel-list-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #5a5640 0%,
+    #7c7861 18%,
+    #4a4733 45%,
+    #767259 70%,
+    #5e5944 100%
+  );
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counsel-cta-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #fff;
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+.counsel-cta-badge .cta-dash {
+  display: inline-block;
+  transform: scaleX(3);
+  margin: 0 8px;
+}
+.counsel-cta-text {
+  line-height: 1;
+}
+.counsel-cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    #5a5640 0%,
+    #7c7861 18%,
+    #4a4733 45%,
+    #767259 70%,
+    #5e5944 100%
+  );
+  color: #fff;
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 14px 56px 16px;
+  border: 0.5px solid #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+.counsel-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  transform: skewX(-20deg);
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  animation: counsel-cta-sweep 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes counsel-cta-sweep {
+  0% { left: -60%; }
+  60%, 100% { left: 140%; }
+}
+.counsel-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.44);
+}
+.counsel-note {
+  margin: 18px 0 0;
+  font-size: 14px;
+  color: #fff;
+}
 .section-dark {
   background: var(--fu-bg-gold);
   color: #fff;
