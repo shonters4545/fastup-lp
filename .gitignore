@@ -1,0 +1,8 @@
+# 内部QA・作業ドキュメント（GitHub Pagesで公開しない）
+**/audit/
+**/_summary_v4.md
+**/revision_audit_v2.md
+
+# 作業用スクリプト・タスク管理
+scripts/
+tasks/

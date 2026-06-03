@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" fill="none">
+  <defs>
+    <linearGradient id="heroCoach" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8d896"/>
+      <stop offset="100%" stop-color="#8a8566"/>
+    </linearGradient>
+    <linearGradient id="heroStudent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5a5340"/>
+      <stop offset="100%" stop-color="#3a3528"/>
+    </linearGradient>
+    <linearGradient id="heroDesk" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c8b876"/>
+      <stop offset="100%" stop-color="#8a8566"/>
+    </linearGradient>
+    <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e8d896" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#e8d896" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="heroShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- 背景の光 -->
+  <ellipse cx="250" cy="200" rx="200" ry="160" fill="url(#heroGlow)"/>
+  <!-- 床の影 -->
+  <ellipse cx="250" cy="370" rx="180" ry="14" fill="#000" opacity="0.15"/>
+  <!-- 机 -->
+  <g filter="url(#heroShadow)">
+    <rect x="80" y="280" width="340" height="22" rx="4" fill="url(#heroDesk)"/>
+    <rect x="92" y="302" width="10" height="60" fill="#8a8566"/>
+    <rect x="398" y="302" width="10" height="60" fill="#8a8566"/>
+    <!-- 机の上の装飾線 -->
+    <line x1="100" y1="295" x2="400" y2="295" stroke="#a89860" stroke-width="1" opacity="0.5"/>
+  </g>
+  <!-- 教材（左） -->
+  <g filter="url(#heroShadow)">
+    <rect x="105" y="245" width="55" height="38" rx="2" fill="#fff" stroke="#c8b876" stroke-width="1.5"/>
+    <line x1="115" y1="258" x2="150" y2="258" stroke="#c8b876" stroke-width="2"/>
+    <line x1="115" y1="266" x2="142" y2="266" stroke="#999" stroke-width="1"/>
+    <line x1="115" y1="272" x2="148" y2="272" stroke="#999" stroke-width="1"/>
+    <text x="132" y="283" text-anchor="middle" font-family="serif" font-size="6" font-weight="900" fill="#8a8566">英語</text>
+  </g>
+  <!-- ノートPC -->
+  <g filter="url(#heroShadow)">
+    <path d="M180 280 L180 250 L320 250 L320 280 Z" fill="#1a1a1a"/>
+    <rect x="184" y="254" width="132" height="22" rx="1" fill="#fafaf2"/>
+    <!-- 画面の中身（チェックリスト風） -->
+    <rect x="190" y="258" width="6" height="3" fill="#8a8566"/>
+    <line x1="200" y1="259" x2="240" y2="259" stroke="#666" stroke-width="1"/>
+    <rect x="190" y="263" width="6" height="3" fill="#8a8566"/>
+    <line x1="200" y1="264" x2="240" y2="264" stroke="#666" stroke-width="1"/>
+    <rect x="190" y="268" width="6" height="3" fill="#8a8566"/>
+    <line x1="200" y1="269" x2="240" y2="269" stroke="#666" stroke-width="1"/>
+    <!-- 右側にコーチアバター表示 -->
+    <circle cx="285" cy="265" r="8" fill="url(#heroCoach)"/>
+    <text x="285" y="269" text-anchor="middle" font-family="sans-serif" font-size="7" font-weight="900" fill="#fff">C</text>
+    <!-- 通話マーク -->
+    <circle cx="305" cy="270" r="3" fill="#06c755"/>
+  </g>
+  <!-- 教材（右） -->
+  <g filter="url(#heroShadow)">
+    <rect x="340" y="245" width="55" height="38" rx="2" fill="#fff" stroke="#c8b876" stroke-width="1.5"/>
+    <line x1="350" y1="258" x2="385" y2="258" stroke="#c8b876" stroke-width="2"/>
+    <line x1="350" y1="266" x2="380" y2="266" stroke="#999" stroke-width="1"/>
+    <line x1="350" y1="272" x2="385" y2="272" stroke="#999" stroke-width="1"/>
+    <text x="367" y="283" text-anchor="middle" font-family="serif" font-size="6" font-weight="900" fill="#8a8566">国語</text>
+  </g>
+  <!-- 生徒（左座っている） -->
+  <g filter="url(#heroShadow)">
+    <!-- 椅子 -->
+    <rect x="135" y="320" width="80" height="8" rx="2" fill="#3a3528"/>
+    <rect x="200" y="280" width="6" height="50" fill="#3a3528"/>
+    <!-- 体 -->
+    <path d="M120 220 Q120 205 135 200 L195 200 Q210 205 210 220 L210 280 L120 280 Z" fill="url(#heroStudent)"/>
+    <!-- 首 -->
+    <rect x="155" y="180" width="20" height="22" fill="#4a4330"/>
+    <!-- 頭 -->
+    <circle cx="165" cy="160" r="28" fill="url(#heroStudent)"/>
+    <!-- 髪 -->
+    <path d="M137 155 Q137 130 165 130 Q193 130 193 155 Q193 148 187 145 Q165 158 143 145 Q137 150 137 155 Z" fill="#0a0a0a"/>
+    <!-- 顔のハイライト -->
+    <ellipse cx="155" cy="155" rx="6" ry="5" fill="#fff" opacity="0.2"/>
+  </g>
+  <!-- コーチ（右、立って指導） -->
+  <g filter="url(#heroShadow)">
+    <!-- 体 -->
+    <path d="M295 220 Q295 200 315 195 L385 195 Q405 200 405 220 L405 290 L295 290 Z" fill="url(#heroCoach)"/>
+    <!-- 首 -->
+    <rect x="340" y="170" width="20" height="26" fill="#a89860"/>
+    <!-- 頭 -->
+    <circle cx="350" cy="148" r="28" fill="url(#heroCoach)"/>
+    <!-- 髪 -->
+    <path d="M322 143 Q322 118 350 118 Q378 118 378 143 Q378 136 372 133 Q350 146 328 133 Q322 138 322 143 Z" fill="#3a3528"/>
+    <!-- 顔のハイライト -->
+    <ellipse cx="340" cy="143" rx="6" ry="5" fill="#fff" opacity="0.3"/>
+    <!-- 微笑（口） -->
+    <path d="M345 158 Q350 162 355 158" stroke="#3a3528" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- 腕（生徒の方を指している） -->
+    <path d="M295 220 Q280 230 270 250" stroke="url(#heroCoach)" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <!-- 手 -->
+    <circle cx="270" cy="252" r="9" fill="url(#heroCoach)"/>
+  </g>
+  <!-- 装飾要素：吹き出し的な3つの星 -->
+  <g opacity="0.7">
+    <text x="430" y="80" font-family="sans-serif" font-size="22" fill="#e8d896">★</text>
+    <text x="60" y="100" font-family="sans-serif" font-size="16" fill="#c8b876">★</text>
+    <text x="450" y="180" font-family="sans-serif" font-size="14" fill="#e8d896">★</text>
+  </g>
+</svg>

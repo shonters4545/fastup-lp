@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120" fill="none">
+  <!-- 失敗者の人型（グレー） -->
+  <!-- 頭 -->
+  <circle cx="40" cy="22" r="14" fill="#d4d4d4"/>
+  <!-- 髪 -->
+  <path d="M26 18 Q26 8 40 8 Q54 8 54 18 Q54 14 50 12 Q40 16 30 12 Q26 14 26 18 Z" fill="#a8a8a8"/>
+  <!-- 体 -->
+  <path d="M22 50 Q22 42 28 40 L52 40 Q58 42 58 50 L58 95 Q58 100 53 100 L27 100 Q22 100 22 95 Z" fill="#d4d4d4"/>
+  <!-- 首 -->
+  <rect x="35" y="33" width="10" height="10" fill="#c8c8c8"/>
+  <!-- 影 -->
+  <ellipse cx="40" cy="115" rx="22" ry="3" fill="#e8e8e8" opacity="0.6"/>
+  <!-- 落ち込みマーク -->
+  <text x="55" y="20" font-family="Arial" font-size="14" font-weight="bold" fill="#999">×</text>
+</svg>

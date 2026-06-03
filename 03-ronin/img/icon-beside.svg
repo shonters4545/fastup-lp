@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="coachGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8b876"/>
+      <stop offset="100%" stop-color="#8a8566"/>
+    </linearGradient>
+    <linearGradient id="studentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5a5340"/>
+      <stop offset="100%" stop-color="#3a3528"/>
+    </linearGradient>
+    <linearGradient id="deskGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a89860"/>
+      <stop offset="100%" stop-color="#6a6244"/>
+    </linearGradient>
+    <filter id="dropShadow2" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <!-- 机 -->
+  <g filter="url(#dropShadow2)">
+    <rect x="30" y="135" width="140" height="14" rx="3" fill="url(#deskGrad)"/>
+    <!-- 机の脚 -->
+    <rect x="36" y="149" width="6" height="30" fill="#6a6244"/>
+    <rect x="158" y="149" width="6" height="30" fill="#6a6244"/>
+  </g>
+  <!-- 左：生徒 -->
+  <g filter="url(#dropShadow2)">
+    <!-- 体 -->
+    <path d="M50 110 Q50 100 58 96 L92 96 Q100 100 100 110 L100 140 L50 140 Z" fill="url(#studentGrad)"/>
+    <!-- 首 -->
+    <rect x="69" y="82" width="12" height="14" fill="#4a4330"/>
+    <!-- 頭 -->
+    <circle cx="75" cy="65" r="18" fill="url(#studentGrad)"/>
+    <!-- 髪 -->
+    <path d="M58 60 Q58 47 75 47 Q92 47 92 60 Q92 56 88 54 Q75 60 62 54 Q58 56 58 60 Z" fill="#1a1a1a"/>
+    <!-- ノートPC（前傾姿勢を演出） -->
+    <rect x="55" y="120" width="36" height="22" rx="2" fill="#fff" stroke="#c8b876" stroke-width="1"/>
+    <line x1="60" y1="127" x2="86" y2="127" stroke="#c8b876" stroke-width="1.5"/>
+    <line x1="60" y1="132" x2="80" y2="132" stroke="#c8b876" stroke-width="1.5"/>
+    <line x1="60" y1="137" x2="84" y2="137" stroke="#c8b876" stroke-width="1.5"/>
+  </g>
+  <!-- 右：コーチ（隣で見ている） -->
+  <g filter="url(#dropShadow2)">
+    <!-- 体 -->
+    <path d="M105 110 Q105 100 113 96 L147 96 Q155 100 155 110 L155 140 L105 140 Z" fill="url(#coachGrad)"/>
+    <!-- 首 -->
+    <rect x="124" y="82" width="12" height="14" fill="#a89860"/>
+    <!-- 頭 -->
+    <circle cx="130" cy="65" r="18" fill="url(#coachGrad)"/>
+    <!-- 髪 -->
+    <path d="M113 60 Q113 47 130 47 Q147 47 147 60 Q147 56 143 54 Q130 60 117 54 Q113 56 113 60 Z" fill="#3a3528"/>
+    <!-- ハイライト -->
+    <ellipse cx="123" cy="60" rx="4" ry="3" fill="#fff" opacity="0.3"/>
+    <!-- 指差し（生徒のノートを指す） -->
+    <path d="M105 120 L95 124 L97 128 L107 124 Z" fill="url(#coachGrad)"/>
+  </g>
+  <!-- 関係性の装飾線 -->
+  <path d="M75 30 Q100 18 130 30" stroke="#c8b876" stroke-width="2" stroke-dasharray="4,3" fill="none" opacity="0.5"/>
+  <text x="100" y="195" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#8a8566" letter-spacing="3">SIDE BY SIDE</text>
+</svg>

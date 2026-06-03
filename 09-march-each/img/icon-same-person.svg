@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="bodyGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c8b876"/>
+      <stop offset="100%" stop-color="#8a8566"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#3a3a35"/>
+    </linearGradient>
+    <filter id="dropShadow1" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#8a8566" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- 中央の人型（コーチ） -->
+  <g filter="url(#dropShadow1)">
+    <!-- 体 -->
+    <path d="M65 110 Q65 100 75 95 L125 95 Q135 100 135 110 L135 165 Q135 170 130 170 L70 170 Q65 170 65 165 Z" fill="url(#bodyGrad1)"/>
+    <!-- 首 -->
+    <rect x="92" y="82" width="16" height="16" fill="#a89860"/>
+    <!-- 頭 -->
+    <circle cx="100" cy="65" r="22" fill="url(#bodyGrad1)"/>
+    <!-- 髪 -->
+    <path d="M78 60 Q78 45 100 45 Q122 45 122 60 Q122 55 116 53 Q100 60 84 53 Q78 56 78 60 Z" fill="#3a3528"/>
+    <!-- 顔のハイライト -->
+    <ellipse cx="92" cy="58" rx="5" ry="4" fill="#fff" opacity="0.3"/>
+  </g>
+  <!-- 「同じ人」を示すバッジ（鍵マーク） -->
+  <g transform="translate(140, 50)">
+    <circle cx="0" cy="0" r="22" fill="url(#badgeGrad)"/>
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#e8d896" stroke-width="2"/>
+    <!-- 鍵 -->
+    <path d="M-7 -5 L-7 5 L7 5 L7 -5 M-3 -5 L-3 -10 Q-3 -14 0 -14 Q3 -14 3 -10 L3 -5" stroke="#e8d896" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="2" fill="#e8d896"/>
+  </g>
+  <!-- 周囲の点線円（固定を表現） -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#c8b876" stroke-width="2" stroke-dasharray="4,6" opacity="0.5"/>
+</svg>

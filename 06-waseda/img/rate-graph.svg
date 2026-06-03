@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="barBad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#aaa"/>
+      <stop offset="100%" stop-color="#888"/>
+    </linearGradient>
+    <linearGradient id="barGood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c8b876"/>
+      <stop offset="100%" stop-color="#8a8566"/>
+    </linearGradient>
+    <filter id="graphShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <!-- 背景グリッド -->
+  <line x1="50" y1="50" x2="50" y2="240" stroke="#ddd" stroke-width="1"/>
+  <line x1="50" y1="240" x2="380" y2="240" stroke="#ddd" stroke-width="1"/>
+  <!-- グリッド線 -->
+  <line x1="48" y1="100" x2="380" y2="100" stroke="#eee" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="48" y1="150" x2="380" y2="150" stroke="#eee" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="48" y1="200" x2="380" y2="200" stroke="#eee" stroke-width="1" stroke-dasharray="3,3"/>
+  <!-- 軸ラベル -->
+  <text x="40" y="55" text-anchor="end" font-family="sans-serif" font-size="10" fill="#999">¥10,250</text>
+  <text x="40" y="155" text-anchor="end" font-family="sans-serif" font-size="10" fill="#999">¥5,000</text>
+  <text x="40" y="245" text-anchor="end" font-family="sans-serif" font-size="10" fill="#999">¥0</text>
+  <!-- 一般塾（高い棒） -->
+  <g filter="url(#graphShadow)">
+    <rect x="100" y="55" width="80" height="185" rx="6" fill="url(#barBad)"/>
+    <!-- 棒の上に値 -->
+    <rect x="92" y="36" width="96" height="22" rx="11" fill="#1a1a1a"/>
+    <text x="140" y="50" text-anchor="middle" font-family="serif" font-size="13" font-weight="900" fill="#fff">¥10,250</text>
+    <!-- ラベル -->
+    <text x="140" y="262" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666" font-weight="700">一般塾</text>
+    <text x="140" y="277" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#999">/ 1時間</text>
+  </g>
+  <!-- FAST-UP（低い棒） -->
+  <g filter="url(#graphShadow)">
+    <rect x="240" y="225" width="80" height="15" rx="6" fill="url(#barGood)"/>
+    <!-- 棒の上に値 -->
+    <rect x="252" y="200" width="56" height="22" rx="11" fill="#8a8566"/>
+    <text x="280" y="214" text-anchor="middle" font-family="serif" font-size="13" font-weight="900" fill="#fff">¥593</text>
+    <!-- ラベル -->
+    <text x="280" y="262" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6a6244" font-weight="900">FAST-UP</text>
+    <text x="280" y="277" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8a8566">/ 1時間</text>
+  </g>
+  <!-- 矢印（差を表現） -->
+  <g opacity="0.6">
+    <path d="M195 110 Q220 110 240 220" stroke="#c44" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="6,4"/>
+    <path d="M236 215 L243 222 L237 226" stroke="#c44" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- 「1/17」表記 -->
+  <g transform="translate(210, 165)">
+    <rect x="-22" y="-12" width="44" height="24" rx="12" fill="#c44"/>
+    <text x="0" y="4" text-anchor="middle" font-family="serif" font-size="12" font-weight="900" fill="#fff">1/17</text>
+  </g>
+</svg>
