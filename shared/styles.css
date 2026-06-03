@@ -123,6 +123,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .section {
   padding: 100px 0;
   position: relative;
+  border-bottom: 4px solid #fff;
 }
 .section-light { background: var(--fu-paper); }
 .section-dark {
