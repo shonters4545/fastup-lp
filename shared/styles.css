@@ -126,6 +126,155 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border-bottom: 4px solid #fff;
 }
 .section-light { background: var(--fu-paper); }
+.section-aha { background: #fff; padding-bottom: 80px; }
+.section-aha .aha-lead { margin-bottom: 0; }
+.section-aha-env { background: var(--fu-main); color: #fff; position: relative; padding-top: 60px; }
+.section-aha-env::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 3;
+}
+.section-aha-env::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  border-right: 2.5px solid var(--fu-main);
+  border-bottom: 2.5px solid var(--fu-main);
+  z-index: 4;
+}
+.section-aha-env .aha-bridge {
+  margin: 24px auto 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: var(--fu-content-max);
+  font-family: var(--fu-font-serif);
+  font-size: var(--fu-size-h2);
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+.section-aha-env .aha-bridge::before { display: none; }
+.section-aha-env .aha-circle h3 {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: #fff;
+  background-clip: initial;
+  color: #fff;
+}
+.section-aha-env .aha-circle p { color: rgba(255,255,255,0.9); }
+.section-aha-env .three-circles-grid::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.45) 20%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.45) 80%, transparent 100%);
+}
+.section-aha-env .aha-bridge strong {
+  background: none;
+  padding: 0;
+}
+/* 3つの円を白いカードで囲う */
+.section-aha-env .three-circles-wrap {
+  background-color: #fff !important;
+  background-image: none !important;
+  padding: 56px 32px 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+.section-aha-env .three-circles-wrap .aha-circle h3 {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: var(--fu-ink);
+  background-clip: initial;
+  color: var(--fu-ink);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+.section-aha-env .three-circles-wrap .aha-circle p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--fu-fg-2);
+  margin: 0 auto;
+  max-width: none;
+  text-align: center;
+}
+.section-aha-env .three-circles-wrap .aha-circle p.aha-circle-subtitle {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.section-aha-env .three-circles-wrap .aha-circle {
+  position: relative;
+  padding-bottom: 180px;
+}
+.section-aha-env .aha-circle-photo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+.section-aha-env .aha-circle:hover .aha-circle-photo {
+  transform: translateX(-50%) scale(1.05);
+}
+.section-aha-env .three-circles-wrap .three-circles-grid::before { display: none; }
+.section-aha-env .aha-conclusion {
+  background: var(--fu-ink);
+  margin-top: 0;
+  position: relative;
+}
+.section-aha-env .aha-conclusion::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+  z-index: 3;
+}
+.section-aha-env .aha-conclusion p:not(.aha-conclusion-self) {
+  display: inline-block;
+  background: var(--fu-sub);
+  color: var(--fu-ink);
+  padding: 2px 12px;
+}
+.section-aha-env .aha-conclusion-self {
+  border-top: 0.5px dashed #fff;
+}
+.section-aha-env .aha-conclusion::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  border-right: 2.5px solid var(--fu-ink);
+  border-bottom: 2.5px solid var(--fu-ink);
+  z-index: 4;
+}
 
 /* === [5] 無料診断・個別カウンセリング === */
 .counsel-section {
@@ -377,6 +526,29 @@ h4 { font-size: var(--fu-size-h4); margin-bottom: 12px; font-weight: 500; line-h
 }
 .section-title--left { text-align: left; }
 .section-title--left small { justify-content: flex-start; }
+.section-title--brand h2 {
+  display: block;
+  background: none;
+  color: inherit;
+  padding: 0;
+  text-align: center;
+}
+/* 見出しボックス共通デザイン
+   カラーは --title-box-bg / --title-box-color で上書き可能。
+   デフォルトは黒地に白文字。 */
+.section-title--brand h2 span {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  background: var(--title-box-bg, var(--fu-ink));
+  color: var(--title-box-color, #fff);
+  padding: 4px 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+.section-title--brand h2 span + span { margin-top: 12px; }
+.section-title--brand h2 em { color: var(--title-box-color, #fff); }
 .section-title small::before {
   content: '';
   width: 8px;
@@ -2591,22 +2763,37 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .aha-circle-num {
   display: inline-block;
-  font-family: 'Zen Old Mincho', serif;
-  font-size: 32px;
-  font-weight: 900;
+  font-family: var(--fu-font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fu-main);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.aha-circle-subtitle {
+  display: inline-block;
+  background: var(--fu-accent);
   color: #fff;
-  background: var(--fu-main);
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  line-height: 56px;
-  margin-bottom: 12px;
-  box-shadow: 0 8px 24px rgba(138,133,102,0.4);
+  padding: 0 6px;
+  font-size: 14px;
+  font-weight: 900;
+  font-family: var(--fu-font-serif);
+  margin: 0 0 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
 }
 .aha-circle-svg {
   width: 220px; height: 220px;
   margin: 0 auto 24px;
   display: block;
   filter: drop-shadow(0 16px 48px rgba(138,133,102,0.25));
+  transition: transform 0.3s;
+}
+.aha-circle-photo {
+  width: 240px;
+  height: auto;
+  display: block;
   transition: transform 0.3s;
 }
 .aha-circle:hover .aha-circle-svg { transform: scale(1.05); }
@@ -2641,7 +2828,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .aha-circle p {
   font-size: 14px;
   color: #555;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: var(--fu-font-serif);
   line-height: 1.7;
   max-width: 240px;
   margin: 0 auto;
@@ -2676,50 +2863,48 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   color: #fff !important;
   font-size: 18px !important;
   font-weight: 700 !important;
-  font-family: 'Noto Sans JP', sans-serif !important;
+  font-family: var(--fu-font-serif) !important;
   letter-spacing: 0.04em !important;
 }
 
 /* === AHA Lead（やる気じゃない、仕組みの問題） === */
+/* インデックスタブ（A1）＋ PRINCIPLE 01 カード構造 */
 .aha-lead {
-  background: #fff;
-  border: 2px solid var(--fu-sub);
-  border-radius: 16px;
-  padding: 40px 32px;
-  margin: 0 auto 32px;
   max-width: 720px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-  position: relative;
+  margin: 0 auto 32px;
 }
-.aha-lead::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  width: 18px;
-  height: 18px;
-  background: #fff;
-  border-top: 2px solid var(--fu-sub);
-  border-left: 2px solid var(--fu-sub);
-}
-.aha-lead-eyebrow {
+.aha-lead-tab {
+  display: block;
   text-align: center;
+  color: var(--fu-main);
+  font-family: var(--fu-font-serif);
   font-size: 13px;
-  color: #888;
-  font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: 0.08em;
-  margin: 0 0 16px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin: 0 0 20px;
+}
+.aha-lead-tab::before,
+.aha-lead-tab::after {
+  content: '—';
+  margin: 0 10px;
+  color: var(--fu-main);
+}
+.aha-lead-card {
+  background: #fff;
+  border: 2px solid var(--fu-hairline);
+}
+.aha-lead-card-body {
+  padding: 40px 36px 32px;
 }
 .aha-lead-headline {
   text-align: center;
-  font-family: 'Zen Old Mincho', serif;
+  font-family: var(--fu-font-serif);
   font-size: 30px;
   font-weight: 900;
   line-height: 1.5;
   color: var(--fu-ink);
   letter-spacing: 0.04em;
-  margin: 0 0 24px;
+  margin: 0 0 28px;
 }
 .aha-lead-headline em {
   font-style: normal;
@@ -2727,38 +2912,40 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   padding: 0 4px;
 }
 .aha-lead-body {
-  background: var(--fu-parchment);
-  border-left: 4px solid var(--fu-sub);
-  padding: 20px 22px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-}
-.aha-lead-body p {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: var(--fu-font-serif);
   font-size: 16px;
   line-height: 1.8;
-  color: var(--fu-ink);
-  margin: 0 0 10px;
+  text-align: center;
+  color: var(--fu-ink-80);
+  margin: 0;
+}
+.aha-lead-body p {
+  font-family: var(--fu-font-serif);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--fu-ink-80);
+  margin: 0 0 8px;
 }
 .aha-lead-body p:last-child { margin-bottom: 0; }
-.aha-lead-body p:first-child {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--fu-ink);
-}
+.aha-lead-body strong { font-weight: 900; color: var(--fu-ink); }
 .aha-lead-body u {
   text-decoration: none;
   background: linear-gradient(transparent 70%, var(--fu-sub) 70%);
   padding: 0 2px;
 }
 .aha-lead-source {
+  font-family: var(--fu-font-serif);
+  font-size: 13px;
+  color: #888;
+  letter-spacing: 0.1em;
   text-align: center;
-  margin: 0;
+  margin: 20px 0 0;
 }
 .aha-lead-source small {
-  font-size: 12px;
-  color: #888;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
 }
 /* === Bridge Bubble (問いかけ型つなぎ：吹き出し+Qバッジ) === */
 .bridge-bubble,
@@ -2822,6 +3009,23 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   background: linear-gradient(transparent 60%, var(--fu-sub) 60%);
   padding: 0 4px;
 }
+/* --- .aha-bridge: 独立セクション風（ブランドカラー帯） --- */
+.aha-bridge {
+  margin: 48px 0 64px;
+  max-width: none;
+  background: var(--fu-main);
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  box-shadow: none;
+  padding: 48px 36px 40px;
+}
+.aha-bridge::before {
+  background: #fff;
+  color: var(--fu-main);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.aha-bridge::after { display: none; }
 
 /* === Three X Cards (1人ではムリ) === */
 .three-x-grid {
@@ -3429,12 +3633,13 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .aha-conclusion h3 { font-size: 24px; }
   .aha-conclusion p { font-size: 18px; }
   .aha-conclusion-self { font-size: 15px !important; }
-  .aha-lead { padding: 28px 20px; margin-bottom: 24px; }
-  .aha-lead-headline { font-size: 22px; line-height: 1.5; }
-  .aha-lead-eyebrow { font-size: 12px; }
-  .aha-lead-body { padding: 16px 14px; }
-  .aha-lead-body p { font-size: 14px; line-height: 1.7; }
-  .aha-lead-body p:first-child { font-size: 15px; }
+  .aha-lead { margin-bottom: 24px; }
+  .aha-lead-tab { font-size: 11px; letter-spacing: 0.14em; margin-bottom: 16px; }
+  .aha-lead-tab::before, .aha-lead-tab::after { margin: 0 8px; }
+  .aha-lead-card-body { padding: 32px 22px 24px; }
+  .aha-lead-headline { font-size: 22px; line-height: 1.5; margin-bottom: 20px; }
+  .aha-lead-body p { font-size: 14px; line-height: 1.9; }
+  .aha-lead-source { font-size: 12px; letter-spacing: 0.08em; margin-top: 16px; }
   .aha-bridge,
   .bridge-bubble {
     font-size: 17px;
