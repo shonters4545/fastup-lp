@@ -3844,30 +3844,59 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 
 /* === [6] 後半再導入セクション === */
 .deep-intro {
-  padding: 80px 24px;
+  padding: 64px 24px 32px;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  background: var(--fu-accent);
 }
-.deep-intro::before {
-  content: '';
+.deep-intro-arrow {
   position: absolute;
-  top: 0;
   left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 4px;
+  bottom: 0;
+  transform: translate(-50%, 50%);
   background: var(--fu-sub);
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+  padding: 16px 30px 30px;
+  color: #1a1a1a;
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  z-index: 4;
 }
 .deep-intro-eyebrow {
-  display: inline-block;
-  font-size: 13px;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
   color: var(--fu-sub);
-  font-family: 'Noto Sans JP', sans-serif;
-  letter-spacing: 0.2em;
+  font-family: 'Zen Old Mincho', serif;
+  letter-spacing: 0.10em;
+  line-height: 1;
   margin-bottom: 24px;
-  letter-spacing: 0.16em;
 }
+.dintro-hatch {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+}
+.dintro-hatch i {
+  display: block;
+  width: 1.25px;
+  background: var(--fu-sub);
+  transform-origin: bottom;
+}
+/* 内側=短く緩やか / 外側=長く斜め（下端そろえ） */
+.dintro-hatch.l i:nth-child(1) { height: 18px; transform: skewX(32deg); }
+.dintro-hatch.l i:nth-child(2) { height: 12px; transform: skewX(22deg); }
+.dintro-hatch.l i:nth-child(3) { height: 6px;  transform: skewX(12deg); }
+.dintro-hatch.r i:nth-child(1) { height: 6px;  transform: skewX(-12deg); }
+.dintro-hatch.r i:nth-child(2) { height: 12px; transform: skewX(-22deg); }
+.dintro-hatch.r i:nth-child(3) { height: 18px; transform: skewX(-32deg); }
 .deep-intro-headline {
   font-family: 'Zen Old Mincho', serif;
   font-size: 36px;
@@ -3878,7 +3907,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin: 0 0 28px;
 }
 .deep-intro-lead {
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Zen Old Mincho', serif;
   font-size: 16px;
   color: #d4cfb0;
   line-height: 1.8;
