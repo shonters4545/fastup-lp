@@ -280,14 +280,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
    [9] feature section ([9][10][11] 強み詳細) — 統一トーン
    ============================================================= */
 .section-feature .feature-block { margin-bottom: 0; padding: 0; }
-.section-feature .section-title { text-align: left; margin-bottom: 12px; }
+.section-feature .section-title { text-align: left; margin-bottom: 24px; }
 .section-feature .section-title small { justify-content: flex-start; }
 .section-feature .section-title h2 em {
   font-style: normal;
-  background: linear-gradient(180deg, #A89E78 0%, var(--fu-main) 60%, #5A532F 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  background: #333;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  padding: 0 14px;
+  margin-top: 6px;
 }
 .section-feature .feature-desc {
   font-family: var(--fu-font-serif);
@@ -304,7 +308,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  margin: 0 0 56px;
+  margin: 0 0 40px;
 }
 .section-feature .cal-panel {
   background: #fff;
@@ -412,8 +416,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .section-feature .feature-sub-cards--zigzag {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 56px;
+  gap: 80px;
+  margin-top: 0;
+  padding-top: 40px;
+  border-top: 1px dashed #ddd;
 }
 .section-feature .feature-sub-row {
   display: grid;
@@ -421,38 +427,47 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   align-items: center;
   gap: 0;
   position: relative;
-  padding-bottom: 8px;
+  padding-bottom: 0;
   justify-content: start;
 }
 .section-feature .feature-sub-row--reverse {
   grid-template-columns: auto auto;
   justify-content: end;
 }
+.section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(odd) {
+  margin-left: -80px;
+}
+.section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(even) {
+  margin-right: -80px;
+}
 .section-feature .feature-sub-image {
   position: relative;
   overflow: hidden;
-  max-width: 420px;
+  width: 420px;
+  height: 280px;
 }
 .section-feature .feature-sub-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 .section-feature .feature-sub-row .feature-sub-card {
   background: #fff;
-  padding: 36px 36px 32px;
+  padding: 36px 48px 32px 28px;
   border: none;
   border-radius: 0;
   box-shadow: 0 8px 32px rgba(0,0,0,0.05);
   position: relative;
   z-index: 2;
-  margin-left: -160px;
-  margin-top: 140px;
+  margin-left: -60px;
+  margin-top: 0;
+  transform: translateY(60px);
   text-align: left;
 }
 .section-feature .feature-sub-row--reverse .feature-sub-card {
   margin-left: 0;
-  margin-right: -160px;
+  margin-right: -60px;
 }
 .section-feature .feature-sub-card::before { display: none; }
 .section-feature .feature-sub-card:hover {
@@ -488,7 +503,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .section-feature .feature-sub-card p {
   font-family: var(--fu-font-serif);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.95;
   color: var(--fu-fg-2);
   margin: 0;
