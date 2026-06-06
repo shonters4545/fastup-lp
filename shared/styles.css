@@ -128,7 +128,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .section-light { background: var(--fu-paper); }
 .section-aha { background: #fff; padding-bottom: 80px; }
 .section-aha .aha-lead { margin-bottom: 0; }
-.section-aha-env { background: var(--fu-main); color: #fff; position: relative; padding-top: 60px; }
+.section-aha-env { background: #333; color: #fff; position: relative; padding-top: 60px; }
 .section-aha-env::before {
   content: '';
   position: absolute;
@@ -238,7 +238,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .section-aha-env .three-circles-wrap .three-circles-grid::before { display: none; }
 .section-aha-env .aha-conclusion {
-  background: var(--fu-ink);
+  background: var(--fu-accent);
   margin-top: 0;
   position: relative;
 }
@@ -256,8 +256,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .section-aha-env .aha-conclusion p:not(.aha-conclusion-self) {
   display: inline-block;
-  background: var(--fu-sub);
-  color: var(--fu-ink);
+  background: #fff;
+  color: var(--fu-accent);
   padding: 2px 12px;
 }
 .section-aha-env .aha-conclusion-self {
@@ -271,8 +271,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transform: translateX(-50%) rotate(45deg);
   width: 12px;
   height: 12px;
-  border-right: 2.5px solid var(--fu-ink);
-  border-bottom: 2.5px solid var(--fu-ink);
+  border-right: 2.5px solid var(--fu-accent);
+  border-bottom: 2.5px solid var(--fu-accent);
   z-index: 4;
 }
 
@@ -458,7 +458,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .section-cream {
   background: var(--fu-bg-muted);
   position: relative;
+  padding-bottom: 40px;
 }
+.section-cream .section-title h2 em { color: var(--fu-ink); }
 .section-brand {
   background-color: #333;
   background-size: cover;
@@ -3036,131 +3038,203 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .x-card {
   background: #fff;
-  padding: 40px 28px;
-  border-radius: 12px;
+  padding: 36px 28px 180px;
   text-align: center;
   position: relative;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 0 0 1px rgba(196,68,68,0.1);
-  transition: transform 0.25s;
 }
-.x-card:hover { transform: translateY(-4px); }
-.x-card-mark {
-  width: 80px; height: 80px;
-  margin: 0 auto 20px;
-  background: linear-gradient(135deg, #c44 0%, #a22 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 44px;
-  font-weight: 900;
-  box-shadow: 0 8px 24px rgba(196,68,68,0.4);
+.x-card-num {
+  display: inline-block;
+  font-family: var(--fu-font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fu-main);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.x-card-photo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: auto;
+  display: block;
+}
+.three-x-grid .x-card::after {
+  content: '';
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-40deg);
+  width: 200px;
+  height: 8px;
+  background: var(--fu-accent);
+  opacity: 0.8;
+  z-index: 5;
+  pointer-events: none;
 }
 .x-card h4 {
-  font-size: 20px;
-  margin-bottom: 12px;
+  font-family: var(--fu-font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
   color: var(--fu-ink);
+  margin-bottom: 6px;
 }
 .x-card p {
-  font-size: 14px;
-  color: #666;
-  font-family: 'Noto Sans JP', sans-serif;
-  line-height: 1.7;
+  font-family: var(--fu-font-serif);
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--fu-fg-2);
+  text-align: center;
   margin: 0;
+}
+.x-card p.x-card-subtitle {
+  display: inline-block;
+  background: var(--fu-accent);
+  color: #fff;
+  padding: 0 6px;
+  font-size: 16px;
+  font-weight: 900;
+  font-family: var(--fu-font-serif);
+  margin: 0 0 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
 }
 
 /* === Check Table (○✕✕ for 4 options) === */
 .check-table-block {
-  margin: 40px 0;
+  margin: 24px 0;
+  padding-top: 24px;
+  border-top: 1px dashed #ddd;
 }
 .check-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.08);
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: var(--fu-font-serif);
 }
 .check-table th, .check-table td {
-  padding: 20px 16px;
+  padding: 22px 12px;
   text-align: center;
-  border-bottom: 1px solid #eef0e8;
+  border-bottom: 1px solid var(--fu-hairline);
   font-size: 15px;
 }
 .check-table thead th {
-  background: var(--fu-bg-gold);
-  color: var(--fu-sub);
-  letter-spacing: 0.1em;
-  font-size: 13px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--fu-ink-40);
+  padding: 0;
+  border-bottom: 0;
+}
+.check-table thead th:not(:last-child) .check-table-label {
+  border-right: 1px solid #fff;
 }
 .check-table thead th:first-child {
-  background: var(--fu-bg-gold);
-  color: #fff;
   text-align: left;
+  padding: 0;
+}
+.check-table-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fu-main);
+  color: #fff;
+  padding: 10px 12px;
+  letter-spacing: 0.08em;
+  font-weight: 900;
+}
+.check-table thead th:first-child .check-table-label {
+  justify-content: flex-start;
   padding-left: 24px;
 }
 .check-table tbody td:first-child {
   text-align: left;
-  font-weight: 900;
-  background: linear-gradient(90deg, var(--fu-parchment) 0%, #fff 100%);
+  font-weight: 700;
+  color: #767676;
   padding-left: 24px;
+  font-size: 17px;
+}
+.check-table tbody td:not(:last-child) {
+  border-right: 1px solid #eee;
 }
 .check-table tbody tr.fastup-row td {
-  background: linear-gradient(135deg, var(--fu-parchment) 0%, #fff8e0 100%);
+  background: var(--fu-parchment);
   font-weight: 900;
-  border-bottom: none;
+  font-size: 17px;
+  border-top: 2px solid var(--fu-main);
+  border-bottom: 2px solid var(--fu-main);
+  border-right: 0;
 }
 .check-table tbody tr.fastup-row td:first-child {
-  background: var(--fu-main);
-  color: #fff;
+  color: var(--fu-main);
+  font-size: 18px;
+  border-left: 2px solid var(--fu-main);
 }
+.check-table tbody tr.fastup-row td:last-child {
+  border-right: 2px solid var(--fu-main);
+}
+.check-table tbody tr.fastup-row .check-mark-good { font-size: 20px; }
+.check-table tbody tr:last-child:not(.fastup-row) td { border-bottom: 0; }
 .check-mark-bad {
   display: inline-block;
-  width: 36px; height: 36px;
-  background: #fceeee;
-  color: #c44;
-  border-radius: 50%;
-  font-weight: 900;
+  background: transparent;
+  color: var(--fu-ink-40);
+  font-weight: 700;
   font-size: 18px;
-  line-height: 36px;
+  line-height: 1;
+  width: auto;
+  height: auto;
+  border-radius: 0;
 }
 .check-mark-mid {
   display: inline-block;
-  width: 36px; height: 36px;
-  background: #fff5e0;
-  color: #c89033;
-  border-radius: 50%;
-  font-weight: 900;
+  background: transparent;
+  color: var(--fu-ink);
+  font-weight: 700;
   font-size: 18px;
-  line-height: 36px;
+  line-height: 1;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  -webkit-text-stroke: 1px currentColor;
 }
 .check-mark-good {
   display: inline-block;
-  width: 36px; height: 36px;
-  background: var(--fu-main);
-  color: #fff;
-  border-radius: 50%;
-  font-weight: 900;
+  background: transparent;
+  color: var(--fu-main);
+  font-weight: 700;
   font-size: 18px;
-  line-height: 36px;
-  box-shadow: 0 4px 12px rgba(138,133,102,0.4);
+  line-height: 1;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-text-stroke: 1px currentColor;
 }
 .check-table-conclusion {
   text-align: center;
-  font-size: 22px;
-  font-weight: 900;
-  margin-top: 32px;
-  font-family: 'Zen Old Mincho', serif;
-  letter-spacing: 0.05em;
+  margin-top: 48px;
+  font-family: var(--fu-font-serif);
 }
-.check-table-conclusion em {
-  color: #c44;
-  background: none;
-  font-style: normal;
-  font-size: 1.2em;
+.check-table-conclusion span {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--fu-ink);
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+.check-table-conclusion-em {
+  background: var(--fu-accent);
+  color: #fff !important;
+  padding: 2px 10px;
+  margin-top: 12px;
+  font-size: 30px !important;
 }
 
 /* === Three Checks Large (FAST-UP は3つ全部 ○) === */
