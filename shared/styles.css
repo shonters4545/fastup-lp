@@ -698,7 +698,30 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   position: relative;
   padding-bottom: 40px;
 }
-.section-cream .section-title h2 em { color: var(--fu-ink); }
+/* 見出し強調 共通ルール
+   - ゴールドテキスト: .section-achievements / .section-feature (em にゴールドグラデ)
+   - 黒ボックス (#222): .section-cream / .section-feature (em にインラインボックス)
+   - ワインレッドボックス: .section-aha (em にインラインボックス・最重要強調) */
+.section-cream .section-title h2 em,
+.section-aha .section-title h2 em {
+  font-style: normal;
+  display: inline-block;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  padding: 0 14px;
+  margin-top: 6px;
+}
+.section-aha .section-title h2 em { padding: 0 8px; margin-top: 0; line-height: 1.2; }
+.section-cream .section-title h2 em { background: #222; }
+.section-aha .section-title h2 em { background: var(--fu-accent); }
+.section-achievements .section-title h2 em {
+  font-style: normal;
+  background: linear-gradient(180deg, #A89E78 0%, var(--fu-main) 60%, #5A532F 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 .section-brand {
   background-color: #333;
   background-size: cover;
