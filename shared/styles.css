@@ -116,7 +116,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* === Layout === */
 .container {
-  max-width: 1080px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -1102,9 +1102,6 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin: 48px 0 12px;
-}
-.section-achievements .container {
-  max-width: 800px;
 }
 .section-cases {
   background: var(--fu-parchment);
