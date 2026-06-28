@@ -5,3 +5,244 @@
    このファイルには 04a 固有の差分だけを記述する。
    現状、04a は共通版（shared）と同一のため差分なし。
    ============================================================ */
+
+/* 理由2: Card 02（左罫線 + 大きめ番号）をLP本体に適用 */
+.section-feature-app .app-callout {
+  width: 212px;
+  padding: 20px 14px 18px;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  font-size: 16px;
+  box-shadow: 0 14px 38px rgba(34,34,34,0.07);
+  /* スマホ下部を覆う特徴セクションより前面に保ち、ラベルが隠れないようにする */
+  z-index: 4;
+}
+
+.section-feature-app .app-callout::before {
+  display: none;
+}
+
+.section-feature-app .app-callout::after {
+  width: 50px;
+  border-top: 0.5px solid rgba(122,119,100,0.68);
+}
+
+.section-feature-app .app-callout-1,
+.section-feature-app .app-callout-3 {
+  left: -42px;
+}
+
+.section-feature-app .app-callout-2 {
+  right: -42px;
+}
+
+/* コールアウト1・2・3を全体的に上へ配置（shared の top/bottom を上書き）。
+   3枚を同量ずつ上げて相対バランスは維持する。 */
+.section-feature-app .app-callout-1 {
+  top: 16px;
+}
+
+.section-feature-app .app-callout-2 {
+  top: 160px;
+}
+
+.section-feature-app .app-callout-3 {
+  bottom: 176px;
+}
+
+.section-feature-app .app-callout-1::after {
+  left: calc(100% + 8px);
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
+
+.section-feature-app .app-callout-2::after {
+  right: calc(100% + 8px);
+  transform: rotate(45deg);
+  transform-origin: right center;
+}
+
+.section-feature-app .app-callout-3::after {
+  left: calc(100% + 8px);
+  transform: rotate(-45deg);
+  transform-origin: left center;
+}
+
+.section-feature-app .app-callout-num {
+  display: block;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  color: #bdb6a0;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* 理由2: スマホモックの下20%を特徴セクションで覆い、
+   「特徴セクションの上端からスマホが生えている」見せ方にする。
+   余白の相殺を避けるため app-showcase 側の下マージンを 0 にしてから、
+   特徴セクションを負マージンで重ねる。 */
+.section-feature-app .app-showcase {
+  margin-bottom: 0;
+}
+
+.section-feature-app .feature-sub-cards {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: 1fr;
+  /* 見出し・特徴カードを左寄せ（左マージンゼロでページ本文左端に揃える） */
+  justify-items: start;
+  /* カード間は0にし、区切り線の上下はカードの縦パディングで均等に作る */
+  gap: 0;
+  /* スマホ高さ562pxの約20%（112px）ぶん上に重ねる */
+  margin-top: -112px;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  /* スマホ下端はこのセクション背景で隠れるため、上パディングは控えめにしてカードを上へ寄せる */
+  padding: 64px max(24px, calc((100vw - 800px) / 2 + 24px)) 48px;
+  border-top: 0;
+  background:
+    linear-gradient(rgba(22,22,18,0.78), rgba(22,22,18,0.84)),
+    url("img/feature-section-bg.jpg");
+  background-size: cover;
+  background-position: center center;
+  color: var(--fu-ink);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(34,34,34,0.18);
+}
+
+/* 特徴セクションの導入見出し（モックアップ→特徴一覧の繋ぎ）。
+   暗い写真背景に映えるよう白＋明るめゴールドのアクセント。 */
+.section-feature-app .feature-sub-heading {
+  width: min(640px, 100%);
+  max-width: 640px;
+  /* 見出しと特徴カードの間（gapを0にしたぶん下マージンで確保） */
+  margin: 0 0 20px;
+  /* ボックス内テキストの左端をカード本文（28px）に揃える（28 - 箱の左padding10） */
+  padding: 0 18px;
+  text-align: left;
+}
+
+/* メイン見出し（今日やること…）の黒ボックスを白黒反転（白ボックス＋黒文字）。
+   2行とも箱にし、サイズは 36px で統一。 */
+.section-feature-app .feature-sub-heading h3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* 1行目の下のマージン（1行目↔2行目）を広げる */
+  gap: 18px;
+  margin: 0;
+  font-family: var(--fu-font-serif);
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.section-feature-app .feature-sub-heading h3 em {
+  font-style: normal;
+  background: #fff;
+  color: #222;
+  -webkit-text-fill-color: #222;
+  font-weight: 700;
+  /* 箱の上下paddingを小さく（line-heightで詰める） */
+  line-height: 1.2;
+  /* 箱の左右paddingを小さく */
+  padding: 0 10px;
+}
+
+.section-feature-app .feature-sub-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  /* 見出しと説明文を近づける（行間の基本ギャップ） */
+  gap: 4px;
+  width: min(640px, 100%);
+  max-width: 640px;
+  margin: 0;
+  /* 縦パディングで区切り線の上下マージンを作る */
+  padding: 18px 28px;
+  border-bottom: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: #fff;
+  text-align: left;
+}
+
+/* 区切り線はボーダーだと左右パディングぶん外へ伸びるため、
+   擬似要素でテキスト幅（左右28px）に合わせる */
+.section-feature-app .feature-sub-card::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 0;
+  border-top: 0.5px solid rgba(255,255,255,0.24);
+}
+
+.section-feature-app .feature-sub-card:last-child::after {
+  display: none;
+}
+
+.section-feature-app .feature-sub-card::before {
+  display: none;
+}
+
+.section-feature-app .feature-sub-card-label {
+  width: max-content;
+  /* 「特徴N」ラベルと見出しの間を広げ、タグとして独立させる */
+  margin: 0 0 12px;
+  border: 0;
+  background: #f4efe2;
+  padding: 2px 8px;
+  color: var(--fu-ink);
+  line-height: 1.4;
+}
+
+.section-feature-app .feature-sub-card h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+.section-feature-app .feature-sub-card p {
+  margin: 0;
+  color: rgba(255,255,255,0.86);
+}
+
+.section-feature-app .feature-sub-card p strong {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .section-feature-app .app-callout {
+    width: 100%;
+  }
+
+  /* モバイルはコールアウトが縦積みになるため重ねず、通常余白に戻す */
+  .section-feature-app .app-showcase {
+    margin-bottom: 56px;
+  }
+
+  .section-feature-app .feature-sub-cards {
+    margin-top: 56px;
+    padding: 36px 24px;
+  }
+
+  .section-feature-app .feature-sub-card {
+    padding: 18px 20px;
+  }
+
+  .section-feature-app .feature-sub-card::after {
+    left: 20px;
+    right: 20px;
+  }
+
+  .section-feature-app .feature-sub-heading {
+    /* モバイルはカード本文が20px。箱の左padding10を引いて 10px */
+    padding: 0 10px;
+  }
+}

@@ -514,6 +514,294 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-weight: 700;
 }
 
+/* =============================================================
+   [10] 強み詳細②：1日単位カリキュラム — アプリショーケース
+   ============================================================= */
+.app-showcase {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 56px 0 72px;
+}
+
+/* --- スマホ実機モック（仮デザイン・HTML/CSS実装） --- */
+.phone-mock {
+  width: 310px;
+  background: #1b1b18;
+  border-radius: 48px;
+  padding: 10px;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.22);
+}
+.phone-screen {
+  position: relative;
+  background: #FBFAF6;
+  border-radius: 38px;
+  overflow: hidden;
+}
+.phone-screen::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78px;
+  height: 22px;
+  background: #1b1b18;
+  border-radius: 12px;
+}
+.phone-statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 26px 8px;
+  font-family: var(--fu-font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.phone-batt {
+  position: relative;
+  width: 22px;
+  height: 11px;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 3px;
+}
+.phone-batt::before {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  right: 6px;
+  background: #1a1a1a;
+  border-radius: 1px;
+}
+.phone-appbar {
+  background: var(--fu-main);
+  color: #fff;
+  padding: 12px 20px 14px;
+  margin-top: 4px;
+}
+.phone-appbar-brand {
+  font-family: var(--fu-font-sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  opacity: 0.85;
+}
+.phone-appbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2px;
+}
+.phone-appbar-title {
+  font-family: var(--fu-font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.phone-appbar-date {
+  font-family: var(--fu-font-sans);
+  font-size: 11px;
+  font-weight: 700;
+}
+.phone-progress { padding: 16px 20px 0; }
+.phone-progress-bar {
+  height: 6px;
+  background: #E9E6DA;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.phone-progress-bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #A89E78, #5A532F);
+  border-radius: 3px;
+}
+.phone-progress-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-family: var(--fu-font-sans);
+  font-size: 10px;
+  color: #999;
+}
+.phone-progress-row strong {
+  font-size: 11px;
+  color: var(--fu-main-hover);
+}
+.phone-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px 16px 4px;
+}
+.phone-task {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: #fff;
+  border: 1px solid var(--fu-hairline);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.phone-task-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #D9D6C9;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-task.done .phone-task-check {
+  background: var(--fu-main);
+  border-color: var(--fu-main);
+}
+.phone-task.done .phone-task-check::after {
+  content: '✓';
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+}
+.phone-task.doing {
+  border: 1.5px solid var(--fu-accent);
+  background: #FDFAF7;
+}
+.phone-task.doing .phone-task-check { border-color: var(--fu-accent); }
+.phone-task.doing .phone-task-check::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fu-accent);
+}
+.phone-task-body {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.45;
+  min-width: 0;
+}
+.phone-task-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--fu-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  color: #999;
+}
+.phone-task-meta em {
+  font-style: normal;
+  color: var(--fu-main-hover);
+}
+.phone-task.test .phone-task-meta em { color: var(--fu-accent); }
+.phone-task-now {
+  background: var(--fu-accent);
+  color: #fff;
+  font-size: 9px;
+  line-height: 1.4;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+.phone-task-name {
+  font-family: var(--fu-font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.phone-task.done .phone-task-name {
+  color: var(--fu-ink-40);
+  text-decoration: line-through;
+}
+.phone-home {
+  width: 90px;
+  height: 4px;
+  border-radius: 2px;
+  background: #1b1b18;
+  margin: 12px auto 10px;
+}
+
+/* --- 注釈コールアウト --- */
+.app-callout {
+  position: absolute;
+  width: 200px;
+  background: #fff;
+  padding: 14px 18px 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+  font-family: var(--fu-font-serif);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--fu-fg-2);
+  z-index: 2;
+}
+.app-callout strong {
+  color: var(--fu-ink);
+  font-weight: 700;
+}
+.app-callout-num {
+  display: block;
+  font-family: var(--fu-font-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--fu-main);
+  border-bottom: 1px solid var(--fu-hairline);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+.app-callout::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 42px;
+  border-top: 1px dashed #B5B1A2;
+}
+.app-callout-1 { left: 0; top: 48px; }
+.app-callout-3 { left: 0; bottom: 96px; }
+.app-callout-1::after,
+.app-callout-3::after { left: 100%; }
+.app-callout-2 { right: 0; top: 230px; }
+.app-callout-2::after { right: 100%; }
+
+/* --- 特徴カード（理由2：写真なし2列・角丸なしで統一） --- */
+.section-feature-app .feature-sub-cards {
+  gap: 28px;
+  margin-top: 0;
+  padding-top: 48px;
+  border-top: 1px dashed #ddd;
+}
+.section-feature-app .feature-sub-card {
+  border-radius: 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+}
+.section-feature-app .feature-sub-card h4 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+  .app-showcase {
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0 56px;
+  }
+  .phone-mock { order: -1; width: 280px; }
+  .app-callout {
+    position: static;
+    width: 100%;
+    max-width: 320px;
+    margin-top: 14px;
+  }
+  .app-callout::after { display: none; }
+}
+
 /* === [5] 無料診断・個別カウンセリング === */
 .counsel-section {
   position: relative;
