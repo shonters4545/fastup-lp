@@ -11,6 +11,20 @@
 #reason2 { border-bottom: 0; padding-bottom: 0; }
 #reason3 { padding-top: 64px; background: #f6f6f6; }
 #pricing { background: #f6f6f6; padding-top: 0; }
+#extra { background: #fff; padding-bottom: 100px; }
+#reassure { background: #fff; padding-bottom: 100px; }
+/* さらに（3つの仕組み）カード：角丸0・ブランドカラーのボーダー・明朝 */
+#extra .add-service-card {
+  border-radius: 0;
+  border: 1.5px solid var(--fu-main);
+  box-shadow: none;
+  padding: 26px 26px 24px;
+}
+#extra .add-service-card::before { display: none; }   /* 上端の5px帯を消し、上辺も同じ太さに */
+#extra .add-service-card * { font-family: var(--fu-font-serif); }
+#extra .add-service-num { margin-bottom: 18px; }      /* 01の下を若干大きく */
+#extra .add-service-card h3 { margin-bottom: 10px; }  /* 見出し↔説明文を小さく */
+#extra .add-service-card p { font-size: 16px; }       /* 説明文 +2px */
 
 /* 見出し→説明文の間隔を理由2（特徴系）と揃える */
 #reason3 .section-title { margin-bottom: 24px; }
