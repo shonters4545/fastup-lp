@@ -6,6 +6,14 @@
    現状、04a は共通版（shared）と同一のため差分なし。
    ============================================================ */
 
+/* 理由2↔理由3 の境界：共通の白ボーダーを消し、暗い特徴パネルを
+   セクション下端に密着させて、reason3 への白い隙間（共通padding）を詰める */
+#reason2 { border-bottom: 0; padding-bottom: 0; }
+#reason3 { padding-top: 64px; background: #f6f6f6; }
+
+/* 見出し→説明文の間隔を理由2（特徴系）と揃える */
+#reason3 .section-title { margin-bottom: 24px; }
+
 /* 理由2: Card 02（左罫線 + 大きめ番号）をLP本体に適用 */
 .section-feature-app .app-callout {
   width: 212px;
@@ -245,4 +253,295 @@
     /* モバイルはカード本文が20px。箱の左padding10を引いて 10px */
     padding: 0 10px;
   }
+}
+
+/* ============================================================
+   理由3（年間総額で比較）＋ 料金（別セクション） — 04a 専用刷新
+   既存の古いデザインから、reason1/2と同じ洗練トーンへ引き上げる。
+   ============================================================ */
+
+/* 理由3のテキストをすべて Zen Old Mincho（明朝）に統一
+   （本文・表・内訳などの個別 font-family を id スコープで上書き） */
+#reason3,
+#reason3 * {
+  font-family: var(--fu-font-serif);
+}
+
+/* 見出しの強調を黒ボックスに統一（section-light でも適用） */
+.section-annual .section-title h2 em,
+.section-pricing .section-title h2 em {
+  font-style: normal;
+  display: inline-block;
+  background: #222;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  padding: 0 14px;
+  margin-top: 6px;
+}
+
+.section-annual .annual-lead {
+  max-width: 720px;
+  margin: 0 0 40px;
+  font-family: var(--fu-font-sans);
+  font-size: 16px;
+  line-height: 1.95;
+  color: #4a4a47;
+}
+.section-annual .annual-lead strong { color: var(--fu-ink); font-weight: 700; }
+
+/* --- 年間総額の対決 --- */
+.annual-faceoff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.annual-col {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px 26px;
+  border-radius: 0;
+}
+.annual-col--other {
+  background: #fff;
+  color: #6f6e68;
+}
+.annual-col--fastup {
+  background: #fff;
+  border: 1.5px solid var(--fu-main);
+  box-shadow: 0 18px 44px rgba(120,115,84,0.16);
+}
+.annual-tag {
+  align-self: flex-start;
+  font-family: var(--fu-font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.annual-col--other .annual-tag { color: #8d8b82; }
+.annual-col--fastup .annual-tag {
+  color: #fff;
+  background: var(--fu-main);
+  padding: 4px 14px;
+  border-radius: 30px;
+}
+.annual-total {
+  margin: 16px 0 18px;
+  font-family: var(--fu-font-serif);
+  font-weight: 700;
+  line-height: 1;
+  font-size: 56px;
+  letter-spacing: 0.01em;
+}
+.annual-col--other .annual-total { color: #767676; }
+.annual-col--fastup .annual-total {
+  /* CTAボタン（.header-cta）と同じゴールドグラデーションをテキストに */
+  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.annual-col--fastup .annual-per { -webkit-text-fill-color: #b0aea6; }
+.annual-approx { font-size: 0.4em; margin-right: 3px; }
+.annual-unit { font-size: 0.5em; margin-left: 3px; }
+.annual-per {
+  font-family: var(--fu-font-sans);
+  font-size: 0.3em;
+  font-weight: 700;
+  margin-left: 8px;
+  color: #b0aea6;
+}
+.annual-breakdown {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(0,0,0,0.09);
+  font-family: var(--fu-font-sans);
+}
+.annual-col--fastup .annual-breakdown { border-top-color: rgba(120,115,84,0.20); }
+.annual-breakdown li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  /* 項目間マージンを小さく */
+  padding: 2px 0;
+  /* テキストを +2px */
+  font-size: 15px;
+}
+.annual-breakdown li span { opacity: 0.82; }
+.annual-breakdown li b { font-weight: 700; white-space: nowrap; }
+.annual-col--other .annual-breakdown li b { color: #5f5e58; }
+.annual-breakdown li b.zero { color: var(--fu-main); }
+
+/* --- 結論バナー --- */
+.annual-verdict {
+  margin: 28px 0 0;
+  padding: 32px 24px;
+  border-radius: 0;
+  background: var(--fu-accent);
+  color: #fff;
+  text-align: center;
+}
+.annual-verdict-main {
+  margin: 0;
+  font-family: var(--fu-font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+.annual-verdict-main em {
+  font-style: normal;
+  /* 案2: 白抜きチップ（白地・ワインレッド文字）。上下左右を詰める */
+  display: inline-block;
+  background: #fff;
+  color: var(--fu-accent);
+  line-height: 1.2;
+  padding: 0 8px;
+}
+.annual-verdict-sub {
+  margin: 16px 0 0;
+  font-family: var(--fu-font-sans);
+  font-size: 14px;
+  color: rgba(255,255,255,0.78);
+}
+.annual-verdict-sub strong { color: #fff; font-weight: 700; }
+
+/* --- 比較表：「では、どう揃えるか」の check-table と同じデザイン --- */
+/* 表の上（バナーとの間）に破線の区切り線（check-table-block相当） */
+.section-annual .compare-table-block {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px dashed #c8c8c8;
+}
+.compare-table--annual {
+  margin-top: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #fff;
+}
+/* ヘッダー：ゴールドの塗りラベル（白文字・白罫線で区切る） */
+.compare-table--annual thead th {
+  background: var(--fu-main);
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  padding: 12px 12px;
+  text-align: center;
+  border-bottom: 0;
+}
+.compare-table--annual thead th:first-child {
+  text-align: left;
+  padding-left: 20px;
+}
+.compare-table--annual thead th:not(:last-child) {
+  border-right: 1px solid #fff;
+}
+.compare-table--annual thead th.fastup { font-size: 16px; }
+/* 本文：ハイライン＋1列目左寄せグレー */
+.compare-table--annual tbody td {
+  padding: 16px 12px;
+  text-align: center;
+  font-size: 15px;
+  border-bottom: 1px solid var(--fu-hairline);
+}
+.compare-table--annual tbody td:first-child {
+  text-align: left;
+  font-weight: 700;
+  color: #767676;
+  padding-left: 20px;
+  font-size: 16px;
+}
+.compare-table--annual tbody td:first-child { border-right: 1px solid #eee; }
+.compare-table--annual tbody tr:last-child td { border-bottom: 0; }
+/* FAST-UP列：parchment＋ゴールド枠（check-tableのfastup相当を縦に） */
+.compare-table--annual tbody td.fastup {
+  background: #fff;
+  border-left: 2px solid var(--fu-main);
+  border-right: 2px solid var(--fu-main);
+  color: var(--fu-main-hover);
+  font-weight: 900;
+}
+.compare-table--annual tbody tr:first-child td.fastup { border-top: 2px solid var(--fu-main); }
+.compare-table--annual tbody tr:last-child td.fastup { border-bottom: 2px solid var(--fu-main); }
+
+@media (max-width: 900px) {
+  .compare-table--annual thead th { font-size: 12px; padding: 10px 6px; }
+  .compare-table--annual tbody td { padding: 12px 6px; font-size: 13px; }
+  .compare-table--annual tbody td:first-child { font-size: 13px; padding-left: 12px; }
+}
+
+/* ============================================================
+   料金（別セクション）
+   ============================================================ */
+.section-pricing .pricing-card--refined {
+  max-width: 640px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 22px 54px rgba(34,34,34,0.12);
+}
+.pricing-card-head {
+  padding: 34px 32px 30px;
+  background: var(--fu-ink);
+  color: #fff;
+  text-align: center;
+}
+.pricing-card-label {
+  display: inline-block;
+  font-family: var(--fu-font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #cdbf91;
+}
+.pricing-card-price {
+  margin: 12px 0 0;
+  font-family: var(--fu-font-serif);
+  font-weight: 700;
+  font-size: 54px;
+  line-height: 1;
+}
+.pricing-card-yen { font-size: 0.5em; margin-right: 2px; }
+.pricing-card-per {
+  font-family: var(--fu-font-sans);
+  font-size: 0.28em;
+  font-weight: 700;
+  margin-left: 8px;
+  color: rgba(255,255,255,0.7);
+}
+.pricing-card-campaign {
+  margin: 16px 0 0;
+  font-family: var(--fu-font-sans);
+  font-size: 14px;
+}
+.pricing-card-campaign strong {
+  display: inline-block;
+  background: var(--fu-accent);
+  padding: 4px 14px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+.pricing-card-body { padding: 10px 32px 32px; }
+.section-pricing .pricing-table { box-shadow: none; }
+.section-pricing .pricing-table td.zero { color: var(--fu-main); font-weight: 700; }
+.section-pricing .pricing-included {
+  margin-top: 20px;
+  background: var(--fu-parchment);
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  .annual-faceoff { grid-template-columns: 1fr; }
+  .annual-col--other .annual-total,
+  .annual-col--fastup .annual-total { font-size: 46px; }
+  .annual-verdict-main { font-size: 22px; }
+  .pricing-card-price { font-size: 42px; }
 }
