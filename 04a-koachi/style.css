@@ -10,6 +10,7 @@
    セクション下端に密着させて、reason3 への白い隙間（共通padding）を詰める */
 #reason2 { border-bottom: 0; padding-bottom: 0; }
 #reason3 { padding-top: 64px; background: #f6f6f6; }
+#pricing { background: #f6f6f6; padding-top: 0; }
 
 /* 見出し→説明文の間隔を理由2（特徴系）と揃える */
 #reason3 .section-title { margin-bottom: 24px; }
@@ -260,10 +261,12 @@
    既存の古いデザインから、reason1/2と同じ洗練トーンへ引き上げる。
    ============================================================ */
 
-/* 理由3のテキストをすべて Zen Old Mincho（明朝）に統一
+/* 理由3・料金のテキストをすべて Zen Old Mincho（明朝）に統一
    （本文・表・内訳などの個別 font-family を id スコープで上書き） */
 #reason3,
-#reason3 * {
+#reason3 *,
+#pricing,
+#pricing * {
   font-family: var(--fu-font-serif);
 }
 
@@ -478,64 +481,176 @@
 /* ============================================================
    料金（別セクション）
    ============================================================ */
-.section-pricing .pricing-card--refined {
-  max-width: 640px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 22px 54px rgba(34,34,34,0.12);
-}
-.pricing-card-head {
-  padding: 34px 32px 30px;
-  background: var(--fu-ink);
-  color: #fff;
+/* セクション最上部：横幅いっぱいのブランドカラー帯（白文字・見出し一式） */
+.pricing-banner {
+  position: relative;
+  background: #333;
   text-align: center;
+  padding: 40px 24px;
+  margin-bottom: 56px;
 }
-.pricing-card-label {
-  display: inline-block;
-  font-family: var(--fu-font-sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: #cdbf91;
+/* 帯の下端中央：白い丸＋ゴールドの下矢印（「環境とは」帯と同デザイン） */
+.pricing-banner::before {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: #f6f6f6;
+  border-radius: 50%;
+  z-index: 3;
 }
-.pricing-card-price {
-  margin: 12px 0 0;
-  font-family: var(--fu-font-serif);
-  font-weight: 700;
-  font-size: 54px;
-  line-height: 1;
+.pricing-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  border-right: 2.5px solid var(--fu-main);
+  border-bottom: 2.5px solid var(--fu-main);
+  z-index: 4;
 }
-.pricing-card-yen { font-size: 0.5em; margin-right: 2px; }
-.pricing-card-per {
-  font-family: var(--fu-font-sans);
-  font-size: 0.28em;
-  font-weight: 700;
-  margin-left: 8px;
-  color: rgba(255,255,255,0.7);
-}
-.pricing-card-campaign {
-  margin: 16px 0 0;
-  font-family: var(--fu-font-sans);
+.pricing-banner-eyebrow {
+  margin: 0 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.82);
   font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
 }
-.pricing-card-campaign strong {
-  display: inline-block;
-  background: var(--fu-accent);
-  padding: 4px 14px;
-  border-radius: 30px;
+.pricing-banner-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+.pricing-banner-title {
+  margin: 0;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+}
+/* ヘッド：中央寄せの大きな月額表示 */
+.section-pricing .pricing-head { text-align: center; }
+.pricing-plan {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fu-main-hover);
+  letter-spacing: 0.14em;
+}
+.pricing-plan::before,
+.pricing-plan::after {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--fu-main);
+  opacity: 0.55;
+}
+.pricing-hero-price {
+  margin: 10px 0 0; line-height: 1; color: var(--fu-ink);
+  display: flex; align-items: baseline; justify-content: center; gap: 6px;
   font-weight: 700;
 }
-.pricing-card-body { padding: 10px 32px 32px; }
-.section-pricing .pricing-table { box-shadow: none; }
-.section-pricing .pricing-table td.zero { color: var(--fu-main); font-weight: 700; }
-.section-pricing .pricing-included {
-  margin-top: 20px;
-  background: var(--fu-parchment);
-  border-radius: 12px;
+.pricing-hero-label { font-size: 24px; }
+.pricing-hero-amount { font-size: 64px; letter-spacing: 0.01em; }
+.pricing-hero-yen { font-size: 0.46em; margin-right: 2px; }
+.pricing-hero-tax { font-size: 17px; font-weight: 400; color: #8a887f; }
+.pricing-hero-notes {
+  margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; align-items: center;
+}
+.pricing-hero-nofee {
+  font-size: 15px; font-weight: 700; color: var(--fu-accent);
+  background: #f7e6e8;
+  border-radius: 0; padding: 4px 13px;
+}
+.pricing-hero-campaign { font-size: 13px; color: #8a887f; }
+.pricing-hero-campaign strong { color: var(--fu-accent); }
+
+/* 明細カード：白地・細枠・上端にゴールドの「料金明細」バッジ */
+.pricing-detail {
+  position: relative;
+  max-width: 600px; margin: 34px auto 0;
+  background: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 36px 44px 40px;
+}
+/* 「料金明細」：塗りなし・ブランドカラー文字・カード内の先頭ラベル */
+.pricing-detail-badge {
+  display: block;
+  text-align: center;
+  margin: 0 0 20px;
+  color: var(--fu-main);
+  font-size: 16px; font-weight: 700; letter-spacing: 0.1em;
+}
+.pricing-detail-table { width: 100%; border-collapse: collapse; }
+.pricing-detail-table thead th {
+  font-size: 13px; font-weight: 400; color: #9a988f;
+  padding: 0 0 14px; border-bottom: 1px solid var(--fu-hairline);
+  text-align: left;
+}
+.pricing-detail-table thead th.col-price { text-align: right; }
+.pricing-detail-table tbody td {
+  font-size: 16px; color: var(--fu-ink);
+  padding: 17px 0; border-bottom: 1px solid #efefea;
+}
+.pricing-detail-table tbody td:first-child { font-weight: 700; }
+.pricing-detail-table tbody td:last-child { text-align: right; font-weight: 700; }
+.pricing-detail-table tbody tr:last-child td { border-bottom: 0; }
+.pricing-detail-table td.zero { color: var(--fu-main); font-weight: 700; }
+
+/* 込みリスト：ボックスなし・中央揃え */
+.pricing-included-clean {
+  max-width: 600px;
+  margin: 32px auto 48px;
+}
+.pricing-included-clean h4 {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  font-size: 16px; font-weight: 700;
+  margin: 0 0 22px; color: var(--fu-ink);
+}
+.pricing-included-clean h4::before,
+.pricing-included-clean h4::after {
+  content: ''; width: 28px; height: 1px;
+  background: var(--fu-main); opacity: 0.55;
+}
+.pricing-included-clean ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.pricing-included-clean li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 18px; font-weight: 700; color: #3f3e39; line-height: 1.4;
+}
+/* カウンセリング節と同じチェックアイコン（ゴールドグラデの丸＋白チェック） */
+.pricing-check {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .pricing-hero-amount { font-size: 54px; }
+  .pricing-detail { padding: 42px 22px 32px; margin-top: 46px; }
 }
 
 @media (max-width: 900px) {
