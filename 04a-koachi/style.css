@@ -12,7 +12,88 @@
 #reason3 { padding-top: 64px; background: #f6f6f6; }
 #pricing { background: #f6f6f6; padding-top: 0; }
 #extra { background: #fff; padding-bottom: 100px; }
-#reassure { background: #fff; padding-bottom: 100px; }
+/* 安心の3つ：上部に全幅の黒帯（料金セクション同様）・下にベージュ＋コーチ陣写真 */
+#reassure { background: #f5f1e6; padding-top: 0; padding-bottom: 0; }
+/* 帯：背景にコーチ画像＋暗いオーバーレイ */
+.reassure-band {
+  position: relative;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/coach-talk.png');
+  background-size: cover;
+  background-position: center;
+  padding: 76px 0 80px;
+}
+/* 帯の下端中央：薄ベージュの丸＋黒い下矢印（料金セクションと同一） */
+.reassure-band::before {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: #f5f1e6;
+  border-radius: 50%;
+  z-index: 3;
+}
+.reassure-band::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  border-right: 2.5px solid #222;
+  border-bottom: 2.5px solid #222;
+  z-index: 4;
+}
+/* 帯の中の見出し：白文字（コーチ陣の強調は削除＝プレーンな白文字） */
+.reassure-band .section-title small { color: #fff; }
+.reassure-band .section-title small::before { background: #fff; }
+.reassure-band .section-title h2 { color: #fff; }
+.reassure-band .section-title h2 em {
+  background: none; color: #fff; -webkit-text-fill-color: #fff; padding: 0;
+}
+/* 帯の中のカード：背景なし・白文字・カード間をボーダーで区切る（数値は薄ベージュ） */
+/* 見出し＋カード群を中央寄せの定幅ボックスに（ボックスは中央・中身/見出しは左揃え） */
+.reassure-band .reassure-inner { max-width: 720px; margin: 0 auto; }
+.reassure-band .matching-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.reassure-band .matching-card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+  padding: 4px 28px;
+}
+.reassure-band .matching-card + .matching-card {
+  border-left: 1px solid rgba(255,255,255,0.22);
+}
+.reassure-band .matching-num {
+  font-family: var(--fu-font-serif);
+  font-size: 30px; font-weight: 900;
+  color: #e6ddc8; -webkit-text-fill-color: #e6ddc8; background: none;
+  letter-spacing: 0.05em; line-height: 1;
+  margin-bottom: 14px;
+}
+.reassure-band .matching-card h4 {
+  font-size: 19px; margin-bottom: 8px; text-align: left; color: #fff; font-weight: 700;
+}
+.reassure-band .matching-card p {
+  font-size: 15px; text-align: left; line-height: 1.8; color: rgba(255,255,255,0.85);
+}
+.reassure-band .matching-card p strong { color: #fff; }
+/* 天才は採用しない以降：背景なし・ベージュ地 */
+#reassure .coach-philosophy { background: none; margin-top: 56px; font-size: 36px; }
+#reassure .coach-philosophy-detail { font-family: var(--fu-font-serif) !important; }
+/* 「逆転合格者」の強調：黒ボックス＋白文字（パターンB） */
+#reassure .coach-philosophy em {
+  background: #222; color: #fff; -webkit-text-fill-color: #fff; padding: 2px 12px;
+}
+.reassure-photo { margin-top: 24px; }
+.reassure-photo img { display: block; width: 100%; }
 /* さらに（3つの仕組み）カード：角丸0・ブランドカラーのボーダー・明朝 */
 #extra .add-service-card {
   border-radius: 0;
@@ -275,12 +356,14 @@
    既存の古いデザインから、reason1/2と同じ洗練トーンへ引き上げる。
    ============================================================ */
 
-/* 理由3・料金のテキストをすべて Zen Old Mincho（明朝）に統一
+/* 理由3・料金・安心の3つのテキストをすべて Zen Old Mincho（明朝）に統一
    （本文・表・内訳などの個別 font-family を id スコープで上書き） */
 #reason3,
 #reason3 *,
 #pricing,
-#pricing * {
+#pricing *,
+#reassure,
+#reassure * {
   font-family: var(--fu-font-serif);
 }
 
