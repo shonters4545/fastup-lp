@@ -980,3 +980,63 @@
   color: var(--fu-main-hover);
   letter-spacing: 0.02em;
 }
+
+/* ============================================================
+   入塾フロー（#enroll-flow）— 案D ステッパー型
+   ゴールドグラデの番号を進捗トラックで接続（白フチ付き）
+   ============================================================ */
+/* 背景を#333にし、全コンテンツを白カードで囲う（全体がカードのデザイン） */
+#enroll-flow {
+  background: #333;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+#enroll-flow .flow-card {
+  max-width: 940px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0;
+  padding: 48px 40px 44px;
+}
+#enroll-flow .flow-grid {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+  max-width: 840px;
+  margin: 40px auto 0;
+}
+/* 進捗トラック：番号1〜4の中心間のみ（1の左・4の右にはみ出さない）。
+   各stepはflex:1で等幅なので、1番目の中心=12.5%・4番目の中心=87.5% */
+#enroll-flow .flow-grid::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: var(--fu-sub);
+  z-index: 0;
+}
+#enroll-flow .flow-step {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  padding: 0 6px;
+}
+/* 既存の『›』コネクタは撤去（トラックへ置換） */
+#enroll-flow .flow-step:not(:last-child)::after { display: none; }
+/* 番号：ゴールドグラデの丸＋白フチ（トラックを白フチで抜く） */
+#enroll-flow .flow-step-num {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 14px;
+  border: 4px solid #fff;
+  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  font-size: 20px;
+}
+#enroll-flow .flow-step h4 { font-size: 16px; }
+/* 説明文も Zen Old Mincho に（shared の Noto Sans を上書き） */
+#enroll-flow .flow-step p { font-size: 13px; font-family: var(--fu-font-serif); }
