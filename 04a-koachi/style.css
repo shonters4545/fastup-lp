@@ -757,3 +757,226 @@
   .annual-verdict-main { font-size: 22px; }
   .pricing-card-price { font-size: 42px; }
 }
+
+/* ============================================================
+   保証セクション — 04a 専用刷新（これまでのデザインを適用）
+   ※ flow（入塾フロー）は今回対象外。section背景は変えず、
+     guarantee系クラスのみに限定して flow に影響させない。
+   ============================================================ */
+
+/* 保証セクション背景：ヘッダーCTAと同じゴールドグラデ（お支払いについてまで）。
+   ゴールド地に映えるよう見出し・注記を白系に（白カードはそのまま浮かせる）。 */
+#guarantee {
+  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+}
+#guarantee > .container > .section-title:first-of-type small { color: #fff; }
+#guarantee > .container > .section-title:first-of-type small::before { background: #fff; }
+#guarantee > .container > .section-title:first-of-type h2 { color: #fff; }
+#guarantee .guarantee-note { color: rgba(255,255,255,0.85); }
+#guarantee .guarantee-note strong { color: #fff; }
+
+/* スカラシップは別セクション（薄グレー地でパーチメントのパネルを映えさせる）。
+   上下paddingは他セクションに合わせて縮小（.section の 100px → 32px） */
+#scholarship {
+  background: #f6f6f6;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+/* 保証・スカラシップのテキストを明朝に統一。
+   shared の `.class タグ`（例 .guarantee-card p）に勝てるよう id を付けて
+   特異度を上げる。flow には及ばないよう各系クラスに限定。 */
+#guarantee > .container > .section-title:first-of-type,
+#guarantee > .container > .section-title:first-of-type *,
+#guarantee .guarantee-grid, #guarantee .guarantee-grid *,
+#guarantee .guarantee-note, #guarantee .guarantee-note *,
+#guarantee .pay-support, #guarantee .pay-support *,
+#scholarship .scholarship-block, #scholarship .scholarship-block * {
+  font-family: var(--fu-font-serif);
+}
+
+/* --- 保証カード（案A：白の上段＋パーチメントの条件ゾーンに分離） --- */
+.guarantee-grid { gap: 20px; }
+.guarantee-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+/* 上段：保証名＋概要（白地・中央寄せ）。見出しはブランドカラー */
+.guarantee-card-top {
+  padding: 40px 26px 10px;
+  text-align: center;
+}
+.guarantee-card-top h3 { color: var(--fu-main); margin-bottom: 10px; }
+/* 下段：条件（背景なし・カードと一体）。上マージンを詰める */
+.guarantee-cond {
+  background: transparent;
+  padding: 0 26px 28px;
+}
+/* 条件見出しラベル（両端に短い罫線 -条件-）。
+   shared の `.guarantee-card p`（0,1,1）に勝つよう #guarantee を付けて特異度を上げる。 */
+#guarantee .guarantee-conditions-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--fu-main);
+}
+.guarantee-conditions-label::before,
+.guarantee-conditions-label::after {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--fu-main);
+  opacity: 0.6;
+}
+/* 条件リスト：中央揃え（各 li を内容幅ブロックにして margin auto で中央配置） */
+.guarantee-conditions {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.guarantee-conditions li {
+  position: relative;
+  display: block;
+  width: -webkit-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: left;
+  /* 項目間を詰める（上下padを小さく）＋アイコン縮小ぶん左padも狭く */
+  padding: 5px 0 5px 26px;
+  font-size: 15px;
+}
+.guarantee-conditions li strong { color: var(--fu-main-hover); }
+/* ※注記：親の行との間を広げる */
+.guarantee-conditions small { font-size: 12px; margin-top: 8px; }
+/* チェックアイコン：ゴールドグラデの丸＋白チェック（細く・小さく） */
+.guarantee-conditions li::before {
+  content: '';
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+}
+.guarantee-conditions li::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 11px;
+  width: 8px;
+  height: 5px;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: rotate(-45deg);
+}
+
+/* --- お支払いについて（細い白枠のゴーストボックス） --- */
+.pay-support {
+  max-width: 600px;
+  margin: 40px auto 0;
+  padding: 20px 24px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 0;
+  text-align: center;
+}
+/* 見出し「お支払いについて」は白ボックス＋黒文字のチップ */
+.pay-support h4 {
+  display: inline-block;
+  background: #fff;
+  color: var(--fu-ink);
+  padding: 3px 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.pay-support p {
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  line-height: 1.85;
+}
+.pay-support p strong { color: #fff; }
+
+/* --- スカラシップ制度：絵文字削除・角丸0・ボーダーなし・ブランド配色へ --- */
+.scholarship-block {
+  background: var(--fu-parchment);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  /* 旧レイアウト用の上マージンを撤去し、内側paddingも詰める */
+  margin-top: 0;
+  padding: 32px 32px;
+}
+.scholarship-block::before { display: none; }   /* 🎓 絵文字を削除 */
+/* 「お支払いが困難な方へ」：セクションタイトルの small（●＋ゴールド文字）UIを適用 */
+#scholarship .scholarship-eyebrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: var(--fu-main);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  margin: 0 0 22px;
+  line-height: 1;
+}
+#scholarship .scholarship-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fu-main);
+  flex-shrink: 0;
+}
+.scholarship-headline { color: var(--fu-ink); }
+.scholarship-headline em {
+  background: linear-gradient(transparent 55%, var(--fu-sub) 55%);
+  color: var(--fu-ink);
+}
+.scholarship-body p { color: #444; }
+/* 免除オファー（白ボックス・ボーダーなし＋制度タグ） */
+#scholarship .scholarship-highlight {
+  max-width: 560px;
+  margin: 30px auto 0;
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  padding: 20px 30px 22px;
+  text-align: center;
+}
+/* タグUIは「お支払いについて」チップ（.pay-support h4）と統一。カラーは据え置き（ゴールド地×白文字） */
+#scholarship .scholarship-tag {
+  display: inline-block;
+  background: var(--fu-main);
+  color: #fff;
+  padding: 3px 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+#scholarship .sh-small {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+#scholarship .sh-big {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--fu-main-hover);
+  letter-spacing: 0.02em;
+}
