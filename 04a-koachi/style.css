@@ -1040,3 +1040,62 @@
 #enroll-flow .flow-step h4 { font-size: 16px; }
 /* 説明文も Zen Old Mincho に（shared の Noto Sans を上書き） */
 #enroll-flow .flow-step p { font-size: 13px; font-family: var(--fu-font-serif); }
+
+/* ============================================================
+   FAQ（#faq）— 案B 角丸0カード（ボーダーは削除）
+   ============================================================ */
+/* カード：白地・角丸0・ボーダーなし */
+#faq .faq-item {
+  border: 0;
+  border-radius: 0;
+}
+/* 質問・回答を Zen Old Mincho に統一 */
+#faq .faq-question,
+#faq .faq-answer {
+  font-family: var(--fu-font-serif);
+}
+/* 質問文・回答文を若干小さく */
+#faq .faq-question { font-size: 15px; }
+#faq .faq-answer { font-size: 14px; }
+/* 開閉アイコンを「＋」からシェブロンに */
+#faq .faq-question::after {
+  content: '';
+  right: 22px;
+  top: calc(50% - 5px);
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-right: 2px solid var(--fu-main);
+  border-bottom: 2px solid var(--fu-main);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+#faq .faq-item.open .faq-question::after {
+  top: 50%;
+  transform: rotate(-135deg);
+}
+/* A マーカーを控えめなゴールドに（回答にpadding-topを付けたぶん位置を下げる） */
+#faq .faq-answer::before {
+  color: #c2b689;
+  top: 10px;
+}
+/* Q と A の間に区切り線（開いたときのみ）。上下マージンは詰める */
+#faq .faq-item.open .faq-question {
+  padding-bottom: 12px;
+}
+/* 区切り線：細い共通ヘアライン（0.5px）。左右をQ（left:20px）・矢印（right:22px）に合わせて内側に */
+#faq .faq-answer::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  right: 22px;
+  top: 0;
+  border-top: 0.5px solid var(--fu-hairline);
+}
+#faq .faq-answer {
+  padding-top: 12px;
+}
+/* セクション下の余白を拡大（section-cream の 40px → 100px） */
+#faq {
+  padding-bottom: 100px;
+}
