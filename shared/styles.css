@@ -1129,8 +1129,9 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   top: 0; left: 0; right: 0;
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(8px);
-  z-index: 100;
-  padding: 12px 24px;
+  /* ドロワー(z:200)より前面に保ち、開いた状態でもハンバーガー→×で閉じられるようにする */
+  z-index: 300;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4790,7 +4791,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 18px;
   margin-left: auto;
   margin-right: 22px;
 }
@@ -4811,19 +4812,21 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 5px;
   width: 44px;
   height: 44px;
-  padding: 11px 10px;
-  background: none;
+  padding: 0;
+  background: var(--fu-main);
   border: 0;
+  border-radius: 50%;
   cursor: pointer;
 }
 .header-burger span {
   display: block;
-  width: 100%;
+  width: 20px;
   height: 2px;
-  background: var(--fu-ink);
+  background: #fff;
   border-radius: 2px;
   transition: transform 0.25s var(--fu-ease), opacity 0.2s var(--fu-ease);
 }
@@ -4831,42 +4834,97 @@ body.nav-open .header-burger span:nth-child(1) { transform: translateY(7px) rota
 body.nav-open .header-burger span:nth-child(2) { opacity: 0; }
 body.nav-open .header-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ドロワー本体（右からスライド） */
+/* ドロワー本体：ハンバーガー起点でブランドカラーの円が広がる（全画面リビール）。
+   中心はハンバーガー（ヘッダー右上）付近 = calc(100% - 46px) 34px。 */
 .nav-drawer {
   position: fixed;
-  top: 0; right: 0; bottom: 0;
-  width: min(78vw, 300px);
-  background: #fff;
+  inset: 0;
+  width: auto;
+  background: var(--fu-bg-dark);
   z-index: 200;
-  transform: translateX(100%);
-  transition: transform 0.3s var(--fu-ease);
-  padding: 86px 28px 32px;
-  box-shadow: -8px 0 30px rgba(0,0,0,0.12);
+  clip-path: circle(0% at calc(100% - 46px) 34px);
+  transition: clip-path 0.5s var(--fu-ease);
+  /* 横paddingは0にしてボーダーを全幅化。左インデントはリンク側paddingで作る */
+  padding: 92px 0 40px;
+  box-shadow: none;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
 }
-body.nav-open .nav-drawer { transform: translateX(0); }
-.nav-drawer-inner { display: flex; flex-direction: column; }
+body.nav-open .nav-drawer { clip-path: circle(150% at calc(100% - 46px) 34px); }
+.nav-drawer-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+}
 .nav-drawer-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-family: var(--fu-font-serif);
   font-size: 17px;
   font-weight: 700;
-  color: var(--fu-ink);
-  text-decoration: none;
-  padding: 16px 4px;
-  border-bottom: 1px solid var(--fu-hairline);
-}
-.nav-drawer-cta {
-  margin-top: 24px;
-  display: block;
-  text-align: center;
-  background: var(--fu-grad-gold);
   color: #fff;
+  text-align: left;
   text-decoration: none;
-  font-family: var(--fu-font-serif);
-  font-weight: 700;
-  font-size: 16px;
-  padding: 15px;
-  border-radius: 999px;
+  /* 左インデント40px（iPad）／右は矢印用の24px */
+  padding: 16px 24px 16px 40px;
+  /* リンクは円が広がった後に順次フェードイン */
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s var(--fu-ease), transform 0.3s var(--fu-ease);
+}
+/* ボーダー：テキストと同じ範囲に左右マージンを入れる（左＝インデント／右＝24px） */
+.nav-drawer-link::before {
+  content: '';
+  position: absolute;
+  left: 40px;
+  right: 24px;
+  bottom: 0;
+  border-top: 1px solid rgba(255,255,255,0.22);
+}
+/* 右側の矢印（シェブロン ›） */
+.nav-drawer-link::after {
+  content: '';
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-left: 12px;
+  border-top: 1.5px solid rgba(255,255,255,0.55);
+  border-right: 1.5px solid rgba(255,255,255,0.55);
+  transform: rotate(45deg);
+}
+body.nav-open .nav-drawer-link { opacity: 1; transform: translateY(0); }
+body.nav-open .nav-drawer-link:nth-child(1) { transition-delay: 0.28s; }
+body.nav-open .nav-drawer-link:nth-child(2) { transition-delay: 0.34s; }
+body.nav-open .nav-drawer-link:nth-child(3) { transition-delay: 0.40s; }
+body.nav-open .nav-drawer-link:nth-child(4) { transition-delay: 0.46s; }
+body.nav-open .nav-drawer-link:nth-child(5) { transition-delay: 0.52s; }
+/* ドロワー内CTAはヘッダー固定ボタン（.header-cta）を流用。
+   ≤980px の display:none を上書きして表示。さらに ≤900px の縮小指定を打ち消し、
+   デスクトップ版ヘッダーボタンと同じ見た目（サイズ）に固定する。 */
+.nav-drawer .header-cta { display: inline-flex; gap: 5px; padding: 3px 16px 3px 5px; }
+.nav-drawer .header-cta-eyebrow { font-size: 11px; margin-bottom: 3px; }
+.nav-drawer .header-cta-main { font-size: 17px; letter-spacing: 0.06em; }
+.nav-drawer .header-cta-arrow { font-size: 21px; }
+.nav-drawer-cta {
+  margin-top: 32px;
+  margin-left: 40px;
+  align-self: flex-start;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s var(--fu-ease), transform 0.3s var(--fu-ease);
+}
+body.nav-open .nav-drawer-cta { opacity: 1; transform: translateY(0); transition-delay: 0.58s; }
+/* スマホ（<768px）は左インデントを16pxに（iPadは既定の40px）。ボーダー左端も揃える */
+@media (max-width: 767px) {
+  .nav-drawer-link { padding-left: 16px; }
+  .nav-drawer-link::before { left: 16px; }
+  .nav-drawer-cta { margin-left: 16px; }
 }
 
 /* オーバーレイ */
