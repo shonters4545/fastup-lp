@@ -1212,3 +1212,38 @@
 
 /* FV：コンテンツ横幅を縮小（統計行が inner いっぱいに広がるため inner で制御） */
 .fv-inner { max-width: 860px; }
+
+/* 悩み（共感）：結論ボックスの下矢印を次セクションに重ねる */
+.section:has(.empathy-conclusion) { padding-bottom: 0; }
+.empathy-conclusion {
+  position: relative;
+  z-index: 3;
+  margin-bottom: -80px;
+}
+/* 「それもそのはず。」を白文字に */
+.empathy-conclusion strong { color: #fff; }
+
+/* [3]サービス紹介：重なった矢印の下に導入がゆとりを持つよう上paddingを拡大 */
+#about { padding-top: 160px; }
+
+/* [3]サービス紹介：セクションタイトルの上マージン */
+#about .section-title { margin-top: 16px; }
+/* 結論：外側の箱を外し、1行ごとに箱（ワインレッド）。内容幅で中央寄せ（上下左右autoで中央配置） */
+#about .quick-conclusion {
+  background: none;
+  padding: 0;
+  margin-top: 40px;
+}
+#about .quick-conclusion .qc-line {
+  display: table;
+  margin: 0 auto;
+  background: #7b1e2b;
+  color: #fff;
+  font-family: var(--fu-font-serif);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  padding: 4px 16px;
+}
+#about .quick-conclusion .qc-line + .qc-line { margin-top: 10px; }
