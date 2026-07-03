@@ -1206,3 +1206,6 @@
   margin-top: 4px;
   font-weight: 400;
 }
+
+/* ヘッダーCTAの「無料」バッジ：ボタン左端（-5px）から2px右 */
+.header-cta-badge { margin-left: -3px; }

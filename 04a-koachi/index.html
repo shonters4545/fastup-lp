@@ -19,6 +19,13 @@
     <img src="img/logo/fastup-logo.png" alt="FAST-UP逆転塾" class="header-logo-img">
     <div class="header-logo">逆転合格なら、<br>FAST-UP逆転塾</div>
   </div>
+  <nav class="header-nav" aria-label="サイト内ナビ">
+    <a href="#about" class="header-nav-link">FAST-UPとは</a>
+    <a href="#achievements" class="header-nav-link">実績</a>
+    <a href="#pricing" class="header-nav-link">料金</a>
+    <a href="#guarantee" class="header-nav-link">保証</a>
+    <a href="#faq" class="header-nav-link">よくある質問</a>
+  </nav>
   <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="header-cta">
     <span class="header-cta-badge"><span>無料</span></span>
     <span class="header-cta-body">
@@ -27,7 +34,22 @@
     </span>
     <span class="header-cta-arrow" aria-hidden="true">›</span>
   </a>
+  <button class="header-burger" type="button" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+<!-- ======= モバイル用ドロワー ======= -->
+<div class="nav-overlay" aria-hidden="true"></div>
+<aside class="nav-drawer" aria-label="メニュー">
+  <nav class="nav-drawer-inner">
+    <a href="#about" class="nav-drawer-link">FAST-UPとは</a>
+    <a href="#achievements" class="nav-drawer-link">実績</a>
+    <a href="#pricing" class="nav-drawer-link">料金</a>
+    <a href="#guarantee" class="nav-drawer-link">保証</a>
+    <a href="#faq" class="nav-drawer-link">よくある質問</a>
+    <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="nav-drawer-cta">無料で相談する →</a>
+  </nav>
+</aside>
 
 <!-- ====================================== -->
 <!-- ===     前半サイクル（ライト版LP）     === -->
@@ -134,7 +156,7 @@
 </section>
 
 <!-- ======= [3] サービス紹介（FAST-UPは何の塾か） ======= -->
-<section class="section section-brand" style="background-image: url('img/service-feature-1.jpg');">
+<section id="about" class="section section-brand" style="background-image: url('img/service-feature-1.jpg');">
   <div class="container">
     <div class="section-title">
       <small>面倒見のいい塾を、探していたあなたへ</small>
@@ -167,7 +189,7 @@
 </section>
 
 <!-- ======= [4] 実績・信頼ブロック（サービス紹介の証明） ======= -->
-<section class="section section-light section-achievements">
+<section id="achievements" class="section section-light section-achievements">
   <div class="container">
     <div class="section-title">
       <small>FAST-UPの、確かな実績</small>
@@ -1183,7 +1205,21 @@
 
 <!-- ======= フッター ======= -->
 <footer class="footer">
-  <p>&copy; FAST-UP逆転塾 / 株式会社Nogifa</p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="img/logo/fastup-logo.png" alt="FAST-UP逆転塾" class="footer-logo-img">
+      <span class="footer-brand-name">FAST-UP逆転塾</span>
+    </div>
+    <nav class="footer-nav" aria-label="フッターナビ">
+      <a href="#about">FAST-UPとは</a>
+      <a href="#achievements">実績</a>
+      <a href="#pricing">料金</a>
+      <a href="#guarantee">保証</a>
+      <a href="#faq">よくある質問</a>
+      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW">無料相談</a>
+    </nav>
+    <p class="footer-copy">&copy; FAST-UP逆転塾 / 株式会社Nogifa</p>
+  </div>
 </footer>
 
 <!-- スマホ用 sticky CTA -->
