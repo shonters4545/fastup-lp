@@ -18,6 +18,9 @@
   --fu-ink:         #222222;
   --fu-paper:       #FFFFFF;
   --fu-accent:      #722F37;
+  --fu-beige:       #F5F1E6;
+  --fu-bg-dark:     #333333;
+  --fu-bg-footer:   #23201C;
 
   /* ---- Neutrals ---- */
   --fu-ink-80:      #3C3C3B;
@@ -85,6 +88,15 @@
   --fu-shadow-menu:    0 4px 16px rgba(34,34,34,0.06),
                        0 1px 2px rgba(34,34,34,0.04);
 
+  /* ---- Gradients ---- */
+  --fu-grad-gold: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  --fu-grad-gold-text: linear-gradient(180deg, #A89E78 0%, var(--fu-main) 60%, #5A532F 100%);
+  --fu-grad-gold-text-light: linear-gradient(90deg, #e4dfce, #d7d0b8 45%, #c4bc92);
+
+  /* ---- Photo overlays ---- */
+  --fu-overlay-dark:  rgba(20, 18, 16, 0.72);
+  --fu-overlay-light: rgba(20, 18, 16, 0.55);
+
   /* ---- Motion ---- */
   --fu-ease:    cubic-bezier(0.2, 0.6, 0.2, 1);
   --fu-dur-fast: 120ms;
@@ -93,6 +105,9 @@
 
   /* ---- Layout ---- */
   --fu-content-max: 1080px;
+  --fu-sect-pad:         100px;
+  --fu-sect-pad-compact: 64px;
+  --fu-sect-pad-tight:   32px;
 }
 
 /* === Reset === */
@@ -121,14 +136,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   padding: 0 24px;
 }
 .section {
-  padding: 100px 0;
+  padding: var(--fu-sect-pad) 0;
   position: relative;
   border-bottom: 4px solid #fff;
 }
 .section-light { background: var(--fu-paper); }
 .section-aha { background: #fff; padding-bottom: 80px; }
 .section-aha .aha-lead { margin-bottom: 0; }
-.section-aha-env { background: #333; color: #fff; position: relative; padding-top: 60px; }
+.section-aha-env { background: var(--fu-bg-dark); color: #fff; position: relative; padding-top: var(--fu-sect-pad-compact); }
 .section-aha-env::before {
   content: '';
   position: absolute;
@@ -285,7 +300,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .section-feature .section-title h2 em {
   font-style: normal;
   display: inline-block;
-  background: #333;
+  background: var(--fu-ink);
   -webkit-background-clip: initial;
   background-clip: initial;
   color: #fff;
@@ -347,11 +362,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   background-clip: initial;
 }
 .section-feature .cal-panel.bad .cal-panel-headline {
-  color: #767676;
+  color: var(--fu-ink-70);
   -webkit-text-fill-color: #767676;
 }
 .section-feature .cal-panel.good .cal-panel-headline {
-  background: linear-gradient(180deg, #A89E78 0%, var(--fu-main) 60%, #5A532F 100%);
+  background: var(--fu-grad-gold-text);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -373,7 +388,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-size: 11px;
   font-weight: 700;
   color: var(--fu-ink-40);
-  background: #f6f6f6;
+  background: var(--fu-bg-muted);
 }
 .section-feature .cal-day.weak { background: var(--fu-sub); color: var(--fu-ink); }
 .section-feature .cal-day.active {
@@ -557,7 +572,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-family: var(--fu-font-sans);
   font-size: 12px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--fu-ink);
 }
 .phone-batt {
   position: relative;
@@ -623,7 +638,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin-top: 6px;
   font-family: var(--fu-font-sans);
   font-size: 10px;
-  color: #999;
+  color: var(--fu-ink-40);
 }
 .phone-progress-row strong {
   font-size: 11px;
@@ -691,7 +706,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-family: var(--fu-font-sans);
   font-size: 10px;
   font-weight: 700;
-  color: #999;
+  color: var(--fu-ink-40);
 }
 .phone-task-meta em {
   font-style: normal;
@@ -711,7 +726,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-family: var(--fu-font-sans);
   font-size: 13px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--fu-ink);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -817,7 +832,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .counsel-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(16, 14, 12, 0.74);
+  background: var(--fu-overlay-dark);
   z-index: 0;
 }
 .counsel-inner {
@@ -837,7 +852,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .counsel-section .section-title h2 em {
   font-style: normal;
-  background: linear-gradient(90deg, #e4dfce, #d7d0b8 45%, #c4bc92);
+  background: var(--fu-grad-gold-text-light);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -886,7 +901,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-size: 20px;
   font-weight: 700;
   background: #fff;
-  color: #222;
+  color: var(--fu-ink);
   padding: 5px 18px 5px 12px;
 }
 .counsel-list-icon {
@@ -894,14 +909,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    #5a5640 0%,
-    #7c7861 18%,
-    #4a4733 45%,
-    #767259 70%,
-    #5e5944 100%
-  );
+  background: var(--fu-grad-gold);
   color: #fff;
   display: flex;
   align-items: center;
@@ -929,14 +937,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(
-    135deg,
-    #5a5640 0%,
-    #7c7861 18%,
-    #4a4733 45%,
-    #767259 70%,
-    #5e5944 100%
-  );
+  background: var(--fu-grad-gold);
   color: #fff;
   font-family: 'Zen Old Mincho', serif;
   font-size: 22px;
@@ -1000,18 +1001,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin-top: 6px;
 }
 .section-aha .section-title h2 em { padding: 0 8px; margin-top: 0; line-height: 1.2; }
-.section-cream .section-title h2 em { background: #222; }
+.section-cream .section-title h2 em { background: var(--fu-ink); }
 .section-aha .section-title h2 em { background: var(--fu-accent); }
 .section-achievements .section-title h2 em {
   font-style: normal;
-  background: linear-gradient(180deg, #A89E78 0%, var(--fu-main) 60%, #5A532F 100%);
+  background: var(--fu-grad-gold-text);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
 .section-brand {
-  background-color: #333;
+  background-color: var(--fu-bg-dark);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1022,7 +1023,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: var(--fu-overlay-light);
   z-index: 0;
 }
 .section-brand > * {
@@ -1151,21 +1152,14 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-size: 14px;
   font-style: italic;
   line-height: 1.35;
-  color: #333;
+  color: var(--fu-ink-80);
   white-space: nowrap;
 }
 .header-cta {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: linear-gradient(
-    135deg,
-    #5a5640 0%,
-    #7c7861 18%,
-    #4a4733 45%,
-    #767259 70%,
-    #5e5944 100%
-  );
+  background: var(--fu-grad-gold);
   color: #fff !important;
   padding: 3px 16px 3px 5px;
   border-radius: 100px;
@@ -1535,7 +1529,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   max-width: 760px;
   margin: 0 auto 32px;
   font-family: 'Noto Sans JP', sans-serif;
-  color: #444;
+  color: var(--fu-ink-80);
 }
 .lead-text strong { color: var(--fu-main-hover); }
 .lead-text em {
@@ -1656,7 +1650,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   background: var(--fu-parchment);
 }
 .section-ceo {
-  background: #333;
+  background: var(--fu-bg-dark);
   padding-bottom: 200px;
 }
 .section-achievements .section-title { text-align: left; }
@@ -1701,7 +1695,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   display: inline-block;
   margin-top: 12px;
   padding: 6px 14px;
-  background: #f6f6f6;
+  background: var(--fu-bg-muted);
   border-radius: 999px;
   font-size: 13px;
   color: var(--fu-main);
@@ -1845,7 +1839,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .case-id-tag {
   font-size: 11px;
-  color: #6b6b5e;
+  color: var(--fu-ink-70);
   margin-top: -3px;
   letter-spacing: 0.04em;
 }
@@ -1922,7 +1916,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .cases-note {
   text-align: center;
   margin-top: 24px;
-  color: #888;
+  color: var(--fu-ink-40);
   font-family: 'Noto Sans JP', sans-serif;
 }
 .cases-note small { font-size: 12px; }
@@ -1941,7 +1935,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   gap: 14px;
   text-align: left;
   position: relative;
-  background: #f6f6f6;
+  background: var(--fu-bg-muted);
   padding: 20px 24px;
   border-radius: 0;
 }
@@ -1969,7 +1963,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .trust-card-text {
   font-size: 13px;
-  color: #666;
+  color: var(--fu-ink-70);
   font-family: 'Zen Old Mincho', serif;
   margin: 0;
   line-height: 1.6;
@@ -2140,7 +2134,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin-bottom: 36px;
   max-width: 880px;
   font-family: 'Noto Sans JP', sans-serif;
-  color: #444;
+  color: var(--fu-ink-80);
 }
 
 /* === 4 Steps Cycle === */
@@ -2215,7 +2209,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .compare-other {
   background: #f5f5f5;
-  color: #888;
+  color: var(--fu-ink-40);
 }
 .compare-fastup {
   background: var(--fu-main);
@@ -2265,7 +2259,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-size: 22px;
   font-weight: 900;
   margin-top: 32px;
-  color: #222;
+  color: var(--fu-ink);
 }
 .compare-conclusion strong { color: var(--fu-main); }
 .compare-source,
@@ -2274,7 +2268,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin: 24px auto 0;
   max-width: 720px;
   font-family: 'Noto Sans JP', sans-serif;
-  color: #888;
+  color: var(--fu-ink-40);
   line-height: 1.6;
 }
 .compare-source small,
@@ -2282,7 +2276,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-size: 12px;
 }
 .compare-source strong,
-.rate-source strong { color: #555; }
+.rate-source strong { color: var(--fu-ink-70); }
 
 /* === Pricing === */
 .pricing-card {
@@ -2298,7 +2292,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-size: 28px;
   font-weight: 900;
   margin-bottom: 24px;
-  color: #222;
+  color: var(--fu-ink);
 }
 .pricing-headline strong {
   color: var(--fu-main);
@@ -2314,14 +2308,14 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   border-bottom: 1px solid #eee;
   font-size: 15px;
 }
-.pricing-table td:first-child { color: #555; }
+.pricing-table td:first-child { color: var(--fu-ink-70); }
 .pricing-table td:last-child {
   text-align: right;
   font-weight: 700;
 }
 .pricing-table tr.highlight td {
   background: var(--fu-parchment);
-  color: #222;
+  color: var(--fu-ink);
   font-weight: 900;
 }
 .pricing-table tr.highlight td:last-child { color: var(--fu-main); font-size: 20px; }
@@ -2373,7 +2367,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .guarantee-card p {
   font-size: 15px;
-  color: #555;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
 }
 .guarantee-conditions {
@@ -2411,13 +2405,13 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .guarantee-conditions small {
   display: block;
   font-size: 11px;
-  color: #888;
+  color: var(--fu-ink-40);
   margin-top: 2px;
 }
 .guarantee-note {
   text-align: center;
   font-size: 13px;
-  color: #666;
+  color: var(--fu-ink-70);
   margin-top: 20px;
   font-family: 'Noto Sans JP', sans-serif;
   letter-spacing: 0.04em;
@@ -2443,7 +2437,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .matching-card p {
   font-size: 14px;
-  color: #555;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
 }
 .coach-philosophy {
@@ -2469,7 +2463,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-size: 16px !important;
   font-weight: 500 !important;
   font-family: 'Noto Sans JP', sans-serif !important;
-  color: #555 !important;
+  color: var(--fu-ink-70) !important;
   line-height: 1.7 !important;
 }
 
@@ -2511,7 +2505,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .flow-step p {
   font-size: 13px;
-  color: #555;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -2561,7 +2555,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   display: none;
   padding: 0 56px 20px 56px;
   font-size: 15px;
-  color: #555;
+  color: var(--fu-ink-70);
   line-height: 1.9;
   font-family: 'Noto Sans JP', sans-serif;
   position: relative;
@@ -2570,7 +2564,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   content: 'A';
   position: absolute;
   left: 20px; top: -2px;
-  color: #aaa;
+  color: var(--fu-ink-40);
   font-weight: 900;
   font-size: 22px;
   font-family: 'Zen Old Mincho', serif;
@@ -2647,7 +2641,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .timeline-failure-text {
   display: inline;
   font-size: 16px;
-  color: #333;
+  color: var(--fu-ink-80);
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 500;
 }
@@ -2732,7 +2726,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .reason-card p {
   font-size: 15px;
   line-height: 2.0;
-  color: #444;
+  color: var(--fu-ink-80);
   font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 0;
 }
@@ -2797,7 +2791,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-size: 14px;
 }
 .option-limits-table tbody td:last-child {
-  color: #666;
+  color: var(--fu-ink-70);
 }
 
 /* === Summary Banner === */
@@ -2893,10 +2887,10 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   text-align: left;
   font-weight: 700;
   background: var(--fu-paper);
-  color: #555;
+  color: var(--fu-ink-70);
 }
 .ba-table tbody td.bad {
-  color: #999;
+  color: var(--fu-ink-40);
   position: relative;
   padding-left: 36px;
 }
@@ -2940,7 +2934,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .ba-table tbody tr.result-row td {
   background: var(--fu-bg-gold);
-  color: #ccc;
+  color: var(--fu-ink-20);
   font-weight: 900;
   font-size: 17px;
   border-bottom: none;
@@ -3015,7 +3009,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .feature-sub-card p {
   font-size: 14px;
   line-height: 1.9;
-  color: #555;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 0;
 }
@@ -3073,7 +3067,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .add-service-card p {
   font-size: 14px;
   line-height: 1.95;
-  color: #444;
+  color: var(--fu-ink-80);
   font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 0;
 }
@@ -3137,7 +3131,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .condition-card p {
   font-size: 15px;
   line-height: 2.05;
-  color: #444;
+  color: var(--fu-ink-80);
   font-family: 'Noto Sans JP', sans-serif;
   text-align: left;
   margin-bottom: 0;
@@ -3163,7 +3157,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .pay-support p {
   font-size: 14px;
   line-height: 1.85;
-  color: #444;
+  color: var(--fu-ink-80);
   font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 0;
 }
@@ -3280,7 +3274,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .pictogram-sub {
   font-size: 16px;
-  color: #666;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 0;
 }
@@ -3375,7 +3369,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .aha-circle p {
   font-size: 14px;
-  color: #555;
+  color: var(--fu-ink-70);
   font-family: var(--fu-font-serif);
   line-height: 1.7;
   max-width: 240px;
@@ -3484,7 +3478,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .aha-lead-source {
   font-family: var(--fu-font-serif);
   font-size: 13px;
-  color: #888;
+  color: var(--fu-ink-40);
   letter-spacing: 0.1em;
   text-align: center;
   margin: 20px 0 0;
@@ -3701,7 +3695,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .check-table tbody td:first-child {
   text-align: left;
   font-weight: 700;
-  color: #767676;
+  color: var(--fu-ink-70);
   padding-left: 24px;
   font-size: 17px;
 }
@@ -3821,7 +3815,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .check-circle p {
   font-size: 14px;
-  color: #555;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
   margin: 0;
   line-height: 1.7;
@@ -3848,7 +3842,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin-bottom: 8px;
   font-family: 'Noto Sans JP', sans-serif;
 }
-.cal-panel.bad .cal-panel-title { color: #999; }
+.cal-panel.bad .cal-panel-title { color: var(--fu-ink-40); }
 .cal-panel.good .cal-panel-title { color: var(--fu-main-hover); }
 .cal-panel-headline {
   font-size: 28px;
@@ -3857,7 +3851,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-family: 'Zen Old Mincho', serif;
   letter-spacing: 0.04em;
 }
-.cal-panel.bad .cal-panel-headline { color: #888; }
+.cal-panel.bad .cal-panel-headline { color: var(--fu-ink-40); }
 .cal-panel.good .cal-panel-headline {
   background: var(--fu-main);
   -webkit-background-clip: text;
@@ -3879,7 +3873,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-size: 11px;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
-  color: #aaa;
+  color: var(--fu-ink-40);
   background: #f5f5f0;
 }
 .cal-day.active {
@@ -3893,7 +3887,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .cal-result {
   font-size: 14px;
-  color: #666;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
   border-top: 1px dashed #ddd;
   padding-top: 16px;
@@ -3973,12 +3967,12 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .app-task-content {
   font-size: 13px;
-  color: #333;
+  color: var(--fu-ink-80);
   font-weight: 700;
 }
 .app-task-time {
   font-size: 10px;
-  color: #888;
+  color: var(--fu-ink-40);
   margin-top: 4px;
 }
 
@@ -4016,13 +4010,13 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .rate-text-label {
   font-size: 13px;
   font-weight: 700;
-  color: #888;
+  color: var(--fu-ink-40);
   margin-bottom: 6px;
 }
 .rate-text-item.good .rate-text-label { color: var(--fu-main-hover); }
 .rate-text-formula {
   font-size: 14px;
-  color: #555;
+  color: var(--fu-ink-70);
 }
 .rate-text-formula strong { color: var(--fu-ink); font-size: 16px; }
 .rate-text-item.good .rate-text-formula strong { color: var(--fu-main-hover); }
@@ -4056,11 +4050,11 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin-bottom: 16px;
   letter-spacing: 0.1em;
 }
-.rate-card.bad .rate-label { color: #888; }
+.rate-card.bad .rate-label { color: var(--fu-ink-40); }
 .rate-card.good .rate-label { color: var(--fu-sub); }
 .rate-formula {
   font-size: 14px;
-  color: #999;
+  color: var(--fu-ink-40);
   font-family: 'Noto Sans JP', sans-serif;
   margin-bottom: 12px;
 }
@@ -4072,7 +4066,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   line-height: 1;
   margin-bottom: 8px;
 }
-.rate-card.bad .rate-value { color: #888; }
+.rate-card.bad .rate-value { color: var(--fu-ink-40); }
 .rate-card.good .rate-value {
   background: var(--fu-main);
   -webkit-background-clip: text;
@@ -4082,7 +4076,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .rate-value small { font-size: 22px; }
 .rate-unit {
   font-size: 14px;
-  color: #aaa;
+  color: var(--fu-ink-40);
   font-family: 'Noto Sans JP', sans-serif;
 }
 .rate-card.good .rate-unit { color: #c8c2a8; }
@@ -4161,7 +4155,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 
 /* === Footer === */
 .footer {
-  background: #23201c;
+  background: var(--fu-bg-footer);
   color: rgba(255,255,255,0.6);
   /* 上部は「マージン」で前セクションとの間に余白を作る（内側paddingは通常量に戻す） */
   margin-top: 4px;
@@ -4546,7 +4540,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .scholarship-note {
   font-size: 12px !important;
-  color: #888 !important;
+  color: var(--fu-ink-40) !important;
   margin: 12px 0 0 !important;
 }
 @media (max-width: 768px) {
@@ -4597,7 +4591,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .quick-feature-card p {
   font-size: 14px;
-  color: #555;
+  color: var(--fu-ink-70);
   font-family: 'Noto Sans JP', sans-serif;
   line-height: 1.7;
   margin: 0;
@@ -4612,7 +4606,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   color: #fff;
   letter-spacing: 0.06em;
   padding: 28px 24px;
-  background: #7b1e2b;
+  background: var(--fu-accent);
   border-radius: 0;
   border: none;
 }
@@ -4689,7 +4683,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .more-prompt p {
   display: inline-block;
   font-size: 14px;
-  color: #888;
+  color: var(--fu-ink-40);
   font-family: 'Noto Sans JP', sans-serif;
   letter-spacing: 0.1em;
   padding: 12px 24px;
@@ -4719,7 +4713,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   background: var(--fu-sub);
   clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
   padding: 16px 30px 30px;
-  color: #1a1a1a;
+  color: var(--fu-ink);
   font-family: 'Zen Old Mincho', serif;
   font-size: 15px;
   font-weight: 700;
@@ -4859,7 +4853,7 @@ body.nav-open .nav-drawer { transform: translateX(0); }
   margin-top: 24px;
   display: block;
   text-align: center;
-  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  background: var(--fu-grad-gold);
   color: #fff;
   text-decoration: none;
   font-family: var(--fu-font-serif);
