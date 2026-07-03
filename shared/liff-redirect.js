@@ -57,4 +57,29 @@
       q.parentElement.classList.toggle('open');
     }
   });
+
+  // ハンバーガー・ドロワー開閉
+  document.addEventListener('click', function (e) {
+    const burger = e.target.closest('.header-burger');
+    if (burger) {
+      const open = document.body.classList.toggle('nav-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      return;
+    }
+    // オーバーレイ or ドロワー内リンクをタップしたら閉じる
+    if (e.target.closest('.nav-overlay') || e.target.closest('.nav-drawer a')) {
+      document.body.classList.remove('nav-open');
+      const b = document.querySelector('.header-burger');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Escでドロワーを閉じる
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      document.body.classList.remove('nav-open');
+      const b = document.querySelector('.header-burger');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    }
+  });
 })();

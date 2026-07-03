@@ -4161,12 +4161,52 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 
 /* === Footer === */
 .footer {
-  background: var(--fu-bg-gold);
-  color: #888;
-  padding: 40px 24px;
+  background: #23201c;
+  color: rgba(255,255,255,0.6);
+  padding: 48px 24px 40px;
   text-align: center;
   font-size: 13px;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: var(--fu-font-serif);
+}
+.footer-inner { max-width: 800px; margin: 0 auto; }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.footer-logo-img { height: 38px; width: auto; }
+.footer-brand-name {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 26px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.footer-nav a {
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: color 0.15s var(--fu-ease);
+}
+.footer-nav a:hover { color: #fff; }
+.footer-copy {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.45);
+  font-family: var(--fu-font-sans);
 }
 
 /* === Sticky bottom CTA (mobile) === */
@@ -4746,3 +4786,112 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .deep-intro-headline { font-size: 22px; line-height: 1.55; }
   .deep-intro-lead { font-size: 14px; }
 }
+
+/* ============================================================
+   ヘッダーナビ ＋ ハンバーガー・ドロワー（全LP共通）
+   ============================================================ */
+/* デスクトップ：ヘッダー内の横並びナビ */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: auto;
+  margin-right: 22px;
+}
+.header-nav-link {
+  font-family: var(--fu-font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fu-ink);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: color 0.15s var(--fu-ease);
+}
+.header-nav-link:hover { color: var(--fu-main); }
+
+/* ハンバーガー（デスクトップは非表示） */
+.header-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 11px 10px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.header-burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--fu-ink);
+  border-radius: 2px;
+  transition: transform 0.25s var(--fu-ease), opacity 0.2s var(--fu-ease);
+}
+body.nav-open .header-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+body.nav-open .header-burger span:nth-child(2) { opacity: 0; }
+body.nav-open .header-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ドロワー本体（右からスライド） */
+.nav-drawer {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(78vw, 300px);
+  background: #fff;
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.3s var(--fu-ease);
+  padding: 86px 28px 32px;
+  box-shadow: -8px 0 30px rgba(0,0,0,0.12);
+  overflow-y: auto;
+}
+body.nav-open .nav-drawer { transform: translateX(0); }
+.nav-drawer-inner { display: flex; flex-direction: column; }
+.nav-drawer-link {
+  font-family: var(--fu-font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fu-ink);
+  text-decoration: none;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--fu-hairline);
+}
+.nav-drawer-cta {
+  margin-top: 24px;
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--fu-font-serif);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 999px;
+}
+
+/* オーバーレイ */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.42);
+  z-index: 150;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--fu-ease);
+}
+body.nav-open .nav-overlay { opacity: 1; visibility: visible; }
+body.nav-open { overflow: hidden; }
+
+/* レスポンシブ：横並びナビ／大きなCTAを畳み、ハンバーガーに切替 */
+@media (max-width: 980px) {
+  .header-nav { display: none; }
+  .header-cta { display: none; }
+  .header-burger { display: flex; }
+}
+
+/* アンカー移動：固定ヘッダー分のオフセット＋スムーススクロール */
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
