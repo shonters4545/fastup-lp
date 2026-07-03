@@ -1035,6 +1035,13 @@
 #enroll-flow .flow-step h4 { font-size: 16px; }
 /* 説明文も Zen Old Mincho に（shared の Noto Sans を上書き） */
 #enroll-flow .flow-step p { font-size: 13px; font-family: var(--fu-font-serif); }
+/* モバイル：横1列だと4ステップが窮屈になるため 2×2 に折り返し、接続トラックは非表示 */
+@media (max-width: 900px) {
+  #enroll-flow .flow-card { padding: 40px 24px 36px; }
+  #enroll-flow .flow-grid { flex-wrap: wrap; gap: 32px 0; }
+  #enroll-flow .flow-grid::before { display: none; }
+  #enroll-flow .flow-step { flex: 0 0 50%; padding: 0 12px; }
+}
 
 /* ============================================================
    FAQ（#faq）— 案B 角丸0カード（ボーダーは削除）
