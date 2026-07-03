@@ -4305,7 +4305,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .check-mark-bad, .check-mark-mid, .check-mark-good { width: 28px; height: 28px; font-size: 14px; line-height: 28px; }
   .three-checks-grid { grid-template-columns: 1fr; gap: 24px; }
   .check-circle h4 { font-size: 20px; }
-  .calendar-compare { grid-template-columns: 1fr; gap: 20px; }
+  .calendar-compare,
+  .section-feature .calendar-compare { grid-template-columns: 1fr; gap: 20px; }
   .cal-panel-headline { font-size: 22px; }
   .rate-compare { grid-template-columns: 1fr; gap: 20px; }
   .rate-vs { font-size: 24px; padding: 0; }
@@ -4672,6 +4673,11 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .service-feature-card p strong {
   color: var(--fu-main);
   font-weight: 700;
+}
+/* モバイル：3カードを縦積み（390pxでは横3列が窮屈）。
+   基底定義より後方に置くことでソース順で確実に勝たせる。 */
+@media (max-width: 900px) {
+  .service-features { flex-direction: column; gap: 16px; margin-top: 40px; }
 }
 
 /* === [5] CTA① more-prompt（後半への誘導） === */
