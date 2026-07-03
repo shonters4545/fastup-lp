@@ -1209,3 +1209,6 @@
 
 /* ヘッダーCTAの「無料」バッジ：ボタン左端（-5px）から2px右 */
 .header-cta-badge { margin-left: -3px; }
+
+/* FV：コンテンツ横幅を縮小（統計行が inner いっぱいに広がるため inner で制御） */
+.fv-inner { max-width: 860px; }
