@@ -9,15 +9,15 @@
 /* 理由2↔理由3 の境界：共通の白ボーダーを消し、暗い特徴パネルを
    セクション下端に密着させて、reason3 への白い隙間（共通padding）を詰める */
 #reason2 { border-bottom: 0; padding-bottom: 0; }
-#reason3 { padding-top: 64px; background: #f6f6f6; }
-#pricing { background: #f6f6f6; padding-top: 0; }
-#extra { background: #fff; padding-bottom: 100px; }
+#reason3 { padding-top: var(--fu-sect-pad-compact); background: var(--fu-bg-muted); }
+#pricing { background: var(--fu-bg-muted); padding-top: 0; }
+#extra { background: #fff; padding-bottom: var(--fu-sect-pad); }
 /* 安心の3つ：上部に全幅の黒帯（料金セクション同様）・下にベージュ＋コーチ陣写真 */
-#reassure { background: #f5f1e6; padding-top: 0; padding-bottom: 0; }
+#reassure { background: var(--fu-beige); padding-top: 0; padding-bottom: 0; }
 /* 帯：背景にコーチ画像＋暗いオーバーレイ */
 .reassure-band {
   position: relative;
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/coach-talk.png');
+  background: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/coach-talk.png');
   background-size: cover;
   background-position: center;
   padding: 76px 0 80px;
@@ -31,7 +31,7 @@
   transform: translateX(-50%);
   width: 48px;
   height: 48px;
-  background: #f5f1e6;
+  background: var(--fu-beige);
   border-radius: 50%;
   z-index: 3;
 }
@@ -43,8 +43,8 @@
   transform: translateX(-50%) rotate(45deg);
   width: 12px;
   height: 12px;
-  border-right: 2.5px solid #222;
-  border-bottom: 2.5px solid #222;
+  border-right: 2.5px solid var(--fu-ink);
+  border-bottom: 2.5px solid var(--fu-ink);
   z-index: 4;
 }
 /* 帯の中の見出し：白文字（コーチ陣の強調は削除＝プレーンな白文字） */
@@ -90,7 +90,7 @@
 #reassure .coach-philosophy-detail { font-family: var(--fu-font-serif) !important; }
 /* 「逆転合格者」の強調：黒ボックス＋白文字（パターンB） */
 #reassure .coach-philosophy em {
-  background: #222; color: #fff; -webkit-text-fill-color: #fff; padding: 2px 12px;
+  background: var(--fu-ink); color: #fff; -webkit-text-fill-color: #fff; padding: 3px 12px;
 }
 .reassure-photo { margin-top: 24px; }
 .reassure-photo img { display: block; width: 100%; }
@@ -209,7 +209,7 @@
   padding: 64px max(24px, calc((100vw - 800px) / 2 + 24px)) 48px;
   border-top: 0;
   background:
-    linear-gradient(rgba(22,22,18,0.78), rgba(22,22,18,0.84)),
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
     url("img/feature-section-bg.jpg");
   background-size: cover;
   background-position: center center;
@@ -247,8 +247,8 @@
 .section-feature-app .feature-sub-heading h3 em {
   font-style: normal;
   background: #fff;
-  color: #222;
-  -webkit-text-fill-color: #222;
+  color: var(--fu-ink);
+  -webkit-text-fill-color: var(--fu-ink);
   font-weight: 700;
   /* 箱の上下paddingを小さく（line-heightで詰める） */
   line-height: 1.2;
@@ -300,7 +300,7 @@
   /* 「特徴N」ラベルと見出しの間を広げ、タグとして独立させる */
   margin: 0 0 12px;
   border: 0;
-  background: #f4efe2;
+  background: var(--fu-beige);
   padding: 2px 8px;
   color: var(--fu-ink);
   line-height: 1.4;
@@ -372,7 +372,7 @@
 .section-pricing .section-title h2 em {
   font-style: normal;
   display: inline-block;
-  background: #222;
+  background: var(--fu-ink);
   color: #fff;
   -webkit-text-fill-color: #fff;
   padding: 0 14px;
@@ -382,10 +382,9 @@
 .section-annual .annual-lead {
   max-width: 720px;
   margin: 0 0 40px;
-  font-family: var(--fu-font-sans);
   font-size: 16px;
   line-height: 1.95;
-  color: #4a4a47;
+  color: var(--fu-ink-80);
 }
 .section-annual .annual-lead strong { color: var(--fu-ink); font-weight: 700; }
 
@@ -404,7 +403,7 @@
 }
 .annual-col--other {
   background: #fff;
-  color: #6f6e68;
+  color: var(--fu-ink-70);
 }
 .annual-col--fastup {
   background: #fff;
@@ -413,12 +412,11 @@
 }
 .annual-tag {
   align-self: flex-start;
-  font-family: var(--fu-font-sans);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
-.annual-col--other .annual-tag { color: #8d8b82; }
+.annual-col--other .annual-tag { color: var(--fu-ink-40); }
 .annual-col--fastup .annual-tag {
   color: #fff;
   background: var(--fu-main);
@@ -433,31 +431,29 @@
   font-size: 56px;
   letter-spacing: 0.01em;
 }
-.annual-col--other .annual-total { color: #767676; }
+.annual-col--other .annual-total { color: var(--fu-ink-70); }
 .annual-col--fastup .annual-total {
   /* CTAボタン（.header-cta）と同じゴールドグラデーションをテキストに */
-  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  background: var(--fu-grad-gold);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-.annual-col--fastup .annual-per { -webkit-text-fill-color: #b0aea6; }
+.annual-col--fastup .annual-per { -webkit-text-fill-color: var(--fu-ink-40); }
 .annual-approx { font-size: 0.4em; margin-right: 3px; }
 .annual-unit { font-size: 0.5em; margin-left: 3px; }
 .annual-per {
-  font-family: var(--fu-font-sans);
   font-size: 0.3em;
   font-weight: 700;
   margin-left: 8px;
-  color: #b0aea6;
+  color: var(--fu-ink-40);
 }
 .annual-breakdown {
   list-style: none;
   margin: auto 0 0;
   padding: 18px 0 0;
   border-top: 1px solid rgba(0,0,0,0.09);
-  font-family: var(--fu-font-sans);
 }
 .annual-col--fastup .annual-breakdown { border-top-color: rgba(120,115,84,0.20); }
 .annual-breakdown li {
@@ -472,7 +468,7 @@
 }
 .annual-breakdown li span { opacity: 0.82; }
 .annual-breakdown li b { font-weight: 700; white-space: nowrap; }
-.annual-col--other .annual-breakdown li b { color: #5f5e58; }
+.annual-col--other .annual-breakdown li b { color: var(--fu-ink-70); }
 .annual-breakdown li b.zero { color: var(--fu-main); }
 
 /* --- 結論バナー --- */
@@ -502,7 +498,6 @@
 }
 .annual-verdict-sub {
   margin: 16px 0 0;
-  font-family: var(--fu-font-sans);
   font-size: 14px;
   color: rgba(255,255,255,0.78);
 }
@@ -552,7 +547,7 @@
 .compare-table--annual tbody td:first-child {
   text-align: left;
   font-weight: 700;
-  color: #767676;
+  color: var(--fu-ink-70);
   padding-left: 20px;
   font-size: 16px;
 }
@@ -581,7 +576,7 @@
 /* セクション最上部：横幅いっぱいのブランドカラー帯（白文字・見出し一式） */
 .pricing-banner {
   position: relative;
-  background: #333;
+  background: var(--fu-bg-dark);
   text-align: center;
   padding: 40px 24px;
   margin-bottom: 56px;
@@ -595,7 +590,7 @@
   transform: translateX(-50%);
   width: 48px;
   height: 48px;
-  background: #f6f6f6;
+  background: var(--fu-bg-muted);
   border-radius: 50%;
   z-index: 3;
 }
@@ -620,7 +615,7 @@
   color: rgba(255,255,255,0.82);
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.10em;
 }
 .pricing-banner-eyebrow::before {
   content: '';
@@ -666,7 +661,7 @@
 .pricing-hero-label { font-size: 24px; }
 .pricing-hero-amount { font-size: 64px; letter-spacing: 0.01em; }
 .pricing-hero-yen { font-size: 0.46em; margin-right: 2px; }
-.pricing-hero-tax { font-size: 17px; font-weight: 400; color: #8a887f; }
+.pricing-hero-tax { font-size: 17px; font-weight: 400; color: var(--fu-ink-40); }
 .pricing-hero-notes {
   margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap;
   justify-content: center; align-items: center;
@@ -676,7 +671,7 @@
   background: #f7e6e8;
   border-radius: 0; padding: 4px 13px;
 }
-.pricing-hero-campaign { font-size: 13px; color: #8a887f; }
+.pricing-hero-campaign { font-size: 13px; color: var(--fu-ink-40); }
 .pricing-hero-campaign strong { color: var(--fu-accent); }
 
 /* 明細カード：白地・細枠・上端にゴールドの「料金明細」バッジ */
@@ -698,7 +693,7 @@
 }
 .pricing-detail-table { width: 100%; border-collapse: collapse; }
 .pricing-detail-table thead th {
-  font-size: 13px; font-weight: 400; color: #9a988f;
+  font-size: 13px; font-weight: 400; color: var(--fu-ink-40);
   padding: 0 0 14px; border-bottom: 1px solid var(--fu-hairline);
   text-align: left;
 }
@@ -733,14 +728,14 @@
 }
 .pricing-included-clean li {
   display: flex; align-items: center; gap: 10px;
-  font-size: 18px; font-weight: 700; color: #3f3e39; line-height: 1.4;
+  font-size: 18px; font-weight: 700; color: var(--fu-ink-80); line-height: 1.4;
 }
 /* カウンセリング節と同じチェックアイコン（ゴールドグラデの丸＋白チェック） */
 .pricing-check {
   flex-shrink: 0;
   width: 24px; height: 24px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  background: var(--fu-grad-gold);
   color: #fff;
   display: flex; align-items: center; justify-content: center;
 }
@@ -767,7 +762,7 @@
 /* 保証セクション背景：ヘッダーCTAと同じゴールドグラデ（お支払いについてまで）。
    ゴールド地に映えるよう見出し・注記を白系に（白カードはそのまま浮かせる）。 */
 #guarantee {
-  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  background: var(--fu-grad-gold);
 }
 #guarantee > .container > .section-title:first-of-type small { color: #fff; }
 #guarantee > .container > .section-title:first-of-type small::before { background: #fff; }
@@ -778,9 +773,9 @@
 /* スカラシップは別セクション（薄グレー地でパーチメントのパネルを映えさせる）。
    上下paddingは他セクションに合わせて縮小（.section の 100px → 32px） */
 #scholarship {
-  background: #f6f6f6;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  background: var(--fu-bg-muted);
+  padding-top: var(--fu-sect-pad-tight);
+  padding-bottom: var(--fu-sect-pad-tight);
 }
 
 /* 保証・スカラシップのテキストを明朝に統一。
@@ -864,7 +859,7 @@
   top: 7px;
   width: 16px;
   height: 16px;
-  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  background: var(--fu-grad-gold);
 }
 .guarantee-conditions li::after {
   content: '';
@@ -946,7 +941,7 @@
   background: linear-gradient(transparent 55%, var(--fu-sub) 55%);
   color: var(--fu-ink);
 }
-.scholarship-body p { color: #444; }
+.scholarship-body p { color: var(--fu-ink-80); }
 /* 免除オファー（白ボックス・ボーダーなし＋制度タグ） */
 #scholarship .scholarship-highlight {
   max-width: 560px;
@@ -970,7 +965,7 @@
 }
 #scholarship .sh-small {
   font-size: 14px;
-  color: #555;
+  color: var(--fu-ink-70);
   margin-bottom: 4px;
 }
 #scholarship .sh-big {
@@ -987,9 +982,9 @@
    ============================================================ */
 /* 背景を#333にし、全コンテンツを白カードで囲う（全体がカードのデザイン） */
 #enroll-flow {
-  background: #333;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  background: var(--fu-bg-dark);
+  padding-top: var(--fu-sect-pad-compact);
+  padding-bottom: var(--fu-sect-pad-compact);
 }
 #enroll-flow .flow-card {
   max-width: 940px;
@@ -1034,7 +1029,7 @@
   height: 50px;
   margin: 0 auto 14px;
   border: 4px solid #fff;
-  background: linear-gradient(135deg, #5a5640 0%, #7c7861 18%, #4a4733 45%, #767259 70%, #5e5944 100%);
+  background: var(--fu-grad-gold);
   font-size: 20px;
 }
 #enroll-flow .flow-step h4 { font-size: 16px; }
@@ -1097,7 +1092,7 @@
 }
 /* セクション下の余白を拡大（section-cream の 40px → 100px） */
 #faq {
-  padding-bottom: 100px;
+  padding-bottom: var(--fu-sect-pad);
 }
 
 /* ============================================================
@@ -1107,13 +1102,13 @@
    ============================================================ */
 #final-cta {
   background:
-    linear-gradient(rgba(20,18,16,0.70), rgba(20,18,16,0.70)),
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
     url('img/final-cta-bg.jpg');
   background-size: cover;
   background-position: center center;
   /* セクション上下paddingを縮小（.section の 100px → 64px） */
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: var(--fu-sect-pad-compact);
+  padding-bottom: var(--fu-sect-pad-compact);
 }
 #final-cta .counsel-inner { text-align: center; }
 #final-cta .section-title { margin-bottom: 12px; }
@@ -1123,7 +1118,7 @@
 /* 見出しの強調をカウンセリングと同じゴールドのグラデ文字に */
 #final-cta .section-title h2 em {
   font-style: normal;
-  background: linear-gradient(90deg, #e4dfce, #d7d0b8 45%, #c4bc92);
+  background: var(--fu-grad-gold-text-light);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1169,6 +1164,15 @@
 #line-cta .line-cta-button {
   color: #0d4a2f !important;
   box-shadow: 0 10px 28px rgba(0,0,0,0.30);
+}
+/* 矢印：ヘッダーCTAと同じ細い『›』（明朝強制を外して Noto Sans 300） */
+#line-cta .line-cta-arrow {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1;
+  margin-left: 14px;
+  transform: translateY(-2px);
 }
 
 /* 案C：友だち追加特典カード（モックアップ内包） */
@@ -1237,7 +1241,7 @@
 #about .quick-conclusion .qc-line {
   display: table;
   margin: 0 auto;
-  background: #7b1e2b;
+  background: var(--fu-accent);
   color: #fff;
   font-family: var(--fu-font-serif);
   font-weight: 900;
