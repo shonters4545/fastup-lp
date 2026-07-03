@@ -1099,3 +1099,110 @@
 #faq {
   padding-bottom: 100px;
 }
+
+/* ============================================================
+   最終CTA（#final-cta）— 「無料診断＋個別カウンセリング」と一貫したデザイン
+   （写真背景＋暗幕・白見出し＋ゴールドグラデem・白枠タグ・counsel-ctaボタン）
+   ※ 背景写真は暫定でFVの fv-bg.png。後で差し替え予定
+   ============================================================ */
+#final-cta {
+  background:
+    linear-gradient(rgba(20,18,16,0.70), rgba(20,18,16,0.70)),
+    url('img/final-cta-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  /* セクション上下paddingを縮小（.section の 100px → 64px） */
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+#final-cta .counsel-inner { text-align: center; }
+#final-cta .section-title { margin-bottom: 12px; }
+#final-cta .section-title small { color: #fff; }
+#final-cta .section-title small::before { background: #fff; }
+#final-cta .section-title h2 { color: #fff; }
+/* 見出しの強調をカウンセリングと同じゴールドのグラデ文字に */
+#final-cta .section-title h2 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #e4dfce, #d7d0b8 45%, #c4bc92);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+/* サブ導線（控えめな白リンク） */
+#final-cta .final-cta-sub {
+  display: inline-block;
+  margin-top: 18px;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: 0.85;
+}
+#final-cta .final-cta-sub:hover { opacity: 1; }
+/* 区切り線：幅をCTAボタンに合わせ（実測394px）、下の余白を広げる */
+#final-cta .counsel-divider { max-width: 394px; margin-bottom: 44px; }
+
+/* ============================================================
+   LINE登録（#line-cta）— これまでのデザイン適用・濃い緑
+   ============================================================ */
+#line-cta {
+  background: linear-gradient(135deg, #15603e 0%, #0c472b 100%);
+  /* セクション間の余白を他セクションと揃える（80px → 0で密着） */
+  margin-top: 0;
+}
+/* セクション内テキストを Zen Old Mincho に統一 */
+#line-cta, #line-cta * { font-family: var(--fu-font-serif); }
+/* 見出し：明朝・白 */
+#line-cta h2 {
+  font-family: var(--fu-font-serif);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+/* 特典バナー：角丸0・白の細枠に */
+#line-cta .gift-banner {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 0;
+}
+/* ボタン：白ピル・濃い緑文字（CTAはピル形状を維持） */
+#line-cta .line-cta-button {
+  color: #0d4a2f !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.30);
+}
+
+/* 案C：友だち追加特典カード（モックアップ内包） */
+#line-cta .line-gift-card {
+  max-width: 600px;
+  margin: 8px auto 26px;
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 24px 26px 26px;
+}
+#line-cta .line-gift-label {
+  display: inline-block;
+  background: #fff;
+  color: #15603e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 3px 12px;
+  margin-bottom: 8px;
+}
+/* モックアップ：上下マージンを詰める（透過PNGの余白ぶんは負マージンで相殺） */
+#line-cta .line-gift-mock {
+  max-width: 480px;
+  margin: -44px auto -40px;
+}
+#line-cta .line-gift-mock img { display: block; width: 100%; height: auto; }
+#line-cta .line-gift-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+#line-cta .line-gift-name small {
+  display: block;
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 4px;
+  font-weight: 400;
+}
