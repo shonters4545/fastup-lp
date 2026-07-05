@@ -1748,13 +1748,13 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .cases-scroll {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   white-space: nowrap;
   margin-right: 12px; /* 右端に寄せ、余白は12pxだけ */
 }
 .cases-scroll-label {
   font-family: 'Zen Old Mincho', serif;
-  font-size: 11px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--fu-main);
@@ -1765,7 +1765,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   line-height: 1;
 }
 .cases-chev {
-  font-size: 13px;
+  font-size: 21px;
   line-height: 1;
   color: var(--fu-main);
   opacity: 0.25;
@@ -1944,6 +1944,17 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .case-univ { font-size: 16px; margin: 0 0 12px 12px; }
   .case-body { padding: 14px 14px 18px 0; }
   .case-desc { font-size: 18px; }
+  /* Scrollヒントも等倍で縮小（比率17:21を維持） */
+  /* 右端から12pxに寄せる（コンテナ左右padding24px − 12px = -12px） */
+  .cases-scroll { gap: 6px; margin-right: -12px; }
+  .cases-scroll-label { font-size: 14px; }
+  .cases-chev { font-size: 17px; }
+}
+/* 最小スマホ(≤480)ではScrollヒントをさらに一段小さく */
+@media (max-width: 480px) {
+  .cases-scroll { gap: 5px; }
+  .cases-scroll-label { font-size: 12px; }
+  .cases-chev { font-size: 15px; }
 }
 
 /* === Trust block (信頼性3カード) - PREMIUM === */
