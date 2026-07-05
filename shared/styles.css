@@ -1494,6 +1494,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin: 40px 0;
 }
 .cta-wrap .header-cta {
+  /* ≤980px の .header-cta{display:none} を打ち消し、FV内CTAは常に表示 */
+  display: inline-flex;
   gap: 10px;
   padding: 8px 28px 8px 10px;
 }
@@ -4227,11 +4229,21 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 /* === Responsive === */
 @media (max-width: 900px) {
   h2 { font-size: 26px; }
-  /* 上部クリアランスを確保（eyebrowが固定ヘッダー68pxと重なる問題の解消） */
-  .fv { margin-top: 66px; padding: 26px 24px 60px; }
+  /* 上部クリアランスを確保（eyebrowが固定ヘッダー68pxと重なる問題の解消）。
+     FV下部padも縮小（60→32px） */
+  .fv { margin-top: 66px; padding: 26px 24px 32px; }
   /* FVコンテンツを等倍で縮小（iPad・スマホ共通） */
   .fv-inner { zoom: 0.9; }
+  /* eyebrow「勉強が3日続かない人へ」を -2px（20→18px）。②〜④共通 */
+  .fv-eyebrow { font-size: 18px; }
   .fv-main { font-size: 38px; }
+  /* ※注記の上の区切り線：上下マージンを詰める（上40→20 / 下20→12） */
+  .fv-notes { margin-top: 20px; padding-top: 12px; }
+  /* 3指標の月桂樹（王冠）飾りを小さく（32/30→22px） */
+  .fv-stat-laurel { width: 22px; }
+  /* 王冠と中のテキストの間隔を確保（旧 -8px の食い込みを解消）。間隔は控えめに */
+  .fv-stat-laurel-left { margin-right: 3px; }
+  .fv-stat-laurel-right { margin-left: 3px; }
   .feature-title { font-size: 26px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .cases-grid { grid-template-columns: 1fr; }
@@ -4322,10 +4334,36 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 /* iPad（768–900px）はFV上部の余白を大きめに（スマホ<768pxは26pxのまま） */
 @media (min-width: 768px) and (max-width: 900px) {
   .fv { padding-top: 56px; }
+  /* FV見出し：モバイルに近づくほど段階的に縮小（②=34px） */
+  .fv-main { font-size: 34px; }
+}
+
+/* ③スマホ大（481–767px）：FV見出し（②34の次に小さく＝32px） */
+@media (min-width: 481px) and (max-width: 767px) {
+  .fv-main { font-size: 32px; }
+}
+
+/* ③〜④（767px以下）：FV上部の余白を大きく（26→56px） */
+@media (max-width: 767px) {
+  .fv { padding-top: 56px; }
+  /* FV内CTA「カウンセリングを予約」：上マージンを詰め、ボタンは少し大きめに
+     （②iPadはデスクトップサイズを維持） */
+  .cta-wrap { margin-top: 24px; }
+  .cta-wrap .header-cta { gap: 8px; padding: 7px 20px 7px 8px; }
+  .cta-wrap .header-cta-badge { width: 54px; height: 54px; font-size: 19px; }
+  .cta-wrap .header-cta-eyebrow { font-size: 12px; padding: 1px 9px 3px; }
+  .cta-wrap .header-cta-main { font-size: 20px; }
+  .cta-wrap .header-cta-arrow { font-size: 24px; margin-left: 16px; }
+  /* 3指標：スマホは全体を等倍で小さく（王冠・数字・ラベルを縮小）して1行を維持 */
+  .fv-stats-row { gap: 8px; }
+  .fv-stat-laurel { width: 18px; }
+  .fv-stat-num { font-size: 22px; }
+  .fv-stat-label { font-size: 8px; }
 }
 
 @media (max-width: 480px) {
-  .fv-main { font-size: 32px; }
+  /* FV見出し：階段の最小（④=30px） */
+  .fv-main { font-size: 30px; }
   .stat-value { font-size: 42px; }
   .feature-title { font-size: 22px; }
   .compare-table thead th { font-size: 11px; padding: 8px 4px; }
