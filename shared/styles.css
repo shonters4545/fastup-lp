@@ -1660,7 +1660,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .section-achievements .section-title { text-align: left; }
 .section-achievements .section-title small { justify-content: flex-start; }
-.section-achievements .stat-item { text-align: left; }
+.section-achievements .stat-item { text-align: center; }
 .section-achievements .trust-grid { margin: 32px 0 0; }
 .section-achievements .media-logos { text-align: left; }
 .section-achievements .media-logos-list { justify-content: flex-start; }
@@ -1703,7 +1703,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   background: var(--fu-bg-muted);
   border-radius: 999px;
   font-size: 13px;
-  color: var(--fu-main);
+  color: var(--fu-main-hover); /* 濃いオリーブでチップ上でもくっきり */
   font-family: 'Zen Old Mincho', serif;
   letter-spacing: 0.04em;
   line-height: 1.4;
@@ -1955,6 +1955,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   align-items: center;
   justify-content: center;
 }
+/* ✓マークは丸より小さめに（丸サイズは維持） */
+.trust-check svg { width: 15px; height: 15px; }
 .trust-card-body {
   display: flex;
   flex-direction: column;
@@ -1967,7 +1969,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   color: var(--fu-main);
 }
 .trust-card-text {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--fu-ink-70);
   font-family: 'Zen Old Mincho', serif;
   margin: 0;
@@ -1976,6 +1978,21 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .trust-card-text strong {
   color: var(--fu-ink);
   font-weight: 700;
+}
+/* trust-card（3つの✓リスト）：スマホにかけて等倍で縮小 */
+@media (max-width: 767px) {
+  .trust-card { padding: 16px 18px; gap: 12px; }
+  .trust-check { width: 24px; height: 24px; }
+  .trust-check svg { width: 13px; height: 13px; }
+  .trust-card h4 { font-size: 18px; }
+  .trust-card-text { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .trust-card { padding: 13px 15px; gap: 10px; }
+  .trust-check { width: 22px; height: 22px; }
+  .trust-check svg { width: 12px; height: 12px; }
+  .trust-card h4 { font-size: 16px; }
+  .trust-card-text { font-size: 13px; }
 }
 
 /* === Intro Credentials ([8] FAST-UP登場 採用率前出し) === */
@@ -2051,7 +2068,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   text-align: center;
   padding: 28px 24px;
   background: var(--fu-paper);
-  border-radius: 12px;
+  border-radius: 0;
   border: 1px solid #ececec;
 }
 .media-logos-list {
@@ -2064,32 +2081,45 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin: 0 auto;
 }
 .media-logo {
-  height: 32px;
+  height: 26px;
   width: auto;
-  max-width: 120px;
+  max-width: 96px;
   object-fit: contain;
 }
-/* ロゴごとの見え方を揃えるための個別サイズ調整 */
+/* ロゴごとの見え方を揃えるための個別サイズ調整（全体を等倍0.8×で縮小） */
 .media-logo[src*="ict-kyoiku-news"] {
-  height: 40px;
+  height: 32px;
 }
 .media-logo[src*="rakuten"] {
-  height: 46px;
+  height: 37px;
 }
 .media-logo[src*="newspicks"] {
-  height: 46px;
+  height: 37px;
 }
 .media-logo[src*="nikkei"] {
-  height: 54px;
+  height: 43px;
 }
 .media-logo[src*="pr-times"] {
-  height: 48px;
+  height: 38px;
 }
 .media-logo[src*="asahi"] {
-  height: 26px;
+  height: 21px;
 }
 .media-logo[src*="abema-news"] {
-  height: 22px;
+  height: 18px;
+}
+/* メディアロゴ：スマホ(≤767)は3列・ロゴをさらに等倍で縮小（改行あり）。
+   base の属性セレクタ(詳細度0,0,2,0)を上回るため各ロゴを属性指定で上書き */
+@media (max-width: 767px) {
+  .media-logos-list { grid-template-columns: repeat(3, 1fr); gap: 14px 12px; }
+  .media-logo { height: 20px; max-width: 72px; }
+  .media-logo[src*="ict-kyoiku-news"] { height: 24px; }
+  .media-logo[src*="rakuten"] { height: 28px; }
+  .media-logo[src*="newspicks"] { height: 28px; }
+  .media-logo[src*="nikkei"] { height: 32px; }
+  .media-logo[src*="pr-times"] { height: 28px; }
+  .media-logo[src*="asahi"] { height: 16px; }
+  .media-logo[src*="abema-news"] { height: 14px; }
 }
 
 /* === Feature sections - PREMIUM === */
@@ -4247,7 +4277,13 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .fv-stat-laurel-left { margin-right: 3px; }
   .fv-stat-laurel-right { margin-left: 3px; }
   .feature-title { font-size: 26px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  /* 実績3指標：モバイルでも3列1行に。数値/ラベル/ノート/余白を等倍で縮小 */
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 32px 0 12px; }
+  .stat-item { padding: 6px 8px; }
+  .stat-value { font-size: 48px; }
+  .stat-value small { font-size: 16px; }
+  .stat-label { font-size: 11px; margin-bottom: 6px; }
+  .stat-note { font-size: 11px; padding: 5px 8px; margin-top: 8px; }
   .cases-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; gap: 12px; }
   .cycle-grid { grid-template-columns: repeat(2, 1fr); }
@@ -4366,6 +4402,11 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .fv-stat-laurel { width: 18px; }
   .fv-stat-num { font-size: 22px; }
   .fv-stat-label { font-size: 8px; }
+  /* 実績3指標：③④はさらに縮小（3列1行維持） */
+  .stat-value { font-size: 38px; }
+  .stat-value small { font-size: 14px; }
+  .stat-item { padding: 6px 5px; }
+  .stat-note { font-size: 10px; padding: 4px 7px; }
 }
 
 @media (max-width: 480px) {
@@ -4373,7 +4414,12 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .fv-main { font-size: 30px; }
   /* 悩みカード：テキスト最適化（④=20px） */
   .empathy-card-text { font-size: 20px; }
-  .stat-value { font-size: 42px; }
+  /* 実績3指標：④は最小（3列1行に収める） */
+  .stats-grid { gap: 6px; }
+  .stat-value { font-size: 30px; }
+  .stat-value small { font-size: 12px; }
+  .stat-item { padding: 4px 4px; }
+  .stat-note { font-size: 9px; padding: 3px 6px; margin-top: 6px; }
   .feature-title { font-size: 22px; }
   .compare-table thead th { font-size: 11px; padding: 8px 4px; }
   .compare-table tbody td { font-size: 11px; padding: 8px 4px; }
