@@ -106,6 +106,7 @@
   /* ---- Layout ---- */
   --fu-content-max: 1080px;
   --fu-sect-pad:         100px;
+  --fu-sect-pad-top:     64px;  /* セクション共通の上余白（見出し上）。下(--fu-sect-pad)より控えめに */
   --fu-sect-pad-compact: 64px;
   --fu-sect-pad-tight:   32px;
 }
@@ -136,7 +137,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   padding: 0 24px;
 }
 .section {
-  padding: var(--fu-sect-pad) 0;
+  /* 上は共通で控えめ(--fu-sect-pad-top)、下は従来通り(--fu-sect-pad) */
+  padding: var(--fu-sect-pad-top) 0 var(--fu-sect-pad);
   position: relative;
   border-bottom: 4px solid #fff;
 }
@@ -4286,8 +4288,10 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .timeline-failure-month { font-size: 12px; padding: 3px 10px; }
   .timeline-failure-text { font-size: 14px; display: block; margin-top: 4px; }
   .empathy-grid { grid-template-columns: 1fr; gap: 12px; }
-  .empathy-card { padding: 20px 16px; display: flex; gap: 16px; text-align: left; align-items: center; }
-  .empathy-card-text { font-size: 15px; }
+  /* ②〜④：テキストは中央揃え＋拡大、画像は縮小（テキストサイズは各tierで最適化） */
+  .empathy-card { padding: 28px 20px; text-align: center; align-items: center; gap: 0; }
+  .empathy-card-text { font-size: 22px; margin-bottom: 16px; }
+  .empathy-card-graphic { width: 44%; margin: 6px auto -16px; }
   .pictogram-headline { font-size: 36px; }
   .pictogram-person { width: 36px; height: 56px; }
   .pictogram-person::before { width: 18px; height: 18px; }
@@ -4336,6 +4340,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .fv { padding-top: 56px; }
   /* FV見出し：モバイルに近づくほど段階的に縮小（②=34px） */
   .fv-main { font-size: 34px; }
+  /* 悩みカード：テキスト最適化（②=24px、③22←≤900継承、④20） */
+  .empathy-card-text { font-size: 24px; }
 }
 
 /* ③スマホ大（481–767px）：FV見出し（②34の次に小さく＝32px） */
@@ -4345,7 +4351,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 
 /* ③〜④（767px以下）：FV上部の余白を大きく（26→56px） */
 @media (max-width: 767px) {
-  .fv { padding-top: 56px; }
+  /* 背景は講師を右寄りに固定（画像の64%位置） */
+  .fv { padding-top: 56px; background-position: 64% center; }
   /* FV内CTA「カウンセリングを予約」：上マージンを詰め、ボタンは少し大きめに
      （②iPadはデスクトップサイズを維持） */
   .cta-wrap { margin-top: 24px; }
@@ -4364,6 +4371,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 @media (max-width: 480px) {
   /* FV見出し：階段の最小（④=30px） */
   .fv-main { font-size: 30px; }
+  /* 悩みカード：テキスト最適化（④=20px） */
+  .empathy-card-text { font-size: 20px; }
   .stat-value { font-size: 42px; }
   .feature-title { font-size: 22px; }
   .compare-table thead th { font-size: 11px; padding: 8px 4px; }
@@ -4672,14 +4681,14 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .service-features {
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 16px;
   margin-top: 64px;
 }
 .service-feature-card {
   flex: 1 1 0;
   min-width: 0;
   background: #fff;
-  padding: 28px 24px;
+  padding: 28px 16px;
   border: 1px solid var(--fu-main);
   text-align: center;
 }
@@ -4693,11 +4702,12 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-family: var(--fu-font-serif);
 }
 .service-feature-card h3 {
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 700;
   margin-bottom: 6px;
   line-height: 1.5;
   color: var(--fu-ink);
+  white-space: nowrap;
 }
 .service-feature-card .service-feature-subtitle {
   display: inline-block;
@@ -4725,6 +4735,10 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
    基底定義より後方に置くことでソース順で確実に勝たせる。 */
 @media (max-width: 900px) {
   .service-features { flex-direction: column; gap: 16px; margin-top: 40px; }
+}
+/* ③④スマホ（767px以下）：カード内の要素を左揃え（②iPadは中央のまま） */
+@media (max-width: 767px) {
+  .service-feature-card { text-align: left; }
 }
 
 /* === [5] CTA① more-prompt（後半への誘導） === */
@@ -4779,7 +4793,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   align-items: flex-end;
   justify-content: center;
   gap: 10px;
-  font-size: 16px;
+  font-size: 14px; /* 他のセクションラベルと統一（旧16px） */
   font-weight: 700;
   color: var(--fu-sub);
   font-family: 'Zen Old Mincho', serif;
@@ -4826,7 +4840,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .deep-intro-lead strong { color: var(--fu-sub); }
 @media (max-width: 768px) {
   .deep-intro { padding: 56px 20px; }
-  .deep-intro-headline { font-size: 22px; line-height: 1.55; }
+  /* font-sizeは④=24/③=28のstep規則に委譲。ここは行間のみ調整 */
+  .deep-intro-headline { line-height: 1.55; }
   .deep-intro-lead { font-size: 14px; }
 }
 
@@ -4995,3 +5010,29 @@ body.nav-open { overflow: hidden; }
 
 /* アンカー移動：固定ヘッダー分のオフセット＋スムーススクロール */
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+/* ==================================================================
+   セクション見出しのレスポンシブ段階縮小
+   デスクトップ①36 → ②iPad 32 → ③スマホ大 28 → ④スマホ小 24
+   ※ .ceo-title / .deep-intro-headline のbase定義より後ろに置き、
+     ソース順で確実に上書きさせる（詳細度は同じため位置が重要）
+   ================================================================== */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-title h2, .cases-headline, .ceo-title, .deep-intro-headline { font-size: 32px; }
+  /* 見出し上のラベル（eyebrow）：①14→②13→③13→④12（スマホ③④は+1px） */
+  .section-title small, .cases-eyebrow, .ceo-eyebrow, .deep-intro-eyebrow { font-size: 13px; }
+  /* 見出し下の余白：①40 → ②32 → ③26 → ④20で段階的に詰める */
+  .section-title { margin-bottom: 32px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-title h2, .cases-headline, .ceo-title, .deep-intro-headline { font-size: 28px; }
+  /* ③スマホ大：ラベル 12→13（+1px） */
+  .section-title small, .cases-eyebrow, .ceo-eyebrow, .deep-intro-eyebrow { font-size: 13px; }
+  .section-title { margin-bottom: 26px; }
+}
+@media (max-width: 480px) {
+  .section-title h2, .cases-headline, .ceo-title, .deep-intro-headline { font-size: 24px; }
+  /* ④スマホ小：ラベル 11→12（+1px） */
+  .section-title small, .cases-eyebrow, .ceo-eyebrow, .deep-intro-eyebrow { font-size: 12px; }
+  .section-title { margin-bottom: 20px; }
+}

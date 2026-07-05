@@ -1234,11 +1234,16 @@
 /* 「それもそのはず。」を白文字に */
 .empathy-conclusion strong { color: #fff; }
 
-/* [3]サービス紹介：重なった矢印の下に導入がゆとりを持つよう上paddingを拡大 */
-#about { padding-top: 160px; }
+/* [3]サービス紹介：重なった矢印(結論box -80px食い込み)の受け皿として上paddingを確保。
+   実効の見出し上余白 = padding-top(110) - 80(食い込み) = 約30px（②③④＝スマホ/iPad） */
+#about { padding-top: 110px; }
+/* デスクトップ(①)のみ少しゆとりを持たせる（実効30→約50px） */
+@media (min-width: 901px) { #about { padding-top: 130px; } }
+/* 背景画像：全サイズ右端固定にして主役のコーチ(右側)を常に残す */
+#about { background-position: right center; }
 
-/* [3]サービス紹介：セクションタイトルの上マージン */
-#about .section-title { margin-top: 16px; }
+/* [3]サービス紹介：セクションタイトルの上マージン（詰めて0に） */
+#about .section-title { margin-top: 0; }
 /* 結論：外側の箱を外し、1行ごとに箱（ワインレッド）。内容幅で中央寄せ（上下左右autoで中央配置） */
 #about .quick-conclusion {
   background: none;
@@ -1252,9 +1257,13 @@
   color: #fff;
   font-family: var(--fu-font-serif);
   font-weight: 900;
-  font-size: 22px;
+  font-size: 21px;
   letter-spacing: 0.06em;
   line-height: 1.5;
-  padding: 4px 16px;
+  padding: 4px 8px;
 }
 #about .quick-conclusion .qc-line + .qc-line { margin-top: 10px; }
+/* 結論ボックスの文字：デスクトップを大きく→モバイルへ徐々に縮小。
+   スマホ(③④=767px以下)はbaseの21pxのまま。①デスクトップ24 / ②iPad22 */
+@media (min-width: 901px) { #about .quick-conclusion .qc-line { font-size: 24px; } }
+@media (min-width: 768px) and (max-width: 900px) { #about .quick-conclusion .qc-line { font-size: 22px; } }
