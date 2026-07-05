@@ -1711,6 +1711,8 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 
 /* === Cases (Success Stories) - PREMIUM === */
 /* === 逆転合格者（卒業生の声）=== */
+/* このセクションは末尾がカルーセルのため、下余白を全体的に控えめに（共通100px→40px） */
+.section-cases { padding-bottom: 40px; }
 .cases-head {
   display: flex;
   align-items: flex-end;
@@ -1746,12 +1748,13 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .cases-scroll {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
   white-space: nowrap;
+  margin-right: 12px; /* 右端に寄せ、余白は12pxだけ */
 }
 .cases-scroll-label {
   font-family: 'Zen Old Mincho', serif;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--fu-main);
@@ -1762,7 +1765,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   line-height: 1;
 }
 .cases-chev {
-  font-size: 18px;
+  font-size: 13px;
   line-height: 1;
   color: var(--fu-main);
   opacity: 0.25;
@@ -1912,7 +1915,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   padding: 18px 18px 22px 0;
 }
 .case-desc {
-  font-size: 20px;
+  font-size: 23px;
   line-height: 1.6;
   color: #000;
   font-weight: 700;
@@ -1925,6 +1928,23 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   font-family: 'Noto Sans JP', sans-serif;
 }
 .cases-note small { font-size: 12px; }
+
+/* 逆転合格者カード：スマホ(≤767)は等倍で縮小（緩やかに 480→360px、写真はaspect-ratioで自動縮小） */
+@media (max-width: 767px) {
+  .cases-carousel { gap: 14px; padding: 0 16px 12px; scroll-padding-left: 16px; }
+  .case-card { flex: 0 0 360px; }
+  .case-id { top: 12px; right: 14px; }
+  .case-id-name { font-size: 14px; }
+  .case-id-tag { font-size: 9px; }
+  .case-score { margin: 0 0 6px 12px; padding: 2px 6px; gap: 2px; }
+  .case-score-label { font-size: 9px; }
+  .case-score-from, .case-score-to { font-size: 40px; }
+  .case-score-arrow { font-size: 26px; }
+  .case-score-up { font-size: 13px; top: -3px; }
+  .case-univ { font-size: 16px; margin: 0 0 12px 12px; }
+  .case-body { padding: 14px 14px 18px 0; }
+  .case-desc { font-size: 18px; }
+}
 
 /* === Trust block (信頼性3カード) - PREMIUM === */
 .trust-grid {
