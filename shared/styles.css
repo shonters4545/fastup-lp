@@ -4592,6 +4592,59 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   letter-spacing: 0.06em;
 }
 
+/* === 代表メッセージ：レスポンシブ ===
+   中身(見出し・本文)を段階的に等倍縮小（本文14pxを下限に）。
+   ②(768-900)は横並び維持で写真をパネル内に収める（せり出しなし）。
+   ③④(≤767)は写真をメッセージ下に縦配列。 */
+/* ② iPad(768-900)：横並び維持・内容を縮小・写真をパネル内に収める */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-ceo { padding-bottom: 120px; }
+  .ceo-head { margin-bottom: 32px; }
+  .ceo-panel { min-height: 300px; }
+  .ceo-message { width: 100%; padding: 36px 236px 36px 40px; }
+  .ceo-message-headline { font-size: 25px; margin-bottom: 20px; }
+  .ceo-message-body p { font-size: 16px; line-height: 1.9; margin-bottom: 12px; }
+  .ceo-photo { width: 216px; right: 0; bottom: -60px; }
+}
+/* ③④(≤767)：メッセージは左端・写真は右端に密着（マージン0＝コンテナpad24pxを負マージンで打消し）。
+   下部paddingを大きくして写真の重ね領域を確保（本文とは被せない）。写真は大きめに。 */
+@media (max-width: 767px) {
+  .section-ceo { padding-bottom: 205px; }  /* 写真が下へハングする分を確保 */
+  .ceo-head { margin-bottom: 28px; }
+  .ceo-panel {
+    display: block;         /* flex-column解除：本文フロー＋写真absolute */
+    position: relative;
+    min-height: 0;
+  }
+  .ceo-message {
+    width: auto;
+    /* 左端は画面端に密着(margin0)、右側はマージンを設定→「左右から伸びる」形 */
+    margin: 0 48px 0 -24px;
+    padding: 32px 28px 120px;  /* ③は下部padを大きめに（写真上部の重なり＋下部の余白を広めに） */
+  }
+  .ceo-message-headline { font-size: 23px; margin-bottom: 18px; }
+  .ceo-message-body p { font-size: 15px; line-height: 1.85; margin-bottom: 12px; }
+  .ceo-photo {
+    position: absolute;
+    right: -24px;          /* 右端に密着(margin0) */
+    bottom: -180px;        /* 下げて上部のみ重ねる(重なり≒58px、残りは下へハング) */
+    top: auto;
+    width: 230px;
+    height: 238px;
+    padding: 12px 14px 0;
+  }
+}
+/* ④ 小型スマホ(≤480)：内容をさらに縮小（本文14px下限）・写真も相応に縮小 */
+@media (max-width: 480px) {
+  .ceo-message { margin-right: 16px; padding: 26px 22px 62px; }  /* ④は右マージンを小さく（メッセージを右へ広げる） */
+  .ceo-message-headline { font-size: 21px; margin-bottom: 14px; }
+  .ceo-message-body p { font-size: 14px; line-height: 1.8; margin-bottom: 10px; }
+  .ceo-photo { width: 195px; height: 205px; bottom: -150px; padding: 10px 12px 0; }
+  .ceo-caption { right: 8px; bottom: 8px; padding: 7px 8px 5px; }
+  .ceo-caption-role { font-size: 11px; }
+  .ceo-caption-name { font-size: 13px; }
+}
+
 /* === スカラシップ制度ブロック === */
 .scholarship-block {
   margin-top: 48px;
