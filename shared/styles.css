@@ -979,6 +979,35 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-size: 14px;
   color: #fff;
 }
+/* === 無料診断+個別カウンセリング：③④で要素を徐々に縮小（等倍） === */
+/* ③ スマホ大(481-767) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .counsel-tags { gap: 8px; margin-bottom: 28px; }
+  .counsel-tag { font-size: 13px; padding: 2px 6px; }
+  .counsel-divider { margin-bottom: 26px; }
+  .counsel-list { gap: 13px; margin-bottom: 32px; }
+  .counsel-list li { font-size: 17px; padding: 5px 16px 5px 10px; gap: 9px; }
+  .counsel-list-icon { width: 26px; height: 26px; }
+  .counsel-cta { font-size: 19px; padding: 13px 44px 15px; }
+  .counsel-cta-badge { font-size: 14px; margin-bottom: 7px; }
+  .counsel-note { font-size: 13px; margin-top: 16px; }
+}
+/* ④ スマホ小(≤480) */
+@media (max-width: 480px) {
+  .counsel-tags { gap: 6px; margin-bottom: 24px; }
+  .counsel-tag { font-size: 12px; padding: 2px 5px; }
+  .counsel-divider { margin-bottom: 22px; }
+  .counsel-list { gap: 11px; margin-bottom: 28px; }
+  .counsel-list li { font-size: 15px; padding: 4px 14px 4px 9px; gap: 8px; }
+  .counsel-list-icon { width: 24px; height: 24px; }
+  .counsel-cta { font-size: 17px; padding: 12px 34px 14px; }
+  .counsel-cta-badge { font-size: 13px; margin-bottom: 6px; }
+  .counsel-note { font-size: 12px; margin-top: 14px; }
+}
+/* ③④：背景画像の女性を右側に寄せて固定（縦長トリミングで中央だと切れるため） */
+@media (max-width: 767px) {
+  .counsel-section { background-position: 50% center; }
+}
 .section-dark {
   background: var(--fu-bg-gold);
   color: #fff;
