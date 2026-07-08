@@ -3765,14 +3765,19 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   margin: 24px 0;
   padding-top: 24px;
   border-top: 1px dashed #ddd;
+  overflow-x: auto;              /* 狭い画面では横スクロール */
+  -webkit-overflow-scrolling: touch;
 }
 .check-table {
   width: 100%;
+  min-width: 540px;              /* つぶれない最小幅（下回るとスクロール） */
   border-collapse: separate;
   border-spacing: 0;
   background: #fff;
   font-family: var(--fu-font-serif);
 }
+/* 一番左の列は内容（最長文字列）に合わせたauto幅・折り返しなし */
+.check-table th:first-child, .check-table td:first-child { width: 1%; white-space: nowrap; }
 .check-table th, .check-table td {
   padding: 22px 12px;
   text-align: center;
@@ -3872,26 +3877,30 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   box-shadow: none;
   -webkit-text-stroke: 1px currentColor;
 }
+/* quick-conclusion（自分一人ではダメだった人も）と同じ：各行を独立したマルーンボックスに（2行） */
 .check-table-conclusion {
+  margin-top: 40px;
   text-align: center;
-  margin-top: 48px;
-  font-family: var(--fu-font-serif);
+  font-family: 'Zen Old Mincho', serif;
 }
+.check-table-conclusion br { display: none; }
 .check-table-conclusion span {
-  display: inline-block;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--fu-ink);
-  letter-spacing: 0.04em;
-  vertical-align: middle;
-}
-.check-table-conclusion-em {
+  display: table;
+  margin: 0 auto;
   background: var(--fu-accent);
   color: #fff !important;
-  padding: 2px 10px;
-  margin-top: 12px;
-  font-size: 30px !important;
+  font-family: 'Zen Old Mincho', serif;
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  padding: 4px 8px;
 }
+/* 2番目の行に上マージン（間に<br>があり span+span が効かないため直接指定。
+   span{margin:0 auto}より詳細度を上げてtop:0を上書き） */
+.check-table-conclusion .check-table-conclusion-em { margin-top: 10px; }
+@media (min-width: 901px) { .check-table-conclusion span { font-size: 24px; } }
+@media (min-width: 768px) and (max-width: 900px) { .check-table-conclusion span { font-size: 22px; } }
 
 /* === Three Checks Large (FAST-UP は3つ全部 ○) === */
 .three-checks-block {
@@ -4448,7 +4457,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .three-x-grid { grid-template-columns: 1fr; gap: 16px; }
   .x-card { padding: 28px 20px 180px; }  /* 下部に写真スペースを確保しテキストと重ならないように */
   .check-table th, .check-table td { padding: 14px 8px; font-size: 13px; }
-  .check-table thead th { font-size: 11px; }
+  .check-table thead th { font-size: 16px; }  /* ②。③④で徐々に縮小（下の個別ルール） */
   .check-mark-bad, .check-mark-mid, .check-mark-good { width: 28px; height: 28px; font-size: 14px; line-height: 28px; }
   .three-checks-grid { grid-template-columns: 1fr; gap: 24px; }
   .check-circle h4 { font-size: 20px; }
@@ -4460,6 +4469,17 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .rate-value { font-size: 42px; }
   .fv-stats-row { gap: 20px; }
   .fv-stat-num { font-size: 26px; }
+}
+
+/* 表のタイトル行：スマホにかけて徐々に縮小（②16→③15→④14px） */
+@media (min-width: 481px) and (max-width: 767px) { .check-table thead th { font-size: 15px; } }
+@media (max-width: 480px) { .check-table thead th { font-size: 14px; } }
+/* 表の各項目テキストも③④で-2px（行ラベル17→15/18→16、マーク18→16/20→18） */
+@media (max-width: 767px) {
+  .check-table tbody td:first-child { font-size: 15px; }
+  .check-table tbody tr.fastup-row td:first-child { font-size: 16px; }
+  .check-mark-bad, .check-mark-mid, .check-mark-good { font-size: 16px; }
+  .check-table tbody tr.fastup-row .check-mark-good { font-size: 18px; }
 }
 
 /* ③④：環境とは＝矢印との間隔を詰める＆3つの特徴を個別ボックスに */
