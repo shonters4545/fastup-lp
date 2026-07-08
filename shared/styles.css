@@ -250,9 +250,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transform: translateX(-50%);
   margin: 0;
 }
-.section-aha-env .aha-circle:hover .aha-circle-photo {
-  transform: translateX(-50%) scale(1.05);
-}
 .section-aha-env .three-circles-wrap .three-circles-grid::before { display: none; }
 .section-aha-env .aha-conclusion {
   background: var(--fu-accent);
@@ -272,10 +269,15 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   z-index: 3;
 }
 .section-aha-env .aha-conclusion p:not(.aha-conclusion-self) {
-  display: inline-block;
+  display: inline;
   background: #fff;
   color: var(--fu-accent);
   padding: 2px 12px;
+  /* 2行に折り返した際、各行を個別のボックスにする */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  /* 折り返し時の行(ボックス)間のマージンを大きく */
+  line-height: 2.2;
 }
 .section-aha-env .aha-conclusion-self {
   border-top: 0.5px dashed #fff;
@@ -3545,8 +3547,9 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .aha-lead-headline em {
   font-style: normal;
-  background: linear-gradient(transparent 60%, var(--fu-sub) 60%);
-  padding: 0 4px;
+  background: var(--fu-main);  /* ハイライト→ソリッドなボックス塗り */
+  color: #fff;                 /* テキスト白 */
+  padding: 0 8px 2px;          /* 上padを詰める（CJKが下寄りのため上0/下2で文字を上に寄せる） */
 }
 .aha-lead-body {
   font-family: var(--fu-font-serif);
@@ -4394,6 +4397,16 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .pictogram-person::after { top: 20px; width: 26px; height: 36px; }
   .three-circles-grid { grid-template-columns: 1fr; gap: 32px; }
   .three-circles-grid::before { display: none; }
+  /* ②③④：特徴の間に区切り線（01-02, 02-03）。左右にマージン（画面いっぱいにしない） */
+  .section-aha-env .three-circles-wrap .aha-circle:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    right: 40px;
+    height: 0.5px;
+    background: var(--fu-hairline);
+  }
   .aha-circle-icon { width: 160px; height: 160px; font-size: 72px; }
   .aha-circle h3 { font-size: 24px; }
   .aha-conclusion h3 { font-size: 24px; }
@@ -4429,6 +4442,33 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .rate-value { font-size: 42px; }
   .fv-stats-row { gap: 20px; }
   .fv-stat-num { font-size: 26px; }
+}
+
+/* ③④：環境とは＝矢印との間隔を詰める＆3つの特徴を個別ボックスに */
+@media (max-width: 767px) {
+  /* 矢印(▼)と「では、その『環境』とは？」の間隔を詰める */
+  .section-aha-env { padding-top: 40px; }
+  .section-aha-env .aha-bridge { margin-top: 8px; }
+  /* 1枚の白カードを解除し、各特徴を独立した白ボックスに */
+  .section-aha-env .three-circles-wrap {
+    background: transparent !important;
+    padding: 0;
+  }
+  /* ボックス間のマージン（gap）を0に */
+  .section-aha-env .three-circles-grid { gap: 0; }
+  .section-aha-env .three-circles-wrap .aha-circle {
+    background: #fff;
+    padding: 28px 20px 0;   /* 角丸なし・画像を下端に密着（下padding 0） */
+  }
+  /* 画像を絶対配置→通常フローにし、上マージンを小さく */
+  .section-aha-env .aha-circle-photo {
+    position: static;
+    transform: none;
+    bottom: auto;
+    left: auto;
+    display: block;
+    margin: 6px auto 0;
+  }
 }
 
 /* iPad（768–900px）はFV上部の余白を大きめに（スマホ<768pxは26pxのまま） */
@@ -4998,9 +5038,10 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 }
 .deep-intro-lead strong { color: var(--fu-sub); }
 @media (max-width: 768px) {
-  .deep-intro { padding: 56px 20px; }
+  .deep-intro { padding: 32px 20px 56px; }  /* eyebrow上の余白を縮小（下はバッジ分キープ） */
+  .deep-intro-eyebrow { margin-bottom: 14px; }  /* eyebrow下（見出しまで）の余白を縮小 */
   /* font-sizeは④=24/③=28のstep規則に委譲。ここは行間のみ調整 */
-  .deep-intro-headline { line-height: 1.55; }
+  .deep-intro-headline { line-height: 1.55; margin-bottom: 8px; }  /* 見出し下の余白を縮小 */
   .deep-intro-lead { font-size: 14px; }
 }
 
@@ -5184,13 +5225,13 @@ html { scroll-behavior: smooth; scroll-padding-top: 84px; }
   .section-title { margin-bottom: 32px; }
 }
 @media (min-width: 481px) and (max-width: 767px) {
-  .section-title h2, .cases-headline, .ceo-title, .deep-intro-headline { font-size: 28px; }
+  .section-title h2, .cases-headline, .ceo-title, .deep-intro-headline, .section-aha-env .aha-bridge { font-size: 28px; }
   /* ③スマホ大：ラベル 12→13（+1px） */
   .section-title small, .cases-eyebrow, .ceo-eyebrow, .deep-intro-eyebrow { font-size: 13px; }
   .section-title { margin-bottom: 26px; }
 }
 @media (max-width: 480px) {
-  .section-title h2, .cases-headline, .ceo-title, .deep-intro-headline { font-size: 24px; }
+  .section-title h2, .cases-headline, .ceo-title, .deep-intro-headline, .section-aha-env .aha-bridge { font-size: 24px; }
   /* ④スマホ小：ラベル 11→12（+1px） */
   .section-title small, .cases-eyebrow, .ceo-eyebrow, .deep-intro-eyebrow { font-size: 12px; }
   .section-title { margin-bottom: 20px; }
