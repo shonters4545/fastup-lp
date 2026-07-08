@@ -3671,7 +3671,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 .three-x-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 12px;   /* 特徴間の余白を縮小しカード幅を確保（1行表示のため） */
   margin: 40px 0;
 }
 .x-card {
@@ -3720,6 +3720,24 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   letter-spacing: 0.04em;
   color: var(--fu-ink);
   margin-bottom: 6px;
+}
+/* カード見出しを段階縮小（どう揃えるか＝毎日のメニュー等／環境とは＝同じ人等 を同サイズ感に）
+   ①24 / ②26 / ③24 / ④22px */
+@media (min-width: 901px) {
+  .three-x-grid .x-card h4,
+  .section-aha-env .three-circles-wrap .aha-circle h3 { font-size: 24px; }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  .three-x-grid .x-card h4,
+  .section-aha-env .three-circles-wrap .aha-circle h3 { font-size: 26px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .three-x-grid .x-card h4,
+  .section-aha-env .three-circles-wrap .aha-circle h3 { font-size: 24px; }
+}
+@media (max-width: 480px) {
+  .three-x-grid .x-card h4,
+  .section-aha-env .three-circles-wrap .aha-circle h3 { font-size: 22px; }
 }
 .x-card p {
   font-family: var(--fu-font-serif);
@@ -4428,7 +4446,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   .aha-bridge::before,
   .bridge-bubble::before { width: 30px; height: 30px; font-size: 17px; line-height: 30px; top: -15px; }
   .three-x-grid { grid-template-columns: 1fr; gap: 16px; }
-  .x-card { padding: 28px 20px; }
+  .x-card { padding: 28px 20px 180px; }  /* 下部に写真スペースを確保しテキストと重ならないように */
   .check-table th, .check-table td { padding: 14px 8px; font-size: 13px; }
   .check-table thead th { font-size: 11px; }
   .check-mark-bad, .check-mark-mid, .check-mark-good { width: 28px; height: 28px; font-size: 14px; line-height: 28px; }
