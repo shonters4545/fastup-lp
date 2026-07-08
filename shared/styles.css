@@ -536,8 +536,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(odd) .feature-sub-card { margin-right: 36px; }
   .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(even) .feature-sub-card { margin-left: 36px; }
 }
-/* ③(481-767)：横並びのまま、カードを写真に深く食い込ませて全幅内に収める（カードは縮めない） */
-@media (min-width: 481px) and (max-width: 767px) {
+/* ②③(481-900)：横並びのまま、カードを写真に深く食い込ませて全幅内に収める（カードは縮めない）。②のzigzagはみ出しもこれで解消 */
+@media (min-width: 481px) and (max-width: 900px) {
   .section-feature .feature-sub-cards--zigzag { gap: 56px; }
   .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(odd) { margin-left: 0; }
   .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(even) { margin-right: 0; }
