@@ -376,6 +376,24 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
+/* 理由1：カレンダーのタイトル(一般的な学習管理塾)と月n時間を、スマホにかけて徐々に縮小 */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature .cal-panel-title { font-size: 16px; }
+  .section-feature .cal-panel-headline { font-size: 28px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-feature .cal-panel-title { font-size: 15px; }
+  .section-feature .cal-panel-headline { font-size: 24px; }
+}
+@media (max-width: 480px) {
+  .section-feature .cal-panel-title { font-size: 14px; }
+  .section-feature .cal-panel-headline { font-size: 21px; }
+}
+/* 理由1：見出し下・リード文(一目瞭然)下のマージンを③④で縮小 */
+@media (max-width: 767px) {
+  .section-feature .section-title { margin-bottom: 12px; }  /* 見出し下の余白 */
+  .section-feature .feature-desc { margin-bottom: 24px; }
+}
 .section-feature .cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -489,9 +507,49 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin-right: -60px;
 }
 .section-feature .feature-sub-card::before { display: none; }
+/* ホバーアニメーション削除：hover時も非hoverと同じ状態に（全画面） */
+.section-feature .feature-sub-card { transition: none; }
 .section-feature .feature-sub-card:hover {
-  transform: none;
+  transform: translateY(60px);
   box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+}
+/* ④(≤480)：写真＋特徴カードを上下配置＋左右交互寄せ（1・3=左端、2・4=右端に密着） */
+@media (max-width: 480px) {
+  .section-feature .feature-sub-cards--zigzag { gap: 40px; }
+  .section-feature .feature-sub-row { display: flex; flex-direction: column; align-items: stretch; width: 86%; }  /* baseのalign-items:centerを打消し、カードを幅いっぱいに */
+  /* 1・3（奇数）を左端に密着（マージン0＝コンテナpad24pxを打消し） */
+  .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(odd) {
+    align-self: flex-start; margin-left: -24px; margin-right: 0;
+  }
+  /* 2・4（偶数）を右端に密着 */
+  .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(even) {
+    align-self: flex-end; margin-right: -24px; margin-left: 0;
+  }
+  .section-feature .feature-sub-image { width: 100%; height: 190px; order: 0; }  /* 画像を常に上に */
+  .section-feature .feature-sub-row .feature-sub-card,
+  .section-feature .feature-sub-row--reverse .feature-sub-card {
+    transform: none;
+    margin: -28px 0 0;   /* 写真下部に重ねる。寄せた側の画面端に密着 */
+    order: 1;
+  }
+  /* カードは写真より小さく：寄せた反対側（内側）をインセット */
+  .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(odd) .feature-sub-card { margin-right: 36px; }
+  .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(even) .feature-sub-card { margin-left: 36px; }
+}
+/* ③(481-767)：横並びのまま、カードを写真に深く食い込ませて全幅内に収める（カードは縮めない） */
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-feature .feature-sub-cards--zigzag { gap: 56px; }
+  .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(odd) { margin-left: 0; }
+  .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(even) { margin-right: 0; }
+  .section-feature .feature-sub-row { display: block; position: relative; padding-bottom: 48px; }  /* カードを下にずらす分の余白 */
+  .section-feature .feature-sub-image { width: 64%; height: 260px; margin-left: -24px; }  /* 正順：写真を左端に密着 */
+  .section-feature .feature-sub-row--reverse .feature-sub-image { margin-left: auto; margin-right: -24px; }  /* 逆順：写真を右端に密着 */
+  .section-feature .feature-sub-row .feature-sub-card,
+  .section-feature .feature-sub-row--reverse .feature-sub-card {
+    position: absolute; bottom: 0; z-index: 2; margin: 0; transform: none; width: 52%;
+  }
+  .section-feature .feature-sub-row .feature-sub-card { right: 0; left: auto; }          /* 正順：カード右下（写真右部に食い込む） */
+  .section-feature .feature-sub-row--reverse .feature-sub-card { left: 0; right: auto; }  /* 逆順：カード左下 */
 }
 .section-feature .feature-sub-card-label {
   display: inline-block;
@@ -527,6 +585,20 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--fu-fg-2);
   margin: 0;
   text-align: left;
+}
+/* 見出し(進む3時間 等)＋本文Pをスマホにかけて徐々に縮小（見出し①26/②24/③22/④20・本文①16/②15/③15/④14px）
+   ※h4/pのベース定義より後ろに置きソース順で確実に上書き */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature .feature-sub-card h4 { font-size: 24px; }
+  .section-feature .feature-sub-card p { font-size: 15px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-feature .feature-sub-card h4 { font-size: 22px; }
+  .section-feature .feature-sub-card p { font-size: 15px; }
+}
+@media (max-width: 480px) {
+  .section-feature .feature-sub-card h4 { font-size: 20px; }
+  .section-feature .feature-sub-card p { font-size: 14px; }
 }
 .section-feature .feature-sub-card p strong {
   color: var(--fu-ink);
