@@ -388,6 +388,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 @media (max-width: 480px) {
   .section-feature .cal-panel-title { font-size: 14px; }
   .section-feature .cal-panel-headline { font-size: 21px; }
+  .section-feature .feature-desc { font-size: 15px; margin-top: 4px; }  /* ④：見出し下テキスト -2px＋上マージン+4px */
 }
 /* 理由1：見出し下・リード文(一目瞭然)下のマージンを③④で縮小 */
 @media (max-width: 767px) {
@@ -472,10 +473,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   justify-content: end;
 }
 .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(odd) {
-  margin-left: -80px;
+  margin-left: -74px;  /* 901-959pxでの~5pxはみ出し回避のため-80→-74に微調整 */
 }
 .section-feature .feature-sub-cards--zigzag > .feature-sub-row:nth-child(even) {
-  margin-right: -80px;
+  margin-right: -74px;
 }
 .section-feature .feature-sub-image {
   position: relative;
@@ -819,6 +820,62 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin: 12px auto 10px;
 }
 
+/* --- 個別計画プレビュー（内部アプリ /mypage/study-plan/preview の塾生ビューを実配色・実フォントで再現） --- */
+/* 実機スマホ長にクリップ（続きは下フェード）。配色=アプリprimaryオリーブ(#787354系)＋ワイン#8a4a58、フォント=Zen Old Mincho。アプリのグローバルヘッダー/個別計画タイトルは除外 */
+.phone-screen--clip { height: 588px; display: flex; flex-direction: column; background: #f2f0e8; }
+.phone-sp-body { flex: 1; overflow: hidden; position: relative; padding: 14px 14px 0; font-family: var(--fu-font-serif); }
+.phone-sp-body::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 44px; background: linear-gradient(rgba(242,240,232,0), #f2f0e8); pointer-events: none; }
+/* 科目ピルタブ */
+.phone-sp-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+.phone-sp-tab { font-size: 11px; font-weight: 700; padding: 3px 13px; border-radius: 999px; background: #fff; color: #767676; border: 1px solid #e8e6dd; }
+.phone-sp-tab.is-on { background: #635f46; color: #fff; border-color: #635f46; }
+/* 計画見出し＋期限バッジ＋コメント */
+.phone-sp-planhead { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.phone-sp-plantitle { display: flex; align-items: center; gap: 5px; min-width: 0; font-size: 13px; font-weight: 700; color: #504d3a; }
+.phone-sp-cmt { position: relative; flex-shrink: 0; color: #9a9573; line-height: 0; }
+.phone-sp-cmt svg { width: 13px; height: 13px; }
+.phone-sp-cmt::after { content: ''; position: absolute; top: -1px; right: -2px; width: 5px; height: 5px; border-radius: 50%; background: #8a4a58; box-shadow: 0 0 0 1px #f2f0e8; }
+.phone-sp-deadline { flex-shrink: 0; font-size: 9px; font-weight: 700; padding: 2px 7px; background: #f5f4f0; color: #635f46; }
+.phone-sp-range { font-size: 10px; color: #767676; margin: 3px 0 11px; }
+/* 進捗カード（フラット白） */
+.phone-sp-card { background: #fff; padding: 12px 14px; margin-bottom: 10px; }
+.phone-sp-card-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 8px; }
+.phone-sp-card-label { font-size: 11px; font-weight: 700; color: #2b2a21; }
+.phone-sp-card-label em { font-style: normal; font-weight: 400; font-size: 9px; color: #767676; margin-left: 4px; }
+.phone-sp-card-pct { font-size: 22px; font-weight: 900; color: #635f46; line-height: 1; }
+.phone-sp-card-pct span { font-size: 13px; }
+.phone-sp-bar { height: 7px; background: #e8e6dd; overflow: hidden; }
+.phone-sp-bar i { display: block; height: 100%; background: #787354; }
+/* 教材アコーディオン（展開表示） */
+.phone-sp-book { background: #fff; padding: 12px 14px; margin-bottom: 10px; }
+.phone-sp-book-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.phone-sp-book-name { font-size: 12px; font-weight: 700; color: #2b2a21; }
+.phone-sp-book-range { font-size: 10px; color: #767676; margin-top: 2px; }
+.phone-sp-chev { flex-shrink: 0; color: #9a9573; line-height: 0; }
+.phone-sp-chev svg { width: 15px; height: 15px; transform: rotate(180deg); }
+.phone-sp-book-prog { display: flex; align-items: center; gap: 8px; margin-top: 9px; }
+.phone-sp-book-prog .phone-sp-bar { flex: 1; }
+.phone-sp-book-prog span { font-size: 11px; font-weight: 700; color: #635f46; }
+/* 周回ステッパー */
+.phone-sp-laps { display: flex; align-items: center; gap: 5px; margin-top: 12px; padding-top: 11px; border-top: 1px solid #e8e6dd; }
+.phone-sp-lap { width: 21px; height: 21px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; background: #f5f4f0; color: #9a9573; }
+.phone-sp-lap.done { background: #d1cebb; color: #504d3a; }
+.phone-sp-lap.on { background: #787354; color: #fff; box-shadow: 0 0 0 2px #d1cebb; }
+.phone-sp-lapline { width: 12px; height: 2px; background: #e8e6dd; }
+.phone-sp-lap-label { margin-left: 6px; font-size: 9px; font-weight: 700; color: #787354; }
+/* タスク行（角ばりチェック＋点数） */
+.phone-sp-tasks { margin-top: 10px; }
+.phone-sp-task { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-top: 1px solid #e8e6dd; }
+.phone-sp-task:first-child { border-top: 0; }
+.phone-sp-check { flex-shrink: 0; width: 17px; height: 17px; border-radius: 0; border: 1.5px solid #d1cebb; background: #fff; display: flex; align-items: center; justify-content: center; }
+.phone-sp-check.on { background: #787354; border-color: #787354; }
+.phone-sp-check.on::after { content: '✓'; color: #fff; font-size: 10px; font-weight: 900; line-height: 1; }
+.phone-sp-task-name { flex: 1; min-width: 0; font-size: 12px; font-weight: 500; color: #2b2a21; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.phone-sp-task-name em { font-style: normal; color: #767676; }
+.phone-sp-score { flex-shrink: 0; font-size: 10px; font-weight: 700; color: #635f46; }
+/* フリー項目 */
+.phone-sp-free { display: flex; align-items: center; gap: 10px; background: #fff; padding: 11px 14px; }
+
 /* --- 注釈コールアウト --- */
 .app-callout {
   position: absolute;
@@ -877,7 +934,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin-bottom: 8px;
 }
 
-@media (max-width: 900px) {
+/* ①②(≥768px)は左右散らし配置（デスクトップのデザインをそのまま適用）。
+   積み重ねは③④(≤767px)のみ。散らしは電話310+コールアウト左右=約710px必要で768px以上でしか成立しないため */
+@media (max-width: 767px) {
   .app-showcase {
     flex-direction: column;
     align-items: center;
@@ -892,6 +951,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   }
   .app-callout::after { display: none; }
 }
+/* ③④のスマホ横カット＋01密着は 04a-koachi/style.css（≤767）で実装（実レイアウト側に集約） */
 
 /* === [5] 無料診断・個別カウンセリング === */
 .counsel-section {
