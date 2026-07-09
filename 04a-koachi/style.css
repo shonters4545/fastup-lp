@@ -460,7 +460,7 @@
 /* レスポンシブも理由1に合わせる（③④で見出し下12px・P下24px、④でP -2px＋上マージン4px）
    見出し余白は #reason3[L111] のID詳細度を上回るため #reason3 で指定 */
 @media (max-width: 767px) {
-  #reason3 .section-title { margin-bottom: 12px; }
+  #reason3 .section-title { margin-bottom: 16px; }
   .section-annual .annual-lead { margin-bottom: 24px; }
 }
 @media (max-width: 480px) {
@@ -588,7 +588,11 @@
   margin-top: 36px;
   padding-top: 28px;
   border-top: 1px dashed #c8c8c8;
+  overflow-x: auto;                 /* 狭い画面では横スクロール */
+  -webkit-overflow-scrolling: touch;
 }
+/* 表下の注釈（*）は左揃え */
+.section-annual .compare-source { text-align: left; margin-left: 0; }
 .compare-table--annual {
   margin-top: 0;
   border-collapse: separate;
@@ -596,6 +600,7 @@
   border-radius: 0;
   box-shadow: none;
   background: #fff;
+  min-width: 500px;                 /* 最小幅を確保（下回るとスクロール） */
 }
 /* ヘッダー：ゴールドの塗りラベル（白文字・白罫線で区切る） */
 .compare-table--annual thead th {
@@ -634,7 +639,7 @@
 .compare-table--annual tbody tr:last-child td { border-bottom: 0; }
 /* FAST-UP列：parchment＋ゴールド枠（check-tableのfastup相当を縦に） */
 .compare-table--annual tbody td.fastup {
-  background: #fff;
+  background: var(--fu-parchment);   /* 前セクションcheck-table同様の薄いゴールド */
   border-left: 2px solid var(--fu-main);
   border-right: 2px solid var(--fu-main);
   color: var(--fu-main-hover);
