@@ -110,6 +110,9 @@
 /* 見出し→説明文の間隔を理由2（特徴系）と揃える */
 #reason3 .section-title { margin-bottom: 24px; }
 
+/* コールアウトの-42pxブレイクアウトが狭い幅(768px等)でビューポートを超える分をクリップ（横スクロール防止） */
+.section-feature-app { overflow-x: clip; }
+
 /* 理由2: Card 02（左罫線 + 大きめ番号）をLP本体に適用 */
 .section-feature-app .app-callout {
   width: 212px;
@@ -321,10 +324,21 @@
   color: #fff;
 }
 
-@media (max-width: 900px) {
+/* ≤767のみモバイル縦積み。②(768-900)は①デスクトップの散らし配置をそのまま使う（sharedのstack≤767と一致させる） */
+@media (max-width: 767px) {
   .section-feature-app .app-callout {
     width: 100%;
+    max-width: 480px;   /* 3つのボックスの横幅を大きく（320→480px） */
+    display: flex;             /* 01とテキストを横並びに */
+    align-items: baseline;
+    gap: 10px;
   }
+  .section-feature-app .app-callout-num {
+    margin-bottom: 0;
+    font-size: 16px;           /* 本文(16px)に合わせて小さく（28→16px） */
+    flex-shrink: 0;
+  }
+  .section-feature-app .app-callout-text { flex: 1; min-width: 0; }
 
   /* モバイルはコールアウトが縦積みになるため重ねず、通常余白に戻す */
   .section-feature-app .app-showcase {
@@ -349,6 +363,32 @@
     /* モバイルはカード本文が20px。箱の左padding10を引いて 10px */
     padding: 0 10px;
   }
+
+  /* ③④共通：スマホをLesson 3 仮定法の直下(mock上端から482px)で横にスパッとカットし、
+     01ボックスの上部に密着させる（縦積みの先頭=スマホ、その直後が01） */
+  .section-feature-app .app-showcase .phone-mock {
+    max-height: 482px;
+    overflow: hidden;
+    border-radius: 48px 48px 0 0;   /* カット断面（下の角）を丸みなし＝四角に */
+  }
+  .section-feature-app .app-callout-1 {
+    margin-top: 0;
+  }
+}
+
+/* ②(768-900)：①デスクトップの散らし配置のまま、スマホのモックアップだけ小さく */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature-app .app-showcase .phone-mock {
+    transform: scale(0.774);           /* 310px × 0.774 ≒ 240px */
+    transform-origin: center bottom;   /* 下端を保ち「セクションから生えて見える」重なりを維持 */
+  }
+  /* コールアウトを画面端(-42px)から中央のスマホ近くへ寄せる。
+     スマホは中央配置なので50%基準で配置＝スマホ縁との間隔を一定(約32px)に保つ。
+     50% - (スマホ半幅120 + 間隔32 + ボックス幅212) = 50% - 364px */
+  .section-feature-app .app-callout-1,
+  .section-feature-app .app-callout-3 { left: calc(50% - 364px); }
+  .section-feature-app .app-callout-2 { right: calc(50% - 364px); }
+  .section-feature-app .app-callout::after { width: 34px; }  /* コネクタ線を短く（間隔に合わせる） */
 }
 
 /* ============================================================
@@ -379,14 +419,25 @@
   margin-top: 6px;
 }
 
+/* 理由3の見出し・Pデザインを理由1(.section-feature)に統一
+   （見出し下余白の基底24pxは #reason3 .section-title[L111] が担う＝理由1と同値） */
 .section-annual .annual-lead {
-  max-width: 720px;
-  margin: 0 0 40px;
-  font-size: 16px;
-  line-height: 1.95;
-  color: var(--fu-ink-80);
+  max-width: 640px;              /* 理由1 feature-descに合わせる */
+  margin: 0 0 48px;
+  font-size: 17px;
+  line-height: 2;
+  color: var(--fu-fg-2);
 }
 .section-annual .annual-lead strong { color: var(--fu-ink); font-weight: 700; }
+/* レスポンシブも理由1に合わせる（③④で見出し下12px・P下24px、④でP -2px＋上マージン4px）
+   見出し余白は #reason3[L111] のID詳細度を上回るため #reason3 で指定 */
+@media (max-width: 767px) {
+  #reason3 .section-title { margin-bottom: 12px; }
+  .section-annual .annual-lead { margin-bottom: 24px; }
+}
+@media (max-width: 480px) {
+  .section-annual .annual-lead { font-size: 15px; margin-top: 4px; }
+}
 
 /* --- 年間総額の対決 --- */
 .annual-faceoff {
