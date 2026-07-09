@@ -209,13 +209,13 @@
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
   /* スマホ下端はこのセクション背景で隠れるため、上パディングは控えめにしてカードを上へ寄せる */
-  padding: 64px max(24px, calc((100vw - 800px) / 2 + 24px)) 48px;
+  padding: 100px max(24px, calc((100vw - 800px) / 2 + 24px)) 88px;
   border-top: 0;
   background:
     linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
     url("img/feature-section-bg.jpg");
   background-size: cover;
-  background-position: center center;
+  background-position: right center;   /* 右側を固定＝女性講師を常に右に表示 */
   color: var(--fu-ink);
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(34,34,34,0.18);
@@ -245,6 +245,16 @@
   font-family: var(--fu-font-serif);
   font-size: 36px;
   font-weight: 700;
+}
+/* 見出しをスマホにかけて徐々に小さく（①36/②32/③28/④24px・行間gapも比例縮小） */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature-app .feature-sub-heading h3 { font-size: 32px; gap: 16px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-feature-app .feature-sub-heading h3 { font-size: 28px; gap: 14px; }
+}
+@media (max-width: 480px) {
+  .section-feature-app .feature-sub-heading h3 { font-size: 24px; gap: 12px; }
 }
 
 .section-feature-app .feature-sub-heading h3 em {
@@ -307,6 +317,7 @@
   padding: 2px 8px;
   color: var(--fu-ink);
   line-height: 1.4;
+  font-size: 10px;   /* 若干小さく（11→10px） */
 }
 
 .section-feature-app .feature-sub-card h4 {
@@ -322,6 +333,22 @@
 
 .section-feature-app .feature-sub-card p strong {
   color: #fff;
+}
+
+/* 理由2カード：ホバーアニメーション削除 */
+.section-feature-app .feature-sub-card { transition: none; }
+.section-feature-app .feature-sub-card:hover { transform: none; box-shadow: none; }
+
+/* 「1日単位の計画」等の見出し(h4)を徐々に小さく（小さくなりすぎない範囲：①22/②20/③19/④18px）
+   ※説明文(p)はベース14pxで元々小さいため据え置き */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature-app .feature-sub-card h4 { font-size: 20px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-feature-app .feature-sub-card h4 { font-size: 19px; }
+}
+@media (max-width: 480px) {
+  .section-feature-app .feature-sub-card h4 { font-size: 18px; }
 }
 
 /* ≤767のみモバイル縦積み。②(768-900)は①デスクトップの散らし配置をそのまま使う（sharedのstack≤767と一致させる） */
@@ -347,7 +374,8 @@
 
   .section-feature-app .feature-sub-cards {
     margin-top: 56px;
-    padding: 36px 24px;
+    padding: 64px 16px;   /* スマホの左右padを16pxに */
+    background-position: 90% center;   /* ③④：女性を少し左へ戻す（80→90%） */
   }
 
   .section-feature-app .feature-sub-card {
