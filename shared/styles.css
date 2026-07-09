@@ -392,7 +392,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 /* 理由1：見出し下・リード文(一目瞭然)下のマージンを③④で縮小 */
 @media (max-width: 767px) {
-  .section-feature .section-title { margin-bottom: 12px; }  /* 見出し下の余白 */
+  .section-feature .section-title { margin-bottom: 16px; }  /* ③④：見出し下の余白 */
   .section-feature .feature-desc { margin-bottom: 24px; }
 }
 .section-feature .cal-grid {
