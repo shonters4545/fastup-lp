@@ -11,6 +11,9 @@
 #reason2 { border-bottom: 0; padding-bottom: 0; }
 #reason3 { padding-top: var(--fu-sect-pad-compact); background: var(--fu-bg-muted); }
 #pricing { background: var(--fu-bg-muted); padding-top: 0; }
+/* 料金セクション下部：section-cream の 40px を打ち消し、他セクションと同じ 100px に
+   （≤900pxは共通 .section の 60px が後勝ちで一致済みのため、デスクトップのみ対象） */
+@media (min-width: 901px) { #pricing { padding-bottom: var(--fu-sect-pad); } }
 #extra { background: #fff; padding-bottom: var(--fu-sect-pad); }
 /* 安心の3つ：上部に全幅の黒帯（料金セクション同様）・下にベージュ＋コーチ陣写真 */
 #reassure { background: var(--fu-beige); padding-top: 0; padding-bottom: 0; }
@@ -711,11 +714,15 @@
 .pricing-banner-title {
   margin: 0;
   color: #fff;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   line-height: 1.55;
   letter-spacing: 0.04em;
 }
+/* 見出しは他セクション見出しと完全に同一サイズ（①36→②32→③28→④24） */
+@media (min-width: 768px) and (max-width: 900px) { .pricing-banner-title { font-size: 32px; } }
+@media (min-width: 481px) and (max-width: 767px) { .pricing-banner-title { font-size: 28px; } }
+@media (max-width: 480px)                        { .pricing-banner-title { font-size: 24px; } }
 /* ヘッド：中央寄せの大きな月額表示 */
 .section-pricing .pricing-head { text-align: center; }
 .pricing-plan {
@@ -824,9 +831,45 @@
   display: flex; align-items: center; justify-content: center;
 }
 
-@media (max-width: 700px) {
-  .pricing-hero-amount { font-size: 54px; }
-  .pricing-detail { padding: 42px 22px 32px; margin-top: 46px; }
+/* スマホ(≤767px)のみ：左右16px・「追加費用ゼロ」下の余白詰め・明細ボックス上下pad縮小・
+   込みリスト下の余白＋セクション下部padを縮小 */
+@media (max-width: 767px) {
+  #pricing { padding-bottom: 32px; }
+  #pricing .container { padding-left: 16px; padding-right: 16px; }
+  .pricing-banner { padding-left: 16px; padding-right: 16px; }
+  .pricing-detail { margin-top: 24px; padding: 26px 22px 22px; }
+  .pricing-included-clean { margin-bottom: 20px; }
+}
+
+/* 「3科目フルサポート」以下：テキストを①②③④で段階縮小（小さくしすぎない） */
+@media (min-width: 768px) and (max-width: 900px) {   /* ② iPad */
+  .pricing-hero-label { font-size: 22px; }
+  .pricing-hero-amount { font-size: 58px; }
+  .pricing-hero-tax { font-size: 16px; }
+  .pricing-included-clean li { font-size: 17px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {   /* ③ スマホ大 */
+  .pricing-plan { font-size: 14px; }
+  .pricing-hero-label { font-size: 20px; }
+  .pricing-hero-amount { font-size: 50px; }
+  .pricing-hero-tax { font-size: 15px; }
+  .pricing-hero-nofee { font-size: 14px; }
+  .pricing-detail-badge { font-size: 15px; }
+  .pricing-detail-table tbody td { font-size: 15px; }
+  .pricing-included-clean h4 { font-size: 15px; }
+  .pricing-included-clean li { font-size: 16px; }
+}
+@media (max-width: 480px) {                          /* ④ スマホ小 */
+  .pricing-plan { font-size: 13px; }
+  .pricing-hero-label { font-size: 18px; }
+  .pricing-hero-amount { font-size: 42px; }
+  .pricing-hero-tax { font-size: 14px; }
+  .pricing-hero-nofee { font-size: 13px; }
+  .pricing-detail-badge { font-size: 14px; }
+  .pricing-detail-table thead th { font-size: 12px; }
+  .pricing-detail-table tbody td { font-size: 14px; }
+  .pricing-included-clean h4 { font-size: 14px; }
+  .pricing-included-clean li { font-size: 15px; }
 }
 
 @media (max-width: 900px) {
