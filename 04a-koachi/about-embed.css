@@ -314,3 +314,8 @@
 #extra .max-\[380px\]\:text-\[16px\] { font-size: 16px; }
 #extra .max-\[380px\]\:text-\[38px\] { font-size: 38px; }
 }
+
+/* モバイル（③④・≤767px）: 特徴1の上パディングを縮小 */
+@media (max-width: 767px) {
+  #extra .about3-feat1 { padding-top: 8px; }
+}
