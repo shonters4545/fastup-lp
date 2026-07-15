@@ -989,7 +989,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -1019,7 +1019,7 @@
   margin: 0 auto;
   text-align: left;
   /* 項目間を詰める（上下padを小さく）＋アイコン縮小ぶん左padも狭く */
-  padding: 5px 0 5px 26px;
+  padding: 2px 0 2px 26px;
   font-size: 15px;
 }
 .guarantee-conditions li strong { color: var(--fu-main-hover); }
@@ -1047,9 +1047,9 @@
 
 /* --- お支払いについて（細い白枠のゴーストボックス） --- */
 .pay-support {
-  max-width: 600px;
+  max-width: 680px;
   margin: 40px auto 0;
-  padding: 20px 24px;
+  padding: 32px 40px;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.45);
   border-radius: 0;
@@ -1060,18 +1060,23 @@
   display: inline-block;
   background: #fff;
   color: var(--fu-ink);
-  padding: 3px 12px;
-  font-size: 15px;
+  padding: 5px 16px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 .pay-support p {
   color: rgba(255,255,255,0.88);
-  font-size: 14px;
-  line-height: 1.85;
+  font-size: 17px;
+  line-height: 1.9;
 }
 .pay-support p strong { color: #fff; }
+/* スマホ(≤767px)：保証カード見出しの上・お支払いボックスの上下余白を-4px */
+@media (max-width: 767px) {
+  .guarantee-card-top { padding-top: 36px; }
+  .pay-support { padding-top: 28px; padding-bottom: 28px; }
+}
 
 /* --- スカラシップ制度：絵文字削除・角丸0・ボーダーなし・ブランド配色へ --- */
 .scholarship-block {
