@@ -22,7 +22,7 @@
   position: relative;
   background: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/coach-talk.png');
   background-size: cover;
-  background-position: center;
+  background-position: right center; /* 右側の男性コーチが常に見えるよう右固定 */
   padding: 76px 0 80px;
 }
 /* 帯の下端中央：薄ベージュの丸＋黒い下矢印（料金セクションと同一） */
@@ -51,6 +51,9 @@
   z-index: 4;
 }
 /* 帯の中の見出し：白文字（コーチ陣の強調は削除＝プレーンな白文字） */
+/* セクションタイトル・見出しを左揃え */
+.reassure-band .section-title { text-align: left; }
+.reassure-band .section-title small { justify-content: flex-start; }
 .reassure-band .section-title small { color: #fff; }
 .reassure-band .section-title small::before { background: #fff; }
 .reassure-band .section-title h2 { color: #fff; }
@@ -59,7 +62,7 @@
 }
 /* 帯の中のカード：背景なし・白文字・カード間をボーダーで区切る（数値は薄ベージュ） */
 /* 見出し＋カード群を中央寄せの定幅ボックスに（ボックスは中央・中身/見出しは左揃え） */
-.reassure-band .reassure-inner { max-width: 720px; margin: 0 auto; }
+.reassure-band .reassure-inner { max-width: 860px; margin: 0 auto; }
 .reassure-band .matching-grid {
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
@@ -82,21 +85,75 @@
   margin-bottom: 14px;
 }
 .reassure-band .matching-card h4 {
-  font-size: 19px; margin-bottom: 8px; text-align: left; color: #fff; font-weight: 700;
+  font-size: 19px; font-weight: 700;
+  margin-bottom: 8px;
+  text-align: left;
+  color: #fff;
 }
 .reassure-band .matching-card p {
+  width: 100%;
   font-size: 15px; text-align: left; line-height: 1.8; color: rgba(255,255,255,0.85);
 }
 .reassure-band .matching-card p strong { color: #fff; }
+/* ①デスクトップ(≥901px)のみ：カード見出し(h4)を大きく＋1行固定 */
+@media (min-width: 901px) {
+  .reassure-band .matching-card h4 { font-size: 24px; white-space: nowrap; }
+}
+/* ③④スマホ(≤767px)：01〜03を縦配列に。区切りは左罫線→上罫線
+   ・内容の左をボーダー開始位置に揃える（padding-left 0）
+   ・区切り線の上の余白を縮小（padding-bottom 8px） */
+@media (max-width: 767px) {
+  .reassure-band .matching-grid { grid-template-columns: 1fr; }
+  .reassure-band .matching-card { padding: 20px 0 8px; }
+  .reassure-band .matching-card + .matching-card {
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,0.22);
+  }
+  /* 見出し→01 の余白を縮小 */
+  .reassure-band .section-title { margin-bottom: 8px; }
+  .reassure-band .matching-card:first-child { padding-top: 4px; }
+  /* 帯（セクション下部）の下paddingを縮小 */
+  .reassure-band { padding-bottom: 40px; }
+}
 /* 天才は採用しない以降：背景なし・ベージュ地 */
-#reassure .coach-philosophy { background: none; margin-top: 56px; font-size: 36px; }
+#reassure .coach-philosophy { background: none; margin-top: 32px; font-size: 36px; }
+/* 共通見出しと同じ段階縮小（①36→②32→③28→④24） */
+@media (min-width: 768px) and (max-width: 900px) { #reassure .coach-philosophy { font-size: 32px; } }
+@media (min-width: 481px) and (max-width: 767px) { #reassure .coach-philosophy { font-size: 28px; } }
+@media (max-width: 480px)                        { #reassure .coach-philosophy { font-size: 24px; } }
+/* emボックス(逆転合格者)：途中で折り返さない */
+@media (max-width: 767px) { #reassure .coach-philosophy em { white-space: nowrap; } }
+/* ③④スマホ：見出し・説明文を左揃え＋説明文上の点線を削除 */
+@media (max-width: 767px) {
+  #reassure .coach-philosophy,
+  #reassure .coach-philosophy-detail { text-align: left; }
+  #reassure .coach-philosophy-detail { border-top: 0; }
+}
+/* 見出し下(説明文上)の余白を共通の見出し下余白に揃える（③26→④20）※スマホのみ */
+@media (min-width: 481px) and (max-width: 767px) { #reassure .coach-philosophy-detail { margin-top: 26px !important; padding-top: 0; } }
+@media (max-width: 480px)                        { #reassure .coach-philosophy-detail { margin-top: 20px !important; padding-top: 0; } }
+/* ③④スマホ：左右padを他セクションと同じ（container 24pxのみ）に。要素側paddingは0 */
+@media (max-width: 767px) {
+  #reassure .coach-philosophy { padding-left: 0; padding-right: 0; }
+}
 #reassure .coach-philosophy-detail { font-family: var(--fu-font-serif) !important; }
 /* 「逆転合格者」の強調：黒ボックス＋白文字（パターンB） */
 #reassure .coach-philosophy em {
   background: var(--fu-ink); color: #fff; -webkit-text-fill-color: #fff; padding: 3px 12px;
 }
+/* ③④スマホ：emボックスの左右padを詰めて見出しを2行に収める（基本ルールの後に置いて確実に上書き） */
+@media (max-width: 767px) { #reassure .coach-philosophy em { padding: 3px 6px; } }
 .reassure-photo { margin-top: 24px; }
 .reassure-photo img { display: block; width: 100%; }
+/* ③④スマホ：帯上部pad縮小・説明文↔講師画像の間縮小・講師画像は画面横幅（767付近が最大）で画面に合わせて縮む */
+@media (max-width: 767px) {
+  #reassure .coach-philosophy { margin-top: 40px; padding-top: 0; padding-bottom: 8px; }
+  .reassure-photo { margin-top: 8px; overflow: hidden; }
+  .reassure-photo img {
+    width: 100vw; max-width: none;
+    margin-left: auto; margin-right: auto;
+  }
+}
 
 /* 見出し→説明文の間隔を理由2（特徴系）と揃える */
 #reason3 .section-title { margin-bottom: 24px; }
