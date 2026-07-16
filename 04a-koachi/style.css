@@ -1598,11 +1598,11 @@
   .fv--service .fv-main { font-size: 34px; }
 }
 @media (min-width: 481px) and (max-width: 767px) { /* ③スマホ大 */
-  .fv--service .fv-main { font-size: 30px; }
+  .fv--service .fv-main { font-size: 33px; line-height: 1.68; }
   .fv--service .fv-brand-band { font-size: 15px; }
 }
 @media (max-width: 480px) { /* ④スマホ小 */
-  .fv--service .fv-main { font-size: 24px; line-height: 1.55; }
+  .fv--service .fv-main { font-size: 27px; line-height: 1.68; }
   .fv--service .fv-brand-band { font-size: 14px; }
   .fv--service .fv-sub { font-size: 15px; }
 }
