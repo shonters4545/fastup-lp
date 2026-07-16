@@ -1476,6 +1476,24 @@
 }
 /* 「それもそのはず。」を白文字に */
 .empathy-conclusion strong { color: #fff; }
+/* 悩みカード：デスクトップ(①)のみ、コンテナ横幅を拡大＋3列等幅固定（見出しボックスが1行に収まるように）。②以下は共通の1列縦配置を維持 */
+@media (min-width: 901px) {
+  .section:has(.empathy-grid) > .container { max-width: 1080px; }
+  .empathy-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* 悩みカードの見出し(1行目・2行目)：内容幅(auto)のボックス塗り＋白文字・中央配置・縦積み・1行固定 */
+.empathy-card-text .empathy-card-lead,
+.empathy-card-text strong {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  background: var(--fu-main);
+  color: #fff;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.empathy-card-text strong { margin: 6px auto 0; }
+.empathy-card-text br { display: none; }
 
 /* [3]サービス紹介：重なった矢印(結論box -80px食い込み)の受け皿として上paddingを確保。
    実効の見出し上余白 = padding-top(110) - 80(食い込み) = 約30px（②③④＝スマホ/iPad） */
