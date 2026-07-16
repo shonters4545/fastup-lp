@@ -1467,6 +1467,99 @@
 /* FV：コンテンツ横幅を縮小（統計行が inner いっぱいに広がるため inner で制御） */
 .fv-inner { max-width: 860px; }
 
+/* ============================================================
+   FV — サービスサイト版デザイン移植（.fv--service）
+   ============================================================ */
+/* 背景写真：サービスサイトの fv-hero.jpg を適用 */
+.fv--service {
+  background-image: url('img/fv-hero.jpg');
+  background-position: center 38%;
+}
+/* 暗幕を左濃→右淡の斜めグラデに（左のテキスト可読性を確保） */
+.fv--service::before {
+  background: linear-gradient(76deg,
+    rgba(20,18,16,0.95) 0%,
+    rgba(20,18,16,0.78) 42%,
+    rgba(20,18,16,0.42) 72%,
+    rgba(20,18,16,0.12) 100%);
+}
+.fv--service .fv-inner { max-width: 960px; }
+/* 左寄せの読みやすいカラム幅に */
+.fv--service .fv-main,
+.fv--service .fv-sub { max-width: 560px; }
+/* ブランド帯：ワインレッド塗り */
+.fv--service .fv-brand-band {
+  display: inline-block;
+  background: var(--fu-accent);
+  color: #fff;
+  font-family: var(--fu-font-serif);
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  padding: 2px 12px 4px;
+  margin-bottom: 16px;
+}
+/* 見出し：白文字ベース＋一部を白マーカー */
+.fv--service .fv-main {
+  color: #fff;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  margin-bottom: 20px;
+}
+/* 旧・白ボックスspan指定を打ち消し */
+.fv--service .fv-main span,
+.fv--service .fv-main span:first-of-type {
+  display: inline;
+  background: none;
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+}
+.fv--service .fv-main .fv-p { font-size: 0.82em; }
+.fv--service .fv-main .fv-p2 { font-size: 0.78em; }
+.fv--service .fv-main .fv-hl {
+  color: #000;
+  padding: 0 8px;
+  background: linear-gradient(#fff, #fff) left calc(50% + 1.5px) / 100% calc(1.15em + 3px) no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+/* サブコピー：イタリック */
+.fv--service .fv-sub {
+  font-style: normal;
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+.fv--service .fv-sub,
+.fv--service .fv-sub em,
+.fv--service .fv-sub em strong { color: #fff; }
+.fv--service .fv-sub em { font-style: italic; font-weight: 400; }
+.fv--service .fv-sub em strong { font-weight: 900; }
+/* 実績のサブラベル（他塾平均の約7倍 など） */
+.fv--service .fv-stat-sub {
+  font-size: 9px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+/* レスポンシブ：見出し・帯・サブコピーをtierごとに縮小（サービスサイト準拠） */
+@media (min-width: 768px) and (max-width: 900px) { /* ②iPad */
+  .fv--service .fv-main { font-size: 34px; }
+}
+@media (min-width: 481px) and (max-width: 767px) { /* ③スマホ大 */
+  .fv--service .fv-main { font-size: 30px; }
+  .fv--service .fv-brand-band { font-size: 15px; }
+}
+@media (max-width: 480px) { /* ④スマホ小 */
+  .fv--service .fv-main { font-size: 24px; line-height: 1.55; }
+  .fv--service .fv-brand-band { font-size: 14px; }
+  .fv--service .fv-sub { font-size: 15px; }
+}
+
 /* 悩み（共感）：結論ボックスの下矢印を次セクションに重ねる */
 .section:has(.empathy-conclusion) { padding-bottom: 0; }
 .empathy-conclusion {
