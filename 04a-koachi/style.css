@@ -1223,12 +1223,61 @@
 #enroll-flow .flow-step h4 { font-size: 16px; }
 /* 説明文も Zen Old Mincho に（shared の Noto Sans を上書き） */
 #enroll-flow .flow-step p { font-size: 13px; font-family: var(--fu-font-serif); }
-/* モバイル：横1列だと4ステップが窮屈になるため 2×2 に折り返し、接続トラックは非表示 */
-@media (max-width: 900px) {
-  #enroll-flow .flow-card { padding: 40px 24px 36px; }
-  #enroll-flow .flow-grid { flex-wrap: wrap; gap: 32px 0; }
+/* ①②③：デスクトップの横4ステップを維持（②③は縮小） */
+/* ②iPad(768–900px) ＋ ③スマホ大(481–767px) */
+@media (min-width: 481px) and (max-width: 900px) {
+  #enroll-flow .flow-card { padding: 44px 28px 40px; }
+  #enroll-flow .flow-grid { max-width: 100%; margin-top: 36px; }
+  #enroll-flow .flow-grid::before { top: 21px; }
+  #enroll-flow .flow-step { padding: 0 4px; }
+  #enroll-flow .flow-step-num { width: 44px; height: 44px; border-width: 3px; font-size: 18px; margin-bottom: 12px; }
+  #enroll-flow .flow-step h4 { font-size: 15px; }
+  #enroll-flow .flow-step p { font-size: 12px; }
+}
+/* ④スマホ小(≤480px)：1〜4を縦タイムライン（番号=左・テキスト=右・番号同士を縦ボーダーで接続） */
+@media (max-width: 480px) {
+  #enroll-flow .flow-card { padding: 40px 32px 36px; }
+  #enroll-flow .flow-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    max-width: 320px;
+    margin: 28px 0 0;        /* 左寄せ */
+  }
   #enroll-flow .flow-grid::before { display: none; }
-  #enroll-flow .flow-step { flex: 0 0 50%; padding: 0 12px; }
+  #enroll-flow .flow-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    column-gap: 16px;
+    text-align: left;
+    padding: 0;
+  }
+  #enroll-flow .flow-step-num {
+    grid-row: 1 / 3;
+    align-self: start;
+    position: relative;
+    z-index: 1;
+    width: 32px; height: 32px;
+    margin: 0;
+    border-width: 2px;
+    font-size: 15px;
+  }
+  #enroll-flow .flow-step h4 { grid-column: 2; grid-row: 1; align-self: center; margin-bottom: 4px; font-size: 18px; font-weight: 700; letter-spacing: 0.06em; }
+  #enroll-flow .flow-step p { grid-column: 2; grid-row: 2; font-size: 15px; }
+  #enroll-flow .flow-step p br { display: none; }   /* 説明文を1行に */
+  /* 番号同士を縦ボーダーで接続（丸の下端→次の丸上端。gap 28px 含む） */
+  #enroll-flow .flow-step:not(:last-child)::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 15px;
+    top: 38px;                    /* 丸の下端(32px)から少し離す */
+    height: calc(100% - 16px);    /* 上下とも約6px空けて次の丸手前まで */
+    width: 2px;
+    background: var(--fu-sub);
+    z-index: 0;
+  }
 }
 
 /* ============================================================
