@@ -1368,10 +1368,17 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-/* サブ導線（控えめな白リンク） */
+/* CTAボタン：ボタンとサブ導線が横並びにならないよう縦積みに固定 */
+#final-cta .counsel-cta {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* サブ導線（控えめな白リンク）：必ずボタンの下の行に */
 #final-cta .final-cta-sub {
-  display: inline-block;
-  margin-top: 18px;
+  display: block;
+  margin-top: 14px;
   color: #fff;
   font-size: 14px;
   text-decoration: underline;
@@ -1379,8 +1386,9 @@
   opacity: 0.85;
 }
 #final-cta .final-cta-sub:hover { opacity: 1; }
-/* 区切り線：幅をCTAボタンに合わせ（実測394px）、下の余白を広げる */
-#final-cta .counsel-divider { max-width: 394px; margin-bottom: 44px; }
+/* 破線の区切り線は削除。タグとボタンの間隔を詰める */
+#final-cta .counsel-divider { display: none; }
+#final-cta .counsel-tags { margin-bottom: 32px; }
 
 /* ============================================================
    LINE登録（#line-cta）— これまでのデザイン適用・濃い緑
