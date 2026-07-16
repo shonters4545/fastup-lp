@@ -1214,9 +1214,37 @@
 
 <!-- スマホ用 sticky CTA -->
 <div class="sticky-cta">
-  <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW">無料で逆転ルート診断 →</a>
+  <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="header-cta">
+    <span class="header-cta-badge"><span>無料</span></span>
+    <span class="header-cta-body">
+      <span class="header-cta-eyebrow">【○月限定】入塾金無料</span>
+      <span class="header-cta-main">カウンセリングを予約</span>
+    </span>
+    <span class="header-cta-arrow" aria-hidden="true">›</span>
+  </a>
 </div>
 
+<script>
+/* 下部スティッキーCTA：FVを過ぎたら表示、上部では非表示（スクロール連動） */
+(function () {
+  var el = document.querySelector('.sticky-cta');
+  var fv = document.querySelector('.fv');
+  if (!el || !fv) return;
+  el.classList.add('sticky-cta--dynamic');
+  var ticking = false;
+  function update() {
+    var trigger = fv.offsetTop + fv.offsetHeight - 80;
+    el.classList.toggle('is-visible', window.pageYOffset > trigger);
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
 <script src="../shared/liff-redirect.js"></script>
 </body>
 </html>
