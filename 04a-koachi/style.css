@@ -10,10 +10,8 @@
    セクション下端に密着させて、reason3 への白い隙間（共通padding）を詰める */
 #reason2 { border-bottom: 0; padding-bottom: 0; }
 #reason3 { padding-top: var(--fu-sect-pad-compact); background: var(--fu-bg-muted); }
-#pricing { background: var(--fu-bg-muted); padding-top: 0; }
-/* 料金セクション下部：section-cream の 40px を打ち消し、他セクションと同じ 100px に
-   （≤900pxは共通 .section の 60px が後勝ちで一致済みのため、デスクトップのみ対象） */
-@media (min-width: 901px) { #pricing { padding-bottom: var(--fu-sect-pad); } }
+/* 料金セクションの直後は「さらに(3つの仕組み)」バナー。両者の間隔を約4pxに詰める（全ブレークポイント共通） */
+#pricing { background: var(--fu-bg-muted); padding-top: 0; padding-bottom: 4px; }
 #extra { background: #fff; padding-bottom: var(--fu-sect-pad); }
 /* 安心の3つ：上部に全幅の黒帯（料金セクション同様）・下にベージュ＋コーチ陣写真 */
 #reassure { background: var(--fu-beige); padding-top: 0; padding-bottom: 0; }
@@ -879,7 +877,7 @@
 /* スマホ(≤767px)のみ：左右16px・「追加費用ゼロ」下の余白詰め・明細ボックス上下pad縮小・
    込みリスト下の余白＋セクション下部padを縮小 */
 @media (max-width: 767px) {
-  #pricing { padding-bottom: 32px; }
+  #pricing { padding-bottom: 4px; }
   #pricing .container { padding-left: 16px; padding-right: 16px; }
   .pricing-banner { padding-left: 16px; padding-right: 16px; }
   .pricing-detail { margin-top: 24px; padding: 26px 22px 22px; }
