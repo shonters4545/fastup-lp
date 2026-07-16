@@ -1467,6 +1467,29 @@
 /* FV：コンテンツ横幅を縮小（統計行が inner いっぱいに広がるため inner で制御） */
 .fv-inner { max-width: 860px; }
 
+/* スマホ下部スティッキー：プレーンボタン→正式なCTAボタン(.header-cta)を適用 */
+.sticky-cta .header-cta {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: var(--fu-grad-gold);
+  padding: 6px 20px 6px 6px;
+}
+.sticky-cta .header-cta-badge { width: 42px; height: 42px; font-size: 15px; }
+.sticky-cta .header-cta-eyebrow { font-size: 11px; padding: 1px 8px 3px; }
+.sticky-cta .header-cta-main { font-size: 18px; }
+.sticky-cta .header-cta-arrow { font-size: 22px; margin-left: 10px; }
+/* ③④：ボタン横幅を内容幅(auto)・中央に */
+@media (max-width: 767px) {
+  .sticky-cta .header-cta { width: fit-content; margin: 0 auto; }
+}
+/* スクロールで動的に表示/非表示（JS が付与する --dynamic のときのみ隠す＝JS無しでも表示される） */
+.sticky-cta { transition: transform var(--fu-dur-slow) var(--fu-ease); }
+.sticky-cta.sticky-cta--dynamic { transform: translateY(130%); }
+.sticky-cta.sticky-cta--dynamic.is-visible { transform: translateY(0); }
+
 /* ============================================================
    FV — サービスサイト版デザイン移植（.fv--service）
    ============================================================ */
