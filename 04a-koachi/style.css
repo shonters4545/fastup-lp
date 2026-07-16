@@ -1121,12 +1121,12 @@
 .scholarship-body p { color: var(--fu-ink-80); }
 /* 免除オファー（白ボックス・ボーダーなし＋制度タグ） */
 #scholarship .scholarship-highlight {
-  max-width: 560px;
+  max-width: 680px;
   margin: 30px auto 0;
   background: #fff;
   border: 0;
   border-radius: 0;
-  padding: 20px 30px 22px;
+  padding: 32px 40px;
   text-align: center;
 }
 /* タグUIは「お支払いについて」チップ（.pay-support h4）と統一。カラーは据え置き（ゴールド地×白文字） */
@@ -1134,23 +1134,34 @@
   display: inline-block;
   background: var(--fu-main);
   color: #fff;
-  padding: 3px 12px;
-  font-size: 15px;
+  padding: 5px 16px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.02em;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 #scholarship .sh-small {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--fu-ink-70);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 #scholarship .sh-big {
   margin: 0;
-  font-size: 27px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--fu-main-hover);
   letter-spacing: 0.02em;
+}
+/* ③④スマホ：「料金で〜」見出しを共通見出しサイズに揃える（③28/④24px） */
+@media (min-width: 481px) and (max-width: 767px) { #scholarship .scholarship-headline { font-size: 28px; } }
+@media (max-width: 480px)                        { #scholarship .scholarship-headline { font-size: 24px; } }
+/* ④スマホ小：コンテンツ左右を画面端から16pxに（container24pxを打ち消し、block側16pxのみ有効化） */
+@media (max-width: 480px) {
+  #scholarship > .container { padding-left: 0; padding-right: 0; }
+  #scholarship .scholarship-block { padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 480px) {
+  #scholarship .sh-big { font-size: 20px; }
 }
 
 /* ============================================================
