@@ -1,8 +1,9 @@
 /* FAST-UPとは セクション: サービスサイト(localhost:3200)から実CSSを抽出し #extra にスコープ化 */
 #extra, #extra *, #extra ::before, #extra ::after { box-sizing: border-box; }
 /* ルート<section>自身のユーティリティ(py-10 sm:py-20 bg-white)はスコープ化で子孫扱いになり効かないため明示 */
-#extra { background-color: #fff; padding-top: 2.5rem; padding-bottom: 2.5rem; }
-@media (min-width: 768px) { #extra { padding-top: 5rem; padding-bottom: 5rem; } }
+/* バナー付きセクション(#pricing/#reassure)と同様、上パディング0でバナーを上端に密着させる。下は従来通り */
+#extra { background-color: #fff; padding-top: 0; padding-bottom: 2.5rem; }
+@media (min-width: 768px) { #extra { padding-bottom: 5rem; } }
 #extra *, #extra ::before, #extra ::after { --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; }
 #extra *, #extra ::before, #extra ::after { box-sizing: border-box; border-width: 0px; border-style: solid; border-color: rgb(229, 231, 235); }
 #extra h1, #extra h2, #extra h3, #extra h4, #extra h5, #extra h6 { font-size: inherit; font-weight: inherit; }
