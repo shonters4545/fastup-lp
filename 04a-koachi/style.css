@@ -1488,6 +1488,46 @@
   .header-cta::after { animation: none; }
 }
 
+/* ============================================================
+   共通スクロールインアニメ（.reveal / .reveal--stagger）
+   ※ JSが <html> に .js-reveal を付けたときのみ隠す（JS無しは常時表示）
+   ============================================================ */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--fu-ease), transform 0.7s var(--fu-ease);
+  will-change: opacity, transform;
+}
+.js-reveal .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+/* 子要素を少しずつ遅延して順番に */
+.js-reveal .reveal--stagger > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--fu-ease), transform 0.7s var(--fu-ease);
+  will-change: opacity, transform;
+}
+.js-reveal .reveal--stagger.is-in > * {
+  opacity: 1;
+  transform: none;
+}
+.js-reveal .reveal--stagger.is-in > *:nth-child(1) { transition-delay: 0.04s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(2) { transition-delay: 0.14s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(3) { transition-delay: 0.24s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(4) { transition-delay: 0.34s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(5) { transition-delay: 0.44s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(6) { transition-delay: 0.54s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .reveal,
+  .js-reveal .reveal--stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* FV：コンテンツ横幅を縮小（統計行が inner いっぱいに広がるため inner で制御） */
 .fv-inner { max-width: 860px; }
 

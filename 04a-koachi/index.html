@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="../shared/styles.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="about-embed.css">
+<script>/* スクロールイン用：初回描画前に付与してちらつき防止（IO非対応や無効時は付けない=常時表示） */
+if ('IntersectionObserver' in window) document.documentElement.classList.add('js-reveal');</script>
 </head>
 <body>
 
@@ -123,11 +125,11 @@
 <!-- ======= [2] 共感（肯定型） ======= -->
 <section class="section section-cream">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>こんな悩み、ありませんか？</small>
       <h2>それ、あなたのせいじゃない。</h2>
     </div>
-    <div class="empathy-grid">
+    <div class="empathy-grid reveal--stagger">
       <div class="empathy-card">
         <p class="empathy-card-text"><span class="empathy-card-lead">分かっていても</span><br><strong>スマホをいじってしまう…</strong></p>
         <img src="img/empathy-graphic-2.png" alt="夜にベッドでスマホを見続ける高校生" class="empathy-card-graphic">
@@ -151,7 +153,7 @@
 <!-- ======= [3] サービス紹介（FAST-UPは何の塾か） ======= -->
 <section id="about" class="section section-brand" style="background-image: url('img/service-feature-1.jpg');">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>面倒見のいい塾を、探していたあなたへ</small>
       <h2>勉強が続かない人のための、<br>FAST-UP逆転塾。</h2>
     </div>
@@ -185,7 +187,7 @@
 <!-- ======= [4] 実績・信頼ブロック（サービス紹介の証明） ======= -->
 <section id="achievements" class="section section-light section-achievements">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>FAST-UPの、確かな実績</small>
       <h2>数字で証明する、<em>FAST-UPの実績。</em></h2>
     </div>
@@ -258,7 +260,7 @@
     <div class="cases-head">
       <div class="cases-head-main">
         <small class="cases-eyebrow">逆転合格者</small>
-        <h2 class="cases-headline">偏差値30代からの、<br><em>逆転合格者が続出。</em></h2>
+        <h2 class="cases-headline reveal">偏差値30代からの、<br><em>逆転合格者が続出。</em></h2>
       </div>
       <div class="cases-scroll">
         <span class="cases-scroll-label">Scroll</span>
@@ -403,7 +405,7 @@
   <div class="container">
     <div class="ceo-head">
       <small class="ceo-eyebrow">メッセージ</small>
-      <h2 class="ceo-title">逆転合格を、本気で目指す方へ。</h2>
+      <h2 class="ceo-title reveal">逆転合格を、本気で目指す方へ。</h2>
     </div>
     <div class="ceo-panel">
       <div class="ceo-message">
@@ -429,7 +431,7 @@
 <section class="section counsel-section">
   <div class="counsel-overlay" aria-hidden="true"></div>
   <div class="container counsel-inner">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>無料診断 + 個別カウンセリング</small>
       <h2><em>あなた専用の逆転ルート</em>を設計。</h2>
     </div>
@@ -475,7 +477,7 @@
 <!-- ======= [7] AHA：3つが足りない ======= -->
 <section class="section section-aha">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>本当の理由</small>
       <h2>勉強が続かないのは、<br><em>3つ</em>が足りないから。</h2>
     </div>
@@ -547,7 +549,7 @@
 <!-- ======= [8] 既存選択肢NG（自分ではムリ＋他塾比較） ======= -->
 <section class="section section-cream">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>では、どう揃えるか</small>
       <h2>自分で揃えるのは、無理。<br><em>他塾でも、揃わない。</em></h2>
     </div>
@@ -626,7 +628,7 @@
 <section class="section section-light section-feature">
   <div class="container">
     <div class="feature-block">
-      <div class="section-title">
+      <div class="section-title reveal">
         <small>理由1</small>
         <h2>毎日3時間の個別特訓。<br><em>一般塾の7倍の指導量。</em></h2>
       </div>
@@ -706,7 +708,7 @@
 <section id="reason2" class="section section-cream section-feature section-feature-app">
   <div class="container">
     <div class="feature-block">
-      <div class="section-title">
+      <div class="section-title reveal">
         <small>理由2</small>
         <h2>今日やること、<br><em>コーチが全部、決める。</em></h2>
       </div>
@@ -835,7 +837,7 @@
 <!-- ======= [11] 理由③：年間総額で比較 ======= -->
 <section id="reason3" class="section section-light section-annual">
   <div class="container">
-    <div class="section-title section-title--left">
+    <div class="section-title section-title--left reveal">
       <small>理由3</small>
       <h2>比べるなら、<br><em>1年間の総額。</em></h2>
     </div>
@@ -956,7 +958,7 @@
     <div class="container">
       <!-- 安心3つ -->
       <div class="reassure-inner">
-      <div class="section-title">
+      <div class="section-title reveal">
         <small>安心の3つ</small>
         <h2>毎日見てくれる <em>コーチ陣</em>。</h2>
       </div>
@@ -997,11 +999,11 @@
 <!-- ======= [13] 保証 ======= -->
 <section id="guarantee" class="section section-light">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>保証</small>
       <h2>合わなければ、全額返金。</h2>
     </div>
-    <div class="guarantee-grid">
+    <div class="guarantee-grid reveal--stagger">
       <div class="guarantee-card">
         <div class="guarantee-card-top">
           <h3>全額返金保証</h3>
@@ -1067,11 +1069,11 @@
   <div class="container">
     <div class="flow-card">
     <!-- 入塾フロー -->
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>入塾までの流れ</small>
       <h2>30秒で完了、<em>4ステップ</em>。</h2>
     </div>
-    <div class="flow-grid">
+    <div class="flow-grid reveal--stagger">
       <div class="flow-step">
         <div class="flow-step-num">1</div>
         <h4>LINE登録</h4>
@@ -1100,7 +1102,7 @@
 <!-- ======= [14] FAQ＋最終CTA ======= -->
 <section id="faq" class="section section-cream">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>FAQ</small>
       <h2>よくある質問</h2>
     </div>
@@ -1164,7 +1166,7 @@
 <!-- ======= 最終CTA ======= -->
 <section id="final-cta" class="section section-dark">
   <div class="container counsel-inner">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>無料カウンセリング</small>
       <h2>「自分でやる」を、<em>卒業。</em></h2>
     </div>
@@ -1227,6 +1229,18 @@
   </a>
 </div>
 
+<script>
+/* 共通スクロールインアニメ：ビューポート進入時に .is-in を付与（1回のみ） */
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -22% 0px', threshold: 0.15 });
+  document.querySelectorAll('.reveal, .reveal--stagger').forEach(function (el) { io.observe(el); });
+})();
+</script>
 <script>
 /* 下部スティッキーCTA：FVを過ぎたら表示、上部では非表示（スクロール連動） */
 (function () {
