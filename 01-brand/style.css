@@ -204,6 +204,22 @@
      半透明ボックス越し＋右のスキマに大きく出るよう位置を固定
      （右端が多少見切れてもよい） */
   #brand-about.brand-band { background-position: 82% 22%; }
+
+  /* スマホは箱を「左→右へワイプ」で表示（デスクトップはフェードアップ）。
+     .reveal のフェード/スライドを打ち消し、clip-path で左から現れる。
+     子要素も一緒にクリップされるので箱ごと左→右で出る。 */
+  .js-reveal #brand-about .brand-band-inner.reveal {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 100% 0 0);
+  }
+  .js-reveal #brand-about .brand-band-inner.reveal.is-in {
+    animation: wipe-in-x 0.7s var(--fu-ease) forwards;
+  }
+}
+/* スマホ×アニメ抑制時：ワイプせず最初から全表示 */
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .js-reveal #brand-about .brand-band-inner.reveal { clip-path: none; }
 }
 /* ④スマホ：狭いボックス内で見出しの各行がさらに折り返さないよう縮小 */
 @media (max-width: 480px) {
