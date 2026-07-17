@@ -18,7 +18,7 @@
 /* 帯：背景にコーチ画像＋暗いオーバーレイ */
 .reassure-band {
   position: relative;
-  background: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/coach-talk.png');
+  background: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/coach-talk.jpg');
   background-size: cover;
   background-position: right center; /* 右側の男性コーチが常に見えるよう右固定 */
   padding: 76px 0 80px;

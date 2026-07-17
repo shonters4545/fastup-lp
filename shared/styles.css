@@ -957,7 +957,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .counsel-section {
   position: relative;
   background-color: #2a2622;
-  background-image: url('img/counsel-bg.png');
+  background-image: url('img/counsel-bg.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1393,7 +1393,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
 /* === FV (First View) === */
 .fv {
   background-color: #2a2622;
-  background-image: url('img/fv-bg.png');
+  background-image: url('img/fv-bg.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
