@@ -2031,3 +2031,50 @@
    スマホ(③④=767px以下)はbaseの21pxのまま。①デスクトップ24 / ②iPad22 */
 @media (min-width: 901px) { #about .quick-conclusion .qc-line { font-size: 24px; } }
 @media (min-width: 768px) and (max-width: 900px) { #about .quick-conclusion .qc-line { font-size: 22px; } }
+
+/* ============================================================
+   画面外の背景写真を遅延読み込み（.bg-lazy）
+   ------------------------------------------------------------
+   CSS の background-image には loading="lazy" が効かず、要素が画面外でも
+   ブラウザは必ず取得してしまう。そこで近づくまで写真を外しておき、
+   IntersectionObserver が .is-bg を付けた時点で初めて読み込む。
+   写真が無い間は暗いプレースホルダ色で埋めるので、白抜き文字は常に読める。
+
+   html.js-bglazy は JS が動く時だけ付く。JS 無効時は下の規則が
+   まるごと効かず、写真は最初から表示される（＝安全側に倒れる）。
+   ============================================================ */
+.js-bglazy .bg-lazy { background-color: var(--fu-bg-dark); }
+
+/* #about（サービス特徴）：以前は HTML の style 属性で写真を指定していたが、
+   inline は後から外せないため CSS に移設した */
+.js-bglazy #about.bg-lazy.is-bg { background-image: url('img/service-feature-1.jpg'); }
+
+/* #final-cta（最終CTA）：暗幕グラデ + 写真。写真だけを後から足す */
+.js-bglazy #final-cta.bg-lazy {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+}
+.js-bglazy #final-cta.bg-lazy.is-bg {
+  background-image:
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
+    url('img/final-cta-bg.jpg');
+}
+
+/* 安心の3つ：コーチ陣写真の帯 */
+.js-bglazy .reassure-band.bg-lazy {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+}
+.js-bglazy .reassure-band.bg-lazy.is-bg {
+  background-image:
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
+    url('img/coach-talk.jpg');
+}
+
+/* 理由2：特徴カードの背景写真 */
+.js-bglazy .section-feature-app .feature-sub-cards.bg-lazy {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+}
+.js-bglazy .section-feature-app .feature-sub-cards.bg-lazy.is-bg {
+  background-image:
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
+    url("img/feature-section-bg.jpg");
+}

@@ -12,7 +12,11 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="about-embed.css">
 <script>/* スクロールイン用：初回描画前に付与してちらつき防止（IO非対応や無効時は付けない=常時表示） */
-if ('IntersectionObserver' in window) document.documentElement.classList.add('js-reveal');</script>
+if ('IntersectionObserver' in window) {
+  document.documentElement.classList.add('js-reveal');
+  /* 背景写真の遅延読み込み用。付かない場合は .bg-lazy の写真を常時表示する */
+  document.documentElement.classList.add('js-bglazy');
+}</script>
 </head>
 <body>
 
@@ -151,7 +155,7 @@ if ('IntersectionObserver' in window) document.documentElement.classList.add('js
 </section>
 
 <!-- ======= [3] サービス紹介（FAST-UPは何の塾か） ======= -->
-<section id="about" class="section section-brand" style="background-image: url('img/service-feature-1.jpg');">
+<section id="about" class="section section-brand bg-lazy">
   <div class="container">
     <div class="section-title reveal">
       <small>面倒見のいい塾を、探していたあなたへ</small>
@@ -428,7 +432,7 @@ if ('IntersectionObserver' in window) document.documentElement.classList.add('js
 </section>
 
 <!-- ======= [5] CTA①（無料診断・個別カウンセリング） ======= -->
-<section class="section counsel-section">
+<section class="section counsel-section bg-lazy">
   <div class="counsel-overlay" aria-hidden="true"></div>
   <div class="container counsel-inner">
     <div class="section-title reveal">
@@ -805,7 +809,7 @@ if ('IntersectionObserver' in window) document.documentElement.classList.add('js
           </div>
         </div>
       </div>
-      <div class="feature-sub-cards reveal--stagger">
+      <div class="feature-sub-cards bg-lazy reveal--stagger">
         <div class="feature-sub-heading">
           <h3><em>FAST-UPだけの、</em><em>4つの強み。</em></h3>
         </div>
@@ -954,7 +958,7 @@ if ('IntersectionObserver' in window) document.documentElement.classList.add('js
 
 <!-- ======= [12b] 安心の3つ（白背景・別セクション） ======= -->
 <section id="reassure" class="section section-cream">
-  <div class="reassure-band">
+  <div class="reassure-band bg-lazy">
     <div class="container">
       <!-- 安心3つ -->
       <div class="reassure-inner reveal">
@@ -1164,7 +1168,7 @@ if ('IntersectionObserver' in window) document.documentElement.classList.add('js
 </section>
 
 <!-- ======= 最終CTA ======= -->
-<section id="final-cta" class="section section-dark">
+<section id="final-cta" class="section section-dark bg-lazy">
   <div class="container counsel-inner">
     <div class="section-title reveal">
       <small>無料カウンセリング</small>
@@ -1285,6 +1289,35 @@ if ('IntersectionObserver' in window) document.documentElement.classList.add('js
   }, { rootMargin: '0px 0px -22% 0px', threshold: 0.15 });
   document.querySelectorAll('.count-num').forEach(function (el) { cio.observe(el); });
 })();
+/* 背景写真の遅延読み込み：画面に近づいた .bg-lazy に .is-bg を付けて初めて写真を読む。
+   400px 手前から読み始めるので、スクロールしても写真が遅れて現れることはない。 */
+(function () {
+  var els = document.querySelectorAll('.bg-lazy');
+  if (!els.length) return;
+  function show(el) { el.classList.add('is-bg'); }
+  if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
+  var bio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { show(e.target); bio.unobserve(e.target); }
+    });
+  }, { rootMargin: '400px 0px', threshold: 0 });
+  els.forEach(function (el) { bio.observe(el); });
+
+  /* フェイルセーフ：IOが取りこぼしても、近づいた背景は必ず読み込む */
+  var ticking = false;
+  function sweep() {
+    var vh = window.innerHeight;
+    document.querySelectorAll('.bg-lazy:not(.is-bg)').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh + 400 && r.bottom > -400) show(el);
+    });
+    ticking = false;
+  }
+  function onScroll() { if (!ticking) { ticking = true; setTimeout(sweep, 200); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('load', function () { setTimeout(sweep, 800); });
+})();
+
 /* フェイルセーフ：IOが取りこぼしても、画面内に入った要素は必ず表示する（表示されないバグの根絶） */
 (function () {
   var SEL = '.reveal:not(.is-in), .reveal--stagger:not(.is-in), .slide-x--stagger:not(.is-in), .focus-in:not(.is-in), .wipe-in:not(.is-in), .slide-x:not(.is-in),' +
