@@ -1,3 +1,10 @@
+# macOS が自動生成する不要ファイル
+.DS_Store
+**/.DS_Store
+
+# Claude Code のローカル設定
+.claude/
+
 # 内部QA・作業ドキュメント（GitHub Pagesで公開しない）
 **/audit/
 **/_summary_v4.md
