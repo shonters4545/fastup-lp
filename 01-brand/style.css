@@ -24,6 +24,8 @@
 /* JS無効時のフォールバック（写真を最初から表示） */
 #brand-about.brand-band {
   background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/service-feature-1.jpg');
+  /* FVとの間に4pxの隙間（両者とも暗い背景なので、間に地色の細線が入る） */
+  margin-top: 4px;
 }
 #brand-fit.brand-band {
   background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/coach-talk.jpg');
@@ -100,6 +102,37 @@
   margin: 0;
 }
 .brand-band-result strong { color: #fff; font-size: 19px; }
+
+/* ------------------------------------------------------------
+   FAST-UPとは？（#brand-about）だけ、コンテンツを白ボックスで囲み
+   背景写真の上に浮かせる。中の文字は暗色へ反転。
+   （適合宣言 #brand-fit は写真に直接白文字のまま＝この上書きは効かない）
+   ------------------------------------------------------------ */
+#brand-about .brand-band-inner {
+  max-width: 720px;
+  background: #fff;
+  padding: 48px 44px;
+  box-shadow: 0 20px 50px rgba(20, 18, 16, 0.35);
+}
+#brand-about .brand-band-eyebrow { color: var(--fu-main); }
+#brand-about .brand-band-h { color: var(--fu-ink); }
+#brand-about .brand-band-h em { background: var(--fu-ink); color: #fff; }
+#brand-about .brand-band-lead { color: var(--fu-ink-70); }
+#brand-about .brand-band-lead strong { color: var(--fu-ink); }
+#brand-about .brand-band-chip {
+  border: 0;
+  background: var(--fu-main);
+  color: #fff;
+}
+#brand-about .brand-band-result { color: var(--fu-ink-70); }
+#brand-about .brand-band-result strong {
+  color: var(--fu-ink);
+  background: linear-gradient(transparent 60%, var(--fu-sub) 60%);
+  padding: 0 3px;
+}
+@media (max-width: 900px) {
+  #brand-about .brand-band-inner { padding: 36px 24px; }
+}
 
 /* --- 適合宣言：2列の✓リスト＋締め＋CTA --- */
 .brand-fit-cols {
