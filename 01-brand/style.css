@@ -200,6 +200,9 @@
   }
   #brand-about .brand-band-chips { justify-content: flex-start; }
   #brand-about .brand-band-result { text-align: left; }
+  /* スマホは縦長で切り抜きがPCと大きく異なるため、女の子の顔が
+     半透明ボックス越し（上部）＋右のスキマに出るよう位置を固定 */
+  #brand-about.brand-band { background-position: 88% 22%; }
 }
 /* ④スマホ：狭いボックス内で見出しの各行がさらに折り返さないよう縮小 */
 @media (max-width: 480px) {
