@@ -965,6 +965,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   overflow: hidden;
   text-align: center;
 }
+/* 画面外にある間は写真を読み込まない（.bg-lazy を付けた場合のみ）。
+   背景色 #2a2622 がそのまま残るので、白抜き文字は読める。
+   html.js-bglazy を付けていないLPには影響しない。 */
+.js-bglazy .counsel-section.bg-lazy { background-image: none; }
+.js-bglazy .counsel-section.bg-lazy.is-bg { background-image: url('img/counsel-bg.jpg'); }
 .counsel-overlay {
   position: absolute;
   inset: 0;
