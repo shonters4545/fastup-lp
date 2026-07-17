@@ -2113,3 +2113,183 @@
 /* サービス特徴（#about）：写真は遅延読み込み時のみ（JS無効時は section-brand の
    暗背景色のまま＝可読性は保たれる） */
 .js-bglazy #about.bg-lazy.is-bg { background-image: url('img/service-feature-1.jpg'); }
+
+/* ============================================================
+   向き不向き（#fit）— ブランド標準セクション
+   ------------------------------------------------------------
+   14LP中13LPが持つ標準セクション（04aのみ持たない）。
+   カードUIは共通基盤の .add-service-card を使う。
+   #fit を持たないLP（04a）ではセレクタが何にも当たらないだけで無害。
+   ============================================================ */
+
+/* セクション背景（.section-light の白を上書き） */
+#fit { background: var(--fu-bg-muted); }
+
+/* 見出しの「全員Welcomeの塾ではない。」：ワインレッドの塗りボックス。
+   余白は共通の型（.section-cream / .section-feature / .section-annual と同じ
+   padding: 0 14px・margin-top: 6px）に揃える。地色だけワインレッド。
+   ※ .section-aha だけ 0 8px と狭いが、あちらが例外なので追従しない */
+#fit .section-title h2 em {
+  font-style: normal;
+  display: inline-block;
+  background: var(--fu-accent);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  padding: 0 14px;
+  margin-top: 6px;
+}
+/* 塗りボックス＋白文字なので、共通ルール通り左からワイプで出す */
+.js-reveal #fit .section-title.reveal h2 em { clip-path: inset(0 100% 0 0); }
+.js-reveal #fit .section-title.is-in h2 em {
+  animation: wipe-in-x 0.55s var(--fu-ease) forwards;
+  animation-delay: 0.35s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal #fit .section-title h2 em { clip-path: none !important; animation: none !important; }
+}
+
+/* セクション内は明朝体に統一（.lead-text と注記が基盤でサンセリフ指定のため） */
+#fit .lead-text,
+#fit .add-service-card p { font-family: var(--fu-font-serif); }
+
+#fit .add-service-grid { grid-template-columns: repeat(2, 1fr); }
+
+/* ②以下（タブレット・スマホ）：セクションタイトル〜リード文を左揃えに。
+   .section-title small は flex コンテナなので justify-content も要る。
+   .lead-text は max-width + margin:0 auto でブロック自体が中央寄せのため、
+   text-align だけでは左端が揃わない。左マージンを外す。 */
+@media (max-width: 900px) {
+  #fit .add-service-grid { grid-template-columns: 1fr; }
+  #fit .section-title { text-align: left; }
+  #fit .section-title small { justify-content: flex-start; }
+  #fit .lead-text { text-align: left; margin-left: 0; }
+}
+
+/* カード：上端のアクセントバー・影・角丸を外す */
+#fit .add-service-card::before { display: none; }
+#fit .add-service-card,
+#fit .add-service-card:hover { box-shadow: none; }
+#fit .add-service-card { border-radius: 0; }
+
+/* 向く人：ブランドカラー（オリーブ）のベタ塗り。
+   地が濃いので、中の文字・チェックは白に反転させる。
+   h3 は基盤で color: var(--fu-fg-1) を持つため個別に上書きが要る */
+#fit .fit-card--yes {
+  border: 2px solid var(--fu-main);
+  background: var(--fu-main);
+  color: #fff;
+}
+#fit .fit-card--yes h3,
+#fit .fit-card--yes .fit-list li,
+#fit .fit-card--yes .fit-list li strong,
+#fit .fit-card--yes .fit-list li::before { color: #fff; }
+/* 向かない人：白地・枠線なし */
+#fit .fit-card--no {
+  border: 0;
+  background: #fff;
+}
+
+/* 見出し（section-title）と本文（lead-text）の間を詰める。
+   共通の 40px → 24px */
+#fit .section-title { margin-bottom: 24px; }
+
+#fit .fit-list {
+  text-align: left;
+  padding-left: 0;
+  margin-top: 12px;
+  line-height: 1.9;
+  list-style: none;
+}
+#fit .fit-list li { position: relative; padding-left: 28px; margin-bottom: 12px; }
+#fit .fit-list li:last-child { margin-bottom: 0; }
+/* ③④（スマホ）：項目が折り返して縦に伸びるぶん、項目間を少し詰める */
+@media (max-width: 767px) {
+  #fit .fit-list li { margin-bottom: 10px; }
+}
+
+/* 向く人：ゴールドのチェック。check-table の .check-mark-good と同じ型
+   （--fu-main ＋ 縁取りで太らせる） */
+#fit .fit-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--fu-main);
+  font-weight: 700;
+  -webkit-text-stroke: 1px currentColor;
+}
+/* 向かない人：ワインレッドのバツ */
+#fit .fit-card--no .fit-list li::before {
+  content: '✕';
+  color: var(--fu-accent);
+  -webkit-text-stroke: 0;
+}
+
+/* 箇条書きの各項目：カードが出たあと、1項目ずつ順に下からふわっと。
+   「すべて、月額に込み」(.pricing-included-clean) と同じ型（fade-up-in・0.08s刻み）。
+   隠す側のセレクタに .reveal--stagger を入れているのは、
+   アニメを動かす親(revealer)が無いLPで項目が永久に消えるのを防ぐため。 */
+.js-reveal #fit .add-service-grid.reveal--stagger .fit-list li {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.js-reveal #fit .add-service-grid.is-in .fit-list li {
+  animation: fade-up-in 0.5s var(--fu-ease) forwards;
+}
+.js-reveal #fit .add-service-grid.is-in .fit-list li:nth-child(1) { animation-delay: 0.45s; }
+.js-reveal #fit .add-service-grid.is-in .fit-list li:nth-child(2) { animation-delay: 0.53s; }
+.js-reveal #fit .add-service-grid.is-in .fit-list li:nth-child(3) { animation-delay: 0.61s; }
+.js-reveal #fit .add-service-grid.is-in .fit-list li:nth-child(4) { animation-delay: 0.69s; }
+.js-reveal #fit .add-service-grid.is-in .fit-list li:nth-child(n+5) { animation-delay: 0.77s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal #fit .fit-list li {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+
+/* 締め：旧LPは .empathy-conclusion を使っていたが、あれは
+   clip-path で下向き矢印に切り抜き、負マージンで次セクションへ食い込む
+   「次に話が続く」ことを示す橋渡し部品（悩み→理由 で使うもの）。
+   ここで使うと矢印が「次は無料カウンセリング」と誤読させるため、
+   矢印なし・食い込みなしの静かな締めに差し替えた。
+
+   サイズと余白は「3つ全部揃っているのは、FAST-UPのみ。」
+   (.check-table-conclusion) に合わせる：
+     ブロック上マージン 40px / 行間 10px / 塗りボックスの余白 4px 8px /
+     字間 0.06em / 行の高さ 1.5 / 文字サイズ ①24 ②22 ③④21 */
+#fit .fit-close {
+  margin-top: 40px;
+  text-align: center;
+  font-family: var(--fu-font-serif);
+}
+#fit .fit-close strong {
+  display: block;
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--fu-ink);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+/* 下段「それが、FAST-UP。」：ワインレッドの塗りボックス。
+   display: table + margin auto で、文字幅ぴったりの箱にして中央寄せ
+   （.check-table-conclusion span と同じ作り）。
+   塗りボックス＋白文字なので、共通ルール通り wipe-in（左からワイプ）を使う */
+#fit .fit-close-sub {
+  display: table;
+  margin: 10px auto 0;
+  padding: 4px 8px;
+  background: var(--fu-accent);
+  color: #fff;
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+@media (min-width: 901px) {
+  #fit .fit-close strong,
+  #fit .fit-close-sub { font-size: 24px; }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  #fit .fit-close strong,
+  #fit .fit-close-sub { font-size: 22px; }
+}
