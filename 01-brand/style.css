@@ -23,7 +23,9 @@
 }
 /* JS無効時のフォールバック（写真を最初から表示） */
 #brand-about.brand-band {
-  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/service-feature-1.jpg');
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/brand-about-bg.jpg');
+  /* 右側の生徒（女の子）が常に見えるよう右固定 */
+  background-position: right center;
   /* FVとの間に4pxの隙間（両者とも暗い背景なので、間に地色の細線が入る） */
   margin-top: 4px;
 }
@@ -36,7 +38,7 @@
   background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
 }
 .js-bglazy #brand-about.bg-lazy.is-bg {
-  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/service-feature-1.jpg');
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/brand-about-bg.jpg');
 }
 .js-bglazy #brand-fit.bg-lazy.is-bg {
   background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/coach-talk.jpg');
