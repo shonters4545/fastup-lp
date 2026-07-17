@@ -2,50 +2,9 @@
    04a-koachi 個別CSS（差分のみ）
    ------------------------------------------------------------
    見た目のルールは ../shared/design.css（デザインレイヤー）を「正」とする。
-   このファイルには 04a 固有の差分だけを書く。現状は
-   「このLPで使う背景写真の紐付け」のみ（url はCSSファイル位置基準で
-   解決されるため、img/ を参照する行は各LP側に置く必要がある）。
+   このファイルには 04a 固有の差分だけを書く。
+
+   背景写真はブランド共通のデフォルト（design.css → shared/img/）を
+   そのまま使うため、現状差分なし。写真をこのLP専用に差し替える場合は
+   ここで同じセレクタを上書きする（url は img/ からの相対で書く）。
    ============================================================ */
-
-/* === 背景写真の紐付け ======================================== */
-
-/* FV：サービスサイト版デザインの背景写真 */
-.fv--service { background-image: url('img/fv-hero.jpg'); }
-
-/* 以下4つはJS無効時のフォールバック（js-bglazy が付かない時は最初から写真を表示）。
-   JS有効時は design.css の .bg-lazy 規則（詳細度で勝つ）が写真を外して待機させ、
-   画面に近づいて .is-bg が付いた時に下の *.is-bg 規則の写真が出る。 */
-
-/* 安心の3つ：コーチ陣写真の帯 */
-.reassure-band {
-  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/coach-talk.jpg');
-}
-.js-bglazy .reassure-band.bg-lazy.is-bg {
-  background-image:
-    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
-    url('img/coach-talk.jpg');
-}
-
-/* 理由2：特徴カードの背景写真 */
-.section-feature-app .feature-sub-cards {
-  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/feature-section-bg.jpg');
-}
-.js-bglazy .section-feature-app .feature-sub-cards.bg-lazy.is-bg {
-  background-image:
-    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
-    url('img/feature-section-bg.jpg');
-}
-
-/* 最終CTA */
-#final-cta {
-  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/final-cta-bg.jpg');
-}
-.js-bglazy #final-cta.bg-lazy.is-bg {
-  background-image:
-    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
-    url('img/final-cta-bg.jpg');
-}
-
-/* サービス特徴（#about）：写真は遅延読み込み時のみ（JS無効時は section-brand の
-   暗背景色のまま＝可読性は保たれる） */
-.js-bglazy #about.bg-lazy.is-bg { background-image: url('img/service-feature-1.jpg'); }

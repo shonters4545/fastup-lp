@@ -7,63 +7,121 @@
 <title>家でも、横で見てる塾。画面越しに毎日3時間｜FAST-UP逆転塾オンライン</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Zen+Old+Mincho:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&family=Zen+Old+Mincho:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/design.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../shared/about-embed.css">
+<script>/* スクロールイン用：初回描画前に付与してちらつき防止（IO非対応や無効時は付けない=常時表示） */
+if ('IntersectionObserver' in window) {
+  document.documentElement.classList.add('js-reveal');
+  /* 背景写真の遅延読み込み用。付かない場合は .bg-lazy の写真を常時表示する */
+  document.documentElement.classList.add('js-bglazy');
+}</script>
 </head>
 <body>
 
 <!-- ======= ヘッダー ======= -->
 <header class="header">
-  <div class="header-logo">逆転合格なら、<br>FAST-UP逆転塾</div>
+  <div class="header-brand">
+    <img src="../shared/img/fastup-logo.png" alt="FAST-UP逆転塾" class="header-logo-img">
+    <div class="header-logo">逆転合格なら、<br>FAST-UP逆転塾</div>
+  </div>
+  <nav class="header-nav" aria-label="サイト内ナビ">
+    <a href="#about" class="header-nav-link">FAST-UPとは</a>
+    <a href="#achievements" class="header-nav-link">実績</a>
+    <a href="#pricing" class="header-nav-link">料金</a>
+    <a href="#enroll-flow" class="header-nav-link">入塾までの流れ</a>
+    <a href="#faq" class="header-nav-link">よくある質問</a>
+  </nav>
   <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="header-cta">
-    <small>30秒で完了</small>無料で相談する
+    <span class="header-cta-badge"><span>無料</span></span>
+    <span class="header-cta-body">
+      <span class="header-cta-eyebrow">30秒で完了</span>
+      <span class="header-cta-main">プロに相談する</span>
+    </span>
+    <span class="header-cta-arrow" aria-hidden="true">›</span>
   </a>
+  <button class="header-burger" type="button" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+<!-- ======= モバイル用ドロワー ======= -->
+<div class="nav-overlay" aria-hidden="true"></div>
+<aside class="nav-drawer" aria-label="メニュー">
+  <nav class="nav-drawer-inner">
+    <a href="#about" class="nav-drawer-link">FAST-UPとは</a>
+    <a href="#achievements" class="nav-drawer-link">実績</a>
+    <a href="#pricing" class="nav-drawer-link">料金</a>
+    <a href="#enroll-flow" class="nav-drawer-link">入塾までの流れ</a>
+    <a href="#faq" class="nav-drawer-link">よくある質問</a>
+    <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="header-cta nav-drawer-cta">
+      <span class="header-cta-badge"><span>無料</span></span>
+      <span class="header-cta-body">
+        <span class="header-cta-eyebrow">30秒で完了</span>
+        <span class="header-cta-main">プロに相談する</span>
+      </span>
+      <span class="header-cta-arrow" aria-hidden="true">›</span>
+    </a>
+  </nav>
+</aside>
 
 <!-- ====================================== -->
 <!-- ===     前半サイクル（ライト版LP）     === -->
 <!-- ====================================== -->
 
 <!-- ======= [1] FV ======= -->
-<section class="fv">
-  <img src="img/hero-illustration.svg" alt="画面越しに毎日3時間つきっきりのオンライン管理塾" class="fv-hero-illust">
+<section class="fv fv--service">
+  <img src="../shared/img/corner-banner.png" alt="オンライン全国対応" class="fv-corner">
+
   <div class="fv-inner">
-    <span class="fv-eyebrow">校舎が遠い／自宅で勉強したい人へ</span>
-    <p class="fv-subhead">「家で続けられない」を、卒業。</p>
-    <h1 class="fv-main">
-      <span>家でも、毎日コーチが</span><br>
-      <span>見てくれるオンライン塾。</span>
+    <span class="fv-brand-band wipe-in">校舎が遠い／自宅で勉強したい人へ</span>
+    <h1 class="fv-main fv-anim">
+      <span class="fv-ln">家<span class="fv-p">でも、</span>毎日コーチ<span class="fv-p">が</span></span>
+      <span class="fv-ln"><span class="fv-hl wipe-in">見てくれるオンライン塾</span>。</span>
     </h1>
-    <p class="fv-sub">
-      画面越しに、毎日3時間。<br>
-      <strong>学習開始から終了まで、コーチが見守ります。</strong>
-    </p>
-    <div class="fv-stats-row">
+    <p class="fv-sub fv-anim-sub"><em>「画面越しに、毎日3時間。<strong>学習開始から終了まで、コーチが見守ります。</strong>」</em></p>
+    <div class="fv-stats-row fv-anim-stats">
       <div class="fv-stat">
-        <div class="fv-stat-num">89.2<small>%</small></div>
-        <div class="fv-stat-label">難関私立合格率</div>
+        <img src="../shared/img/laurel-right.png" alt="" class="fv-stat-laurel fv-stat-laurel-left" aria-hidden="true">
+        <div class="fv-stat-inner">
+          <div class="fv-stat-label">累計指導実績</div>
+          <div class="fv-stat-num">1.5<small>万人</small></div>
+        </div>
+        <img src="../shared/img/laurel-left.png" alt="" class="fv-stat-laurel fv-stat-laurel-right" aria-hidden="true">
       </div>
       <div class="fv-stat">
-        <div class="fv-stat-num">+21</div>
-        <div class="fv-stat-label">偏差値UP</div>
+        <img src="../shared/img/laurel-right.png" alt="" class="fv-stat-laurel fv-stat-laurel-left" aria-hidden="true">
+        <div class="fv-stat-inner">
+          <div class="fv-stat-label">指導時間（週）</div>
+          <div class="fv-stat-num">21<small>時間</small></div>
+          <div class="fv-stat-sub">他塾平均の約7倍</div>
+        </div>
+        <img src="../shared/img/laurel-left.png" alt="" class="fv-stat-laurel fv-stat-laurel-right" aria-hidden="true">
       </div>
       <div class="fv-stat">
-        <div class="fv-stat-num">1.5<small>万人</small></div>
-        <div class="fv-stat-label">指導実績</div>
+        <img src="../shared/img/laurel-right.png" alt="" class="fv-stat-laurel fv-stat-laurel-left" aria-hidden="true">
+        <div class="fv-stat-inner">
+          <div class="fv-stat-label">難関私立合格率</div>
+          <div class="fv-stat-num">89<small>%</small></div>
+        </div>
+        <img src="../shared/img/laurel-left.png" alt="" class="fv-stat-laurel fv-stat-laurel-right" aria-hidden="true">
       </div>
     </div>
-    <div class="cta-wrap">
-      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="cta-main">
-        <small>【○月限定】初月0円</small>
-        無料カウンセリングを予約
+    <div class="cta-wrap fv-anim-cta">
+      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="header-cta">
+        <span class="header-cta-badge"><span>無料</span></span>
+        <span class="header-cta-body">
+          <span class="header-cta-eyebrow">【○月限定】入塾金無料</span>
+          <span class="header-cta-main">カウンセリングを予約</span>
+        </span>
+        <span class="header-cta-arrow" aria-hidden="true">›</span>
       </a>
     </div>
-    <p class="fv-notes">
-      ※1 〜2025年11月末時点の累計指導者数<br>
-      ※2 毎日特訓に90%以上参加した方の合格率（指導1.5万人実績ベース）<br>
-      ※3 平均在塾期間 11か月での実績（偏差値+21）<br>
-      ※4 努力で達成可能な基準を保証獲得条件として設定
+    <p class="fv-notes fv-anim-notes">
+      ※1 サービス開始〜2025年11月末時点のカウンセリング面談を含む累計指導者数<br>
+      ※2 コーチが直接指導する時間（毎日3時間×7日）をもとに算出<br>
+      ※3 当塾の毎日個別特訓に90%以上参加した方の早慶GMARCH・関関同立の合格数をもとに算出
     </p>
   </div>
 </section>
@@ -71,258 +129,332 @@
 <!-- ======= [2] 共感（肯定型） ======= -->
 <section class="section section-cream">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>こんな悩み、ありませんか？</small>
-      <h2>家だと続かないのは、<br><em>よくあることです。</em></h2>
+      <h2>それ、あなたのせいじゃない。</h2>
     </div>
-    <div class="empathy-grid">
+    <div class="empathy-grid reveal--stagger">
       <div class="empathy-card">
-        <div class="empathy-card-icon">🏠</div>
-        <p class="empathy-card-text">校舎が遠くて、<br><strong>通えない</strong></p>
+        <p class="empathy-card-text"><span class="empathy-card-lead">家だと、つい</span><br><strong>スマホをいじってしまう…</strong></p>
+        <img decoding="async" loading="lazy" src="../shared/img/empathy-graphic-2.png" alt="夜にベッドでスマホを見続ける高校生" class="empathy-card-graphic">
       </div>
       <div class="empathy-card">
-        <div class="empathy-card-icon">📱</div>
-        <p class="empathy-card-text">家だと、<br><strong>ついスマホを触ってしまう</strong></p>
+        <p class="empathy-card-text"><span class="empathy-card-lead">校舎が遠くて</span><br><strong>通えない…</strong></p>
+        <img decoding="async" loading="lazy" src="../shared/img/empathy-graphic-1.png" alt="勉強の計画に挫折する高校生" class="empathy-card-graphic">
       </div>
       <div class="empathy-card">
-        <div class="empathy-card-icon">🎥</div>
-        <p class="empathy-card-text">録画講義、<br><strong>飽きて消す</strong></p>
-      </div>
-      <div class="empathy-card">
-        <div class="empathy-card-icon">🙋</div>
-        <p class="empathy-card-text">集団授業で、<br><strong>質問できない</strong></p>
-      </div>
-      <div class="empathy-card">
-        <div class="empathy-card-icon">😣</div>
-        <p class="empathy-card-text">一人だと、<br><strong>勉強を始められない日がある</strong></p>
-      </div>
-      <div class="empathy-card">
-        <div class="empathy-card-icon">👨‍👩‍👧</div>
-        <p class="empathy-card-text">親から毎日、<br><strong>勉強のことを聞かれる</strong></p>
+        <p class="empathy-card-text"><span class="empathy-card-lead">録画講義は</span><br><strong>飽きて続かない…</strong></p>
+        <img decoding="async" loading="lazy" src="../shared/img/empathy-graphic-3.png" alt="計画と誘惑の間で揺れる高校生" class="empathy-card-graphic">
       </div>
     </div>
-    <div class="empathy-conclusion">
-      <strong>続かないのは、本人だけの問題ではありません。</strong><br>
-      <span class="empathy-conclusion-sub">家で続く仕組みが必要です。</span>
+    <div class="empathy-conclusion reveal">
+      <strong>それもそのはず。</strong><br>
+      <span class="empathy-conclusion-sub wipe-in">続かないのは、理由があります</span>
     </div>
   </div>
 </section>
 
 <!-- ======= [3] サービス紹介（FAST-UPは何の塾か） ======= -->
-<section class="section section-light">
+<section id="about" class="section section-brand bg-lazy">
   <div class="container">
-    <div class="section-title">
-      <small>家でサボらない、を実現したいあなたへ</small>
-      <h2>通塾なしで、毎日続く<br><em>FAST-UPオンライン塾</em>。</h2>
+    <div class="section-title reveal">
+      <small>面倒見のいい塾を、探していたあなたへ</small>
+      <h2>勉強が続かない人のための、<br>FAST-UP逆転塾。</h2>
     </div>
-    <div class="quick-features">
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">🖥️</div>
-        <h3>画面越しに毎日3時間</h3>
-        <p>コーチが <strong>つきっきり</strong>。<br>家でも、サボれない仕組み。</p>
+    <div class="service-features reveal--stagger">
+      <div class="service-feature-card">
+        <span class="service-feature-label">特徴1</span>
+        <h3>毎日3時間つきっきり</h3>
+        <p class="service-feature-subtitle wipe-in">一般塾の7倍</p>
+        <p>計画も進捗も、コーチが横で管理。</p>
       </div>
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">🏠</div>
-        <h3>メタバース自習室</h3>
-        <p>「対面より集中できる」評判。<br>校舎以上の <strong>強制集中環境</strong>。</p>
-      </div>
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">💰</div>
+      <div class="service-feature-card">
+        <span class="service-feature-label">特徴2</span>
         <h3>月49,800円</h3>
-        <p><strong>全国どこでも</strong>同じ料金。<br>教材・模試・対策、全部込み。</p>
+        <p class="service-feature-subtitle wipe-in">一般塾の約半額</p>
+        <p>教材・模試・夏冬講習まで全部込み。</p>
+      </div>
+      <div class="service-feature-card">
+        <span class="service-feature-label">特徴3</span>
+        <h3>全額返金保証</h3>
+        <p class="service-feature-subtitle wipe-in">合わなければ返金</p>
+        <p>14日間は無条件返金もOK。</p>
       </div>
     </div>
-    <div class="quick-conclusion">
-      <strong>家で続かなかった人も、毎日続けて合格へ。</strong>
+    <div class="quick-conclusion reveal">
+      <span class="qc-line wipe-in">自分一人ではダメだった人も</span>
+      <span class="qc-line wipe-in">続々合格。</span>
     </div>
   </div>
 </section>
 
 <!-- ======= [4] 実績・信頼ブロック（サービス紹介の証明） ======= -->
-<section class="section section-cream">
+<section id="achievements" class="section section-light section-achievements">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>FAST-UPの、確かな実績</small>
-      <h2>FAST-UPの実績を、<br><em>数字で公開しています。</em></h2>
+      <h2>数字で証明する、<em>FAST-UPの実績。</em></h2>
     </div>
-    <div class="stats-grid">
+    <div class="stats-grid slide-x--stagger">
       <div class="stat-item">
         <div class="stat-label">合格率</div>
-        <div class="stat-value">89.2<small>%</small></div>
-        <div class="stat-note">毎日特訓90%以上参加</div>
+        <div class="stat-value"><span class="count-num" data-end="89.2" data-dec="1" data-delay="500">89.2</span><small>%</small></div>
+        <div class="stat-note">難関私立大学</div>
       </div>
       <div class="stat-item">
         <div class="stat-label">偏差値UP</div>
-        <div class="stat-value">+21</div>
-        <div class="stat-note">平均在塾 11か月</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-label">継続率</div>
-        <div class="stat-value">98<small>%</small></div>
-        <div class="stat-note">平均継続 11か月</div>
+        <div class="stat-value"><span class="count-num" data-end="21" data-pre="+" data-delay="620">+21</span></div>
+        <div class="stat-note">11か月</div>
       </div>
       <div class="stat-item">
         <div class="stat-label">指導実績</div>
-        <div class="stat-value">1.5<small>万人</small></div>
-        <div class="stat-note">2025年11月末累計</div>
+        <div class="stat-value"><span class="count-num" data-end="1.5" data-dec="1" data-delay="740">1.5</span><small>万人</small></div>
+        <div class="stat-note">累計</div>
       </div>
     </div>
 
-    <div class="trust-grid">
+    <div class="trust-grid reveal--stagger">
       <div class="trust-card">
-        <div class="trust-card-icon">🏆</div>
-        <h4>元祖！逆転合格塾</h4>
-        <p class="trust-card-text">私立×逆転合格を<br>日本で初めて実践<br><small style="font-size:11px;color:#888;">※2018年事業開始、同分野最古参</small></p>
+        <span class="trust-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </span>
+        <div class="trust-card-body">
+          <h4>元祖！逆転合格塾</h4>
+          <p class="trust-card-text">私立×逆転合格を日本で初めて実践</p>
+        </div>
       </div>
       <div class="trust-card">
-        <div class="trust-card-icon">📱</div>
-        <h4>SNS 5.1万人</h4>
-        <p class="trust-card-text">
-          YouTube <strong>2.3万</strong><br>
-          TikTok <strong>2.7万</strong>
-        </p>
+        <span class="trust-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </span>
+        <div class="trust-card-body">
+          <h4>SNS 5.1万人</h4>
+          <p class="trust-card-text">YouTube <strong>2.3万</strong> / TikTok <strong>2.7万</strong></p>
+        </div>
       </div>
       <div class="trust-card">
-        <div class="trust-card-icon">📺</div>
-        <h4>メディア掲載実績</h4>
-        <p class="trust-card-text">朝日新聞 / NewsPicks /<br>ABEMA News / PR TIMES</p>
+        <span class="trust-check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </span>
+        <div class="trust-card-body">
+          <h4>メディア掲載実績</h4>
+          <p class="trust-card-text">朝日新聞 / NewsPicks / ABEMA News / PR TIMES</p>
+        </div>
       </div>
     </div>
-    <div class="media-logos">
-      <p class="media-logos-label">— 掲載メディア —</p>
+    <div class="media-logos reveal">
       <div class="media-logos-list">
-        <span class="media-logo-chip">朝日新聞</span>
-        <span class="media-logo-chip">NewsPicks</span>
-        <span class="media-logo-chip">ABEMA News</span>
-        <span class="media-logo-chip">PR TIMES</span>
-        <span class="media-logo-chip">ICT教育ニュース</span>
-        <span class="media-logo-chip">NewsCast</span>
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/asahi.svg" alt="朝日新聞">
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/nikkei.svg" alt="日経">
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/newspicks.svg" alt="NewsPicks">
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/techcrunch.png" alt="TechCrunch">
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/abema-news.png" alt="ABEMA News">
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/pr-times.png" alt="PR TIMES">
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/ict-kyoiku-news.png" alt="ICT教育ニュース">
+        <img decoding="async" loading="lazy" class="media-logo" src="../shared/img/logo/media/rakuten.jpg" alt="楽天">
       </div>
-    </div>
-
-    <!-- 合格事例3名 -->
-    <div class="section-title" style="margin-top:64px;">
-      <small>逆転合格者</small>
-      <h2>偏差値30代から、<br><em>合格した生徒がいます。</em></h2>
-    </div>
-    <div class="cases-grid">
-      <div class="case-card">
-        <div class="case-photo-placeholder" aria-label="植村さんの写真">
-          <span class="case-photo-icon">👤</span>
-          <span class="case-photo-label">写真</span>
-        </div>
-        <p class="case-name">植村さん</p>
-        <p class="case-meta">高3・7月スタート（在塾 約8か月）</p>
-        <div class="case-stats">
-          <div class="case-stats-label">偏差値</div>
-          <div class="case-stats-value">45 → 65</div>
-        </div>
-        <p class="case-univ">🎓 青山学院大学 合格</p>
-        <p class="case-quote">「<strong>朝7時の英単語、9時の文法</strong>と分単位で決まっていた。迷わず進めた。」</p>
-      </div>
-      <div class="case-card">
-        <div class="case-photo-placeholder" aria-label="川西さんの写真">
-          <span class="case-photo-icon">👤</span>
-          <span class="case-photo-label">写真</span>
-        </div>
-        <p class="case-name">川西さん</p>
-        <p class="case-meta">高3・6月スタート・オンライン（在塾 約9か月）</p>
-        <div class="case-stats">
-          <div class="case-stats-label">偏差値</div>
-          <div class="case-stats-value">40 → 60</div>
-        </div>
-        <p class="case-univ">🎓 立教大学 合格</p>
-        <p class="case-quote">「<strong>毎日テストで自分の理解度が見える</strong>から、サボれなかった。本当に逆転した。」</p>
-      </div>
-      <div class="case-card">
-        <div class="case-photo-placeholder" aria-label="大根田くんの写真">
-          <span class="case-photo-icon">👤</span>
-          <span class="case-photo-label">写真</span>
-        </div>
-        <p class="case-name">大根田くん</p>
-        <p class="case-meta">高3・6月スタート（在塾 約9か月）</p>
-        <div class="case-stats">
-          <div class="case-stats-label">偏差値</div>
-          <div class="case-stats-value">32 → 62</div>
-        </div>
-        <p class="case-univ">🎓 青山学院大学 合格</p>
-        <p class="case-quote">「専門用語も分からなかったけど、<strong>毎日コーチが横で説明してくれた</strong>から合格できた。」</p>
-      </div>
-    </div>
-    <p class="cases-note">
-      <small>※ 在塾期間は代表例。受験開始時期により異なる。</small>
-    </p>
-
-    <!-- 代表メッセージ -->
-    <div class="ceo-message-compact">
-      <div class="ceo-photo-placeholder" aria-label="代表 関根郁弥の写真">
-        <span class="ceo-photo-icon">👤</span>
-        <span class="ceo-photo-label">代表 写真</span>
-      </div>
-      <p class="ceo-message-headline">
-        早慶MARCH・関関同立は、<br><em>正しい学習計画で合格できる。</em>
-      </p>
-      <p class="ceo-message-text">
-        私自身、<strong>偏差値32の高校</strong>から逆転合格を経験。<br>
-        その時に気づいたのが、<strong>私大受験には攻略方法がある</strong>ということ。<br>
-        家で続かないのは意志や根性の問題ではなく、<strong>「画面越しに毎日見続ける」仕組み</strong>の有無で決まる。<br>
-        そのノウハウを蓄積し、<strong>1.5万人の指導実績</strong>で磨き続けて生まれたのが、FAST-UP逆転塾です。
-      </p>
-      <p class="ceo-name">— FAST-UP代表 関根 郁弥</p>
     </div>
   </div>
 </section>
 
-<!-- ======= [5] CTA①（前半サイクル締め） ======= -->
-<section class="section section-light">
+<!-- ======= [5] 逆転合格者（合格事例 + 代表メッセージ） ======= -->
+<section class="section section-light section-cases">
   <div class="container">
-    <div class="section-title">
+    <!-- 合格事例 -->
+    <div class="cases-head">
+      <div class="cases-head-main">
+        <small class="cases-eyebrow reveal">逆転合格者</small>
+        <h2 class="cases-headline reveal">偏差値30代からの、<br><em>逆転合格者が続出。</em></h2>
+      </div>
+      <div class="cases-scroll">
+        <span class="cases-scroll-label">Scroll</span>
+        <span class="cases-scroll-arrow" aria-hidden="true"><span class="cases-chev">›</span><span class="cases-chev">›</span><span class="cases-chev">›</span></span>
+      </div>
+    </div>
+    <div class="cases-carousel">
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-01.png" alt="植村さんの写真">
+          <div class="case-id">
+            <span class="case-id-name">植村さん</span>
+            <span class="case-id-tag">#現役生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">45</span><span class="case-score-arrow">»</span><span class="case-score-to">65</span><span class="case-score-up">(20UP)</span></p>
+            <p class="case-univ wipe-in">青山学院大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値45から青学へ。カリキュラムを改善して最短で合格できた。</p>
+        </div>
+      </article>
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-02.png" alt="大根田くんの写真">
+          <div class="case-id">
+            <span class="case-id-name">大根田くん</span>
+            <span class="case-id-tag">#現役生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">32</span><span class="case-score-arrow">»</span><span class="case-score-to">65</span><span class="case-score-up">(33UP)</span></p>
+            <p class="case-univ wipe-in">青山学院大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値32から青学へ。工業高校からでも逆転合格できる。</p>
+        </div>
+      </article>
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-03.png" alt="芦屋くんの写真">
+          <div class="case-id">
+            <span class="case-id-name">芦屋くん</span>
+            <span class="case-id-tag">#現役生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">50</span><span class="case-score-arrow">»</span><span class="case-score-to">65</span><span class="case-score-up">(15UP)</span></p>
+            <p class="case-univ wipe-in">早稲田大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値50から早稲田大学へ逆転合格。</p>
+        </div>
+      </article>
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-04.png" alt="原田くんの写真">
+          <div class="case-id">
+            <span class="case-id-name">原田くん</span>
+            <span class="case-id-tag">#浪人生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">50</span><span class="case-score-arrow">»</span><span class="case-score-to">65</span><span class="case-score-up">(15UP)</span></p>
+            <p class="case-univ wipe-in">慶應義塾大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値50から慶應義塾大学へ。正しい学習法を極めて逆転合格。</p>
+        </div>
+      </article>
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-05.png" alt="高原さんの写真">
+          <div class="case-id">
+            <span class="case-id-name">高原さん</span>
+            <span class="case-id-tag">#現役生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">50</span><span class="case-score-arrow">»</span><span class="case-score-to">70</span><span class="case-score-up">(20UP)</span></p>
+            <p class="case-univ wipe-in">上智大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値50から上智大学に逆転合格。コーチからのポジティブな言葉がきっかけで偏差値20UP。</p>
+        </div>
+      </article>
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-06.png" alt="永井くんの写真">
+          <div class="case-id">
+            <span class="case-id-name">永井くん</span>
+            <span class="case-id-tag">#浪人生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">38</span><span class="case-score-arrow">»</span><span class="case-score-to">62</span><span class="case-score-up">(24UP)</span></p>
+            <p class="case-univ wipe-in">中央大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値38から中央大学に逆転合格。細かいゴールがあったから毎日頑張れた。</p>
+        </div>
+      </article>
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-07.png" alt="亀井さんの写真">
+          <div class="case-id">
+            <span class="case-id-name">亀井さん</span>
+            <span class="case-id-tag">#現役生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">52</span><span class="case-score-arrow">»</span><span class="case-score-to">64</span><span class="case-score-up">(12UP)</span></p>
+            <p class="case-univ wipe-in">立教大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値52、万年E判定から立教大学合格！基礎を固めて逆転合格。</p>
+        </div>
+      </article>
+      <article class="case-card reveal">
+        <div class="case-photo">
+          <img decoding="async" loading="lazy" class="case-person" src="../shared/img/cases/case-08.png" alt="山口くんの写真">
+          <div class="case-id">
+            <span class="case-id-name">山口くん</span>
+            <span class="case-id-tag">#現役生</span>
+          </div>
+          <div class="case-result">
+            <p class="case-score slide-x"><span class="case-score-label">偏差値</span><span class="case-score-from">37</span><span class="case-score-arrow">»</span><span class="case-score-to">73</span><span class="case-score-up">(36UP)</span></p>
+            <p class="case-univ wipe-in">明治大学に合格</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">偏差値37から明治・青学などに多数合格。自ら考える学習で一気に伸ばせた。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======= [6] 代表メッセージ ======= -->
+<section class="section section-ceo">
+  <div class="container">
+    <div class="ceo-head">
+      <small class="ceo-eyebrow">メッセージ</small>
+      <h2 class="ceo-title reveal">逆転合格を、本気で目指す方へ。</h2>
+    </div>
+    <div class="ceo-panel">
+      <div class="ceo-message">
+        <p class="ceo-message-headline focus-in">早慶MARCH・関関同立は、<br><em>完全攻略できる。</em></p>
+        <div class="ceo-message-body reveal--stagger">
+          <p>自身の逆転合格経験から、<br><strong>私大受験には攻略方法がある</strong>ということに気づきました。</p>
+          <p>それらのノウハウを蓄積して生まれたのが、<br>FAST-UP逆転塾です。</p>
+          <p><strong>難関私大合格に必要なサービスを、<br>全て提供しています。</strong></p>
+        </div>
+      </div>
+      <div class="ceo-photo">
+        <img decoding="async" loading="lazy" class="ceo-photo-img" src="../shared/img/ceo.png" alt="FAST-UP代表 関根 郁弥">
+        <div class="ceo-caption">
+          <span class="ceo-caption-role slide-x">FAST-UP代表</span>
+          <span class="ceo-caption-name slide-x">関根 郁弥</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= [5] CTA①（無料診断・個別カウンセリング） ======= -->
+<section class="section counsel-section bg-lazy">
+  <div class="counsel-overlay" aria-hidden="true"></div>
+  <div class="container counsel-inner">
+    <div class="section-title reveal">
       <small>無料診断 + 個別カウンセリング</small>
-      <h2>あなた専用の<br><em>逆転ルート</em>を、設計。</h2>
+      <h2><em>あなた専用の逆転ルート</em>を設計。</h2>
     </div>
-    <p class="lead-text">
-      偏差値・志望校・残り時間を入力 →<br>
-      <strong>あなた専用の最短ルート</strong> を、コーチが直接設計。<br>
-      <small style="font-family:'Noto Sans JP',sans-serif;color:#888;">入塾なしOK / 無理な勧誘なし</small>
-    </p>
-    <!-- カウンセリングで得られる5つ -->
-    <div class="quick-features" style="margin-top:32px;">
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">🎯</div>
-        <h3>志望校まで、あと何点か</h3>
-        <p>偏差値と志望校の<strong>ギャップ</strong>が、その場で分かる。</p>
-      </div>
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">📅</div>
-        <h3>今日やる教材とページを決めます</h3>
-        <p>本番までの<strong>1日単位の学習計画</strong>が、明確になる。</p>
-      </div>
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">🏠</div>
-        <h3>オンライン自習室を体験できます</h3>
-        <p>「対面より集中できる」と評判の<strong>環境</strong>が、その場で体験できる。</p>
-      </div>
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">📝</div>
-        <h3>停滞科目を、どう突破するか</h3>
-        <p><strong>弱点突破の具体手順</strong>が、その場で提示される。</p>
-      </div>
-      <div class="quick-feature-card">
-        <div class="quick-feature-icon">🛡️</div>
-        <h3>「見られていない」診断</h3>
-        <p>家でサボる原因が、<strong>あなた仕様に分析される</strong>。</p>
-      </div>
+    <div class="counsel-tags reveal--stagger">
+      <span class="counsel-tag">#費用は0円</span>
+      <span class="counsel-tag">#相談だけでもOK</span>
+      <span class="counsel-tag">#無理な勧誘は無し</span>
     </div>
-    <div class="cta-wrap-multi">
-      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="cta-main">
-        <small>【○月限定】初月0円</small>
-        LINEで無料相談を受ける
-      </a>
-      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="cta-sub">まずはLINEで気軽に相談</a>
-    </div>
-    <div class="more-prompt">
-      <p>もっと深く知る ↓</p>
-    </div>
+    <div class="counsel-divider" aria-hidden="true"></div>
+    <ul class="counsel-list reveal--stagger">
+      <li><span class="counsel-list-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>あなたの「逆転ルート」を作成</li>
+      <li><span class="counsel-list-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>「伸びしろ」の発見と対策がわかる</li>
+      <li><span class="counsel-list-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>受験のプロが悩みを解決</li>
+    </ul>
+    <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="counsel-cta reveal">
+      <span class="counsel-cta-badge"><span class="cta-dash">-</span>限定10名<span class="cta-dash">-</span></span>
+      <span class="counsel-cta-text">逆転ルート診断を受ける</span>
+    </a>
+    <p class="counsel-note reveal">※キャンペーン中につき「無料」。定員になり次第終了いたします。</p>
   </div>
 </section>
 
@@ -333,72 +465,86 @@
 <!-- ======= [6] 後半再導入 ======= -->
 <section class="section section-dark deep-intro">
   <div class="container">
-    <span class="deep-intro-eyebrow">— さらに詳しく知りたい方へ —</span>
-    <h2 class="deep-intro-headline">
-      <em style="color:#e8d896;background:none;">なぜ家で続かないのか。</em><br>
-      <em style="color:#e8d896;background:none;">FAST-UPで、何が変わるのか。</em>
+    <span class="deep-intro-eyebrow reveal">
+      <span class="dintro-hatch l" aria-hidden="true"><i></i><i></i><i></i></span>
+      さらに詳しく知りたい方へ
+      <span class="dintro-hatch r" aria-hidden="true"><i></i><i></i><i></i></span>
+    </span>
+    <h2 class="deep-intro-headline reveal">
+      <em style="color:#fff;background:none;">なぜ続かないのか。</em><br>
+      <em style="color:#fff;background:none;">FAST-UPで、何が変わるのか。</em>
     </h2>
-    <p class="deep-intro-lead">
-      <strong>家で本気で合格を目指す、あなたへ。</strong>
-    </p>
   </div>
+  <span class="deep-intro-arrow wipe-in">本気で逆転を目指す、あなたへ。</span>
 </section>
 
 <!-- ======= [7] AHA：3つが足りない ======= -->
-<section class="section section-light">
+<section class="section section-aha">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>本当の理由</small>
-      <h2>家で続くには、<br><em>3つ</em>の条件がある。</h2>
+      <h2>勉強が続かないのは、<br><em>3つ</em>が足りないから。</h2>
     </div>
 
     <div class="aha-lead">
-      <p class="aha-lead-eyebrow">先に、結論。</p>
-      <h3 class="aha-lead-headline">
-        続かないのは、やる気だけの問題ではありません。<br>
-        <em>毎日続く仕組み</em>が必要です。
-      </h3>
-      <div class="aha-lead-body">
-        <p><strong>「家で勉強しなくちゃ、と思うのに、結局できない」</strong></p>
-        <p>それは、<u>あなたの意志が弱いせい</u>じゃない。</p>
-        <p>人は、<strong>見守られると行動しやすくなります</strong>。<br>行動科学が証明済の事実。</p>
+      <div class="aha-lead-card reveal">
+        <div class="aha-lead-card-body">
+          <span class="aha-lead-tab">先に結論</span>
+          <h3 class="aha-lead-headline">
+            やる気の問題じゃない。<br>
+            <em>仕組みの問題</em>。
+          </h3>
+          <div class="aha-lead-body">
+            <p><strong>「勉強しなくちゃ、と思うのに、結局できない」</strong></p>
+            <p>それは、<u>意志が弱いせい</u>じゃない。</p>
+            <p>続くかどうかは、<strong>意志ではなく環境で決まる</strong>。</p>
+          </div>
+          <p class="aha-lead-source">
+            <small>※ 行動科学・習慣形成における基本原則</small>
+          </p>
+        </div>
       </div>
-      <p class="aha-lead-source">
-        <small>※ 行動科学・習慣形成研究で繰り返し示された事実（FAST-UP独自分析・指導1.5万人実績ベース）</small>
-      </p>
     </div>
+  </div>
+</section>
 
-    <p class="aha-bridge">
-      では、家で続くために必要な<strong>3つの条件</strong>とは？
+<!-- ======= [7b] 環境とは（ブランドカラー帯） ======= -->
+<section class="section section-aha-env">
+  <div class="container">
+    <p class="aha-bridge reveal">
+      では、その<strong>「環境」</strong>とは？
     </p>
 
     <div class="three-circles-wrap">
-      <div class="three-circles-grid">
+      <div class="three-circles-grid reveal--stagger">
         <div class="aha-circle">
-          <div class="aha-circle-num">1</div>
-          <div class="aha-circle-icon-text">👁️</div>
-          <h3>毎日見守ってもらえる</h3>
-          <p>週1や録画はNG。<br><strong>毎日、画面越しに</strong>。</p>
+          <span class="aha-circle-num slide-x">01</span>
+          <h3>同じ人</h3>
+          <p class="aha-circle-subtitle wipe-in">固定の専属コーチ</p>
+          <p>毎回違う先生はNG。</p>
+          <img decoding="async" loading="lazy" src="../shared/img/icon-01.png" alt="同じ人" class="aha-circle-photo">
         </div>
         <div class="aha-circle">
-          <div class="aha-circle-num">2</div>
-          <div class="aha-circle-icon-text">🎯</div>
-          <h3>個別対応</h3>
-          <p>集団授業はNG。<br><strong>自分専用</strong>の指導。</p>
+          <span class="aha-circle-num slide-x">02</span>
+          <h3>毎日</h3>
+          <p class="aha-circle-subtitle wipe-in">土日含めて毎日</p>
+          <p>週1・週2はNG。</p>
+          <img decoding="async" loading="lazy" src="../shared/img/icon-02.png" alt="毎日" class="aha-circle-photo">
         </div>
         <div class="aha-circle">
-          <div class="aha-circle-num">3</div>
-          <div class="aha-circle-icon-text">🔒</div>
-          <h3>毎日の確認と声かけ</h3>
-          <p>緩い見守りはNG。<br><strong>つきっきり</strong>で管理。</p>
+          <span class="aha-circle-num slide-x">03</span>
+          <h3>横にいる</h3>
+          <p class="aha-circle-subtitle wipe-in">隣で3時間</p>
+          <p>遠くから見守るはNG。</p>
+          <img decoding="async" loading="lazy" src="../shared/img/icon-03.png" alt="横にいる" class="aha-circle-photo">
         </div>
       </div>
     </div>
-    <div class="aha-conclusion">
-      <h3>この3つがあると、家でも勉強を続けやすくなります。</h3>
-      <p>逆に、<strong>3つ揃えば、家でも続く。</strong></p>
+    <div class="aha-conclusion wipe-in">
+      <h3>この3つがないと、続かない。</h3>
+      <p>逆に、<strong>3つ揃えば誰でも続く。</strong></p>
       <p class="aha-conclusion-self">
-        家で続かなかったあなたも、例外なし。
+        勉強が3日続かなかったあなたも、例外なし。
       </p>
     </div>
   </div>
@@ -407,15 +553,39 @@
 <!-- ======= [8] 既存選択肢NG（自分ではムリ＋他塾比較） ======= -->
 <section class="section section-cream">
   <div class="container">
-    <div class="section-title">
-      <small>では、他のオンライン塾は？</small>
-      <h2>家で毎日続ける仕組みまで用意した塾は、<br><em>多くありません。</em></h2>
+    <div class="section-title reveal">
+      <small>では、どう揃えるか</small>
+      <h2>自分で揃えるのは、無理。<br><em>他塾でも、揃わない。</em></h2>
     </div>
 
-    <div class="check-table-block">
+    <div class="three-x-grid reveal--stagger">
+      <div class="x-card">
+        <span class="x-card-num slide-x">01</span>
+        <h4>毎日のメニュー</h4>
+        <p class="x-card-subtitle wipe-in">決められない</p>
+        <p>何やればいいか、自分では。</p>
+        <img decoding="async" loading="lazy" src="../shared/img/x-icon-01.png" alt="毎日のメニュー" class="x-card-photo">
+      </div>
+      <div class="x-card">
+        <span class="x-card-num slide-x">02</span>
+        <h4>毎日続ける</h4>
+        <p class="x-card-subtitle wipe-in">置けない</p>
+        <p>自分で自分を、毎日横に。</p>
+        <img decoding="async" loading="lazy" src="../shared/img/x-icon-02.png" alt="毎日続ける" class="x-card-photo">
+      </div>
+      <div class="x-card">
+        <span class="x-card-num slide-x">03</span>
+        <h4>合ってるか確認</h4>
+        <p class="x-card-subtitle wipe-in">測れない</p>
+        <p>自分の理解度は、自分では。</p>
+        <img decoding="async" loading="lazy" src="../shared/img/x-icon-03.png" alt="合ってるか確認" class="x-card-photo">
+      </div>
+    </div>
+
+    <div class="check-table-block reveal">
       <table class="check-table">
         <thead>
-          <tr><th>選択肢</th><th>毎日見られる</th><th>個別対応</th><th>強い管理</th></tr>
+          <tr><th><span class="check-table-label">選択肢</span></th><th><span class="check-table-label">同じ人</span></th><th><span class="check-table-label">毎日</span></th><th><span class="check-table-label">横にいる</span></th></tr>
         </thead>
         <tbody>
           <tr>
@@ -425,21 +595,21 @@
             <td><span class="check-mark-bad">✕</span></td>
           </tr>
           <tr>
-            <td>録画オンライン塾</td>
-            <td><span class="check-mark-bad">✕</span></td>
-            <td><span class="check-mark-bad">✕</span></td>
-            <td><span class="check-mark-bad">✕</span></td>
-          </tr>
-          <tr>
-            <td>集団Zoom塾</td>
+            <td>集団塾・予備校</td>
             <td><span class="check-mark-mid">△</span></td>
             <td><span class="check-mark-bad">✕</span></td>
             <td><span class="check-mark-bad">✕</span></td>
           </tr>
           <tr>
-            <td>週1個別オンライン</td>
+            <td>個別指導塾</td>
+            <td><span class="check-mark-mid">△</span></td>
             <td><span class="check-mark-bad">✕</span></td>
+            <td><span class="check-mark-bad">✕</span></td>
+          </tr>
+          <tr>
+            <td>一般のコーチング塾</td>
             <td><span class="check-mark-good">○</span></td>
+            <td><span class="check-mark-bad">✕</span></td>
             <td><span class="check-mark-bad">✕</span></td>
           </tr>
           <tr class="fastup-row">
@@ -451,78 +621,87 @@
         </tbody>
       </table>
     </div>
-    <p class="check-table-conclusion">
-      FAST-UPは、<em>3つすべてをそろえています。</em>
+    <p class="check-table-conclusion reveal">
+      <span>3つ全部揃っているのは、</span><br>
+      <span class="check-table-conclusion-em">FAST-UPのみ。</span>
     </p>
-    <div class="cta-wrap" style="margin-top:32px;">
-      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="cta-main">
-        <small>30秒で予約</small>
-        家で続けられる、無料カウンセリング
-      </a>
-    </div>
   </div>
 </section>
 
 <!-- ======= [9] 強み詳細①：毎日3時間 ======= -->
-<section class="section section-light">
+<section class="section section-light section-feature">
   <div class="container">
     <div class="feature-block">
-      <span class="feature-label">理由 01</span>
-      <h3 class="feature-title"><em>画面越しに、毎日3時間。</em><br>オンライン自習室で、<em>家でも集中できます。</em></h3>
-      <p class="feature-desc">
-        週1回の指導だけでは、見てもらえない時間が残ります。<br>
-        FAST-UPは毎日見守ります。
+      <div class="section-title reveal">
+        <small>理由1</small>
+        <h2>毎日3時間の個別特訓。<br><em>一般塾の7倍の指導量。</em></h2>
+      </div>
+      <p class="feature-desc reveal">
+        週1の塾と、毎日の塾。<br>
+        伸びる量の違い、一目瞭然。
       </p>
-      <div class="calendar-compare">
+      <div class="calendar-compare reveal--stagger">
         <div class="cal-panel bad">
           <div class="cal-panel-title">一般的な学習管理塾</div>
-          <div class="cal-panel-headline">月 8時間</div>
+          <div class="cal-panel-headline">月<span class="count-num" data-end="8" data-delay="500">8</span>時間</div>
           <div class="cal-grid">
             <div class="cal-day weak">月</div><div class="cal-day">火</div><div class="cal-day">水</div><div class="cal-day weak">木</div><div class="cal-day">金</div><div class="cal-day">土</div><div class="cal-day">日</div>
             <div class="cal-day weak">月</div><div class="cal-day">火</div><div class="cal-day">水</div><div class="cal-day weak">木</div><div class="cal-day">金</div><div class="cal-day">土</div><div class="cal-day">日</div>
             <div class="cal-day weak">月</div><div class="cal-day">火</div><div class="cal-day">水</div><div class="cal-day weak">木</div><div class="cal-day">金</div><div class="cal-day">土</div><div class="cal-day">日</div>
             <div class="cal-day weak">月</div><div class="cal-day">火</div><div class="cal-day">水</div><div class="cal-day weak">木</div><div class="cal-day">金</div><div class="cal-day">土</div><div class="cal-day">日</div>
           </div>
-          <div class="cal-result">
+          <div class="cal-result reveal">
             週1〜2回・60分の面談だけ<br>
-            <strong>残り 6日は放置</strong>
+            <strong>残り6日は放置</strong>
           </div>
         </div>
         <div class="cal-panel good">
           <div class="cal-panel-title">FAST-UP</div>
-          <div class="cal-panel-headline">月 84時間</div>
+          <div class="cal-panel-headline">月<span class="count-num" data-end="84" data-delay="650">84</span>時間</div>
           <div class="cal-grid">
             <div class="cal-day active">月</div><div class="cal-day active">火</div><div class="cal-day active">水</div><div class="cal-day active">木</div><div class="cal-day active">金</div><div class="cal-day active">土</div><div class="cal-day active">日</div>
             <div class="cal-day active">月</div><div class="cal-day active">火</div><div class="cal-day active">水</div><div class="cal-day active">木</div><div class="cal-day active">金</div><div class="cal-day active">土</div><div class="cal-day active">日</div>
             <div class="cal-day active">月</div><div class="cal-day active">火</div><div class="cal-day active">水</div><div class="cal-day active">木</div><div class="cal-day active">金</div><div class="cal-day active">土</div><div class="cal-day active">日</div>
             <div class="cal-day active">月</div><div class="cal-day active">火</div><div class="cal-day active">水</div><div class="cal-day active">木</div><div class="cal-day active">金</div><div class="cal-day active">土</div><div class="cal-day active">日</div>
           </div>
-          <div class="cal-result">
-            毎日3時間、コーチが進み具合を確認します<br>
-            <strong>毎日、学習時間を見守ります</strong>
+          <div class="cal-result reveal">
+            毎日3時間、コーチが横で見てる<br>
+            <strong>放置ゼロ</strong>
           </div>
         </div>
       </div>
-      <div class="feature-sub-cards">
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 01</span>
-          <h4>「進む3時間」</h4>
-          <p>会話だけの面談ではない。<strong>手を動かす指導</strong>、毎日3時間。</p>
+      <div class="feature-sub-cards feature-sub-cards--zigzag reveal--stagger">
+        <div class="feature-sub-row">
+          <div class="feature-sub-image reveal"><img decoding="async" loading="lazy" src="../shared/img/feature-sub-01.jpg" alt=""></div>
+          <div class="feature-sub-card">
+            <span class="feature-sub-card-label">特徴1</span>
+            <h4>「進む3時間」</h4>
+            <p>会話だけの面談ではない。<br><strong>手を動かす指導</strong>、毎日3時間。</p>
+          </div>
         </div>
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 02</span>
-          <h4>3時間サイクル</h4>
-          <p><strong>演習 → 講義 → ミニ模試</strong>、毎日。知識を強制定着。</p>
+        <div class="feature-sub-row feature-sub-row--reverse">
+          <div class="feature-sub-card">
+            <span class="feature-sub-card-label">特徴2</span>
+            <h4>3時間サイクル</h4>
+            <p><strong>演習 → 講義 → ミニ模試</strong>、毎日。<br>知識を強制定着。</p>
+          </div>
+          <div class="feature-sub-image reveal"><img decoding="async" loading="lazy" src="../shared/img/feature-sub-02.jpg" alt=""></div>
         </div>
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 03</span>
-          <h4>対話式指導</h4>
-          <p>コーチからの逆質問。<strong>説明できなければ、即その場で再解説</strong>。</p>
+        <div class="feature-sub-row">
+          <div class="feature-sub-image reveal"><img decoding="async" loading="lazy" src="../shared/img/feature-sub-03.jpg" alt=""></div>
+          <div class="feature-sub-card">
+            <span class="feature-sub-card-label">特徴3</span>
+            <h4>対話式講義</h4>
+            <p>コーチからの逆質問。<br><strong>説明できなければ、即その場で再解説</strong>。</p>
+          </div>
         </div>
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 04</span>
-          <h4>毎日のミニ模試</h4>
-          <p>1日の終わりに <strong>20分テスト</strong>。基準点突破まで、終わらない。</p>
+        <div class="feature-sub-row feature-sub-row--reverse">
+          <div class="feature-sub-card">
+            <span class="feature-sub-card-label">特徴4</span>
+            <h4>毎日のミニ模試</h4>
+            <p>1日の終わりに <strong>20分テスト</strong>。<br>基準点突破まで、終わらない。</p>
+          </div>
+          <div class="feature-sub-image reveal"><img decoding="async" loading="lazy" src="../shared/img/feature-sub-04.jpg" alt=""></div>
         </div>
       </div>
     </div>
@@ -530,36 +709,127 @@
 </section>
 
 <!-- ======= [10] 強み詳細②：1日単位カリキュラム ======= -->
-<section class="section section-cream">
+<section id="reason2" class="section section-cream section-feature section-feature-app">
   <div class="container">
     <div class="feature-block">
-      <span class="feature-label">理由 02</span>
-      <h3 class="feature-title">今日やることを、<br><em>コーチが一緒に決めます。</em></h3>
-      <p class="feature-desc">
-        何をやるかで迷う時間を、減らします。<br>
-        志望校までの最短ルートを、<strong>1日単位</strong>でアプリに表示。
-      </p>
-      <div class="app-mockup-wrap">
-        <img src="img/phone-mockup.svg" alt="FAST-UP CARRY アプリ画面" class="phone-svg">
+      <div class="section-title reveal">
+        <small>理由2</small>
+        <h2>今日やること、<br><em>コーチが全部、決める。</em></h2>
       </div>
-      <div class="feature-sub-cards">
+      <p class="feature-desc reveal">
+        「何やればいいか分からない」を、ゼロに。<br>
+        朝起きたら、今日の分が届いてる。<strong>あなたは、こなすだけ。</strong>
+      </p>
+      <div class="app-showcase reveal">
+        <div class="app-callout app-callout-1">
+          <span class="app-callout-num">01</span>
+          <span class="app-callout-text">コーチが毎晩、<strong>翌日分を作成</strong></span>
+        </div>
+        <div class="app-callout app-callout-2">
+          <span class="app-callout-num">02</span>
+          <span class="app-callout-text"><strong>参考書名・ページ数</strong>まで指定</span>
+        </div>
+        <div class="app-callout app-callout-3">
+          <span class="app-callout-num">03</span>
+          <span class="app-callout-text">完了チェックは、<strong>コーチが確認</strong></span>
+        </div>
+        <div class="phone-mock" role="img" aria-label="FAST-UP CARRY アプリ画面（個別計画）">
+          <div class="phone-screen phone-screen--clip">
+            <div class="phone-statusbar"><span>9:41</span><span class="phone-batt" aria-hidden="true"></span></div>
+            <div class="phone-sp-body">
+              <div class="phone-sp-tabs">
+                <span class="phone-sp-tab is-on">英語</span>
+                <span class="phone-sp-tab">数学</span>
+                <span class="phone-sp-tab">国語</span>
+              </div>
+              <div class="phone-sp-planhead">
+                <span class="phone-sp-plantitle">7月 第2週プラン<span class="phone-sp-cmt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></span>
+                <span class="phone-sp-deadline">あと3日</span>
+              </div>
+              <div class="phone-sp-range">2026-07-06 〜 2026-07-12</div>
+              <div class="phone-sp-card">
+                <div class="phone-sp-card-top">
+                  <span class="phone-sp-card-label">計画全体の進捗<em>(5 / 10 タスク完了)</em></span>
+                  <span class="phone-sp-card-pct">50<span>%</span></span>
+                </div>
+                <div class="phone-sp-bar"><i style="width:50%"></i></div>
+              </div>
+              <div class="phone-sp-book">
+                <div class="phone-sp-book-head">
+                  <div>
+                    <div class="phone-sp-book-name">Next Stage 英文法・語法</div>
+                    <div class="phone-sp-book-range">Lesson 1 時制 〜 Lesson 5 動名詞</div>
+                  </div>
+                  <span class="phone-sp-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+                </div>
+                <div class="phone-sp-book-prog">
+                  <div class="phone-sp-bar"><i style="width:60%"></i></div>
+                  <span>60%</span>
+                </div>
+                <div class="phone-sp-laps">
+                  <span class="phone-sp-lap done">1</span>
+                  <span class="phone-sp-lapline"></span>
+                  <span class="phone-sp-lap on">2</span>
+                  <span class="phone-sp-lapline"></span>
+                  <span class="phone-sp-lap">3</span>
+                  <span class="phone-sp-lap-label">2周目（実施中）</span>
+                </div>
+                <div class="phone-sp-tasks">
+                  <div class="phone-sp-task">
+                    <span class="phone-sp-check on" aria-hidden="true"></span>
+                    <span class="phone-sp-task-name">Lesson 1 時制</span>
+                    <span class="phone-sp-score">85点</span>
+                  </div>
+                  <div class="phone-sp-task">
+                    <span class="phone-sp-check on" aria-hidden="true"></span>
+                    <span class="phone-sp-task-name">Lesson 2 助動詞</span>
+                    <span class="phone-sp-score">72点</span>
+                  </div>
+                  <div class="phone-sp-task">
+                    <span class="phone-sp-check on" aria-hidden="true"></span>
+                    <span class="phone-sp-task-name">Lesson 3 仮定法</span>
+                    <span class="phone-sp-score">90点</span>
+                  </div>
+                  <div class="phone-sp-task">
+                    <span class="phone-sp-check" aria-hidden="true"></span>
+                    <span class="phone-sp-task-name">Lesson 4 不定詞</span>
+                  </div>
+                  <div class="phone-sp-task">
+                    <span class="phone-sp-check" aria-hidden="true"></span>
+                    <span class="phone-sp-task-name">Lesson 5 動名詞</span>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-sp-free">
+                <span class="phone-sp-check" aria-hidden="true"></span>
+                <span class="phone-sp-task-name">ターゲット1900 No.1〜200 単語テスト<em>（金曜実施）</em></span>
+              </div>
+            </div>
+            <div class="phone-home" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-sub-cards bg-lazy reveal--stagger">
+        <div class="feature-sub-heading">
+          <h3><em>FAST-UPだけの、</em><em>4つの強み。</em></h3>
+        </div>
         <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 01</span>
+          <span class="feature-sub-card-label">特徴1</span>
           <h4>1日単位の計画</h4>
           <p>アプリに「今日やること」を提示。<strong>迷う時間ゼロ</strong>。</p>
         </div>
         <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 02</span>
-          <h4>私大入試に合わせた教材</h4>
+          <span class="feature-sub-card-label">特徴2</span>
+          <h4>私大特化の独自教材</h4>
           <p>動画・音声付き。<strong>誰でも理解できる</strong>設計。</p>
         </div>
         <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 03</span>
-          <h4>毎月、理解度を確認します</h4>
+          <span class="feature-sub-card-label">特徴3</span>
+          <h4>毎月のFAST-UP模試</h4>
           <p>マークシート＋同問題数＋制限時間で<strong>本番再現</strong>。立ち位置を一目で可視化。</p>
         </div>
         <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 04</span>
+          <span class="feature-sub-card-label">特徴4</span>
           <h4>100種類以上の対策教材</h4>
           <p>早慶・GMARCH 各学部別の<strong>過去問演習集＋出題パターン分析</strong>。</p>
         </div>
@@ -568,194 +838,183 @@
   </div>
 </section>
 
-<!-- ======= [11] 強み詳細③：時給593円＋比較表＋料金詳細 ======= -->
-<section class="section section-light">
+<!-- ======= [11] 理由③：年間総額で比較 ======= -->
+<section id="reason3" class="section section-light section-annual">
   <div class="container">
-    <div class="feature-block">
-      <span class="feature-label">理由 03</span>
-      <h3 class="feature-title"><em>1時間あたり 593円。</em></h3>
-      <p class="feature-desc">
-        月額だけでなく、<strong>サポート時間で比べてください</strong>。<br>
-        1時間あたりの単価で比較した結果。
-      </p>
-      <div class="rate-graph-wrap">
-        <img src="img/rate-graph.svg" alt="時給単価比較グラフ" class="rate-graph-svg">
-      </div>
-      <div class="rate-compare-text">
-        <div class="rate-text-item bad">
-          <div class="rate-text-label">一般的な学習管理塾</div>
-          <div class="rate-text-formula">月82,000円 ÷ 月8時間 = <strong>1時間あたり 10,250円</strong></div>
-        </div>
-        <div class="rate-text-item good">
-          <div class="rate-text-label">FAST-UP</div>
-          <div class="rate-text-formula">月49,800円 ÷ 月84時間 = <strong>1時間あたり 593円</strong></div>
-        </div>
-      </div>
-      <p class="rate-conclusion">
-        1時間あたりの料金は約 <strong>1/17</strong>。<br>サポート時間は <strong>10倍以上</strong>。
-      </p>
-      <p class="rate-source">
-        <small>※「一般的な学習管理塾」=学習管理型の大学受験塾で3科目受講した場合の <strong>5社平均値</strong></small>
-      </p>
-      <div class="feature-sub-cards" style="margin-top:48px;">
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 01</span>
-          <h4>3科目フルサポート</h4>
-          <p>毎日の指導・教材・自習室、<strong>全部込み</strong>で月49,800円。</p>
-        </div>
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 02</span>
-          <h4>独自教材 0円</h4>
-          <p>私大特化の教材、<strong>全科目0円</strong>で使い放題。</p>
-        </div>
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 03</span>
-          <h4>志望校対策 0円</h4>
-          <p>300時間の対策講座が<strong>0円</strong>。教材も使い放題。</p>
-        </div>
-        <div class="feature-sub-card">
-          <span class="feature-sub-card-label">特徴 04</span>
-          <h4>塾内模試 0円</h4>
-          <p>学部特化の模試を<strong>毎月無料</strong>で受け放題。</p>
-        </div>
-      </div>
+    <div class="section-title section-title--left reveal">
+      <small>理由3</small>
+      <h2>比べるなら、<br><em>1年間の総額。</em></h2>
     </div>
-
-    <!-- 比較表（[14]から統合） -->
-    <div class="section-title" style="margin-top:80px;">
-      <small>年間総額で比較</small>
-      <h2>塾選びは、<br><em>月額だけでなく年間費用</em>で比べてください。</h2>
-    </div>
-    <table class="compare-table">
-      <thead>
-        <tr><th>項目</th><th>録画オンライン塾</th><th>個別オンライン塾</th><th class="fastup">FAST-UP</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>指導時間</td><td>視聴時間のみ</td><td>週1〜3時間</td><td class="fastup">週21時間（7倍）</td></tr>
-        <tr><td>カリキュラム</td><td>全員共通</td><td>大まかな計画のみ</td><td class="fastup">1日単位</td></tr>
-        <tr><td>「見られている」感</td><td>×</td><td>△</td><td class="fastup">○ メタバース自習室</td></tr>
-        <tr><td>教材費</td><td>込み（教材薄い）</td><td>7〜12万円</td><td class="fastup">0円</td></tr>
-        <tr><td>模試</td><td>0〜3万円</td><td>3〜6万円</td><td class="fastup">0円</td></tr>
-        <tr><td>夏冬期講習</td><td>10〜20万円</td><td>20〜30万円</td><td class="fastup">0円</td></tr>
-        <tr><td>月額</td><td>約 25,000円</td><td>約 82,000円</td><td class="fastup">49,800円</td></tr>
-      </tbody>
-    </table>
-    <p class="compare-conclusion">
-      指導時間は <strong>7倍</strong>。<br>料金は <strong>約半分</strong>。
-    </p>
-    <p class="compare-source">
-      <small>※「一般的な学習管理塾」=学習管理型の大学受験塾で3科目受講した場合の <strong>5社平均値</strong></small>
+    <p class="annual-lead">
+      教材費・模試・夏冬期講習──。「月額」だけでは、本当のコストは見えません。<br>
+      <strong>1年間の総額</strong>で並べると、差は歴然です。
     </p>
 
-    <!-- 料金詳細（[15]から統合） -->
-    <div class="section-title" style="margin-top:80px;">
-      <small>料金</small>
-      <h2>月額 <em>49,800円</em>、<br>追加費用ゼロ。</h2>
-    </div>
-    <div class="pricing-card">
-      <div class="pricing-headline">月額 <strong>¥49,800</strong> <span style="font-size:18px;color:#888;">（+tax）</span></div>
-      <table class="pricing-table">
-        <tr><td>入塾金</td><td>¥50,000</td></tr>
-        <tr class="highlight"><td>月額（3科目）</td><td>¥49,800</td></tr>
-        <tr><td>教材費</td><td>¥0</td></tr>
-        <tr><td>毎月の模試</td><td>¥0</td></tr>
-        <tr><td>志望校対策</td><td>¥0</td></tr>
-        <tr><td>自習室</td><td>¥0</td></tr>
-        <tr class="highlight"><td>キャンペーン</td><td>初月0円</td></tr>
-      </table>
-      <div class="cta-wrap" style="margin:24px 0;">
-        <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="cta-main">
-          <small>【○月限定】初月0円</small>
-          この料金で、オンライン逆転
-        </a>
-      </div>
-      <div class="pricing-included">
-        <h4>すべて、月額に込み</h4>
-        <ul>
-          <li>毎日3時間の個別特訓</li>
-          <li>個別面談（最大週3回）</li>
-          <li>志望校特化のカリキュラム</li>
-          <li>24時間質問OK</li>
-          <li>全科目の教材費</li>
-          <li>毎月の模試</li>
-          <li>志望校対策</li>
-          <li>自習室・メタバース利用料</li>
+    <div class="annual-faceoff">
+      <div class="annual-col annual-col--other">
+        <span class="annual-tag wipe-in">一般的な学習管理塾</span>
+        <p class="annual-total reveal"><span class="annual-approx">約</span><span class="count-num" data-end="137" data-delay="500">137</span><span class="annual-unit">万円</span><span class="annual-per">／年</span></p>
+        <ul class="annual-breakdown">
+          <li><span>授業料（¥82,000×12）</span><b>¥984,000</b></li>
+          <li><span>教材費</span><b>¥70,000〜</b></li>
+          <li><span>模試</span><b>¥30,000〜</b></li>
+          <li><span>夏冬期講習</span><b>¥200,000〜</b></li>
         </ul>
       </div>
+      <div class="annual-col annual-col--fastup">
+        <span class="annual-tag wipe-in">FAST-UP</span>
+        <p class="annual-total reveal"><span class="annual-approx">約</span><span class="count-num" data-end="60" data-delay="700">60</span><span class="annual-unit">万円</span><span class="annual-per">／年</span></p>
+        <ul class="annual-breakdown">
+          <li><span>授業料（¥49,800×12）</span><b>¥597,600</b></li>
+          <li><span>教材費</span><b class="zero">¥0</b></li>
+          <li><span>模試</span><b class="zero">¥0</b></li>
+          <li><span>夏冬期講習・志望校対策</span><b class="zero">¥0</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="annual-verdict reveal">
+      <p class="annual-verdict-main">年間 <em>約77万円</em> 安い。<br>なのに、指導時間は <em>7倍</em>。</p>
+      <p class="annual-verdict-sub">見てくれる時間で割れば、<strong>1時間あたり 593円</strong>。</p>
+    </div>
+
+    <!-- 内訳の根拠（「では、どう揃えるか」の check-table と同じデザイン） -->
+    <div class="compare-table-block reveal">
+    <table class="compare-table compare-table--annual">
+      <thead>
+        <tr><th>項目</th><th>一般的な学習管理塾</th><th class="fastup">FAST-UP</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>指導時間</td><td>週1〜3時間</td><td class="fastup">週21時間（7倍）</td></tr>
+        <tr><td>カリキュラム</td><td>大まかな計画のみ</td><td class="fastup">1日単位</td></tr>
+        <tr><td>教材費</td><td>7〜12万円</td><td class="fastup">0円</td></tr>
+        <tr><td>模試</td><td>3〜6万円</td><td class="fastup">0円</td></tr>
+        <tr><td>夏冬期講習</td><td>20〜30万円</td><td class="fastup">0円</td></tr>
+        <tr><td>自習室</td><td>制限あり</td><td class="fastup">365日使い放題</td></tr>
+        <tr><td>月額</td><td>約 82,000円</td><td class="fastup">49,800円</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="compare-source">
+      <small>※「一般的な学習管理塾」=学習管理型の大学受験塾で3科目受講した場合の <strong>5社平均値</strong>。年間総額は各項目の概算合計。</small>
+    </p>
+  </div>
+</section>
+
+<!-- ======= [11b] 料金（別セクション） ======= -->
+<section id="pricing" class="section section-cream section-pricing">
+  <div class="pricing-banner">
+    <p class="pricing-banner-eyebrow reveal">料金</p>
+    <h2 class="pricing-banner-title reveal">逆転合格に必要な全てを<br>常識を覆す価格で</h2>
+  </div>
+  <div class="container">
+    <div class="pricing-head">
+      <p class="pricing-plan">3科目フルサポート</p>
+      <p class="pricing-hero-price">
+        <span class="pricing-hero-label">月額</span>
+        <span class="pricing-hero-amount"><span class="pricing-hero-yen">¥</span><span class="count-num" data-end="49800" data-comma="1" data-delay="450">49,800</span></span>
+        <span class="pricing-hero-tax">（+tax）</span>
+      </p>
+      <div class="pricing-hero-notes">
+        <span class="pricing-hero-nofee wipe-in">追加費用ゼロ</span>
+      </div>
+    </div>
+
+    <div class="pricing-detail reveal">
+      <p class="pricing-detail-badge">料金明細</p>
+      <table class="pricing-detail-table">
+        <thead>
+          <tr><th class="col-item">項目</th><th class="col-price">費用</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>入塾金</td><td>¥50,000</td></tr>
+          <tr><td>月額（3科目）</td><td>¥49,800</td></tr>
+          <tr><td>教材費</td><td class="zero">¥0</td></tr>
+          <tr><td>毎月の模試</td><td class="zero">¥0</td></tr>
+          <tr><td>志望校対策</td><td class="zero">¥0</td></tr>
+          <tr><td>自習室</td><td class="zero">¥0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pricing-included-clean reveal">
+      <h4>すべて、月額に込み</h4>
+      <ul>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>毎日3時間の個別特訓</li>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>個別面談（最大週3回）</li>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>志望校特化のカリキュラム</li>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>24時間質問OK</li>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>全科目の教材費</li>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>毎月の模試</li>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>志望校対策</li>
+        <li><span class="pricing-check" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>自習室・メタバース利用料</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ======= [12] 追加サービス＋安心ブロック ======= -->
-<section class="section section-cream">
-  <div class="container">
-    <div class="section-title">
-      <small>さらに</small>
-      <h2>FAST-UPだけの <em>3つの仕組み</em>。</h2>
-    </div>
-    <div class="add-service-grid">
-      <div class="add-service-card">
-        <div class="add-service-num">01</div>
-        <h3>管理型オンライン校</h3>
-        <p>「対面より集中できる」と評判の<strong>メタバース自習室</strong>。地方も全国対応。</p>
-      </div>
-      <div class="add-service-card">
-        <div class="add-service-num">02</div>
-        <h3>共通テスト対策</h3>
-        <p>10〜12月の<strong>3か月間</strong>、<strong>過去問演習＋予想問題</strong>を集中投下。</p>
-      </div>
-      <div class="add-service-card">
-        <div class="add-service-num">03</div>
-        <h3>FAST-UP合宿</h3>
-        <p><strong>2泊3日／3泊4日</strong>、仲間と乗り越える <strong>圧倒的な自信</strong>。<small>※任意参加</small></p>
-      </div>
-    </div>
+<!-- ======= [12] FAST-UPとは（サービスサイトの実マークアップを移植・そのまま版） ======= -->
+<section id="extra" class="py-10 sm:py-20 bg-white"><div class="fu-banner"><p class="fu-banner-eyebrow reveal">さらに</p><h2 class="fu-banner-title reveal">FAST-UPだけの<br>3つの仕組み。</h2></div><div class="container-page"><div class="transition-all duration-700 ease-out opacity-100 translate-y-0"><div class="max-w-[820px] mx-auto"><div class="about3-feat1 pt-8 pb-10 md:pt-6 md:pb-12 border-b divider"><div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center"><div><div class="font-display font-bold text-[13px] tracking-[0.18em] text-olive-700 mb-6">特徴1</div><h3 class="wipe-in w-fit bg-olive-700 text-white font-display font-black text-xl sm:text-[22px] md:text-2xl leading-tight whitespace-nowrap px-2 md:px-3 py-1 mb-4 sm:mb-[20px] md:mb-6">管理型オンライン校</h3><div class="text-[15px] sm:text-base md:text-[15px] text-ink-700 leading-[1.85] sm:leading-[2] md:leading-[1.85] space-y-3"><p><span>アバターで参加する</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">メタバース自習室</em><span>。コーチが画面越しに一人ひとりを巡回し、集中が切れた瞬間に声をかける。だから</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">実際の教室より集中できる</em><span>と評判です。</span></p><p><span>オンラインだから、</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">継続できる</em><span>。</span></p></div></div><div class="about3-ipad-pair"><div class="bg-ink-900 shadow-xl about3-ipad-cell p-[5px] rounded-[9px] md:p-2 md:rounded-[14px]"><div class="relative w-full overflow-hidden rounded-[6px] bg-ink-100 aspect-[4/3]" aria-label="メタバース自習室"><img decoding="async" src="../shared/img/about/feature1-metaverse.jpg" alt="メタバース自習室での特別講習（塾生名は非表示）" loading="lazy" class="absolute inset-0 h-full w-full object-cover"></div></div><div class="bg-ink-900 shadow-xl about3-ipad-cell p-[5px] rounded-[9px] md:p-2 md:rounded-[14px]"><div class="relative w-full overflow-hidden rounded-[6px] bg-ink-100 aspect-[4/3]" aria-label="オンライン指導"><img decoding="async" src="../shared/img/about/feature1-online.jpg" alt="オンライン指導の様子" loading="lazy" class="absolute inset-0 h-full w-full object-cover about3-img-right"></div></div></div></div></div><div class="py-10 md:py-12"><div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center"><div class="md:order-2"><div><div class="font-display font-bold text-[13px] tracking-[0.18em] text-olive-700 mb-6">特徴2</div><h3 class="wipe-in w-fit bg-olive-700 text-white font-display font-black text-xl sm:text-[22px] md:text-2xl leading-tight whitespace-nowrap px-2 md:px-3 py-1 mb-4 sm:mb-[20px] md:mb-6">志望校対策</h3><div class="text-[15px] sm:text-base md:text-[15px] text-ink-700 leading-[1.85] sm:leading-[2] md:leading-[1.85] space-y-3"><p><span>志望する</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">大学・学部</em><span>の出題傾向を、</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">大問ごと</em><span>に徹底分解。合格に必要な一手だけを、専用カリキュラムに落とし込みます。</span></p><p><span>逆転合格は、努力量ではなく</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">戦い方</em><span>で決まる。</span></p></div></div></div><div class="md:order-1 flex items-end justify-center gap-6"><div class="rounded-[12px] sm:rounded-[18px] bg-[#0e0e10] p-[5px] w-[34%] sm:w-[18%] md:w-[30%] shadow-none"><div class="relative aspect-[9/19.5] w-full overflow-hidden rounded-[9px] sm:rounded-[14px] bg-ink-100" aria-label="個別カリキュラム"><div class="absolute left-1/2 top-[2.4%] z-20 flex h-[4.6%] w-[30%] -translate-x-1/2 items-center justify-between rounded-full bg-black px-[8%]"><span class="aspect-square h-[36%] rounded-full bg-[#12203a]"></span><span class="aspect-square h-[46%] rounded-full bg-[#0b1220] ring-[0.5px] ring-[#26364f]"></span></div><img decoding="async" src="../shared/img/about/feature2-iphone.jpg" alt="教材ライブラリ" loading="lazy" class="absolute inset-0 h-full w-full object-cover object-top"></div></div><div class="bg-ink-900 w-[54%] sm:w-[42%] md:w-[56%] p-[5px] rounded-[9px] shadow-none"><div class="relative w-full overflow-hidden rounded-[6px] bg-ink-100 aspect-[3/4]" aria-label="学習分析ダッシュボード"><img decoding="async" src="../shared/img/about/feature2-ipad.jpg" alt="塾生アプリ 本編（予想問題）" loading="lazy" class="absolute inset-0 h-full w-full object-cover object-top"></div></div></div></div></div></div><div class="md:hidden max-w-[820px] mx-auto border-t divider"><div class="pt-10 pb-3 sm:pb-10"><div class="font-display font-bold text-[13px] tracking-[0.18em] text-olive-700 mb-6">特徴3</div><h3 class="wipe-in w-fit bg-olive-700 text-white font-display font-black text-xl sm:text-[22px] md:text-2xl leading-tight whitespace-nowrap px-2 md:px-3 py-1 mb-6 sm:mb-[20px]">FAST-UP合宿</h3><div class="text-[15px] sm:text-base text-ink-700 leading-[1.85] sm:leading-[2] space-y-3 mb-7"><p><span>合宿でしか組めない</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">専用プログラム</em><span>に、朝から晩まで没頭。</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">苦手を得意に</em><span>変え、</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">得意はさらに圧倒的に</em><span>磨き上げます。</span></p><p><span>変わる、</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">最高の3日間</em><span>。</span><small class="about3-note">※任意参加</small></p></div><div class="about3-photo-pair reveal--stagger"><div class="about3-photo"><img decoding="async" src="../shared/img/about/camp-1.png" alt="FAST-UP合宿の懇親会" loading="lazy"></div><div class="about3-photo"><img decoding="async" src="../shared/img/about/camp-2.jpg" alt="FAST-UP合宿の勉強会" loading="lazy"></div></div></div></div><div class="hidden md:block max-w-[820px] mx-auto border-t divider"><div class="py-10 md:py-12"><div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center"><div><div class="font-display font-bold text-[13px] tracking-[0.18em] text-olive-700 mb-6">特徴3</div><h3 class="wipe-in w-fit bg-olive-700 text-white font-display font-black text-xl sm:text-[22px] md:text-2xl leading-tight whitespace-nowrap px-2 md:px-3 py-1 mb-6">FAST-UP合宿</h3><div class="text-sm md:text-[15px] text-ink-700 leading-[1.85] space-y-3"><p><span>合宿でしか組めない</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">専用プログラム</em><span>に、朝から晩まで没頭。</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">苦手を得意に</em><span>変え、</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">得意はさらに圧倒的に</em><span>磨き上げます。</span></p><p><span>変わる、</span><em class="not-italic font-bold" style="background:linear-gradient(transparent 62%, #E7E3D2 62%)">最高の3日間</em><span>。</span><small class="about3-note">※任意参加</small></p></div></div><div class="about3-photo-pair reveal--stagger"><div class="about3-photo"><img decoding="async" src="../shared/img/about/camp-1.png" alt="FAST-UP合宿の懇親会" loading="lazy"></div><div class="about3-photo"><img decoding="async" src="../shared/img/about/camp-2.jpg" alt="FAST-UP合宿の勉強会" loading="lazy"></div></div></div></div></div></div></div></section>
 
-    <!-- 安心3つ -->
-    <div class="section-title" style="margin-top:80px;">
-      <small>安心の3つ</small>
-      <h2>毎日見てくれる <em>コーチ陣</em>。</h2>
+<!-- ======= [12b] 安心の3つ（白背景・別セクション） ======= -->
+<section id="reassure" class="section section-cream">
+  <div class="reassure-band bg-lazy">
+    <div class="container">
+      <!-- 安心3つ -->
+      <div class="reassure-inner reveal">
+      <div class="section-title reveal">
+        <small>安心の3つ</small>
+        <h2>毎日見てくれる <em>コーチ陣</em>。</h2>
+      </div>
+      <div class="matching-grid reveal--stagger">
+        <div class="matching-card">
+          <div class="matching-num slide-x">01</div>
+          <h4>24時間 質問OK</h4>
+          <p>家でも、深夜でも。<strong>わからない瞬間に、即質問</strong>。</p>
+        </div>
+        <div class="matching-card">
+          <div class="matching-num slide-x">02</div>
+          <h4>採用率3% のコーチ</h4>
+          <p>応募 <strong>3,200人</strong> 中、採用は <strong>96人だけ</strong>。難関大率100%。</p>
+        </div>
+        <div class="matching-card">
+          <div class="matching-num slide-x">03</div>
+          <h4>何度でも変更可</h4>
+          <p>合わなければ、<strong>コーチ変更 何度でも</strong>。</p>
+        </div>
+      </div>
+      </div>
     </div>
-    <div class="matching-grid">
-      <div class="matching-card">
-        <h4>🌐 24時間 質問OK</h4>
-        <p>家でも、深夜でも。<br><strong>わからない瞬間に、即質問</strong>。</p>
-      </div>
-      <div class="matching-card">
-        <h4>👥 採用率3% のコーチ</h4>
-        <p>応募 <strong>3,200人</strong> 中、<br>採用は <strong>96人だけ</strong>。<br><strong>学力査定 ＋ 教える力 ＋ 誠実さ・継続性</strong>の3段階選考。<br>難関大率100%・<strong>平均満足度95点</strong>。</p>
-      </div>
-      <div class="matching-card">
-        <h4>🔄 何度でも変更可</h4>
-        <p>合わなければ、<br><strong>コーチ変更 何度でも</strong>。</p>
-      </div>
-    </div>
-    <div class="coach-philosophy">
-      天才は採用しない。<br>コーチは、あなたと同じ <em>逆転合格者</em>。
+  </div>
+  <div class="container">
+    <div class="coach-philosophy reveal">
+      天才は採用しない。<br class="br-pc">コーチは、あなたと同じ <em>逆転合格者</em>。
       <p class="coach-philosophy-detail">
         多くのコーチが、<br>
         <strong>偏差値30台から早慶・GMARCH・難関国立に逆転合格</strong>した経験者。
       </p>
     </div>
   </div>
+  <div class="reassure-photo reveal">
+    <img decoding="async" loading="lazy" src="../shared/img/coaches-team.png" alt="FAST-UPのコーチ陣">
+  </div>
 </section>
 
-<!-- ======= [12.5] ターゲットフィルタリング ======= -->
-<section class="section section-light">
+<!-- ======= [12.5] ターゲットフィルタリング（04bオンライン固有） ======= -->
+<section id="fit" class="section section-light">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>向き不向き</small>
       <h2>FAST-UPは、<br><em>全員Welcomeの塾ではない。</em></h2>
     </div>
-    <p class="lead-text" style="text-align:center;">
+    <p class="lead-text reveal">
       本気でオンラインで逆転を狙う人にだけ、<strong>本気で応える塾</strong>。<br>
-      <small style="font-family:'Noto Sans JP',sans-serif;color:#888;">合わない方に、無理にお勧めはしない。</small>
+      <em>合わない方に、無理にお勧めはしません。</em>
     </p>
-    <div class="add-service-grid" style="margin-top:40px;">
-      <div class="add-service-card" style="border-left:4px solid #b8a370;">
-        <div class="add-service-num" style="color:#b8a370;">○</div>
+    <div class="add-service-grid reveal--stagger">
+      <div class="add-service-card fit-card fit-card--yes">
         <h3>FAST-UPに向く人</h3>
-        <ul style="text-align:left;padding-left:20px;margin-top:12px;line-height:1.9;">
+        <ul class="fit-list">
           <li>家で続かないと、<strong>自覚している</strong></li>
           <li>校舎に通えず、<strong>オンラインで本気</strong>で勉強したい</li>
           <li>「見られていないとサボる」と<strong>素直に認められる</strong></li>
@@ -763,59 +1022,72 @@
           <li>コーチの指示を、<strong>素直に実行</strong>できる</li>
         </ul>
       </div>
-      <div class="add-service-card" style="border-left:4px solid #aaa;">
-        <div class="add-service-num" style="color:#aaa;">✕</div>
+      <div class="add-service-card fit-card fit-card--no">
         <h3>FAST-UPに向かない人</h3>
-        <ul style="text-align:left;padding-left:20px;margin-top:12px;line-height:1.9;">
+        <ul class="fit-list">
           <li>「録画見るだけ」が、<strong>本音で楽な道</strong>になっている</li>
           <li>「楽な道」を、<strong>本気で探している</strong></li>
           <li>家でサボる自分を、<strong>他人や環境のせいにする</strong></li>
         </ul>
       </div>
     </div>
-    <div class="empathy-conclusion" style="margin-top:48px;">
-      <strong>本気の人にだけ、本気で。</strong><br>
-      <span class="empathy-conclusion-sub">あなたの本気度を、無料カウンセリングで確認。</span>
+    <div class="fit-close reveal">
+      <strong>本気な人にだけ、本気で。</strong>
+      <span class="fit-close-sub wipe-in">それが、FAST-UP。</span>
     </div>
   </div>
 </section>
 
-<!-- ======= [13] 保証＋入塾フロー ======= -->
-<section class="section section-light">
+<!-- ======= [13] 保証 ======= -->
+<section id="guarantee" class="section section-light">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>保証</small>
-      <h2>合わなければ、<br><em>全額返金。</em></h2>
+      <h2>合わなければ、全額返金。</h2>
     </div>
-    <div class="guarantee-grid">
+    <div class="guarantee-grid reveal--stagger">
       <div class="guarantee-card">
-        <h3>全額返金保証</h3>
-        <p>基準未達なら、<br>授業料を<strong>全額返金</strong>。</p>
-        <ul class="guarantee-conditions">
-          <li>毎日の特訓に出席</li>
-          <li>ミニ模試で基準点クリア<br><small>※ 特訓を受ければ取れる設計</small></li>
-        </ul>
+        <div class="guarantee-card-top">
+          <h3>全額返金保証</h3>
+          <p>基準未達なら、<br>授業料を<strong>全額返金</strong>。</p>
+        </div>
+        <div class="guarantee-cond">
+          <p class="guarantee-conditions-label">条件</p>
+          <ul class="guarantee-conditions">
+            <li>毎日の特訓に出席</li>
+            <li>ミニ模試で基準点クリア<small>※ 特訓を受ければ取れる設計</small></li>
+          </ul>
+        </div>
       </div>
       <div class="guarantee-card">
-        <h3>無条件返金保証</h3>
-        <p>入塾後でも、合わなければ<br><strong>無条件で返金</strong>。</p>
-        <ul class="guarantee-conditions">
-          <li><strong>入塾後14日以内</strong>に申請</li>
-          <li>理由不問</li>
-        </ul>
+        <div class="guarantee-card-top">
+          <h3>無条件返金保証</h3>
+          <p>入塾後でも、合わなければ<br><strong>無条件で返金</strong>。</p>
+        </div>
+        <div class="guarantee-cond">
+          <p class="guarantee-conditions-label">条件</p>
+          <ul class="guarantee-conditions">
+            <li><strong>入塾後14日以内</strong>に申請</li>
+            <li>理由不問</li>
+          </ul>
+        </div>
       </div>
     </div>
     <p class="guarantee-note">
       ※ 保証獲得条件は、<strong>努力で達成可能な基準</strong>として設定。
     </p>
-    <div class="pay-support">
+    <div class="pay-support reveal">
       <h4>お支払いについて</h4>
       <p><strong>月額払い</strong>に対応。<br>
       入塾金以外、追加料金は原則ゼロ。</p>
     </div>
+  </div>
+</section>
 
-    <!-- スカラシップ制度 -->
-    <div class="scholarship-block">
+<!-- ======= [13b] スカラシップ制度 ======= -->
+<section id="scholarship" class="section section-light">
+  <div class="container">
+    <div class="scholarship-block reveal">
       <p class="scholarship-eyebrow">お支払いが困難な方へ</p>
       <h3 class="scholarship-headline">
         料金で、<br>
@@ -823,23 +1095,27 @@
       </h3>
       <div class="scholarship-body">
         <p>その想いから生まれた、<strong>スカラシップ制度</strong>。</p>
-        <p class="scholarship-highlight">本気で逆転合格を目指す方の<br><strong>授業料を、全額免除</strong>。</p>
+        <div class="scholarship-highlight">
+          <span class="scholarship-tag wipe-in">スカラシップ制度</span>
+          <p class="sh-small">本気で逆転合格を目指す方の</p>
+          <p class="sh-big">授業料、全額免除</p>
+        </div>
         <p class="scholarship-note"><small>※ 適用には条件あり。詳しくは無料カウンセリングで。</small></p>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- 3層統合訴求 -->
-    <div class="guarantee-integrated" style="margin-top:40px;padding:24px;background:#fdf8e8;border-left:4px solid #c9a063;text-align:center;">
-      <p style="font-weight:700;font-size:1.05em;margin:0;">3層保証で、<strong style="color:#c9a063;">リスクなく挑戦できる。</strong></p>
-      <p style="font-size:0.92em;margin:8px 0 0;opacity:.8;">全額返金保証 ＋ 14日無条件返金 ＋ スカラシップ制度</p>
-    </div>
-
+<!-- ======= [13c] 入塾フロー ======= -->
+<section id="enroll-flow" class="section section-light">
+  <div class="container">
+    <div class="flow-card">
     <!-- 入塾フロー -->
-    <div class="section-title" style="margin-top:80px;">
-      <small>flow</small>
-      <h2>30秒で完了、<br><em>4ステップ</em>。</h2>
+    <div class="section-title reveal">
+      <small>入塾までの流れ</small>
+      <h2>30秒で完了、<em>4ステップ</em>。</h2>
     </div>
-    <div class="flow-grid">
+    <div class="flow-grid reveal--stagger">
       <div class="flow-step">
         <div class="flow-step-num">1</div>
         <h4>LINE登録</h4>
@@ -861,36 +1137,29 @@
         <p>最短翌日<br>スタート</p>
       </div>
     </div>
+    </div><!-- /.flow-card -->
   </div>
 </section>
 
 <!-- ======= [14] FAQ＋最終CTA ======= -->
-<section class="section section-cream">
+<section id="faq" class="section section-cream">
   <div class="container">
-    <div class="section-title">
+    <div class="section-title reveal">
       <small>FAQ</small>
       <h2>よくある質問</h2>
     </div>
-    <div class="faq-list">
+    <div class="faq-list reveal--stagger">
       <div class="faq-item">
-        <div class="faq-question">家でサボってしまう自分でも大丈夫？</div>
-        <div class="faq-answer">大丈夫です。FAST-UPは「家で続けられない人」のために作られたオンライン管理塾です。画面越しに毎日3時間、コーチがつきっきりで管理します。</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">メタバース自習室って何？</div>
-        <div class="faq-answer">アバターで入る仮想自習室です。他の塾生の存在感とコーチの巡回があるため、「対面より集中できる」と評判。校舎と同じ強制集中環境を、家から作れます。</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Wi-Fi環境が不安です…</div>
-        <div class="faq-answer">スマホの通信でも参加可能です。回線が一時的に切れても、コーチが状況を把握して再接続をサポート。設備よりも「続けられる仕組み」を優先しています。</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">録画じゃなくて、リアルタイム指導？</div>
-        <div class="faq-answer">はい。毎日3時間、リアルタイムで画面越しに指導します。録画系オンライン塾とは違い、対話式講義・ミニ模試・質問対応をその場で実施します。</div>
+        <div class="faq-question">勉強が3日と続かない自分でも大丈夫？</div>
+        <div class="faq-answer">大丈夫です。FAST-UPは「自分でできない人」のために作られた塾です。毎日3時間コーチが横にいて、全部管理します。</div>
       </div>
       <div class="faq-item">
         <div class="faq-question">勉強の仕方が分からないのですが…</div>
         <div class="faq-answer">大丈夫です。アプリで「今日やること・やり方」を1日単位で提示します。迷う時間はゼロです。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">オンラインだけで本当に管理してもらえる？</div>
+        <div class="faq-answer">はい。メタバース自習室は校舎と同じ。コーチの巡回・他生徒の存在もあり、「むしろ集中できる」と評判です。</div>
       </div>
       <div class="faq-item">
         <div class="faq-question">部活と両立できますか？</div>
@@ -898,7 +1167,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-question">浪人生でも入れますか？</div>
-        <div class="faq-answer">はい。現役・浪人どちらも対応。「もう自分一人ではダメ」と思った浪人生こそ、毎日伴走するコーチが必要です。</div>
+        <div class="faq-answer">はい。現役・浪人どちらも対応。「もう自分一人ではダメ」と思った浪人生こそ、毎日横にいるコーチが必要です。</div>
       </div>
       <div class="faq-item">
         <div class="faq-question">他のコーチング塾と何が違うの？</div>
@@ -909,32 +1178,12 @@
         <div class="faq-answer">はい。偏差値32から青学・立教へ合格した塾生も多数。コーチの多くも偏差値30台から早慶GMARCH・難関国立に合格した経験者なので、気持ちが分かります。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">オンラインだけで本当に伸びるか不安です</div>
-        <div class="faq-answer">伸びます。「対面より集中できる」と評判のメタバース自習室、毎日3時間つきっきりの指導、24時間質問OKで、対面校舎と同等以上の管理を実現しています。家で続かなかった受講生が、続々と難関私大に合格しています。</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">学校・塾で「志望校は無理」と言われたのですが</div>
-        <div class="faq-answer">無理ではありません。「無理」と言われた多くの受講生が、正しい学習計画で逆転合格しています。録画講義・集団Zoomでは「画面越しに毎日見続ける」仕組みは作れません。FAST-UPは画面越しに毎日3時間、コーチが横で指導する仕組みで逆転合格を実現します。</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">親が反対しているのですが、どうすれば</div>
-        <div class="faq-answer">無料カウンセリングに保護者の方もご参加可能。合格率89.2%・偏差値+21・3層の保証制度（全額返金／14日無条件返金／スカラシップ）を直接お伝えします。「親を説得する材料」だけ持ち帰る方も多いです。</div>
-      </div>
-      <div class="faq-item">
         <div class="faq-question">親に相談する前に話だけ聞ける？</div>
         <div class="faq-answer">もちろんOK。無料カウンセリングは入塾なしでも大丈夫。「親を説得する材料」だけ持ち帰る方も多いです。</div>
       </div>
       <div class="faq-item">
         <div class="faq-question">月49,800円以外に追加料金は？</div>
         <div class="faq-answer">入塾金以外、原則ゼロです。教材・模試・夏冬講習・志望校対策、全部込み。月額払いに対応しています。</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">月49,800円が、家計的に厳しいです</div>
-        <div class="faq-answer">スカラシップ制度をご検討ください。本気で逆転合格を目指す方の授業料を全額免除する制度があります。詳細はカウンセリングで適用可否を判断します。月額払い対応・追加費用ゼロです。</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">やる気が続かない／メンタルが弱いのですが</div>
-        <div class="faq-answer">大丈夫です。FAST-UPは「自分一人ではダメ」と気づいた人のための塾。画面越しに毎日3時間コーチが横にいて、メンタル面も支えます。コーチ自身が逆転合格経験者なので、苦しい気持ちが分かります。</div>
       </div>
       <div class="faq-item">
         <div class="faq-question">返金保証の条件は？</div>
@@ -957,52 +1206,72 @@
 </section>
 
 <!-- ======= 最終CTA ======= -->
-<section class="section section-dark">
-  <div class="container">
-    <div class="section-title">
-      <small>final cta</small>
-      <h2>「家で続かない」を、<br><em style="color:#e8d896;background:none;">卒業。</em></h2>
+<section id="final-cta" class="section section-dark bg-lazy">
+  <div class="container counsel-inner">
+    <div class="section-title reveal">
+      <small>無料カウンセリング</small>
+      <h2>「家で続かない」を、<em>卒業。</em></h2>
     </div>
-    <p class="lead-text" style="font-size:15px;color:#c8c2a8;margin-bottom:24px;">
-      無料カウンセリングで得られる5つ：<br>
-      <strong style="color:#e8d896;">①距離数値化 ②逆算プラン ③メタバース自習室体験 ④弱点改善プラン ⑤「3つの仕組み」診断</strong>
-    </p>
-    <p class="lead-text">
-      【○月限定】<strong style="color:#e8d896;font-size:1.2em;">初月指導料 0円</strong><br>
-      <small style="font-family:'Noto Sans JP',sans-serif;color:#c8c2a8;">定員制・先着順 / 無理な勧誘なし</small>
-    </p>
-    <div class="cta-wrap-multi">
-      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="cta-main">
-        <small>30秒で予約</small>
-        無料カウンセリングを予約
-      </a>
-      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="cta-sub">入塾しなくてもOK LINEで相談</a>
+    <div class="counsel-tags reveal--stagger">
+      <span class="counsel-tag">#初月指導料0円</span>
+      <span class="counsel-tag">#定員制・先着順</span>
+      <span class="counsel-tag">#無理な勧誘なし</span>
     </div>
+    <div class="counsel-divider" aria-hidden="true"></div>
+    <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="counsel-cta reveal">
+      <span class="counsel-cta-badge"><span class="cta-dash">-</span>○月限定<span class="cta-dash">-</span></span>
+      <span class="counsel-cta-text">無料カウンセリングを予約</span>
+    </a>
+    <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="final-cta-sub">入塾しなくてもOK・LINEで相談だけ</a>
   </div>
 </section>
 
 <!-- ======= LINE登録ブロック ======= -->
-<section class="final-line-cta">
-  <h2>あなた専用のオンライン逆転ルートを、<br>無料で受け取る。</h2>
-  <p>偏差値・志望校・残り時間から、<strong>あなた専用の最短ルート</strong>を、コーチが直接設計。<br>
-  すべて、LINEで完結。</p>
-  <div class="gift-banner">
-    さらに特典：<strong>「学習法ライブラリ」プレゼント</strong>
+<section id="line-cta" class="final-line-cta">
+  <h2>まずは、LINE登録</h2>
+  <p>無料カウンセリング予約・学習相談、すべてLINEで完結。</p>
+  <div class="line-gift-card reveal">
+    <span class="line-gift-label wipe-in">友だち追加特典</span>
+    <div class="line-gift-mock"><img decoding="async" loading="lazy" src="../shared/img/gift-mockup.png" alt="学習法ライブラリ"></div>
+    <p class="line-gift-name">「学習法ライブラリ」プレゼント<small>逆転合格に必要な学習法を1冊に凝縮</small></p>
   </div>
-  <br>
-  <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="line-cta-button">公式LINEで友だち追加 →</a>
+  <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="line-cta-button">公式LINEで友だち追加 <span class="line-cta-arrow" aria-hidden="true">›</span></a>
 </section>
 
 <!-- ======= フッター ======= -->
 <footer class="footer">
-  <p>&copy; FAST-UP逆転塾 / 株式会社Nogifa</p>
+  <div class="footer-inner">
+    <div class="footer-brand reveal">
+      <img decoding="async" loading="lazy" src="../shared/img/logo-dark.png" alt="FAST-UP逆転塾" class="footer-logo-img">
+    </div>
+    <nav class="footer-nav reveal--stagger" aria-label="フッターナビ">
+      <a href="#about">FAST-UPとは</a>
+      <a href="#achievements">実績</a>
+      <a href="#reason2">選ばれる理由</a>
+      <a href="#pricing">料金</a>
+      <a href="#guarantee">保証</a>
+      <a href="#scholarship">スカラシップ制度</a>
+      <a href="#enroll-flow">入塾までの流れ</a>
+      <a href="#faq">よくある質問</a>
+      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW">無料相談</a>
+    </nav>
+    <p class="footer-copy reveal">&copy; FAST-UP逆転塾 / 株式会社Nogifa</p>
+  </div>
 </footer>
 
 <!-- スマホ用 sticky CTA -->
 <div class="sticky-cta">
-  <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW">無料で逆転ルート診断 →</a>
+  <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="header-cta">
+    <span class="header-cta-badge"><span>無料</span></span>
+    <span class="header-cta-body">
+      <span class="header-cta-eyebrow">【○月限定】入塾金無料</span>
+      <span class="header-cta-main">カウンセリングを予約</span>
+    </span>
+    <span class="header-cta-arrow" aria-hidden="true">›</span>
+  </a>
 </div>
 
+<script src="../shared/lp.js"></script>
 <script src="../shared/liff-redirect.js"></script>
 </body>
 </html>

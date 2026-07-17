@@ -12,6 +12,36 @@
      }
    ============================================================ */
 
+/* アニメクラスの自動付与（<html data-anim="auto"> のLPのみ）：
+   HTMLに .reveal 等を手打ちしなくても、共通語彙の要素へ自動で付ける。
+   04a のように手動で付けたLPは data-anim を付けない＝この処理は動かない。
+   手動クラスが既に付いた要素・FV内・アニメ管理する親の中はスキップする。 */
+(function () {
+  if (document.documentElement.getAttribute('data-anim') !== 'auto') return;
+  /* 04a の手動配置と同じ型：グリッド/カード列はコンテナに stagger、
+     単体要素は reveal。二重付与を避けるため stagger を先に付け、
+     stagger の中の要素には reveal を付けない。 */
+  var STAGGER = ['.empathy-grid', '.feature-sub-cards', '.calendar-compare'];
+  var REVEAL = [
+    '.section-title', '.quick-feature-card', '.case-card', '.trust-card',
+    '.stat-item', '.add-service-card', '.faq-item',
+    '.aha-lead', '.aha-lead-card', '.cta-wrap', '.cta-wrap-multi',
+    '.ceo-message-compact', '.empathy-conclusion', '.check-table-conclusion',
+    '.gift-banner', '.pay-support', '.pricing-detail', '.pricing-included-clean'
+  ];
+  var ANIM = ['reveal', 'reveal--stagger', 'slide-x', 'slide-x--stagger', 'wipe-in', 'focus-in', 'fv-anim'];
+  function tag(selectors, cls) {
+    document.querySelectorAll(selectors.join(', ')).forEach(function (el) {
+      if (el.closest('.fv')) return;
+      for (var i = 0; i < ANIM.length; i++) if (el.classList.contains(ANIM[i])) return;
+      if (cls === 'reveal' && el.parentElement && el.parentElement.closest('.reveal--stagger, .slide-x--stagger')) return;
+      el.classList.add(cls);
+    });
+  }
+  tag(STAGGER, 'reveal--stagger');
+  tag(REVEAL, 'reveal');
+})();
+
 /* 共通スクロールインアニメ：ビューポート進入時に .is-in を付与（1回のみ） */
 (function () {
   if (!('IntersectionObserver' in window)) return;
