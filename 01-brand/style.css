@@ -200,6 +200,9 @@
   }
   #brand-about .brand-band-chips { justify-content: flex-start; }
   #brand-about .brand-band-result { text-align: left; }
+  /* カード内リード文を1px小さく、見出しとの間隔も詰める */
+  #brand-about .brand-band-lead { font-size: 16px; }
+  #brand-about .brand-band-h { margin-bottom: 14px; }
   /* スマホは縦長で切り抜きがPCと大きく異なるため、女の子の顔が
      半透明ボックス越し＋右のスキマに大きく出るよう位置を固定
      （右端が多少見切れてもよい） */
