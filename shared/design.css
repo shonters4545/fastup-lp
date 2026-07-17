@@ -1661,8 +1661,8 @@
    白ボックスと文字が「一緒に」左から現れる（事前にテキストは見えない）
    ============================================================ */
 .js-reveal .wipe-in,
-.js-reveal .empathy-card-text .empathy-card-lead,
-.js-reveal .empathy-card-text strong {
+.js-reveal .empathy-grid.reveal--stagger .empathy-card-text .empathy-card-lead,
+.js-reveal .empathy-grid.reveal--stagger .empathy-card-text strong {
   clip-path: inset(0 100% 0 0);
 }
 .js-reveal .wipe-in.is-in,
@@ -1741,14 +1741,14 @@
 .js-reveal .ceo-message-body.reveal--stagger.is-in > *:nth-child(4) { transition-delay: 1.5s; }
 
 /* 理由1（ジグザグ）特徴カード：中の見出し(h4)は下からふわっと遅れて */
-.js-reveal .feature-sub-card h4 { opacity: 0; transform: translateY(18px); }
+.js-reveal .reveal--stagger .feature-sub-card h4 { opacity: 0; transform: translateY(18px); }
 .js-reveal .reveal--stagger.is-in .feature-sub-card h4 {
   animation: fade-up-in 0.6s var(--fu-ease) forwards;
   animation-delay: 0.55s;
 }
 @keyframes fade-up-in { to { opacity: 1; transform: none; } }
 /* 理由2「4つの強み」の特徴見出しは左から */
-.js-reveal .section-feature-app .feature-sub-card h4 { transform: translateX(-36px); }
+.js-reveal .section-feature-app .reveal--stagger .feature-sub-card h4 { transform: translateX(-36px); }
 .js-reveal .section-feature-app .reveal--stagger.is-in .feature-sub-card h4 {
   animation: slide-x-in 0.6s var(--fu-ease) forwards;
   animation-delay: 0.55s;
@@ -1811,11 +1811,11 @@
 }
 
 /* 料金明細：バッジ→表の行を順にふわっと */
-.js-reveal .pricing-detail-badge { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-detail.reveal .pricing-detail-badge { opacity: 0; transform: translateY(14px); }
 .js-reveal .pricing-detail.is-in .pricing-detail-badge {
   animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.15s;
 }
-.js-reveal .pricing-detail-table tbody tr { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-detail.reveal .pricing-detail-table tbody tr { opacity: 0; transform: translateY(14px); }
 .js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr {
   animation: fade-up-in 0.5s var(--fu-ease) forwards;
 }
@@ -1839,11 +1839,11 @@
 .js-reveal .fu-banner-title.reveal { transition-delay: 0.28s; }
 
 /* 「すべて、月額に込み」：見出し→チェックリストを1項目ずつ順にふわっと */
-.js-reveal .pricing-included-clean h4 { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-included-clean.reveal h4 { opacity: 0; transform: translateY(14px); }
 .js-reveal .pricing-included-clean.is-in h4 {
   animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.15s;
 }
-.js-reveal .pricing-included-clean ul li { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-included-clean.reveal ul li { opacity: 0; transform: translateY(14px); }
 .js-reveal .pricing-included-clean.is-in ul li {
   animation: fade-up-in 0.5s var(--fu-ease) forwards;
 }
@@ -1857,8 +1857,8 @@
 .js-reveal .pricing-included-clean.is-in ul li:nth-child(8) { animation-delay: 0.91s; }
 .js-reveal .pricing-included-clean.is-in ul li:nth-child(n+9) { animation-delay: 0.99s; }
 /* お支払いについて：見出し→本文 */
-.js-reveal .pay-support h4,
-.js-reveal .pay-support p { opacity: 0; transform: translateY(14px); }
+.js-reveal .pay-support.reveal h4,
+.js-reveal .pay-support.reveal p { opacity: 0; transform: translateY(14px); }
 .js-reveal .pay-support.is-in h4 { animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.15s; }
 .js-reveal .pay-support.is-in p { animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.32s; }
 @media (prefers-reduced-motion: reduce) {
@@ -1882,7 +1882,7 @@
 .js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(9) { transition-delay: 0.53s; }
 .js-reveal .footer-copy.reveal { transition-delay: 0.6s; }
 /* 理由1 カレンダーパネル見出し（月8時間 / 月84時間）：ふわっと遅れて */
-.js-reveal .cal-panel-headline { opacity: 0; transform: translateY(18px); }
+.js-reveal .calendar-compare.reveal--stagger .cal-panel-headline { opacity: 0; transform: translateY(18px); }
 .js-reveal .calendar-compare.is-in .cal-panel-headline {
   animation: fade-up-in 0.6s var(--fu-ease) forwards;
   animation-delay: 0.45s;
@@ -1915,7 +1915,7 @@
   }
 }
 /* チェック表の結論：「3つ全部揃っているのは、」「FAST-UPのみ。」のワイン箱を順にワイプ */
-.js-reveal .check-table-conclusion span { clip-path: inset(0 100% 0 0); }
+.js-reveal .check-table-conclusion.reveal span { clip-path: inset(0 100% 0 0); }
 .js-reveal .check-table-conclusion.is-in span {
   animation: wipe-in-x 0.55s var(--fu-ease) forwards;
   animation-delay: 0.4s;
@@ -1930,12 +1930,12 @@
 }
 
 /* ---- 見出し内のボックスem（3つ/仕組みの問題/一般塾の7倍/1年間の総額 等）もワイプ ---- */
-.js-reveal .section-cream .section-title h2 em,
-.js-reveal .section-aha .section-title h2 em,
-.js-reveal .section-feature .section-title h2 em,
-.js-reveal .section-annual .section-title h2 em,
-.js-reveal .aha-lead-headline em,
-.js-reveal .feature-sub-heading h3 em {
+.js-reveal .section-cream .section-title.reveal h2 em,
+.js-reveal .section-aha .section-title.reveal h2 em,
+.js-reveal .section-feature .section-title.reveal h2 em,
+.js-reveal .section-annual .section-title.reveal h2 em,
+.js-reveal .aha-lead-card.reveal .aha-lead-headline em,
+.js-reveal .feature-sub-cards.reveal--stagger .feature-sub-heading h3 em {
   clip-path: inset(0 100% 0 0);
 }
 /* 見出しのフェードに続けてワイプ（FVマーカーの後引きに準拠） */
@@ -2045,9 +2045,7 @@
 
    html.js-bglazy は JS が動く時だけ付く。JS 無効時は下の規則が
    まるごと効かず、写真は最初から表示される（＝安全側に倒れる）。
-
-   ここには「写真を外した待機状態」だけを書く。.is-bg が付いた時に
-   出す写真（url）は各LPの style.css が持つ。 ============================================================ */
+   ============================================================ */
 .js-bglazy .bg-lazy { background-color: var(--fu-bg-dark); }
 
 /* #final-cta（最終CTA）：写真が来るまで暗幕グラデのみ */
@@ -2064,3 +2062,52 @@
 .js-bglazy .section-feature-app .feature-sub-cards.bg-lazy {
   background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
 }
+
+/* ============================================================
+   ブランド共通写真のデフォルト紐付け
+   ------------------------------------------------------------
+   写真は shared/img/ に置いてあり、このファイルからの url() は
+   shared/img/ に解決される。各LPで写真を差し替えたい場合は、
+   そのLPの style.css（後読み）で同じセレクタを上書きするだけでよい。
+
+   base の規則は JS 無効時のフォールバック（js-bglazy が付かない時は
+   最初から写真を表示）。JS 有効時は上の .bg-lazy 待機規則が詳細度で
+   勝ち、画面に近づいて .is-bg が付いた時に *.is-bg 規則の写真が出る。
+   ============================================================ */
+
+/* FV（.fv--service）：ブランドのヒーロー写真（遅延なし・即表示） */
+.fv--service { background-image: url('img/fv-hero.jpg'); }
+
+/* 安心の3つ：コーチ陣写真の帯 */
+.reassure-band {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/coach-talk.jpg');
+}
+.js-bglazy .reassure-band.bg-lazy.is-bg {
+  background-image:
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
+    url('img/coach-talk.jpg');
+}
+
+/* 理由2：特徴カードの背景写真 */
+.section-feature-app .feature-sub-cards {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/feature-section-bg.jpg');
+}
+.js-bglazy .section-feature-app .feature-sub-cards.bg-lazy.is-bg {
+  background-image:
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
+    url('img/feature-section-bg.jpg');
+}
+
+/* 最終CTA */
+#final-cta {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/final-cta-bg.jpg');
+}
+.js-bglazy #final-cta.bg-lazy.is-bg {
+  background-image:
+    linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)),
+    url('img/final-cta-bg.jpg');
+}
+
+/* サービス特徴（#about）：写真は遅延読み込み時のみ（JS無効時は section-brand の
+   暗背景色のまま＝可読性は保たれる） */
+.js-bglazy #about.bg-lazy.is-bg { background-image: url('img/service-feature-1.jpg'); }
