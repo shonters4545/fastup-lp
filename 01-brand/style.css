@@ -188,6 +188,19 @@
   .brand-band-chips { flex-wrap: wrap; }
   .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
 }
+/* ②タブレット：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
+   右に空いた10vwに背景の女の子が見える構図にする */
+@media (min-width: 768px) and (max-width: 900px) {
+  #brand-about .brand-band-inner {
+    width: 90vw;
+    max-width: none;
+    margin-left: -20px;   /* band の左padding(20px)を打ち消して画面左端へ */
+    margin-right: 0;
+    text-align: left;
+  }
+  #brand-about .brand-band-chips { justify-content: flex-start; }
+  #brand-about .brand-band-result { text-align: left; }
+}
 /* ④スマホ：狭いボックス内で見出しの各行がさらに折り返さないよう縮小 */
 @media (max-width: 480px) {
   #brand-about .brand-band-h { font-size: 22px; }
