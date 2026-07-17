@@ -2,8 +2,39 @@
    04b-online 個別CSS（差分のみ）
    ------------------------------------------------------------
    見た目のルールは ../shared/design.css（デザインレイヤー）を「正」とする。
-   このファイルには 04b 固有の差分だけを書く。
-
-   HTMLは 04a を原本に文言のみ差し替えたクローンのため、現状差分なし。
-   写真をこのLP専用に差し替える場合はここで同じセレクタを上書きする。
+   HTMLは 04a を原本に文言のみ差し替えたクローン。
+   ここには 04b にしか無いセクションの差分だけを書く。
    ============================================================ */
+
+/* ============================================================
+   [12.5] 向き不向き（#fit）— 04bオンライン固有セクション
+   ------------------------------------------------------------
+   旧LPからの復活分。カードUI（.add-service-card）は共通の基盤側を使い、
+   ここでは「向く/向かない」の色分けと2カラム化だけを足す。
+   ※このセクションのデザインは今後の差分デザインで見直す予定。
+   ============================================================ */
+#fit .add-service-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) {
+  #fit .add-service-grid { grid-template-columns: 1fr; }
+}
+
+/* カード上端のアクセントバー（基盤の ::before）を、向かない側だけグレーに。
+   向く側は基盤のオリーブのままでよいので指定しない。
+   ○/✕ の記号は基盤が background-clip:text で文字を塗っているため、
+   background ショートハンドで上書きすると clip が外れて塗り潰れる。
+   色だけを差し替える background-color を使う。 */
+#fit .fit-card--no::before { background-color: var(--fu-ink-40); }
+#fit .fit-card--no .add-service-num { background-color: var(--fu-ink-40); }
+
+#fit .fit-list {
+  text-align: left;
+  padding-left: 20px;
+  margin-top: 12px;
+  line-height: 1.9;
+  list-style: disc;
+}
+#fit .fit-note {
+  font-family: var(--fu-font-sans);
+  color: var(--fu-ink-40);
+}
+#fit .empathy-conclusion { margin-top: 48px; }
