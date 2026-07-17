@@ -2,22 +2,150 @@
    01-brand 個別CSS（差分のみ）
    ------------------------------------------------------------
    見た目のルールは ../shared/design.css（デザインレイヤー）を「正」とする。
-   HTMLは 04a を原本に文言のみ差し替えたクローン。現状差分なし。
-   写真をこのLP専用に差し替える場合はここで同じセレクタを上書きする。
+   HTMLは 04a を原本に文言を差し替えたクローン。
+   ここには 01 固有の2セクション（写真バンド型）のスタイルだけを書く。
    ============================================================ */
 
-/* ▼ 01固有セクションの救出ルール（旧style.cssから） */
-.empathy-card-icon { font-size: 56px; width: 96px; height: 96px; margin: 0 auto 16px; background: linear-gradient(135deg, #faf6e8 0%, #e8d896 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(232,216,150,0.4); }
-.brand-intro { max-width: 720px; margin: 32px auto 0; text-align: center; }
-.brand-intro-lead { font-size: 26px; font-weight: 700; line-height: 1.7; color: #1a1a1a; margin: 0 0 32px; font-family: 'Zen Old Mincho', serif; }
-.brand-intro-lead strong { color: #6a6244; background: linear-gradient(transparent 60%, rgba(232,216,150,0.5) 60%); }
-.brand-intro-body { font-size: 18px; line-height: 2; color: #2a2a2a; margin: 0 0 32px; padding: 28px 32px; background: #fff; border-radius: 12px; border-left: 4px solid #c9a063; box-shadow: 0 4px 16px rgba(0,0,0,0.06); text-align: center; }
-.brand-intro-body strong { color: #c9a063; font-weight: 900; letter-spacing: 0.04em; }
-.brand-intro-result { font-size: 17px; line-height: 1.9; color: #2a2a2a; margin: 0; }
-.brand-intro-result strong { color: #6a6244; font-weight: 900; font-size: 1.15em; background: linear-gradient(transparent 60%, rgba(232,216,150,0.4) 60%); }
-.brand-intro-media { display: block; margin-top: 12px; font-size: 14px; color: #777; }
-@media (max-width: 720px) { .brand-intro-lead { font-size: 20px; line-height: 1.6; } }
-@media (max-width: 720px) { .brand-intro-body { font-size: 15px; padding: 20px 18px; line-height: 1.9; } }
-@media (max-width: 720px) { .brand-intro-result { font-size: 15px; } }
-@media (max-width: 720px) { .brand-intro-media { font-size: 12px; } }
-@media (max-width: 900px) { .empathy-card-icon { width: 56px; height: 56px; font-size: 28px; margin: 0; flex-shrink: 0; } }
+/* ============================================================
+   写真バンド共通（FAST-UPとは？ / 適合宣言）
+   ------------------------------------------------------------
+   #about・最終CTAと同じ「ブランド写真＋暗幕」の全幅バンド。
+   背景写真は遅延読み込み（.bg-lazy）。JS有効時は待機→.is-bgで表示、
+   JS無効時は下の base 規則で最初から写真を出す（安全側）。
+   url はこのファイル位置基準＝../shared/img/ に解決される。
+   ============================================================ */
+.brand-band {
+  position: relative;
+  padding: 88px 24px;
+  background-size: cover;
+  background-position: center 30%;
+  color: #fff;
+}
+/* JS無効時のフォールバック（写真を最初から表示） */
+#brand-about.brand-band {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/service-feature-1.jpg');
+}
+#brand-fit.brand-band {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/coach-talk.jpg');
+  background-position: right center;
+}
+/* JS有効時：写真が来るまで暗幕グラデのみ（待機）→ 画面接近で .is-bg が付いて写真 */
+.js-bglazy .brand-band.bg-lazy {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+}
+.js-bglazy #brand-about.bg-lazy.is-bg {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/service-feature-1.jpg');
+}
+.js-bglazy #brand-fit.bg-lazy.is-bg {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/coach-talk.jpg');
+}
+
+.brand-band-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.brand-band--fit .brand-band-inner { text-align: left; }
+
+.brand-band-eyebrow {
+  display: inline-block;
+  font-family: var(--fu-font-serif);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: var(--fu-sub);
+  margin-bottom: 20px;
+}
+.brand-band-h {
+  font-family: var(--fu-font-serif);
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.7;
+  margin-bottom: 26px;
+  color: #fff;
+}
+.brand-band-h em {
+  font-style: normal;
+  background: #fff;
+  color: var(--fu-ink);
+  padding: 0 12px;
+}
+.brand-band--fit .brand-band-h {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+.brand-band--fit .brand-band-h em {
+  background: var(--fu-accent);
+  color: #fff;
+}
+
+/* --- FAST-UPとは？：リード＋計画/毎日/伴走チップ＋実績 --- */
+.brand-band-lead {
+  font-family: var(--fu-font-serif);
+  font-size: 17px;
+  line-height: 2.1;
+  color: #F0EADC;
+  margin-bottom: 26px;
+}
+.brand-band-lead strong { color: #fff; font-weight: 900; }
+.brand-band-chips { display: flex; justify-content: center; gap: 12px; margin-bottom: 26px; }
+.brand-band-chip {
+  font-family: var(--fu-font-serif);
+  font-size: 20px;
+  font-weight: 900;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  color: #fff;
+  padding: 4px 18px;
+  letter-spacing: 0.08em;
+}
+.brand-band-result {
+  font-family: var(--fu-font-serif);
+  font-size: 15px;
+  color: #DCD5C2;
+  margin: 0;
+}
+.brand-band-result strong { color: #fff; font-size: 19px; }
+
+/* --- 適合宣言：2列の✓リスト＋締め＋CTA --- */
+.brand-fit-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 40px;
+  margin-bottom: 8px;
+}
+.brand-fit-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--fu-font-serif);
+  font-size: 16px;
+  line-height: 2;
+}
+.brand-fit-item::before { content: '✓'; color: var(--fu-sub); font-weight: 700; }
+.brand-fit-item strong { color: #fff; font-weight: 900; }
+.brand-fit-item span { color: #C9C2AE; font-size: 13px; }
+
+.brand-fit-close { margin-top: 36px; text-align: center; font-family: var(--fu-font-serif); }
+.brand-fit-close strong {
+  display: block;
+  font-size: 21px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+.brand-fit-close-sub {
+  display: table;
+  margin: 10px auto 0;
+  padding: 4px 8px;
+  background: var(--fu-accent);
+  color: #fff;
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+.brand-band--fit .cta-wrap { text-align: center; }
+
+@media (max-width: 900px) {
+  .brand-band { padding: 64px 20px; }
+  .brand-band-h { font-size: 27px; }
+  .brand-band--fit .brand-band-h { font-size: 26px; }
+  .brand-band-chips { flex-wrap: wrap; }
+  .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
+}
