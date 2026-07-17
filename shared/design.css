@@ -1,0 +1,2066 @@
+/* ============================================================
+   FAST-UP LP デザインレイヤー（shared/design.css）
+   ------------------------------------------------------------
+   04a-koachi で確立したデザイン刷新を全LPで使えるように昇格したもの。
+   読み込み順：styles.css（基盤）→ design.css（本ファイル）→ 各LP style.css（差分）
+
+   ここには「どのLPでも同じにする見た目のルール」だけを書く。
+   背景写真など各LPで差し替える画像の url() は書かない（url はCSSファイル
+   位置基準で解決されるため）。写真の紐付けは各LPの style.css が持つ。
+
+   セットで <script src="../shared/lp.js"></script> と、<head> 内の
+   js-reveal / js-bglazy 付与スニペット（lp.js 冒頭コメント参照）が必要。
+   ============================================================ */
+
+/* 理由2↔理由3 の境界：共通の白ボーダーを消し、暗い特徴パネルを
+   セクション下端に密着させて、reason3 への白い隙間（共通padding）を詰める */
+#reason2 { border-bottom: 0; padding-bottom: 0; }
+#reason3 { padding-top: var(--fu-sect-pad-compact); background: var(--fu-bg-muted); }
+/* 料金セクションの直後は「さらに(3つの仕組み)」バナー。両者の間隔を約4pxに詰める（全ブレークポイント共通） */
+#pricing { background: var(--fu-bg-muted); padding-top: 0; padding-bottom: 4px; }
+#extra { background: #fff; padding-bottom: var(--fu-sect-pad); }
+/* 安心の3つ：上部に全幅の黒帯（料金セクション同様）・下にベージュ＋コーチ陣写真 */
+#reassure { background: var(--fu-beige); padding-top: 0; padding-bottom: 0; }
+/* 帯：背景にコーチ画像＋暗いオーバーレイ（写真の url は各LPの style.css で指定） */
+.reassure-band {
+  position: relative;
+  background: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+  background-size: cover;
+  background-position: right center; /* 右側の男性コーチが常に見えるよう右固定 */
+  padding: 76px 0 80px;
+}
+/* 帯の下端中央：薄ベージュの丸＋黒い下矢印（料金セクションと同一） */
+.reassure-band::before {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: var(--fu-beige);
+  border-radius: 50%;
+  z-index: 3;
+}
+.reassure-band::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  border-right: 2.5px solid var(--fu-ink);
+  border-bottom: 2.5px solid var(--fu-ink);
+  z-index: 4;
+}
+/* 帯の中の見出し：白文字（コーチ陣の強調は削除＝プレーンな白文字） */
+/* セクションタイトル・見出しを左揃え */
+.reassure-band .section-title { text-align: left; }
+.reassure-band .section-title small { justify-content: flex-start; }
+.reassure-band .section-title small { color: #fff; }
+.reassure-band .section-title small::before { background: #fff; }
+.reassure-band .section-title h2 { color: #fff; }
+.reassure-band .section-title h2 em {
+  background: none; color: #fff; -webkit-text-fill-color: #fff; padding: 0;
+}
+/* 帯の中のカード：背景なし・白文字・カード間をボーダーで区切る（数値は薄ベージュ） */
+/* 見出し＋カード群を中央寄せの定幅ボックスに（ボックスは中央・中身/見出しは左揃え） */
+.reassure-band .reassure-inner { max-width: 860px; margin: 0 auto; }
+.reassure-band .matching-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.reassure-band .matching-card {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+  padding: 4px 28px;
+}
+.reassure-band .matching-card + .matching-card {
+  border-left: 1px solid rgba(255,255,255,0.22);
+}
+.reassure-band .matching-num {
+  font-family: var(--fu-font-serif);
+  font-size: 30px; font-weight: 900;
+  color: #e6ddc8; -webkit-text-fill-color: #e6ddc8; background: none;
+  letter-spacing: 0.05em; line-height: 1;
+  margin-bottom: 14px;
+}
+.reassure-band .matching-card h4 {
+  font-size: 19px; font-weight: 700;
+  margin-bottom: 8px;
+  text-align: left;
+  color: #fff;
+}
+.reassure-band .matching-card p {
+  width: 100%;
+  font-size: 15px; text-align: left; line-height: 1.8; color: rgba(255,255,255,0.85);
+}
+.reassure-band .matching-card p strong { color: #fff; }
+/* ①デスクトップ(≥901px)のみ：カード見出し(h4)を大きく＋1行固定 */
+@media (min-width: 901px) {
+  .reassure-band .matching-card h4 { font-size: 24px; white-space: nowrap; }
+}
+/* ③④スマホ(≤767px)：01〜03を縦配列に。区切りは左罫線→上罫線
+   ・内容の左をボーダー開始位置に揃える（padding-left 0）
+   ・区切り線の上の余白を縮小（padding-bottom 8px） */
+@media (max-width: 767px) {
+  .reassure-band .matching-grid { grid-template-columns: 1fr; }
+  .reassure-band .matching-card { padding: 20px 0 8px; }
+  .reassure-band .matching-card + .matching-card {
+    border-left: 0;
+    border-top: 1px solid rgba(255,255,255,0.22);
+  }
+  /* 見出し→01 の余白を縮小 */
+  .reassure-band .section-title { margin-bottom: 8px; }
+  .reassure-band .matching-card:first-child { padding-top: 4px; }
+  /* 帯（セクション下部）の下paddingを縮小 */
+  .reassure-band { padding-bottom: 40px; }
+}
+/* 天才は採用しない以降：背景なし・ベージュ地 */
+#reassure .coach-philosophy { background: none; margin-top: 32px; font-size: 36px; }
+/* 共通見出しと同じ段階縮小（①36→②32→③28→④24） */
+@media (min-width: 768px) and (max-width: 900px) { #reassure .coach-philosophy { font-size: 32px; } }
+@media (min-width: 481px) and (max-width: 767px) { #reassure .coach-philosophy { font-size: 28px; } }
+@media (max-width: 480px)                        { #reassure .coach-philosophy { font-size: 24px; } }
+/* emボックス(逆転合格者)：途中で折り返さない */
+@media (max-width: 767px) { #reassure .coach-philosophy em { white-space: nowrap; } }
+/* ③④スマホ：見出し・説明文を左揃え＋説明文上の点線を削除 */
+@media (max-width: 767px) {
+  #reassure .coach-philosophy,
+  #reassure .coach-philosophy-detail { text-align: left; }
+  #reassure .coach-philosophy-detail { border-top: 0; }
+}
+/* 見出し下(説明文上)の余白を共通の見出し下余白に揃える（③26→④20）※スマホのみ */
+@media (min-width: 481px) and (max-width: 767px) { #reassure .coach-philosophy-detail { margin-top: 26px !important; padding-top: 0; } }
+@media (max-width: 480px)                        { #reassure .coach-philosophy-detail { margin-top: 20px !important; padding-top: 0; } }
+/* ③④スマホ：左右padを他セクションと同じ（container 24pxのみ）に。要素側paddingは0 */
+@media (max-width: 767px) {
+  #reassure .coach-philosophy { padding-left: 0; padding-right: 0; }
+}
+#reassure .coach-philosophy-detail { font-family: var(--fu-font-serif) !important; }
+/* 「逆転合格者」の強調：黒ボックス＋白文字（パターンB） */
+#reassure .coach-philosophy em {
+  background: var(--fu-ink); color: #fff; -webkit-text-fill-color: #fff; padding: 3px 12px;
+}
+/* ③④スマホ：emボックスの左右padを詰めて見出しを2行に収める（基本ルールの後に置いて確実に上書き） */
+@media (max-width: 767px) { #reassure .coach-philosophy em { padding: 3px 6px; } }
+.reassure-photo { margin-top: 24px; }
+.reassure-photo img { display: block; width: 100%; }
+/* ③④スマホ：帯上部pad縮小・説明文↔講師画像の間縮小・講師画像は画面横幅（767付近が最大）で画面に合わせて縮む */
+@media (max-width: 767px) {
+  #reassure .coach-philosophy { margin-top: 40px; padding-top: 0; padding-bottom: 8px; }
+  .reassure-photo { margin-top: 8px; overflow: hidden; }
+  .reassure-photo img {
+    width: 100vw; max-width: none;
+    margin-left: auto; margin-right: auto;
+  }
+}
+
+/* 見出し→説明文の間隔を理由2（特徴系）と揃える */
+#reason3 .section-title { margin-bottom: 24px; }
+
+/* コールアウトの-42pxブレイクアウトが狭い幅(768px等)でビューポートを超える分をクリップ（横スクロール防止） */
+.section-feature-app { overflow-x: clip; }
+
+/* 理由2: Card 02（左罫線 + 大きめ番号）をLP本体に適用 */
+.section-feature-app .app-callout {
+  width: 212px;
+  padding: 20px 14px 18px;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  font-size: 16px;
+  box-shadow: 0 14px 38px rgba(34,34,34,0.07);
+  /* スマホ下部を覆う特徴セクションより前面に保ち、ラベルが隠れないようにする */
+  z-index: 4;
+}
+
+.section-feature-app .app-callout::before {
+  display: none;
+}
+
+.section-feature-app .app-callout::after {
+  width: 50px;
+  border-top: 0.5px solid rgba(122,119,100,0.68);
+}
+
+.section-feature-app .app-callout-1,
+.section-feature-app .app-callout-3 {
+  left: -42px;
+}
+
+.section-feature-app .app-callout-2 {
+  right: -42px;
+}
+
+/* コールアウト1・2・3を全体的に上へ配置（shared の top/bottom を上書き）。
+   3枚を同量ずつ上げて相対バランスは維持する。 */
+.section-feature-app .app-callout-1 {
+  top: 16px;
+}
+
+.section-feature-app .app-callout-2 {
+  top: 160px;
+}
+
+.section-feature-app .app-callout-3 {
+  bottom: 176px;
+}
+
+.section-feature-app .app-callout-1::after {
+  left: calc(100% + 8px);
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
+
+.section-feature-app .app-callout-2::after {
+  right: calc(100% + 8px);
+  transform: rotate(45deg);
+  transform-origin: right center;
+}
+
+.section-feature-app .app-callout-3::after {
+  left: calc(100% + 8px);
+  transform: rotate(-45deg);
+  transform-origin: left center;
+}
+
+.section-feature-app .app-callout-num {
+  display: block;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  color: #bdb6a0;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* 理由2: スマホモックの下20%を特徴セクションで覆い、
+   「特徴セクションの上端からスマホが生えている」見せ方にする。
+   余白の相殺を避けるため app-showcase 側の下マージンを 0 にしてから、
+   特徴セクションを負マージンで重ねる。 */
+.section-feature-app .app-showcase {
+  margin-bottom: 0;
+}
+
+.section-feature-app .feature-sub-cards {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: 1fr;
+  /* 見出し・特徴カードを左寄せ（左マージンゼロでページ本文左端に揃える） */
+  justify-items: start;
+  /* カード間は0にし、区切り線の上下はカードの縦パディングで均等に作る */
+  gap: 0;
+  /* スマホ高さ562pxの約20%（112px）ぶん上に重ねる */
+  margin-top: -112px;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  /* スマホ下端はこのセクション背景で隠れるため、上パディングは控えめにしてカードを上へ寄せる */
+  padding: 100px max(24px, calc((100vw - 800px) / 2 + 24px)) 88px;
+  border-top: 0;
+  /* 背景写真の url は各LPの style.css で指定 */
+  background: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+  background-size: cover;
+  background-position: right center;   /* 右側を固定＝女性講師を常に右に表示 */
+  color: var(--fu-ink);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(34,34,34,0.18);
+}
+
+/* 特徴セクションの導入見出し（モックアップ→特徴一覧の繋ぎ）。
+   暗い写真背景に映えるよう白＋明るめゴールドのアクセント。 */
+.section-feature-app .feature-sub-heading {
+  width: min(640px, 100%);
+  max-width: 640px;
+  /* 見出しと特徴カードの間（gapを0にしたぶん下マージンで確保） */
+  margin: 0 0 20px;
+  /* ボックス内テキストの左端をカード本文（28px）に揃える（28 - 箱の左padding10） */
+  padding: 0 18px;
+  text-align: left;
+}
+
+/* メイン見出し（今日やること…）の黒ボックスを白黒反転（白ボックス＋黒文字）。
+   2行とも箱にし、サイズは 36px で統一。 */
+.section-feature-app .feature-sub-heading h3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* 1行目の下のマージン（1行目↔2行目）を広げる */
+  gap: 18px;
+  margin: 0;
+  font-family: var(--fu-font-serif);
+  font-size: 36px;
+  font-weight: 700;
+}
+/* 見出しをスマホにかけて徐々に小さく（①36/②32/③28/④24px・行間gapも比例縮小） */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature-app .feature-sub-heading h3 { font-size: 32px; gap: 16px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-feature-app .feature-sub-heading h3 { font-size: 28px; gap: 14px; }
+}
+@media (max-width: 480px) {
+  .section-feature-app .feature-sub-heading h3 { font-size: 24px; gap: 12px; }
+}
+
+.section-feature-app .feature-sub-heading h3 em {
+  font-style: normal;
+  background: #fff;
+  color: var(--fu-ink);
+  -webkit-text-fill-color: var(--fu-ink);
+  font-weight: 700;
+  /* 箱の上下paddingを小さく（line-heightで詰める） */
+  line-height: 1.2;
+  /* 箱の左右paddingを小さく */
+  padding: 0 10px;
+}
+
+.section-feature-app .feature-sub-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  /* 見出しと説明文を近づける（行間の基本ギャップ） */
+  gap: 4px;
+  width: min(640px, 100%);
+  max-width: 640px;
+  margin: 0;
+  /* 縦パディングで区切り線の上下マージンを作る */
+  padding: 18px 28px;
+  border-bottom: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: #fff;
+  text-align: left;
+}
+
+/* 区切り線はボーダーだと左右パディングぶん外へ伸びるため、
+   擬似要素でテキスト幅（左右28px）に合わせる */
+.section-feature-app .feature-sub-card::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 0;
+  border-top: 0.5px solid rgba(255,255,255,0.24);
+}
+
+.section-feature-app .feature-sub-card:last-child::after {
+  display: none;
+}
+
+.section-feature-app .feature-sub-card::before {
+  display: none;
+}
+
+.section-feature-app .feature-sub-card-label {
+  width: max-content;
+  /* 「特徴N」ラベルと見出しの間を広げ、タグとして独立させる */
+  margin: 0 0 12px;
+  border: 0;
+  background: var(--fu-beige);
+  padding: 2px 8px;
+  color: var(--fu-ink);
+  line-height: 1.4;
+  font-size: 10px;   /* 若干小さく（11→10px） */
+}
+
+.section-feature-app .feature-sub-card h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+}
+
+.section-feature-app .feature-sub-card p {
+  margin: 0;
+  color: rgba(255,255,255,0.86);
+}
+
+.section-feature-app .feature-sub-card p strong {
+  color: #fff;
+}
+
+/* 理由2カード：ホバーアニメーション削除 */
+.section-feature-app .feature-sub-card { transition: none; }
+.section-feature-app .feature-sub-card:hover { transform: none; box-shadow: none; }
+
+/* 「1日単位の計画」等の見出し(h4)を徐々に小さく（小さくなりすぎない範囲：①22/②20/③19/④18px）
+   ※説明文(p)はベース14pxで元々小さいため据え置き */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature-app .feature-sub-card h4 { font-size: 20px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .section-feature-app .feature-sub-card h4 { font-size: 19px; }
+}
+@media (max-width: 480px) {
+  .section-feature-app .feature-sub-card h4 { font-size: 18px; }
+}
+
+/* ≤767のみモバイル縦積み。②(768-900)は①デスクトップの散らし配置をそのまま使う（sharedのstack≤767と一致させる） */
+@media (max-width: 767px) {
+  .section-feature-app .app-callout {
+    width: 100%;
+    max-width: 480px;   /* 3つのボックスの横幅を大きく（320→480px） */
+    display: flex;             /* 01とテキストを横並びに */
+    align-items: baseline;
+    gap: 10px;
+  }
+  .section-feature-app .app-callout-num {
+    margin-bottom: 0;
+    font-size: 16px;           /* 本文(16px)に合わせて小さく（28→16px） */
+    flex-shrink: 0;
+  }
+  .section-feature-app .app-callout-text { flex: 1; min-width: 0; }
+
+  /* モバイルはコールアウトが縦積みになるため重ねず、通常余白に戻す */
+  .section-feature-app .app-showcase {
+    margin-bottom: 56px;
+  }
+
+  .section-feature-app .feature-sub-cards {
+    margin-top: 56px;
+    padding: 64px 16px;   /* スマホの左右padを16pxに */
+    background-position: 90% center;   /* ③④：女性を少し左へ戻す（80→90%） */
+  }
+
+  .section-feature-app .feature-sub-card {
+    padding: 18px 20px;
+  }
+
+  .section-feature-app .feature-sub-card::after {
+    left: 20px;
+    right: 20px;
+  }
+
+  .section-feature-app .feature-sub-heading {
+    /* モバイルはカード本文が20px。箱の左padding10を引いて 10px */
+    padding: 0 10px;
+  }
+
+  /* ③④共通：スマホをLesson 3 仮定法の直下(mock上端から482px)で横にスパッとカットし、
+     01ボックスの上部に密着させる（縦積みの先頭=スマホ、その直後が01） */
+  .section-feature-app .app-showcase .phone-mock {
+    max-height: 482px;
+    overflow: hidden;
+    border-radius: 48px 48px 0 0;   /* カット断面（下の角）を丸みなし＝四角に */
+  }
+  .section-feature-app .app-callout-1 {
+    margin-top: 0;
+  }
+}
+
+/* ②(768-900)：①デスクトップの散らし配置のまま、スマホのモックアップだけ小さく */
+@media (min-width: 768px) and (max-width: 900px) {
+  .section-feature-app .app-showcase .phone-mock {
+    transform: scale(0.774);           /* 310px × 0.774 ≒ 240px */
+    transform-origin: center bottom;   /* 下端を保ち「セクションから生えて見える」重なりを維持 */
+  }
+  /* コールアウトを画面端(-42px)から中央のスマホ近くへ寄せる。
+     スマホは中央配置なので50%基準で配置＝スマホ縁との間隔を一定(約32px)に保つ。
+     50% - (スマホ半幅120 + 間隔32 + ボックス幅212) = 50% - 364px */
+  .section-feature-app .app-callout-1,
+  .section-feature-app .app-callout-3 { left: calc(50% - 364px); }
+  .section-feature-app .app-callout-2 { right: calc(50% - 364px); }
+  .section-feature-app .app-callout::after { width: 34px; }  /* コネクタ線を短く（間隔に合わせる） */
+}
+
+/* ============================================================
+   理由3（年間総額で比較）＋ 料金（別セクション） — 04a 専用刷新
+   既存の古いデザインから、reason1/2と同じ洗練トーンへ引き上げる。
+   ============================================================ */
+
+/* 理由3・料金・安心の3つのテキストをすべて Zen Old Mincho（明朝）に統一
+   （本文・表・内訳などの個別 font-family を id スコープで上書き） */
+#reason3,
+#reason3 *,
+#pricing,
+#pricing *,
+#reassure,
+#reassure * {
+  font-family: var(--fu-font-serif);
+}
+
+/* 見出しの強調を黒ボックスに統一（section-light でも適用） */
+.section-annual .section-title h2 em,
+.section-pricing .section-title h2 em {
+  font-style: normal;
+  display: inline-block;
+  background: var(--fu-ink);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  padding: 0 14px;
+  margin-top: 6px;
+}
+
+/* 理由3の見出し・Pデザインを理由1(.section-feature)に統一
+   （見出し下余白の基底24pxは #reason3 .section-title[L111] が担う＝理由1と同値） */
+.section-annual .annual-lead {
+  max-width: 640px;              /* 理由1 feature-descに合わせる */
+  margin: 0 0 48px;
+  font-size: 17px;
+  line-height: 2;
+  color: var(--fu-fg-2);
+}
+.section-annual .annual-lead strong { color: var(--fu-ink); font-weight: 700; }
+/* レスポンシブも理由1に合わせる（③④で見出し下12px・P下24px、④でP -2px＋上マージン4px）
+   見出し余白は #reason3[L111] のID詳細度を上回るため #reason3 で指定 */
+@media (max-width: 767px) {
+  #reason3 .section-title { margin-bottom: 16px; }
+  .section-annual .annual-lead { margin-bottom: 24px; }
+}
+@media (max-width: 480px) {
+  .section-annual .annual-lead { font-size: 15px; margin-top: 4px; }
+}
+
+/* --- 年間総額の対決 --- */
+.annual-faceoff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.annual-col {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px 26px;
+  border-radius: 0;
+}
+.annual-col--other {
+  background: #fff;
+  color: var(--fu-ink-70);
+}
+.annual-col--fastup {
+  background: #fff;
+  border: 1.5px solid var(--fu-main);
+  box-shadow: 0 18px 44px rgba(120,115,84,0.16);
+}
+.annual-tag {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.annual-col--other .annual-tag { color: var(--fu-ink-40); }
+.annual-col--fastup .annual-tag {
+  color: #fff;
+  background: var(--fu-main);
+  padding: 4px 14px;
+  border-radius: 30px;
+}
+.annual-total {
+  margin: 16px 0 18px;
+  font-family: var(--fu-font-serif);
+  font-weight: 700;
+  line-height: 1;
+  font-size: 56px;
+  letter-spacing: 0.01em;
+}
+.annual-col--other .annual-total { color: var(--fu-ink-70); }
+.annual-col--fastup .annual-total {
+  /* CTAボタン（.header-cta）と同じゴールドグラデーションをテキストに */
+  background: var(--fu-grad-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.annual-col--fastup .annual-per { -webkit-text-fill-color: var(--fu-ink-40); }
+.annual-approx { font-size: 0.4em; margin-right: 3px; }
+.annual-unit { font-size: 0.5em; margin-left: 3px; }
+.annual-per {
+  font-size: 0.3em;
+  font-weight: 700;
+  margin-left: 8px;
+  color: var(--fu-ink-40);
+}
+.annual-breakdown {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid rgba(0,0,0,0.09);
+}
+.annual-col--fastup .annual-breakdown { border-top-color: rgba(120,115,84,0.20); }
+.annual-breakdown li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  /* 項目間マージンを小さく */
+  padding: 2px 0;
+  /* テキストを +2px */
+  font-size: 15px;
+}
+.annual-breakdown li span { opacity: 0.82; }
+.annual-breakdown li b { font-weight: 700; white-space: nowrap; }
+.annual-col--other .annual-breakdown li b { color: var(--fu-ink-70); }
+.annual-breakdown li b.zero { color: var(--fu-main); }
+
+/* --- 結論バナー --- */
+.annual-verdict {
+  margin: 28px 0 0;
+  padding: 32px 24px;
+  border-radius: 0;
+  background: var(--fu-accent);
+  color: #fff;
+  text-align: center;
+}
+.annual-verdict-main {
+  margin: 0;
+  font-family: var(--fu-font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+.annual-verdict-main em {
+  font-style: normal;
+  /* 案2: 白抜きチップ（白地・ワインレッド文字）。上下左右を詰める */
+  display: inline-block;
+  background: #fff;
+  color: var(--fu-accent);
+  line-height: 1.2;
+  padding: 0 8px;
+}
+.annual-verdict-sub {
+  margin: 16px 0 0;
+  font-size: 14px;
+  color: rgba(255,255,255,0.78);
+}
+.annual-verdict-sub strong { color: #fff; font-weight: 700; }
+
+/* --- 比較表：「では、どう揃えるか」の check-table と同じデザイン --- */
+/* 表の上（バナーとの間）に破線の区切り線（check-table-block相当） */
+.section-annual .compare-table-block {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px dashed #c8c8c8;
+  overflow-x: auto;                 /* 狭い画面では横スクロール */
+  -webkit-overflow-scrolling: touch;
+}
+/* 表下の注釈（*）は左揃え */
+.section-annual .compare-source { text-align: left; margin-left: 0; }
+.compare-table--annual {
+  margin-top: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #fff;
+  min-width: 500px;                 /* 最小幅を確保（下回るとスクロール） */
+}
+/* ヘッダー：ゴールドの塗りラベル（白文字・白罫線で区切る） */
+.compare-table--annual thead th {
+  background: var(--fu-main);
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  padding: 12px 12px;
+  text-align: center;
+  border-bottom: 0;
+}
+.compare-table--annual thead th:first-child {
+  text-align: left;
+  padding-left: 20px;
+}
+.compare-table--annual thead th:not(:last-child) {
+  border-right: 1px solid #fff;
+}
+.compare-table--annual thead th.fastup { font-size: 16px; }
+/* 本文：ハイライン＋1列目左寄せグレー */
+.compare-table--annual tbody td {
+  padding: 16px 12px;
+  text-align: center;
+  font-size: 15px;
+  border-bottom: 1px solid var(--fu-hairline);
+}
+.compare-table--annual tbody td:first-child {
+  text-align: left;
+  font-weight: 700;
+  color: var(--fu-ink-70);
+  padding-left: 20px;
+  font-size: 16px;
+}
+.compare-table--annual tbody td:first-child { border-right: 1px solid #eee; }
+.compare-table--annual tbody tr:last-child td { border-bottom: 0; }
+/* FAST-UP列：parchment＋ゴールド枠（check-tableのfastup相当を縦に） */
+.compare-table--annual tbody td.fastup {
+  background: var(--fu-parchment);   /* 前セクションcheck-table同様の薄いゴールド */
+  border-left: 2px solid var(--fu-main);
+  border-right: 2px solid var(--fu-main);
+  color: var(--fu-main-hover);
+  font-weight: 900;
+}
+.compare-table--annual tbody tr:first-child td.fastup { border-top: 2px solid var(--fu-main); }
+.compare-table--annual tbody tr:last-child td.fastup { border-bottom: 2px solid var(--fu-main); }
+
+@media (max-width: 900px) {
+  .compare-table--annual thead th { font-size: 12px; padding: 10px 6px; }
+  .compare-table--annual tbody td { padding: 12px 6px; font-size: 13px; }
+  .compare-table--annual tbody td:first-child { font-size: 13px; padding-left: 12px; }
+}
+
+/* ============================================================
+   料金（別セクション）
+   ============================================================ */
+/* セクション最上部：横幅いっぱいのブランドカラー帯（白文字・見出し一式） */
+.pricing-banner {
+  position: relative;
+  background: var(--fu-bg-dark);
+  text-align: center;
+  padding: 40px 24px;
+  margin-bottom: 56px;
+}
+/* 帯の下端中央：白い丸＋ゴールドの下矢印（「環境とは」帯と同デザイン） */
+.pricing-banner::before {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  background: var(--fu-bg-muted);
+  border-radius: 50%;
+  z-index: 3;
+}
+.pricing-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  border-right: 2.5px solid var(--fu-main);
+  border-bottom: 2.5px solid var(--fu-main);
+  z-index: 4;
+}
+.pricing-banner-eyebrow {
+  margin: 0 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.82);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+}
+.pricing-banner-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+.pricing-banner-title {
+  margin: 0;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+}
+/* 見出しは他セクション見出しと完全に同一サイズ（①36→②32→③28→④24） */
+@media (min-width: 768px) and (max-width: 900px) { .pricing-banner-title { font-size: 32px; } }
+@media (min-width: 481px) and (max-width: 767px) { .pricing-banner-title { font-size: 28px; } }
+@media (max-width: 480px)                        { .pricing-banner-title { font-size: 24px; } }
+/* ヘッド：中央寄せの大きな月額表示 */
+.section-pricing .pricing-head { text-align: center; }
+.pricing-plan {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fu-main-hover);
+  letter-spacing: 0.14em;
+}
+.pricing-plan::before,
+.pricing-plan::after {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--fu-main);
+  opacity: 0.55;
+}
+.pricing-hero-price {
+  margin: 10px 0 0; line-height: 1; color: var(--fu-ink);
+  display: flex; align-items: baseline; justify-content: center; gap: 6px;
+  font-weight: 700;
+}
+.pricing-hero-label { font-size: 24px; }
+.pricing-hero-amount { font-size: 64px; letter-spacing: 0.01em; }
+.pricing-hero-yen { font-size: 0.46em; margin-right: 2px; }
+.pricing-hero-tax { font-size: 17px; font-weight: 400; color: var(--fu-ink-40); }
+.pricing-hero-notes {
+  margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; align-items: center;
+}
+.pricing-hero-nofee {
+  font-size: 15px; font-weight: 700; color: var(--fu-accent);
+  background: #f7e6e8;
+  border-radius: 0; padding: 4px 13px;
+}
+.pricing-hero-campaign { font-size: 13px; color: var(--fu-ink-40); }
+.pricing-hero-campaign strong { color: var(--fu-accent); }
+
+/* 明細カード：白地・細枠・上端にゴールドの「料金明細」バッジ */
+.pricing-detail {
+  position: relative;
+  max-width: 600px; margin: 34px auto 0;
+  background: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 36px 44px 40px;
+}
+/* 「料金明細」：塗りなし・ブランドカラー文字・カード内の先頭ラベル */
+.pricing-detail-badge {
+  display: block;
+  text-align: center;
+  margin: 0 0 20px;
+  color: var(--fu-main);
+  font-size: 16px; font-weight: 700; letter-spacing: 0.1em;
+}
+.pricing-detail-table { width: 100%; border-collapse: collapse; }
+.pricing-detail-table thead th {
+  font-size: 13px; font-weight: 400; color: var(--fu-ink-40);
+  padding: 0 0 14px; border-bottom: 1px solid var(--fu-hairline);
+  text-align: left;
+}
+.pricing-detail-table thead th.col-price { text-align: right; }
+.pricing-detail-table tbody td {
+  font-size: 16px; color: var(--fu-ink);
+  padding: 17px 0; border-bottom: 1px solid #efefea;
+}
+.pricing-detail-table tbody td:first-child { font-weight: 700; }
+.pricing-detail-table tbody td:last-child { text-align: right; font-weight: 700; }
+.pricing-detail-table tbody tr:last-child td { border-bottom: 0; }
+.pricing-detail-table td.zero { color: var(--fu-main); font-weight: 700; }
+
+/* 込みリスト：ボックスなし・中央揃え */
+.pricing-included-clean {
+  max-width: 600px;
+  margin: 32px auto 48px;
+}
+.pricing-included-clean h4 {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  font-size: 16px; font-weight: 700;
+  margin: 0 0 22px; color: var(--fu-ink);
+}
+.pricing-included-clean h4::before,
+.pricing-included-clean h4::after {
+  content: ''; width: 28px; height: 1px;
+  background: var(--fu-main); opacity: 0.55;
+}
+.pricing-included-clean ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.pricing-included-clean li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 18px; font-weight: 700; color: var(--fu-ink-80); line-height: 1.4;
+}
+/* カウンセリング節と同じチェックアイコン（ゴールドグラデの丸＋白チェック） */
+.pricing-check {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--fu-grad-gold);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* スマホ(≤767px)のみ：左右16px・「追加費用ゼロ」下の余白詰め・明細ボックス上下pad縮小・
+   込みリスト下の余白＋セクション下部padを縮小 */
+@media (max-width: 767px) {
+  #pricing { padding-bottom: 4px; }
+  #pricing .container { padding-left: 16px; padding-right: 16px; }
+  .pricing-banner { padding-left: 16px; padding-right: 16px; }
+  .pricing-detail { margin-top: 24px; padding: 26px 22px 22px; }
+  .pricing-included-clean { margin-bottom: 20px; }
+}
+
+/* 「3科目フルサポート」以下：テキストを①②③④で段階縮小（小さくしすぎない） */
+@media (min-width: 768px) and (max-width: 900px) {   /* ② iPad */
+  .pricing-hero-label { font-size: 22px; }
+  .pricing-hero-amount { font-size: 58px; }
+  .pricing-hero-tax { font-size: 16px; }
+  .pricing-included-clean li { font-size: 17px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {   /* ③ スマホ大 */
+  .pricing-plan { font-size: 14px; }
+  .pricing-hero-label { font-size: 20px; }
+  .pricing-hero-amount { font-size: 50px; }
+  .pricing-hero-tax { font-size: 15px; }
+  .pricing-hero-nofee { font-size: 14px; }
+  .pricing-detail-badge { font-size: 15px; }
+  .pricing-detail-table tbody td { font-size: 15px; }
+  .pricing-included-clean h4 { font-size: 15px; }
+  .pricing-included-clean li { font-size: 16px; }
+}
+@media (max-width: 480px) {                          /* ④ スマホ小 */
+  .pricing-plan { font-size: 13px; }
+  .pricing-hero-label { font-size: 18px; }
+  .pricing-hero-amount { font-size: 42px; }
+  .pricing-hero-tax { font-size: 14px; }
+  .pricing-hero-nofee { font-size: 13px; }
+  .pricing-detail-badge { font-size: 14px; }
+  .pricing-detail-table thead th { font-size: 12px; }
+  .pricing-detail-table tbody td { font-size: 14px; }
+  .pricing-included-clean h4 { font-size: 14px; }
+  .pricing-included-clean li { font-size: 15px; }
+}
+
+@media (max-width: 900px) {
+  .annual-faceoff { grid-template-columns: 1fr; }
+  .annual-col--other .annual-total,
+  .annual-col--fastup .annual-total { font-size: 46px; }
+  .annual-verdict-main { font-size: 22px; }
+  .pricing-card-price { font-size: 42px; }
+}
+
+/* ============================================================
+   保証セクション — 04a 専用刷新（これまでのデザインを適用）
+   ※ flow（入塾フロー）は今回対象外。section背景は変えず、
+     guarantee系クラスのみに限定して flow に影響させない。
+   ============================================================ */
+
+/* 保証セクション背景：ヘッダーCTAと同じゴールドグラデ（お支払いについてまで）。
+   ゴールド地に映えるよう見出し・注記を白系に（白カードはそのまま浮かせる）。 */
+#guarantee {
+  background: var(--fu-grad-gold);
+}
+#guarantee > .container > .section-title:first-of-type small { color: #fff; }
+#guarantee > .container > .section-title:first-of-type small::before { background: #fff; }
+#guarantee > .container > .section-title:first-of-type h2 { color: #fff; }
+#guarantee .guarantee-note { color: rgba(255,255,255,0.85); }
+#guarantee .guarantee-note strong { color: #fff; }
+
+/* スカラシップは別セクション（薄グレー地でパーチメントのパネルを映えさせる）。
+   上下paddingは他セクションに合わせて縮小（.section の 100px → 32px） */
+#scholarship {
+  background: var(--fu-bg-muted);
+  padding-top: var(--fu-sect-pad-tight);
+  padding-bottom: var(--fu-sect-pad-tight);
+}
+
+/* 保証・スカラシップのテキストを明朝に統一。
+   shared の `.class タグ`（例 .guarantee-card p）に勝てるよう id を付けて
+   特異度を上げる。flow には及ばないよう各系クラスに限定。 */
+#guarantee > .container > .section-title:first-of-type,
+#guarantee > .container > .section-title:first-of-type *,
+#guarantee .guarantee-grid, #guarantee .guarantee-grid *,
+#guarantee .guarantee-note, #guarantee .guarantee-note *,
+#guarantee .pay-support, #guarantee .pay-support *,
+#scholarship .scholarship-block, #scholarship .scholarship-block * {
+  font-family: var(--fu-font-serif);
+}
+
+/* --- 保証カード（案A：白の上段＋パーチメントの条件ゾーンに分離） --- */
+.guarantee-grid { gap: 20px; }
+.guarantee-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+/* 上段：保証名＋概要（白地・中央寄せ）。見出しはブランドカラー */
+.guarantee-card-top {
+  padding: 40px 26px 10px;
+  text-align: center;
+}
+.guarantee-card-top h3 { color: var(--fu-main); margin-bottom: 10px; }
+/* 下段：条件（背景なし・カードと一体）。上マージンを詰める */
+.guarantee-cond {
+  background: transparent;
+  padding: 0 26px 28px;
+}
+/* 条件見出しラベル（両端に短い罫線 -条件-）。
+   shared の `.guarantee-card p`（0,1,1）に勝つよう #guarantee を付けて特異度を上げる。 */
+#guarantee .guarantee-conditions-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--fu-main);
+}
+.guarantee-conditions-label::before,
+.guarantee-conditions-label::after {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--fu-main);
+  opacity: 0.6;
+}
+/* 条件リスト：中央揃え（各 li を内容幅ブロックにして margin auto で中央配置） */
+.guarantee-conditions {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.guarantee-conditions li {
+  position: relative;
+  display: block;
+  width: -webkit-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: left;
+  /* 項目間を詰める（上下padを小さく）＋アイコン縮小ぶん左padも狭く */
+  padding: 2px 0 2px 26px;
+  font-size: 15px;
+}
+.guarantee-conditions li strong { color: var(--fu-main-hover); }
+/* ※注記：親の行との間を広げる */
+.guarantee-conditions small { font-size: 12px; margin-top: 8px; }
+/* チェックアイコン：ゴールドグラデの丸＋白チェック（細く・小さく） */
+.guarantee-conditions li::before {
+  content: '';
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  background: var(--fu-grad-gold);
+}
+.guarantee-conditions li::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 11px;
+  width: 8px;
+  height: 5px;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  transform: rotate(-45deg);
+}
+
+/* --- お支払いについて（細い白枠のゴーストボックス） --- */
+.pay-support {
+  max-width: 680px;
+  margin: 40px auto 0;
+  padding: 32px 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 0;
+  text-align: center;
+}
+/* 見出し「お支払いについて」は白ボックス＋黒文字のチップ */
+.pay-support h4 {
+  display: inline-block;
+  background: #fff;
+  color: var(--fu-ink);
+  padding: 5px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+}
+.pay-support p {
+  color: rgba(255,255,255,0.88);
+  font-size: 17px;
+  line-height: 1.9;
+}
+.pay-support p strong { color: #fff; }
+/* スマホ(≤767px)：保証カード見出しの上・お支払いボックスの上下余白を-4px */
+@media (max-width: 767px) {
+  .guarantee-card-top { padding-top: 36px; }
+  .pay-support { padding-top: 28px; padding-bottom: 28px; }
+}
+
+/* --- スカラシップ制度：絵文字削除・角丸0・ボーダーなし・ブランド配色へ --- */
+.scholarship-block {
+  background: var(--fu-parchment);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  /* 旧レイアウト用の上マージンを撤去し、内側paddingも詰める */
+  margin-top: 0;
+  padding: 32px 32px;
+}
+.scholarship-block::before { display: none; }   /* 🎓 絵文字を削除 */
+/* 「お支払いが困難な方へ」：セクションタイトルの small（●＋ゴールド文字）UIを適用 */
+#scholarship .scholarship-eyebrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: var(--fu-main);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  margin: 0 0 22px;
+  line-height: 1;
+}
+#scholarship .scholarship-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fu-main);
+  flex-shrink: 0;
+}
+.scholarship-headline { color: var(--fu-ink); }
+.scholarship-headline em {
+  background: linear-gradient(transparent 55%, var(--fu-sub) 55%);
+  color: var(--fu-ink);
+}
+.scholarship-body p { color: var(--fu-ink-80); }
+/* 免除オファー（白ボックス・ボーダーなし＋制度タグ） */
+#scholarship .scholarship-highlight {
+  max-width: 680px;
+  margin: 30px auto 0;
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  padding: 32px 40px;
+  text-align: center;
+}
+/* タグUIは「お支払いについて」チップ（.pay-support h4）と統一。カラーは据え置き（ゴールド地×白文字） */
+#scholarship .scholarship-tag {
+  display: inline-block;
+  background: var(--fu-main);
+  color: #fff;
+  padding: 5px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+}
+#scholarship .sh-small {
+  font-size: 16px;
+  color: var(--fu-ink-70);
+  margin-bottom: 6px;
+}
+#scholarship .sh-big {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--fu-main-hover);
+  letter-spacing: 0.02em;
+}
+/* ③④スマホ：「料金で〜」見出しを共通見出しサイズに揃える（③28/④24px） */
+@media (min-width: 481px) and (max-width: 767px) { #scholarship .scholarship-headline { font-size: 28px; } }
+@media (max-width: 480px)                        { #scholarship .scholarship-headline { font-size: 24px; } }
+/* ④スマホ小：コンテンツ左右を画面端から16pxに（container24pxを打ち消し、block側16pxのみ有効化） */
+@media (max-width: 480px) {
+  #scholarship > .container { padding-left: 0; padding-right: 0; }
+  #scholarship .scholarship-block { padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 480px) {
+  #scholarship .sh-big { font-size: 20px; }
+}
+
+/* ============================================================
+   入塾フロー（#enroll-flow）— 案D ステッパー型
+   ゴールドグラデの番号を進捗トラックで接続（白フチ付き）
+   ============================================================ */
+/* 背景を#333にし、全コンテンツを白カードで囲う（全体がカードのデザイン） */
+#enroll-flow {
+  background: var(--fu-bg-dark);
+  padding-top: var(--fu-sect-pad-compact);
+  padding-bottom: var(--fu-sect-pad-compact);
+}
+#enroll-flow .flow-card {
+  max-width: 940px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0;
+  padding: 48px 40px 44px;
+}
+#enroll-flow .flow-grid {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+  max-width: 840px;
+  margin: 40px auto 0;
+}
+/* 進捗トラック：番号1〜4の中心間のみ（1の左・4の右にはみ出さない）。
+   各stepはflex:1で等幅なので、1番目の中心=12.5%・4番目の中心=87.5% */
+#enroll-flow .flow-grid::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: var(--fu-sub);
+  z-index: 0;
+}
+#enroll-flow .flow-step {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  padding: 0 6px;
+}
+/* 既存の『›』コネクタは撤去（トラックへ置換） */
+#enroll-flow .flow-step:not(:last-child)::after { display: none; }
+/* 番号：ゴールドグラデの丸＋白フチ（トラックを白フチで抜く） */
+#enroll-flow .flow-step-num {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 14px;
+  border: 4px solid #fff;
+  background: var(--fu-grad-gold);
+  font-size: 20px;
+}
+#enroll-flow .flow-step h4 { font-size: 16px; }
+/* 説明文も Zen Old Mincho に（shared の Noto Sans を上書き） */
+#enroll-flow .flow-step p { font-size: 13px; font-family: var(--fu-font-serif); }
+/* ①②③：デスクトップの横4ステップを維持（②③は縮小） */
+/* ②iPad(768–900px) ＋ ③スマホ大(481–767px) */
+@media (min-width: 481px) and (max-width: 900px) {
+  #enroll-flow .flow-card { padding: 44px 28px 40px; }
+  #enroll-flow .flow-grid { max-width: 100%; margin-top: 36px; }
+  #enroll-flow .flow-grid::before { top: 21px; }
+  #enroll-flow .flow-step { padding: 0 4px; }
+  #enroll-flow .flow-step-num { width: 44px; height: 44px; border-width: 3px; font-size: 18px; margin-bottom: 12px; }
+  #enroll-flow .flow-step h4 { font-size: 15px; }
+  #enroll-flow .flow-step p { font-size: 12px; }
+}
+/* ④スマホ小(≤480px)：1〜4を縦タイムライン（番号=左・テキスト=右・番号同士を縦ボーダーで接続） */
+@media (max-width: 480px) {
+  #enroll-flow .flow-card { padding: 40px 32px 36px; }
+  #enroll-flow .flow-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    max-width: 320px;
+    margin: 28px 0 0;        /* 左寄せ */
+  }
+  #enroll-flow .flow-grid::before { display: none; }
+  #enroll-flow .flow-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    column-gap: 16px;
+    text-align: left;
+    padding: 0;
+  }
+  #enroll-flow .flow-step-num {
+    grid-row: 1 / 3;
+    align-self: start;
+    position: relative;
+    z-index: 1;
+    width: 32px; height: 32px;
+    margin: 0;
+    border-width: 2px;
+    font-size: 15px;
+  }
+  #enroll-flow .flow-step h4 { grid-column: 2; grid-row: 1; align-self: center; margin-bottom: 4px; font-size: 18px; font-weight: 700; letter-spacing: 0.06em; }
+  #enroll-flow .flow-step p { grid-column: 2; grid-row: 2; font-size: 15px; }
+  #enroll-flow .flow-step p br { display: none; }   /* 説明文を1行に */
+  /* 番号同士を縦ボーダーで接続（丸の下端→次の丸上端。gap 28px 含む） */
+  #enroll-flow .flow-step:not(:last-child)::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 15px;
+    top: 38px;                    /* 丸の下端(32px)から少し離す */
+    height: calc(100% - 16px);    /* 上下とも約6px空けて次の丸手前まで */
+    width: 2px;
+    background: var(--fu-sub);
+    z-index: 0;
+  }
+}
+
+/* ============================================================
+   FAQ（#faq）— 案B 角丸0カード（ボーダーは削除）
+   ============================================================ */
+/* カード：白地・角丸0・ボーダーなし */
+#faq .faq-item {
+  border: 0;
+  border-radius: 0;
+}
+/* 質問・回答を Zen Old Mincho に統一 */
+#faq .faq-question,
+#faq .faq-answer {
+  font-family: var(--fu-font-serif);
+}
+/* 質問文・回答文を若干小さく */
+#faq .faq-question { font-size: 15px; }
+#faq .faq-answer { font-size: 14px; }
+/* 開閉アイコンを「＋」からシェブロンに */
+#faq .faq-question::after {
+  content: '';
+  right: 22px;
+  top: calc(50% - 5px);
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-right: 2px solid var(--fu-main);
+  border-bottom: 2px solid var(--fu-main);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+#faq .faq-item.open .faq-question::after {
+  top: 50%;
+  transform: rotate(-135deg);
+}
+/* A マーカーを控えめなゴールドに（回答にpadding-topを付けたぶん位置を下げる） */
+#faq .faq-answer::before {
+  color: #c2b689;
+  top: 10px;
+}
+/* Q と A の間に区切り線（開いたときのみ）。上下マージンは詰める */
+#faq .faq-item.open .faq-question {
+  padding-bottom: 12px;
+}
+/* 区切り線：細い共通ヘアライン（0.5px）。左右をQ（left:20px）・矢印（right:22px）に合わせて内側に */
+#faq .faq-answer::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  right: 22px;
+  top: 0;
+  border-top: 0.5px solid var(--fu-hairline);
+}
+#faq .faq-answer {
+  padding-top: 12px;
+}
+/* セクション下の余白を拡大（section-cream の 40px → 100px） */
+#faq {
+  padding-bottom: var(--fu-sect-pad);
+}
+
+/* ============================================================
+   最終CTA（#final-cta）— 「無料診断＋個別カウンセリング」と一貫したデザイン
+   （写真背景＋暗幕・白見出し＋ゴールドグラデem・白枠タグ・counsel-ctaボタン）
+   ※ 背景写真は暫定でFVの fv-bg.png。後で差し替え予定
+   ============================================================ */
+#final-cta {
+  /* 背景写真の url は各LPの style.css で指定 */
+  background: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+  background-size: cover;
+  background-position: center center;
+  /* セクション上下paddingを縮小（.section の 100px → 64px） */
+  padding-top: var(--fu-sect-pad-compact);
+  padding-bottom: var(--fu-sect-pad-compact);
+}
+#final-cta .counsel-inner { text-align: center; }
+#final-cta .section-title { margin-bottom: 12px; }
+#final-cta .section-title small { color: #fff; }
+#final-cta .section-title small::before { background: #fff; }
+#final-cta .section-title h2 { color: #fff; }
+/* 見出しの強調をカウンセリングと同じゴールドのグラデ文字に */
+#final-cta .section-title h2 em {
+  font-style: normal;
+  background: var(--fu-grad-gold-text-light);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+/* CTAボタン：ボタンとサブ導線が横並びにならないよう縦積みに固定 */
+#final-cta .counsel-cta {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* サブ導線（控えめな白リンク）：必ずボタンの下の行に */
+#final-cta .final-cta-sub {
+  display: block;
+  margin-top: 14px;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: 0.85;
+}
+#final-cta .final-cta-sub:hover { opacity: 1; }
+/* 破線の区切り線は削除。タグとボタンの間隔を詰める */
+#final-cta .counsel-divider { display: none; }
+#final-cta .counsel-tags { margin-bottom: 32px; }
+
+/* ============================================================
+   LINE登録（#line-cta）— これまでのデザイン適用・濃い緑
+   ============================================================ */
+#line-cta {
+  background: linear-gradient(135deg, #15603e 0%, #0c472b 100%);
+  /* セクション間の余白を他セクションと揃える（80px → 0で密着） */
+  margin-top: 0;
+}
+/* セクション内テキストを Zen Old Mincho に統一 */
+#line-cta, #line-cta * { font-family: var(--fu-font-serif); }
+/* 見出し：明朝・白 */
+#line-cta h2 {
+  font-family: var(--fu-font-serif);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+/* 特典バナー：角丸0・白の細枠に */
+#line-cta .gift-banner {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 0;
+}
+/* ボタン：白ピル・濃い緑文字（CTAはピル形状を維持） */
+#line-cta .line-cta-button {
+  color: #0d4a2f !important;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.30);
+}
+/* 矢印：ヘッダーCTAと同じ細い『›』（明朝強制を外して Noto Sans 300） */
+#line-cta .line-cta-arrow {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1;
+  margin-left: 14px;
+  transform: translateY(-2px);
+}
+
+/* 案C：友だち追加特典カード（モックアップ内包） */
+#line-cta .line-gift-card {
+  max-width: 600px;
+  margin: 8px auto 26px;
+  border: 1px solid rgba(255,255,255,0.28);
+  padding: 24px 26px 26px;
+}
+#line-cta .line-gift-label {
+  display: inline-block;
+  background: #fff;
+  color: #15603e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 3px 12px;
+  margin-bottom: 8px;
+}
+/* モックアップ：上下マージンを詰める（透過PNGの余白ぶんは負マージンで相殺） */
+#line-cta .line-gift-mock {
+  max-width: 480px;
+  margin: -44px auto -40px;
+}
+#line-cta .line-gift-mock img { display: block; width: 100%; height: auto; }
+#line-cta .line-gift-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+#line-cta .line-gift-name small {
+  display: block;
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* ヘッダーCTAの「無料」バッジ：ボタン左端（-5px）から2px右 */
+.header-cta-badge { margin-left: -3px; }
+
+/* CTAボタン：サービスサイトと同じ反射シャインアニメ（自動ループ・サッと通過→少し休み） */
+.header-cta { position: relative; overflow: hidden; }
+.header-cta::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 45%;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+  transform: translateX(-180%) skewX(-18deg);
+  animation: header-cta-shine 2s cubic-bezier(0.2, 0.6, 0.2, 1) infinite;
+}
+@keyframes header-cta-shine {
+  0%   { transform: translateX(-180%) skewX(-18deg); }
+  50%  { transform: translateX(320%) skewX(-18deg); }
+  100% { transform: translateX(320%) skewX(-18deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-cta::after { animation: none; }
+}
+
+/* ============================================================
+   共通スクロールインアニメ（.reveal / .reveal--stagger）
+   ※ JSが <html> に .js-reveal を付けたときのみ隠す（JS無しは常時表示）
+   ============================================================ */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--fu-ease), transform 0.7s var(--fu-ease);
+  will-change: opacity, transform;
+}
+.js-reveal .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+/* 子要素を少しずつ遅延して順番に */
+.js-reveal .reveal--stagger > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--fu-ease), transform 0.7s var(--fu-ease);
+  will-change: opacity, transform;
+}
+.js-reveal .reveal--stagger.is-in > * {
+  opacity: 1;
+  transform: none;
+}
+.js-reveal .reveal--stagger.is-in > *:nth-child(1) { transition-delay: 0.04s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(2) { transition-delay: 0.14s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(3) { transition-delay: 0.24s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(4) { transition-delay: 0.34s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(5) { transition-delay: 0.44s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(6) { transition-delay: 0.54s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(7) { transition-delay: 0.64s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(8) { transition-delay: 0.74s; }
+.js-reveal .reveal--stagger.is-in > *:nth-child(n+9) { transition-delay: 0.84s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .reveal,
+  .js-reveal .reveal--stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* FV：コンテンツ横幅を縮小（統計行が inner いっぱいに広がるため inner で制御） */
+.fv-inner { max-width: 860px; }
+
+/* スマホ下部スティッキー：プレーンボタン→正式なCTAボタン(.header-cta)を適用 */
+.sticky-cta .header-cta {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: var(--fu-grad-gold);
+  padding: 6px 20px 6px 6px;
+}
+.sticky-cta .header-cta-badge { width: 42px; height: 42px; font-size: 15px; }
+.sticky-cta .header-cta-eyebrow { font-size: 11px; padding: 1px 8px 3px; }
+.sticky-cta .header-cta-main { font-size: 18px; }
+.sticky-cta .header-cta-arrow { font-size: 22px; margin-left: 10px; }
+/* ③④：ボタン横幅を内容幅(auto)・中央に */
+@media (max-width: 767px) {
+  .sticky-cta .header-cta { width: fit-content; margin: 0 auto; }
+}
+/* スクロールで動的に表示/非表示（JS が付与する --dynamic のときのみ隠す＝JS無しでも表示される） */
+.sticky-cta { transition: transform var(--fu-dur-slow) var(--fu-ease); }
+.sticky-cta.sticky-cta--dynamic { transform: translateY(130%); }
+.sticky-cta.sticky-cta--dynamic.is-visible { transform: translateY(0); }
+
+/* ============================================================
+   FV — サービスサイト版デザイン移植（.fv--service）
+   ============================================================ */
+/* 背景写真の url は各LPの style.css で指定（04a はサービスサイトの fv-hero.jpg） */
+.fv--service {
+  background-position: center 38%;
+}
+/* 暗幕を左濃→右淡の斜めグラデに（左のテキスト可読性を確保） */
+.fv--service::before {
+  background: linear-gradient(76deg,
+    rgba(20,18,16,0.95) 0%,
+    rgba(20,18,16,0.78) 42%,
+    rgba(20,18,16,0.42) 72%,
+    rgba(20,18,16,0.12) 100%);
+}
+.fv--service .fv-inner { max-width: 960px; }
+/* 左寄せの読みやすいカラム幅に */
+.fv--service .fv-main,
+.fv--service .fv-sub { max-width: 560px; }
+/* ブランド帯：ワインレッド塗り */
+.fv--service .fv-brand-band {
+  display: inline-block;
+  background: var(--fu-accent);
+  color: #fff;
+  font-family: var(--fu-font-serif);
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  padding: 2px 12px 4px;
+  margin-bottom: 16px;
+}
+/* 見出し：白文字ベース＋一部を白マーカー */
+.fv--service .fv-main {
+  color: #fff;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  margin-bottom: 20px;
+}
+/* 旧・白ボックスspan指定を打ち消し（粒子・行ラッパーのみ。マーカー .fv-hl は除外） */
+.fv--service .fv-main .fv-p,
+.fv--service .fv-main .fv-p2,
+.fv--service .fv-main .fv-ln {
+  background: none;
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+}
+.fv--service .fv-main .fv-p,
+.fv--service .fv-main .fv-p2 { display: inline; }
+.fv--service .fv-main .fv-p { font-size: 0.82em; }
+.fv--service .fv-main .fv-p2 { font-size: 0.78em; }
+.fv--service .fv-main .fv-hl {
+  color: #000;
+  padding: 0 8px;
+  background: linear-gradient(#fff, #fff) left calc(50% + 1.5px) / 100% calc(1.15em + 3px) no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+/* サブコピー：イタリック */
+.fv--service .fv-sub {
+  font-style: normal;
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+.fv--service .fv-sub,
+.fv--service .fv-sub em,
+.fv--service .fv-sub em strong { color: #fff; }
+.fv--service .fv-sub em { font-style: italic; font-weight: 400; }
+.fv--service .fv-sub em strong { font-weight: 900; }
+/* 実績のサブラベル（他塾平均の約7倍 など） */
+.fv--service .fv-stat-sub {
+  font-size: 9px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+/* FV見出し：横スライドイン＋マーカー後引き（採用案 03-A・画面進入で1回再生） */
+/* 既存の span:first-of-type リセットに勝つよう .fv-anim を足して特異度を確保 */
+.fv--service .fv-main.fv-anim .fv-ln { display: block; }
+.js-reveal .fv--service .fv-main.fv-anim .fv-ln { opacity: 0; transform: translateX(-40px); }
+.js-reveal .fv--service .fv-main.fv-anim.is-in .fv-ln { animation: fv-slidein 0.6s var(--fu-ease) forwards; }
+.js-reveal .fv--service .fv-main.fv-anim.is-in .fv-ln:nth-child(1) { animation-delay: 0.05s; }
+.js-reveal .fv--service .fv-main.fv-anim.is-in .fv-ln:nth-child(2) { animation-delay: 0.18s; }
+.js-reveal .fv--service .fv-main.fv-anim.is-in .fv-ln:nth-child(3) { animation-delay: 0.31s; }
+@keyframes fv-slidein { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .fv--service .fv-main.fv-anim .fv-ln {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+
+/* ============================================================
+   共通ワイプアニメ（ボックス塗り＋白文字の要素用）
+   白ボックスと文字が「一緒に」左から現れる（事前にテキストは見えない）
+   ============================================================ */
+.js-reveal .wipe-in,
+.js-reveal .empathy-card-text .empathy-card-lead,
+.js-reveal .empathy-card-text strong {
+  clip-path: inset(0 100% 0 0);
+}
+.js-reveal .wipe-in.is-in,
+.js-reveal .is-in .wipe-in,
+.js-reveal .empathy-grid.is-in .empathy-card-lead,
+.js-reveal .empathy-grid.is-in .empathy-card-text strong {
+  animation: wipe-in-x 0.55s var(--fu-ease) forwards;
+  animation-delay: 0.4s;
+}
+@keyframes wipe-in-x { to { clip-path: inset(0 0 0 0); } }
+/* タイミング：FVブランド帯はすぐ、FVマーカーは行スライド後（採用A=0.6s） */
+.js-reveal .fv--service .fv-brand-band.wipe-in { animation-delay: 0.05s; }
+.js-reveal .fv--service .fv-hl.wipe-in { animation-delay: 0.6s; }
+/* 悩みカード：カードのフェードに続けて 1行目→2行目 の順にワイプ */
+.js-reveal .empathy-grid.is-in .empathy-card:nth-child(1) .empathy-card-lead { animation-delay: 0.34s; }
+.js-reveal .empathy-grid.is-in .empathy-card:nth-child(1) .empathy-card-text strong { animation-delay: 0.49s; }
+.js-reveal .empathy-grid.is-in .empathy-card:nth-child(2) .empathy-card-lead { animation-delay: 0.44s; }
+.js-reveal .empathy-grid.is-in .empathy-card:nth-child(2) .empathy-card-text strong { animation-delay: 0.59s; }
+.js-reveal .empathy-grid.is-in .empathy-card:nth-child(3) .empathy-card-lead { animation-delay: 0.54s; }
+.js-reveal .empathy-grid.is-in .empathy-card:nth-child(3) .empathy-card-text strong { animation-delay: 0.69s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .wipe-in,
+  .js-reveal .empathy-card-text .empathy-card-lead,
+  .js-reveal .empathy-card-text strong {
+    clip-path: none !important; animation: none !important;
+  }
+}
+
+/* ============================================================
+   数字・実績：横から出る（slide-x）
+   ============================================================ */
+.js-reveal .slide-x { opacity: 0; transform: translateX(-36px); }
+.js-reveal .slide-x.is-in,
+.js-reveal .is-in .slide-x { animation: slide-x-in 0.6s var(--fu-ease) forwards; animation-delay: 0.45s; }
+/* グループで順番に横入り */
+.js-reveal .slide-x--stagger > * { opacity: 0; transform: translateX(-36px); }
+.js-reveal .slide-x--stagger.is-in > * { animation: slide-x-in 0.6s var(--fu-ease) forwards; }
+.js-reveal .slide-x--stagger.is-in > *:nth-child(1) { animation-delay: 0.45s; }
+.js-reveal .slide-x--stagger.is-in > *:nth-child(2) { animation-delay: 0.57s; }
+.js-reveal .slide-x--stagger.is-in > *:nth-child(3) { animation-delay: 0.69s; }
+.js-reveal .slide-x--stagger.is-in > *:nth-child(4) { animation-delay: 0.81s; }
+@keyframes slide-x-in { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .slide-x,
+  .js-reveal .slide-x--stagger > * {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+
+/* ============================================================
+   目立たせ用フォーカスイン（メッセージボックス内の見出し等）
+   ぼかし＋わずかな拡大からスッと結像する
+   ============================================================ */
+.js-reveal .focus-in { opacity: 0; filter: blur(10px); transform: scale(1.04); }
+.js-reveal .focus-in.is-in { animation: focus-in 0.9s var(--fu-ease) forwards; animation-delay: 0.45s; }
+@keyframes focus-in { to { opacity: 1; filter: blur(0); transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .focus-in { opacity: 1 !important; filter: none !important; transform: none !important; animation: none !important; }
+}
+
+/* ---- 文脈ごとのワイプ/スライド遅延調整 ---- */
+/* #about 結論ボックス：2行を順にワイプ */
+.js-reveal .quick-conclusion.is-in .qc-line:nth-child(1) { animation-delay: 0.45s; }
+.js-reveal .quick-conclusion.is-in .qc-line:nth-child(2) { animation-delay: 0.62s; }
+/* 悩み結論バンド：バンドのフェード後に白ボックスをワイプ */
+.js-reveal .empathy-conclusion.is-in .empathy-conclusion-sub { animation-delay: 0.5s; }
+/* 合格実績カード：カードのフェードに続けて 偏差値(横)→大学名(ワイプ) */
+.js-reveal .case-card .case-score.slide-x { animation-delay: 0.55s; }
+.js-reveal .case-card .case-univ.wipe-in { animation-delay: 0.7s; }
+/* 代表キャプション：肩書→名前の順に横入り */
+.js-reveal .ceo-caption-name.slide-x { animation-delay: 0.6s; }
+/* メッセージ本文：見出しのフォーカスイン後に、段落を下からふわっと順に */
+.js-reveal .ceo-message-body.reveal--stagger.is-in > *:nth-child(1) { transition-delay: 0.9s; }
+.js-reveal .ceo-message-body.reveal--stagger.is-in > *:nth-child(2) { transition-delay: 1.1s; }
+.js-reveal .ceo-message-body.reveal--stagger.is-in > *:nth-child(3) { transition-delay: 1.3s; }
+.js-reveal .ceo-message-body.reveal--stagger.is-in > *:nth-child(4) { transition-delay: 1.5s; }
+
+/* 理由1（ジグザグ）特徴カード：中の見出し(h4)は下からふわっと遅れて */
+.js-reveal .feature-sub-card h4 { opacity: 0; transform: translateY(18px); }
+.js-reveal .reveal--stagger.is-in .feature-sub-card h4 {
+  animation: fade-up-in 0.6s var(--fu-ease) forwards;
+  animation-delay: 0.55s;
+}
+@keyframes fade-up-in { to { opacity: 1; transform: none; } }
+/* 理由2「4つの強み」の特徴見出しは左から */
+.js-reveal .section-feature-app .feature-sub-card h4 { transform: translateX(-36px); }
+.js-reveal .section-feature-app .reveal--stagger.is-in .feature-sub-card h4 {
+  animation: slide-x-in 0.6s var(--fu-ease) forwards;
+  animation-delay: 0.55s;
+}
+
+/* FV：サブコピー「計画、教材、進捗。」と実績行を、見出しの後に左から
+   （FV内はIO非依存で読み込み時に is-in が付く） */
+.js-reveal .fv--service .fv-anim-sub,
+.js-reveal .fv--service .fv-anim-stats { opacity: 0; transform: translateX(-36px); }
+.js-reveal .fv--service .fv-anim-sub.is-in { animation: slide-x-in 0.6s var(--fu-ease) forwards; animation-delay: 0.95s; }
+.js-reveal .fv--service .fv-anim-stats.is-in { animation: slide-x-in 0.6s var(--fu-ease) forwards; animation-delay: 1.15s; }
+/* CTAボタンは下からふわっと（押したくなる要素なので他と差別化）、注釈は最後に */
+.js-reveal .fv--service .fv-anim-cta { opacity: 0; transform: translateY(18px); }
+.js-reveal .fv--service .fv-anim-cta.is-in {
+  animation: fade-up-in 0.6s var(--fu-ease) forwards; animation-delay: 1.4s;
+}
+.js-reveal .fv--service .fv-anim-notes { opacity: 0; }
+.js-reveal .fv--service .fv-anim-notes.is-in {
+  animation: fv-notes-in 0.6s var(--fu-ease) forwards; animation-delay: 1.65s;
+}
+@keyframes fv-notes-in { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .fv--service .fv-anim-sub,
+  .js-reveal .fv--service .fv-anim-stats,
+  .js-reveal .fv--service .fv-anim-cta,
+  .js-reveal .fv--service .fv-anim-notes {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+
+/* ============================================================
+   #extra「3つの仕組み」：特徴ラベル/本文/画像にもアニメ
+   （Tailwind由来の長いclassのため構造セレクタで指定）
+   ============================================================ */
+/* 特徴1〜3 のラベル（特徴n）：下からふわっと */
+.js-reveal #extra .text-olive-700 { opacity: 0; transform: translateY(14px); }
+.js-reveal #extra .is-in .text-olive-700,
+.js-reveal #extra .text-olive-700.is-in {
+  animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.15s;
+}
+/* 本文（space-y-3 の段落ブロック）：見出しワイプ後に下からふわっと */
+.js-reveal #extra .space-y-3 { opacity: 0; transform: translateY(18px); }
+.js-reveal #extra .space-y-3.is-in {
+  animation: fade-up-in 0.6s var(--fu-ease) forwards; animation-delay: 0.7s;
+}
+/* 画像（iPad/iPhoneモック・合宿写真）：下からふわっと */
+.js-reveal #extra .about3-ipad-pair,
+.js-reveal #extra .md\:order-1 { opacity: 0; transform: translateY(20px); }
+.js-reveal #extra .about3-ipad-pair.is-in,
+.js-reveal #extra .md\:order-1.is-in {
+  animation: fade-up-in 0.7s var(--fu-ease) forwards; animation-delay: 0.35s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal #extra .text-olive-700,
+  .js-reveal #extra .space-y-3,
+  .js-reveal #extra .about3-ipad-pair,
+  .js-reveal #extra .md\:order-1 {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+
+/* 料金明細：バッジ→表の行を順にふわっと */
+.js-reveal .pricing-detail-badge { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-detail.is-in .pricing-detail-badge {
+  animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.15s;
+}
+.js-reveal .pricing-detail-table tbody tr { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr {
+  animation: fade-up-in 0.5s var(--fu-ease) forwards;
+}
+.js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr:nth-child(1) { animation-delay: 0.35s; }
+.js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr:nth-child(2) { animation-delay: 0.45s; }
+.js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr:nth-child(3) { animation-delay: 0.55s; }
+.js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr:nth-child(4) { animation-delay: 0.65s; }
+.js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr:nth-child(5) { animation-delay: 0.75s; }
+.js-reveal .pricing-detail.is-in .pricing-detail-table tbody tr:nth-child(6) { animation-delay: 0.85s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .pricing-detail-badge,
+  .js-reveal .pricing-detail-table tbody tr {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+
+/* 全幅バナー（料金／3つの仕組み）：アイブロー→見出しの順にふわっと */
+.js-reveal .pricing-banner-eyebrow.reveal,
+.js-reveal .fu-banner-eyebrow.reveal { transition-delay: 0.1s; }
+.js-reveal .pricing-banner-title.reveal,
+.js-reveal .fu-banner-title.reveal { transition-delay: 0.28s; }
+
+/* 「すべて、月額に込み」：見出し→チェックリストを1項目ずつ順にふわっと */
+.js-reveal .pricing-included-clean h4 { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-included-clean.is-in h4 {
+  animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.15s;
+}
+.js-reveal .pricing-included-clean ul li { opacity: 0; transform: translateY(14px); }
+.js-reveal .pricing-included-clean.is-in ul li {
+  animation: fade-up-in 0.5s var(--fu-ease) forwards;
+}
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(1) { animation-delay: 0.35s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(2) { animation-delay: 0.43s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(3) { animation-delay: 0.51s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(4) { animation-delay: 0.59s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(5) { animation-delay: 0.67s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(6) { animation-delay: 0.75s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(7) { animation-delay: 0.83s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(8) { animation-delay: 0.91s; }
+.js-reveal .pricing-included-clean.is-in ul li:nth-child(n+9) { animation-delay: 0.99s; }
+/* お支払いについて：見出し→本文 */
+.js-reveal .pay-support h4,
+.js-reveal .pay-support p { opacity: 0; transform: translateY(14px); }
+.js-reveal .pay-support.is-in h4 { animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.15s; }
+.js-reveal .pay-support.is-in p { animation: fade-up-in 0.5s var(--fu-ease) forwards; animation-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .pricing-included-clean h4,
+  .js-reveal .pricing-included-clean ul li,
+  .js-reveal .pay-support h4,
+  .js-reveal .pay-support p {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+
+/* フッターメニュー：項目数が多いのでstagger遅延を全項目分に拡張 */
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(1) { transition-delay: 0.05s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(2) { transition-delay: 0.11s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(3) { transition-delay: 0.17s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(4) { transition-delay: 0.23s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(5) { transition-delay: 0.29s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(6) { transition-delay: 0.35s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(7) { transition-delay: 0.41s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(8) { transition-delay: 0.47s; }
+.js-reveal .footer-nav.reveal--stagger.is-in > *:nth-child(9) { transition-delay: 0.53s; }
+.js-reveal .footer-copy.reveal { transition-delay: 0.6s; }
+/* 理由1 カレンダーパネル見出し（月8時間 / 月84時間）：ふわっと遅れて */
+.js-reveal .cal-panel-headline { opacity: 0; transform: translateY(18px); }
+.js-reveal .calendar-compare.is-in .cal-panel-headline {
+  animation: fade-up-in 0.6s var(--fu-ease) forwards;
+  animation-delay: 0.45s;
+}
+/* deep-intro-arrow は clip-path で矢印形を作っているためワイプ不可。
+   形を保ったまま、下からふわっと出す */
+.js-reveal .deep-intro-arrow.wipe-in { clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%); opacity: 0; }
+.js-reveal .deep-intro-arrow.wipe-in.is-in {
+  animation: deep-arrow-in 0.6s var(--fu-ease) forwards;
+  animation-delay: 0.4s;
+}
+@keyframes deep-arrow-in {
+  from { opacity: 0; transform: translate(-50%, calc(50% + 14px)); }
+  to { opacity: 1; transform: translate(-50%, 50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .deep-intro-arrow.wipe-in { opacity: 1 !important; animation: none !important; }
+}
+
+/* 理由1 特徴ラベル（特徴1〜3）：カード表示後にふわっと */
+.js-reveal .feature-sub-card-label { opacity: 0; transform: translateY(14px); }
+.js-reveal .reveal--stagger.is-in .feature-sub-card-label {
+  animation: fade-up-in 0.5s var(--fu-ease) forwards;
+  animation-delay: 0.4s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .cal-panel-headline,
+  .js-reveal .feature-sub-card-label {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
+}
+/* チェック表の結論：「3つ全部揃っているのは、」「FAST-UPのみ。」のワイン箱を順にワイプ */
+.js-reveal .check-table-conclusion span { clip-path: inset(0 100% 0 0); }
+.js-reveal .check-table-conclusion.is-in span {
+  animation: wipe-in-x 0.55s var(--fu-ease) forwards;
+  animation-delay: 0.4s;
+}
+.js-reveal .check-table-conclusion.is-in span.check-table-conclusion-em { animation-delay: 0.65s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .feature-sub-card h4,
+  .js-reveal .check-table-conclusion span {
+    opacity: 1 !important; transform: none !important;
+    clip-path: none !important; animation: none !important;
+  }
+}
+
+/* ---- 見出し内のボックスem（3つ/仕組みの問題/一般塾の7倍/1年間の総額 等）もワイプ ---- */
+.js-reveal .section-cream .section-title h2 em,
+.js-reveal .section-aha .section-title h2 em,
+.js-reveal .section-feature .section-title h2 em,
+.js-reveal .section-annual .section-title h2 em,
+.js-reveal .aha-lead-headline em,
+.js-reveal .feature-sub-heading h3 em {
+  clip-path: inset(0 100% 0 0);
+}
+/* 見出しのフェードに続けてワイプ（FVマーカーの後引きに準拠） */
+.js-reveal .section-cream .section-title.is-in h2 em,
+.js-reveal .section-aha .section-title.is-in h2 em,
+.js-reveal .section-feature .section-title.is-in h2 em,
+.js-reveal .section-annual .section-title.is-in h2 em,
+.js-reveal .aha-lead-card.is-in .aha-lead-headline em,
+.js-reveal .feature-sub-cards.is-in .feature-sub-heading h3 em {
+  animation: wipe-in-x 0.55s var(--fu-ease) forwards;
+  animation-delay: 0.55s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .section-cream .section-title h2 em,
+  .js-reveal .section-aha .section-title h2 em,
+  .js-reveal .section-feature .section-title h2 em,
+  .js-reveal .section-annual .section-title h2 em,
+  .js-reveal .aha-lead-headline em,
+  .js-reveal .feature-sub-heading h3 em {
+    clip-path: none !important; animation: none !important;
+  }
+}
+
+/* レスポンシブ：見出し・帯・サブコピーをtierごとに縮小（サービスサイト準拠） */
+@media (min-width: 768px) and (max-width: 900px) { /* ②iPad */
+  .fv--service .fv-main { font-size: 34px; }
+}
+@media (min-width: 481px) and (max-width: 767px) { /* ③スマホ大 */
+  .fv--service .fv-main { font-size: 33px; line-height: 1.68; }
+  .fv--service .fv-brand-band { font-size: 15px; }
+}
+@media (max-width: 480px) { /* ④スマホ小 */
+  .fv--service .fv-main { font-size: 27px; line-height: 1.68; }
+  .fv--service .fv-brand-band { font-size: 14px; }
+  .fv--service .fv-sub { font-size: 15px; }
+}
+
+/* 悩み（共感）：結論ボックスの下矢印を次セクションに重ねる */
+.section:has(.empathy-conclusion) { padding-bottom: 0; }
+.empathy-conclusion {
+  position: relative;
+  z-index: 3;
+  margin-bottom: -80px;
+}
+/* 「それもそのはず。」を白文字に */
+.empathy-conclusion strong { color: #fff; }
+/* 悩みカード：デスクトップ(①)のみ、コンテナ横幅を拡大＋3列等幅固定（見出しボックスが1行に収まるように）。②以下は共通の1列縦配置を維持 */
+@media (min-width: 901px) {
+  .section:has(.empathy-grid) > .container { max-width: 1080px; }
+  .empathy-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+/* 悩みカードの見出し(1行目・2行目)：内容幅(auto)のボックス塗り＋白文字・中央配置・縦積み・1行固定 */
+.empathy-card-text .empathy-card-lead,
+.empathy-card-text strong {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  background: var(--fu-main);
+  color: #fff;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.empathy-card-text strong { margin: 6px auto 0; }
+.empathy-card-text br { display: none; }
+
+/* [3]サービス紹介：重なった矢印(結論box -80px食い込み)の受け皿として上paddingを確保。
+   実効の見出し上余白 = padding-top(110) - 80(食い込み) = 約30px（②③④＝スマホ/iPad） */
+#about { padding-top: 110px; }
+/* デスクトップ(①)のみ少しゆとりを持たせる（実効30→約50px） */
+@media (min-width: 901px) { #about { padding-top: 130px; } }
+/* 背景画像：全サイズ右端固定にして主役のコーチ(右側)を常に残す */
+#about { background-position: right center; }
+
+/* [3]サービス紹介：セクションタイトルの上マージン（詰めて0に） */
+#about .section-title { margin-top: 0; }
+/* 結論：外側の箱を外し、1行ごとに箱（ワインレッド）。内容幅で中央寄せ（上下左右autoで中央配置） */
+#about .quick-conclusion {
+  background: none;
+  padding: 0;
+  margin-top: 40px;
+}
+#about .quick-conclusion .qc-line {
+  display: table;
+  margin: 0 auto;
+  background: var(--fu-accent);
+  color: #fff;
+  font-family: var(--fu-font-serif);
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  padding: 4px 8px;
+}
+#about .quick-conclusion .qc-line + .qc-line { margin-top: 10px; }
+/* 結論ボックスの文字：デスクトップを大きく→モバイルへ徐々に縮小。
+   スマホ(③④=767px以下)はbaseの21pxのまま。①デスクトップ24 / ②iPad22 */
+@media (min-width: 901px) { #about .quick-conclusion .qc-line { font-size: 24px; } }
+@media (min-width: 768px) and (max-width: 900px) { #about .quick-conclusion .qc-line { font-size: 22px; } }
+
+/* ============================================================
+   画面外の背景写真を遅延読み込み（.bg-lazy）
+   ------------------------------------------------------------
+   CSS の background-image には loading="lazy" が効かず、要素が画面外でも
+   ブラウザは必ず取得してしまう。そこで近づくまで写真を外しておき、
+   IntersectionObserver が .is-bg を付けた時点で初めて読み込む。
+   写真が無い間は暗いプレースホルダ色で埋めるので、白抜き文字は常に読める。
+
+   html.js-bglazy は JS が動く時だけ付く。JS 無効時は下の規則が
+   まるごと効かず、写真は最初から表示される（＝安全側に倒れる）。
+
+   ここには「写真を外した待機状態」だけを書く。.is-bg が付いた時に
+   出す写真（url）は各LPの style.css が持つ。 ============================================================ */
+.js-bglazy .bg-lazy { background-color: var(--fu-bg-dark); }
+
+/* #final-cta（最終CTA）：写真が来るまで暗幕グラデのみ */
+.js-bglazy #final-cta.bg-lazy {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+}
+
+/* 安心の3つ：コーチ陣写真の帯 */
+.js-bglazy .reassure-band.bg-lazy {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+}
+
+/* 理由2：特徴カードの背景写真 */
+.js-bglazy .section-feature-app .feature-sub-cards.bg-lazy {
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark));
+}
