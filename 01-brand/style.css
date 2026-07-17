@@ -124,12 +124,9 @@
   background: var(--fu-main);
   color: #fff;
 }
-#brand-about .brand-band-result { color: var(--fu-ink-70); }
-#brand-about .brand-band-result strong {
-  color: var(--fu-ink);
-  background: linear-gradient(transparent 60%, var(--fu-sub) 60%);
-  padding: 0 3px;
-}
+/* 実績＋メディア掲載は白ボックスの外（背景写真の上）に置くため、
+   base の light-on-dark 配色のまま。ボックスとの間に余白を取る */
+#brand-about .brand-band-result { margin-top: 28px; text-align: center; }
 @media (max-width: 900px) {
   #brand-about .brand-band-inner { padding: 36px 24px; }
 }
