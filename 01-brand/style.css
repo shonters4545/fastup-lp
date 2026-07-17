@@ -112,7 +112,8 @@
    ------------------------------------------------------------ */
 #brand-about .brand-band-inner {
   max-width: 760px;
-  background: #fff;
+  /* 背景だけ 92% 不透明にして写真をわずかに透かす（文字は不透明のまま） */
+  background: rgba(255, 255, 255, 0.92);
   padding: 48px 44px 32px;
   box-shadow: 0 20px 50px rgba(20, 18, 16, 0.35);
 }
