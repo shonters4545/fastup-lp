@@ -188,9 +188,9 @@
   .brand-band-chips { flex-wrap: wrap; }
   .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
 }
-/* ②タブレット：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
-   右に空いた10vwに背景の女の子が見える構図にする */
-@media (min-width: 768px) and (max-width: 900px) {
+/* ③④スマホ：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
+   右に空いた約10vwに背景の女の子が見える構図にする */
+@media (max-width: 767px) {
   #brand-about .brand-band-inner {
     width: 90vw;
     max-width: none;
