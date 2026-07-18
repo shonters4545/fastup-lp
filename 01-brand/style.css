@@ -87,7 +87,8 @@
   margin-bottom: 26px;
 }
 .brand-band-lead strong { color: #fff; font-weight: 900; }
-/* 計画・毎日・伴走：番号付き3カラム（薄ベージュのボックスで区切る） */
+/* 計画・毎日・伴走：番号付き3カラム（薄オリーブのボックスで区切る）
+   色は「逆転合格者」カードの下地と同じ --fu-sub（薄いオリーブグレー） */
 .brand-band-plan {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -97,7 +98,7 @@
 .brand-plan-item {
   text-align: center;
   padding: 16px 10px;
-  background: var(--fu-beige);
+  background: var(--fu-sub);
 }
 .brand-plan-n {
   display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
