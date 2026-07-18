@@ -87,16 +87,17 @@
   margin-bottom: 26px;
 }
 .brand-band-lead strong { color: #fff; font-weight: 900; }
-/* 計画・毎日・伴走：番号付き3カラム（区切り罫線） */
+/* 計画・毎日・伴走：番号付き3カラム（薄ベージュのボックスで区切る） */
 .brand-band-plan {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   margin-bottom: 26px;
 }
-.brand-plan-item { text-align: center; padding: 0 12px; position: relative; }
-.brand-plan-item + .brand-plan-item::before {
-  content: ''; position: absolute; left: 0; top: 12%; height: 76%; width: 1px;
-  background: rgba(255, 255, 255, 0.35);
+.brand-plan-item {
+  text-align: center;
+  padding: 16px 10px;
+  background: var(--fu-beige);
 }
 .brand-plan-n {
   display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
@@ -139,8 +140,7 @@
 #brand-about .brand-band-h em { background: var(--fu-ink); color: #fff; }
 #brand-about .brand-band-lead { color: var(--fu-ink-70); }
 #brand-about .brand-band-lead strong { color: var(--fu-ink); }
-/* 白ボックス内：番号はオリーブ、ラベルは黒、区切り罫線は薄グレー */
-#brand-about .brand-plan-item + .brand-plan-item::before { background: var(--fu-hairline); }
+/* 白ボックス内：番号はオリーブ、ラベルは黒 */
 #brand-about .brand-plan-n { color: var(--fu-main); }
 #brand-about .brand-plan-t { color: var(--fu-ink); }
 /* 実績＋メディア掲載は白ボックスの外（背景写真の上）に置くため、
