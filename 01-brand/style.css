@@ -57,7 +57,7 @@
 }
 .brand-band-h {
   font-family: var(--fu-font-serif);
-  font-size: 34px;
+  font-size: 36px;   /* 共通セクションタイトル(.section-title h2)と同じ */
   font-weight: 900;
   line-height: 1.7;
   margin-bottom: 26px;
@@ -70,7 +70,6 @@
   padding: 0 12px;
 }
 .brand-band--fit .brand-band-h {
-  font-size: 32px;
   margin-bottom: 30px;
 }
 .brand-band--fit .brand-band-h em {
@@ -196,10 +195,11 @@
 
 @media (max-width: 900px) {
   .brand-band { padding: 64px 20px; }
-  .brand-band-h { font-size: 27px; }
-  .brand-band--fit .brand-band-h { font-size: 26px; }
   .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
 }
+/* 見出しは共通セクションタイトルと同じブレークポイント値（②32 ③28 ④24） */
+@media (min-width: 768px) and (max-width: 900px) { .brand-band-h { font-size: 32px; } }
+@media (min-width: 481px) and (max-width: 767px) { .brand-band-h { font-size: 28px; } }
 /* ③④スマホ：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
    右に空いた約10vwに背景の女の子が見える構図にする */
 @media (max-width: 767px) {
@@ -235,7 +235,7 @@
 @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
   .js-reveal #brand-about .brand-band-inner.reveal { clip-path: none; }
 }
-/* ④スマホ：狭いボックス内で見出しの各行がさらに折り返さないよう縮小 */
+/* ④スマホ：共通セクションタイトルと同じ24px */
 @media (max-width: 480px) {
-  #brand-about .brand-band-h { font-size: 22px; }
+  .brand-band-h { font-size: 24px; }
 }
