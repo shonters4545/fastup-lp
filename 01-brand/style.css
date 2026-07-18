@@ -30,8 +30,10 @@
   margin-top: 4px;
 }
 #brand-fit.brand-band {
-  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/coach-talk.jpg');
-  background-position: right center;
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/brand-fit-bg.jpg');
+  background-position: center center;
+  /* 下部paddingを共通セクションと同じ数値に（--fu-sect-pad=100px） */
+  padding-bottom: var(--fu-sect-pad);
 }
 /* JS有効時：写真が来るまで暗幕グラデのみ（待機）→ 画面接近で .is-bg が付いて写真 */
 .js-bglazy .brand-band.bg-lazy {
@@ -41,11 +43,10 @@
   background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/brand-about-bg.jpg');
 }
 .js-bglazy #brand-fit.bg-lazy.is-bg {
-  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('../shared/img/coach-talk.jpg');
+  background-image: linear-gradient(var(--fu-overlay-dark), var(--fu-overlay-dark)), url('img/brand-fit-bg.jpg');
 }
 
 .brand-band-inner { max-width: 900px; margin: 0 auto; text-align: center; }
-.brand-band--fit .brand-band-inner { text-align: left; }
 
 .brand-band-eyebrow {
   display: inline-flex;
@@ -82,11 +83,18 @@
   padding: 0 12px;
 }
 .brand-band--fit .brand-band-h {
+  /* 共通セクションタイトルと同じサイズ（clamp 30→36px） */
+  font-size: var(--fu-size-h2);
+  line-height: 1.5;
   margin-bottom: 30px;
 }
+/* 2行とも白ボックス塗り（暗色文字） */
 .brand-band--fit .brand-band-h em {
-  background: var(--fu-accent);
-  color: #fff;
+  display: inline-block;
+  background: #fff;
+  color: var(--fu-ink);
+  padding: 0 14px;
+  margin: 3px 0;
 }
 
 /* --- FAST-UPとは？：リード＋計画/毎日/伴走チップ＋実績 --- */
@@ -167,19 +175,69 @@
 }
 
 /* --- 適合宣言：2列の✓リスト＋締め＋CTA --- */
+/* チェックリスト全体を細ボーダーのボックスで囲み、中央に配置 */
 .brand-fit-cols {
+  /* 2列を内容幅にして中央寄せ＝左右マージンを均等にする */
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 40px;
-  margin-bottom: 8px;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  gap: 6px 48px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 8px;
+  padding: 28px 40px;
+  border: 1px solid rgba(223, 220, 206, 0.45);
+}
+/* ------------------------------------------------------------
+   適合宣言のアニメーション（keyframe方式で統一＝プレビューでも再生される）
+   見出し・締め・各チェック項目を「左からスライドイン」。
+   ------------------------------------------------------------ */
+/* ボックス枠：フェードイン（中のアイテムが左からスライドするので枠は静かに） */
+.js-reveal #brand-fit .brand-fit-cols.reveal { opacity: 0; transform: none; }
+.js-reveal #brand-fit .brand-fit-cols.reveal.is-in {
+  animation: fit-fade-in 0.5s var(--fu-ease) forwards;
+}
+@keyframes fit-fade-in { to { opacity: 1; } }
+/* 各チェック項目：左からスライド＋順次表示 */
+.js-reveal #brand-fit .brand-fit-item { opacity: 0; transform: translateX(-24px); }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item {
+  animation: fit-slide-in 0.5s var(--fu-ease) forwards;
+}
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(1) { animation-delay: 0.30s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(2) { animation-delay: 0.38s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(3) { animation-delay: 0.46s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(4) { animation-delay: 0.54s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(5) { animation-delay: 0.62s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(6) { animation-delay: 0.70s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(7) { animation-delay: 0.78s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(8) { animation-delay: 0.86s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(9) { animation-delay: 0.94s; }
+.js-reveal #brand-fit .brand-fit-cols.is-in .brand-fit-item:nth-child(10) { animation-delay: 1.02s; }
+/* 見出し・締め：左からスライドイン（transition方式をkeyframeへ置換） */
+.js-reveal #brand-fit .brand-band-h.reveal,
+.js-reveal #brand-fit .brand-fit-close.reveal {
+  opacity: 0;
+  transform: translateX(-32px);
+}
+.js-reveal #brand-fit .brand-band-h.reveal.is-in { animation: fit-slide-in 0.6s var(--fu-ease) forwards; }
+.js-reveal #brand-fit .brand-fit-close.reveal.is-in { animation: fit-slide-in 0.6s var(--fu-ease) forwards; animation-delay: 0.1s; }
+@keyframes fit-slide-in { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal #brand-fit .brand-fit-cols.reveal { clip-path: none; }
+  .js-reveal #brand-fit .brand-fit-item,
+  .js-reveal #brand-fit .brand-band-h.reveal,
+  .js-reveal #brand-fit .brand-fit-close.reveal {
+    opacity: 1 !important; transform: none !important; animation: none !important;
+  }
 }
 .brand-fit-item {
   display: flex;
   align-items: baseline;
   gap: 10px;
   font-family: var(--fu-font-serif);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 2;
+  white-space: nowrap;   /* 「E判定・偏差値30台」等が2列でも折り返さない */
 }
 .brand-fit-item::before { content: '✓'; color: var(--fu-sub); font-weight: 700; }
 .brand-fit-item strong { color: #fff; font-weight: 900; }
@@ -190,30 +248,43 @@
   display: block;
   font-size: 21px;
   font-weight: 900;
-  color: #fff;
   letter-spacing: 0.06em;
   line-height: 1.5;
 }
-.brand-fit-close-sub {
-  display: table;
-  margin: 10px auto 0;
-  padding: 4px 8px;
+/* 締めの2行をワインレッド塗り（白文字） */
+.brand-fit-close strong em {
+  display: inline-block;
+  font-style: normal;
   background: var(--fu-accent);
   color: #fff;
-  font-size: 21px;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  line-height: 1.5;
+  padding: 0 14px;
+  margin: 3px 0;
 }
+/* 1行目だけ下マージンを+2px */
+.brand-fit-close strong em:first-child { margin-bottom: 5px; }
 .brand-band--fit .cta-wrap { text-align: center; }
 
 @media (max-width: 900px) {
   .brand-band { padding: 64px 20px; }
-  .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
+  /* 下部paddingを共通セクション（スマホ）と同じ60pxに */
+  #brand-fit.brand-band { padding-bottom: 60px; }
+  /* タブレット・スマホでも2列を維持（列間・内側paddingを詰める） */
+  .brand-fit-cols { gap: 6px 24px; padding: 24px 24px; }
+}
+@media (max-width: 480px) {
+  /* スマホはセクション下部paddingを詰める */
+  #brand-fit.brand-band { padding-bottom: 40px; }
+  .brand-fit-cols { gap: 6px 16px; padding: 22px 16px; }
+  /* チェック項目テキストを-1px（16→15px） */
+  .brand-fit-item { font-size: 15px; }
+  /* 見出しボックスの左右padを縮小（14→8px） */
+  .brand-band--fit .brand-band-h em { padding-left: 8px; padding-right: 8px; }
 }
 /* ③④スマホ：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
    右に空いた約10vwに背景の女の子が見える構図にする */
 @media (max-width: 767px) {
+  /* 適合宣言の見出しをスマホで1行に収める（30px→28px） */
+  .brand-band--fit .brand-band-h { font-size: 28px; }
   #brand-about .brand-band-inner {
     width: 90vw;
     max-width: none;
