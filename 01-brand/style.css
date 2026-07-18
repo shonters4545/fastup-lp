@@ -57,7 +57,7 @@
 }
 .brand-band-h {
   font-family: var(--fu-font-serif);
-  font-size: 36px;   /* 共通セクションタイトル(.section-title h2)と同じ */
+  font-size: 28px;   /* 文章型の見出しのため、共通h2(36px)より控えめに */
   font-weight: 900;
   line-height: 1.7;
   margin-bottom: 26px;
@@ -125,7 +125,7 @@
    （適合宣言 #brand-fit は写真に直接白文字のまま＝この上書きは効かない）
    ------------------------------------------------------------ */
 #brand-about .brand-band-inner {
-  max-width: 840px;   /* 見出し36px化に合わせ、デスクトップで2行が収まる幅に */
+  max-width: 760px;
   /* 背景だけ 92% 不透明にして写真をわずかに透かす（文字は不透明のまま） */
   background: rgba(255, 255, 255, 0.92);
   padding: 48px 44px 32px;
@@ -197,9 +197,9 @@
   .brand-band { padding: 64px 20px; }
   .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
 }
-/* 見出しは共通セクションタイトルと同じブレークポイント値（②32 ③28 ④24） */
-@media (min-width: 768px) and (max-width: 900px) { .brand-band-h { font-size: 32px; } }
-@media (min-width: 481px) and (max-width: 767px) { .brand-band-h { font-size: 28px; } }
+/* 文章型見出しのため控えめにスケール（②26 ③24） */
+@media (min-width: 768px) and (max-width: 900px) { .brand-band-h { font-size: 26px; } }
+@media (min-width: 481px) and (max-width: 767px) { .brand-band-h { font-size: 24px; } }
 /* ③④スマホ：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
    右に空いた約10vwに背景の女の子が見える構図にする */
 @media (max-width: 767px) {
@@ -235,7 +235,7 @@
 @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
   .js-reveal #brand-about .brand-band-inner.reveal { clip-path: none; }
 }
-/* ④スマホ：共通セクションタイトルと同じ24px */
+/* ④スマホ：さらに控えめに */
 @media (max-width: 480px) {
-  .brand-band-h { font-size: 24px; }
+  .brand-band-h { font-size: 22px; }
 }
