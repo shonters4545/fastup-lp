@@ -57,7 +57,8 @@
 }
 .brand-band-h {
   font-family: var(--fu-font-serif);
-  font-size: 28px;   /* 文章型の見出しのため、共通h2(36px)より控えめに */
+  /* 画面幅に応じてなめらかに切り替わる：④22px 〜 ①28px */
+  font-size: clamp(22px, calc(19.5px + 0.66vw), 28px);
   font-weight: 900;
   line-height: 1.7;
   margin-bottom: 26px;
@@ -197,9 +198,6 @@
   .brand-band { padding: 64px 20px; }
   .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
 }
-/* 文章型見出しのため控えめにスケール（②26 ③24） */
-@media (min-width: 768px) and (max-width: 900px) { .brand-band-h { font-size: 26px; } }
-@media (min-width: 481px) and (max-width: 767px) { .brand-band-h { font-size: 24px; } }
 /* ③④スマホ：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
    右に空いた約10vwに背景の女の子が見える構図にする */
 @media (max-width: 767px) {
@@ -234,8 +232,4 @@
 /* スマホ×アニメ抑制時：ワイプせず最初から全表示 */
 @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
   .js-reveal #brand-about .brand-band-inner.reveal { clip-path: none; }
-}
-/* ④スマホ：さらに控えめに */
-@media (max-width: 480px) {
-  .brand-band-h { font-size: 22px; }
 }
