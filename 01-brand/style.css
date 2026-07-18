@@ -87,15 +87,24 @@
   margin-bottom: 26px;
 }
 .brand-band-lead strong { color: #fff; font-weight: 900; }
-.brand-band-chips { display: flex; justify-content: center; gap: 12px; margin-bottom: 26px; }
-.brand-band-chip {
-  font-family: var(--fu-font-serif);
-  font-size: 20px;
-  font-weight: 900;
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  color: #fff;
-  padding: 4px 18px;
-  letter-spacing: 0.08em;
+/* 計画・毎日・伴走：番号付き3カラム（区切り罫線） */
+.brand-band-plan {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 26px;
+}
+.brand-plan-item { text-align: center; padding: 0 12px; position: relative; }
+.brand-plan-item + .brand-plan-item::before {
+  content: ''; position: absolute; left: 0; top: 12%; height: 76%; width: 1px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.brand-plan-n {
+  display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
+  color: var(--fu-sub); letter-spacing: 0.18em; margin-bottom: 8px;
+}
+.brand-plan-t {
+  display: block; font-family: var(--fu-font-serif); font-size: 22px; font-weight: 900;
+  color: #fff; letter-spacing: 0.06em;
 }
 .brand-band-result {
   font-family: var(--fu-font-serif);
@@ -128,11 +137,10 @@
 #brand-about .brand-band-h em { background: var(--fu-ink); color: #fff; }
 #brand-about .brand-band-lead { color: var(--fu-ink-70); }
 #brand-about .brand-band-lead strong { color: var(--fu-ink); }
-#brand-about .brand-band-chip {
-  border: 0;
-  background: var(--fu-main);
-  color: #fff;
-}
+/* 白ボックス内：番号はオリーブ、ラベルは黒、区切り罫線は薄グレー */
+#brand-about .brand-plan-item + .brand-plan-item::before { background: var(--fu-hairline); }
+#brand-about .brand-plan-n { color: var(--fu-main); }
+#brand-about .brand-plan-t { color: var(--fu-ink); }
 /* 実績＋メディア掲載は白ボックスの外（背景写真の上）に置くため、
    base の light-on-dark 配色のまま。ボックスとの間に余白を取る */
 #brand-about .brand-band-result { margin-top: 28px; text-align: center; }
@@ -185,7 +193,6 @@
   .brand-band { padding: 64px 20px; }
   .brand-band-h { font-size: 27px; }
   .brand-band--fit .brand-band-h { font-size: 26px; }
-  .brand-band-chips { flex-wrap: wrap; }
   .brand-fit-cols { grid-template-columns: 1fr; gap: 4px; }
 }
 /* ③④スマホ：白ボックスを左端にくっつけ、幅90vw・中身左揃え。
@@ -198,7 +205,6 @@
     margin-right: 0;
     text-align: left;
   }
-  #brand-about .brand-band-chips { justify-content: flex-start; }
   #brand-about .brand-band-result { text-align: left; }
   /* カード内リード文を1px小さく、見出しとの間隔も詰める */
   #brand-about .brand-band-lead { font-size: 16px; }
