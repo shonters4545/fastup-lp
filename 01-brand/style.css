@@ -98,7 +98,7 @@
 .brand-plan-item {
   text-align: center;
   padding: 16px 10px;
-  background: #E4E3DD;   /* 温かめのライトグレー（やや濃いめ） */
+  background: var(--fu-main);   /* ブランドカラー（オリーブ）塗り */
 }
 .brand-plan-n {
   display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
@@ -142,8 +142,8 @@
 #brand-about .brand-band-lead { color: var(--fu-ink-70); }
 #brand-about .brand-band-lead strong { color: var(--fu-ink); }
 /* 白ボックス内：番号はオリーブ、ラベルは黒 */
-#brand-about .brand-plan-n { color: var(--fu-main); }
-#brand-about .brand-plan-t { color: var(--fu-main); }
+#brand-about .brand-plan-n { color: #fff; }
+#brand-about .brand-plan-t { color: #fff; }
 /* 実績＋メディア掲載は白ボックスの外（背景写真の上）に置くため、
    base の light-on-dark 配色のまま。ボックスとの間に余白を取る */
 #brand-about .brand-band-result { margin-top: 28px; text-align: center; }
