@@ -48,12 +48,23 @@
 .brand-band--fit .brand-band-inner { text-align: left; }
 
 .brand-band-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--fu-font-serif);
   font-size: 13px;
   letter-spacing: 0.22em;
   color: var(--fu-sub);
   margin-bottom: 20px;
+}
+/* 先頭ドット：共通セクションタイトル(.section-title small::before)と同じ8px丸 */
+.brand-band-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
 }
 .brand-band-h {
   font-family: var(--fu-font-serif);
