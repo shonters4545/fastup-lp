@@ -98,7 +98,7 @@
 .brand-plan-item {
   text-align: center;
   padding: 16px 10px;
-  background: var(--fu-sub);
+  background: #EAE8DD;   /* --fu-sub より一段薄い薄オリーブ */
 }
 .brand-plan-n {
   display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
