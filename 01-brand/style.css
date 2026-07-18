@@ -87,8 +87,8 @@
   margin-bottom: 26px;
 }
 .brand-band-lead strong { color: #fff; font-weight: 900; }
-/* 計画・毎日・伴走：番号付き3カラム（薄オリーブのボックスで区切る）
-   色は「逆転合格者」カードの下地と同じ --fu-sub（薄いオリーブグレー） */
+/* 計画・毎日・伴走：番号付き3カラム（温かめグレーのボックスで区切る）
+   文字＝ブランドオリーブ、下線＝既存の --fu-sub マーカー（.lead-text em と同じ） */
 .brand-band-plan {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -98,17 +98,17 @@
 .brand-plan-item {
   text-align: center;
   padding: 16px 10px;
-  background: #EAE8DD;   /* --fu-sub より一段薄い薄オリーブ */
+  background: #EFEEEB;   /* 温かめのライトグレー */
 }
 .brand-plan-n {
   display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
-  color: var(--fu-sub); letter-spacing: 0.18em; margin-bottom: 2px;
+  color: var(--fu-main); letter-spacing: 0.18em; margin-bottom: 2px;
 }
 .brand-plan-t {
   display: inline-block; font-family: var(--fu-font-serif); font-size: 22px; font-weight: 900;
-  color: #fff; letter-spacing: 0.06em;
-  /* ラベルにオリーブの下線 */
-  background: linear-gradient(transparent 86%, var(--fu-main) 86%);
+  color: var(--fu-main); letter-spacing: 0.06em;
+  /* 既存の下線マーカー（.lead-text em と同じ --fu-sub 60%） */
+  background: linear-gradient(transparent 60%, var(--fu-sub) 60%);
 }
 .brand-band-result {
   font-family: var(--fu-font-serif);
@@ -143,7 +143,7 @@
 #brand-about .brand-band-lead strong { color: var(--fu-ink); }
 /* 白ボックス内：番号はオリーブ、ラベルは黒 */
 #brand-about .brand-plan-n { color: var(--fu-main); }
-#brand-about .brand-plan-t { color: var(--fu-ink); }
+#brand-about .brand-plan-t { color: var(--fu-main); }
 /* 実績＋メディア掲載は白ボックスの外（背景写真の上）に置くため、
    base の light-on-dark 配色のまま。ボックスとの間に余白を取る */
 #brand-about .brand-band-result { margin-top: 28px; text-align: center; }
