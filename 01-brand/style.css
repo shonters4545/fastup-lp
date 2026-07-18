@@ -100,11 +100,13 @@
 }
 .brand-plan-n {
   display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
-  color: var(--fu-sub); letter-spacing: 0.18em; margin-bottom: 8px;
+  color: var(--fu-sub); letter-spacing: 0.18em; margin-bottom: 2px;
 }
 .brand-plan-t {
-  display: block; font-family: var(--fu-font-serif); font-size: 22px; font-weight: 900;
+  display: inline-block; font-family: var(--fu-font-serif); font-size: 22px; font-weight: 900;
   color: #fff; letter-spacing: 0.06em;
+  /* ラベルにオリーブの下線 */
+  background: linear-gradient(transparent 86%, var(--fu-main) 86%);
 }
 .brand-band-result {
   font-family: var(--fu-font-serif);
