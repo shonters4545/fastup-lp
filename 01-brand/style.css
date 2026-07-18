@@ -106,9 +106,11 @@
 }
 .brand-plan-t {
   display: inline-block; font-family: var(--fu-font-serif); font-size: 22px; font-weight: 900;
-  color: var(--fu-main); letter-spacing: 0.06em;
-  /* 既存の下線マーカー（.lead-text em と同じ --fu-sub 60%） */
-  background: linear-gradient(transparent 60%, var(--fu-sub) 60%);
+  color: #fff; letter-spacing: 0.06em;
+  /* 白の波線下線（オリーブ塗り＋白文字に合わせる） */
+  text-decoration: underline wavy #fff;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1.5px;
 }
 .brand-band-result {
   font-family: var(--fu-font-serif);
