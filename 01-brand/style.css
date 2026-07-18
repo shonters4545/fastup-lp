@@ -98,7 +98,7 @@
 .brand-plan-item {
   text-align: center;
   padding: 16px 10px;
-  background: #EFEEEB;   /* 温かめのライトグレー */
+  background: #E4E3DD;   /* 温かめのライトグレー（やや濃いめ） */
 }
 .brand-plan-n {
   display: block; font-family: var(--fu-font-serif); font-size: 13px; font-weight: 700;
