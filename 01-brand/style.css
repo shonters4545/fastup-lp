@@ -116,7 +116,9 @@
   color: var(--fu-main); letter-spacing: 0.18em; margin-bottom: 2px;
 }
 .brand-plan-t {
-  display: inline-block; font-family: var(--fu-font-serif); font-size: 22px; font-weight: 900;
+  /* 見た目を見出し(.brand-band-h)に揃える。白抜き文字は膨張して見えるため、
+     数値は見出しより2px小さく設定し、光学的に同じ大きさに感じさせる */
+  display: inline-block; font-family: var(--fu-font-serif); font-size: clamp(20px, calc(17.5px + 0.66vw), 26px); font-weight: 900;
   color: #fff; letter-spacing: 0.06em;
   /* 白の波線下線（オリーブ塗り＋白文字に合わせる） */
   text-decoration: underline wavy #fff;
