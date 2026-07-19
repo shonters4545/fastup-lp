@@ -450,9 +450,10 @@ if ('IntersectionObserver' in window) {
       <li><span class="counsel-list-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>「伸びしろ」の発見と対策がわかる</li>
       <li><span class="counsel-list-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="20 6 9 17 4 12"></polyline></svg></span>受験のプロが悩みを解決</li>
     </ul>
+        <a href="#shindan" class="shindan-inline-cta">＼第一志望合格の可能性が1分でわかる／<b>第一志望合格可能性診断を受ける</b></a>
     <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="counsel-cta reveal">
       <span class="counsel-cta-badge"><span class="cta-dash">-</span>限定10名<span class="cta-dash">-</span></span>
-      <span class="counsel-cta-text">逆転ルート診断を受ける</span>
+      <span class="counsel-cta-text">無料カウンセリングを予約</span>
     </a>
     <p class="counsel-note reveal">※キャンペーン中につき「無料」。定員になり次第終了いたします。</p>
   </div>
@@ -1226,14 +1227,130 @@ if ('IntersectionObserver' in window) {
   </div>
 </section>
 
+<!-- ======= 埋め込み診断（第一志望合格可能性診断） ======= -->
+<style id="shindan-css">
+#shindan{--sd-acc:#722F37;background:#f6f1ec;padding:64px 20px;}
+.shindan-wrap{max-width:640px;margin:0 auto;}
+.shindan-head{text-align:center;margin-bottom:26px;}
+.shindan-eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;font-weight:700;color:#fff;background:var(--sd-acc);padding:5px 14px;border-radius:999px;}
+.shindan-title{font-size:28px;font-weight:900;margin:14px 0 10px;line-height:1.3;color:#222;}
+.shindan-title em{font-style:normal;color:var(--sd-acc);}
+.shindan-lead{font-size:14px;line-height:1.8;color:#555;}
+.shindan-lead b{color:var(--sd-acc);}
+.shindan-form,.shindan-result{background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 12px 40px rgba(0,0,0,.08);}
+.shindan-q{margin-bottom:22px;}
+.shindan-q-label{font-size:15px;font-weight:800;color:#222;margin-bottom:12px;}
+.shindan-q-label span{color:var(--sd-acc);margin-right:6px;}
+.shindan-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.shindan-opt{font-size:14px;font-weight:700;color:#333;background:#f4f4f6;border:2px solid #f4f4f6;border-radius:12px;padding:13px 8px;cursor:pointer;transition:.15s;font-family:inherit;}
+.shindan-opt:hover{border-color:var(--sd-acc);}
+.shindan-opt.is-on{background:var(--sd-acc);border-color:var(--sd-acc);color:#fff;}
+.shindan-submit{width:100%;margin-top:6px;font-size:16px;font-weight:800;color:#fff;background:var(--sd-acc);border:none;border-radius:12px;padding:16px;cursor:pointer;font-family:inherit;transition:.2s;}
+.shindan-submit:disabled{background:#c9c2c3;cursor:not-allowed;}
+.shindan-note{font-size:11px;color:#999;text-align:center;margin-top:12px;}
+.shindan-result{text-align:center;}
+.shindan-result-eyebrow{font-size:13px;font-weight:700;color:#777;}
+.shindan-gauge{margin:6px 0 4px;color:var(--sd-acc);font-weight:900;line-height:1;}
+.shindan-gauge-num{font-size:64px;}
+.shindan-gauge-unit{font-size:26px;margin-left:2px;}
+.shindan-bar{height:10px;background:#eee;border-radius:999px;overflow:hidden;margin:8px auto 18px;max-width:320px;}
+.shindan-bar-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,#b9535f,var(--sd-acc));border-radius:999px;transition:width 1s ease;}
+.shindan-verdict{font-size:16px;font-weight:800;color:#222;line-height:1.6;margin-bottom:10px;}
+.shindan-focus{font-size:14px;color:#555;margin-bottom:20px;}
+.shindan-focus b{color:var(--sd-acc);}
+.shindan-gift{background:#f6f1ec;border-radius:14px;padding:16px;margin-bottom:18px;}
+.shindan-gift-lead{font-size:12px;color:#888;}
+.shindan-gift-name{font-size:18px;font-weight:900;color:var(--sd-acc);margin:4px 0;}
+.shindan-gift-sub{font-size:12px;color:#666;}
+.shindan-line-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;font-size:16px;font-weight:800;color:#fff;background:#06c755;border-radius:12px;padding:16px;text-decoration:none;box-shadow:0 8px 22px rgba(6,199,85,.3);}
+.shindan-retry{margin-top:14px;background:none;border:none;color:#999;font-size:13px;text-decoration:underline;cursor:pointer;font-family:inherit;}
+.shindan-inline-cta{display:inline-flex;flex-direction:column;align-items:center;gap:2px;margin:18px auto 0;padding:12px 26px;border-radius:12px;background:#fff;border:2px solid var(--fu-accent,#722F37);color:var(--fu-accent,#722F37);font-size:12px;font-weight:700;text-decoration:none;line-height:1.4;}
+.shindan-inline-cta b{font-size:16px;font-weight:900;}
+.shindan-inline-cta--dark{background:rgba(255,255,255,.08);border-color:#fff;color:#fff;}
+.shindan-float{position:fixed;right:14px;bottom:88px;z-index:60;display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--fu-accent,#722F37);color:#fff;text-decoration:none;padding:11px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:10px;font-weight:700;line-height:1.3;animation:sdFloatIn .3s ease;}
+.shindan-float b{font-size:14px;font-weight:900;}
+.shindan-float[hidden]{display:none;}
+@keyframes sdFloatIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+@media(min-width:768px){.shindan-float{bottom:24px;right:24px;}}
+@media(max-width:400px){.shindan-title{font-size:24px;}.shindan-gauge-num{font-size:54px;}}
+.shindan-modal{--sd-acc:#722F37;position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;}
+.shindan-modal.is-open{display:flex;}
+.shindan-modal-overlay{position:absolute;inset:0;background:rgba(20,10,12,.6);animation:sdFade .2s ease;}
+.shindan-modal-box{position:relative;z-index:1;background:#fff;border-radius:18px;max-width:400px;width:100%;padding:32px 24px 24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:sdPop .25s ease;}
+.shindan-modal-close{position:absolute;top:8px;right:12px;background:none;border:none;font-size:26px;line-height:1;color:#bbb;cursor:pointer;font-family:inherit;}
+.shindan-modal-eyebrow{display:inline-block;font-size:11px;letter-spacing:.12em;font-weight:700;color:#fff;background:var(--sd-acc);padding:4px 12px;border-radius:999px;}
+.shindan-modal-title{font-size:21px;font-weight:900;color:#222;line-height:1.45;margin:14px 0 10px;}
+.shindan-modal-title em{font-style:normal;color:var(--sd-acc);}
+.shindan-modal-lead{font-size:13px;line-height:1.7;color:#666;margin-bottom:20px;}
+.shindan-modal-lead b{color:var(--sd-acc);}
+.shindan-modal-cta{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;font-size:16px;font-weight:800;color:#fff;background:var(--sd-acc);border-radius:12px;padding:15px;text-decoration:none;}
+.shindan-modal-later{margin-top:12px;background:none;border:none;color:#999;font-size:13px;text-decoration:underline;cursor:pointer;font-family:inherit;}
+@keyframes sdFade{from{opacity:0;}to{opacity:1;}}
+@keyframes sdPop{from{opacity:0;transform:translateY(10px) scale(.98);}to{opacity:1;transform:none;}}
+</style>
+<section id="shindan" class="shindan-section">
+  <div class="shindan-wrap">
+    <div class="shindan-head">
+      <span class="shindan-eyebrow">1分でわかる</span>
+      <h2 class="shindan-title">第一志望合格可能性<em>診断</em></h2>
+      <p class="shindan-lead">3つの質問に答えると、いまのあなたの合格可能性と最優先課題がわかります。<br>結果に合わせて<b>浪人の逆転計画</b>を無料プレゼント。</p>
+    </div>
+    <form class="shindan-form" id="shindanForm">
+      <div class="shindan-q" data-q="1">
+        <p class="shindan-q-label"><span>Q1.</span>いまの偏差値は？</p>
+        <div class="shindan-opts">
+          <button type="button" class="shindan-opt" data-v="0">〜45</button>
+          <button type="button" class="shindan-opt" data-v="1">46〜55</button>
+          <button type="button" class="shindan-opt" data-v="2">56〜65</button>
+          <button type="button" class="shindan-opt" data-v="3">66〜</button>
+        </div>
+      </div>
+      <div class="shindan-q" data-q="2">
+        <p class="shindan-q-label"><span>Q2.</span>一番の苦手科目は？</p>
+        <div class="shindan-opts">
+          <button type="button" class="shindan-opt" data-v="eng">英語</button>
+          <button type="button" class="shindan-opt" data-v="jpn">国語</button>
+          <button type="button" class="shindan-opt" data-v="sel">社会・数学</button>
+          <button type="button" class="shindan-opt" data-v="non">苦手なし</button>
+        </div>
+      </div>
+      <div class="shindan-q" data-q="3">
+        <p class="shindan-q-label"><span>Q3.</span>本番まで残りは？</p>
+        <div class="shindan-opts">
+          <button type="button" class="shindan-opt" data-v="0">3ヶ月以内</button>
+          <button type="button" class="shindan-opt" data-v="1">4〜6ヶ月</button>
+          <button type="button" class="shindan-opt" data-v="2">7〜12ヶ月</button>
+          <button type="button" class="shindan-opt" data-v="3">13ヶ月以上</button>
+        </div>
+      </div>
+      <button type="button" class="shindan-submit" id="shindanSubmit" disabled>診断結果を見る</button>
+      <p class="shindan-note">※あくまで目安です。正確な合格戦略は無料カウンセリングで。</p>
+    </form>
+    <div class="shindan-result" id="shindanResult" hidden>
+      <span class="shindan-result-eyebrow">あなたの第一志望合格可能性</span>
+      <div class="shindan-gauge"><span class="shindan-gauge-num" id="shindanPct">0</span><span class="shindan-gauge-unit">%</span></div>
+      <div class="shindan-bar"><span class="shindan-bar-fill" id="shindanBar"></span></div>
+      <p class="shindan-verdict" id="shindanVerdict"></p>
+      <p class="shindan-focus">最優先課題：<b id="shindanFocus"></b></p>
+      <div class="shindan-gift">
+        <p class="shindan-gift-lead">診断のあなたに、これをプレゼント</p>
+        <p class="shindan-gift-name">浪人1年 逆転計画テンプレ</p>
+        <p class="shindan-gift-sub">LINE登録で今すぐ無料で受け取れます</p>
+      </div>
+      <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="shindan-line-btn">LINE登録で教材を受け取る <span aria-hidden="true">›</span></a>
+      <button type="button" class="shindan-retry" id="shindanRetry">もう一度診断する</button>
+    </div>
+  </div>
+</section>
+
 <!-- ======= LINE登録ブロック ======= -->
 <section id="line-cta" class="final-line-cta">
   <h2>まずは、LINE登録</h2>
-  <p>無料カウンセリング予約・学習相談、すべてLINEで完結。</p>
+  <p>友だち追加で〈浪人1年 逆転計画テンプレ〉をプレゼント。無料カウンセリング予約・学習相談もLINEで完結。</p>
   <div class="line-gift-card reveal">
     <span class="line-gift-label wipe-in">友だち追加特典</span>
-    <div class="line-gift-mock"><img decoding="async" loading="lazy" src="../shared/img/gift-mockup.png" alt="学習法ライブラリ"></div>
-    <p class="line-gift-name">「学習法ライブラリ」プレゼント<small>逆転合格に必要な学習法を1冊に凝縮</small></p>
+    <div class="line-gift-mock"><img decoding="async" loading="lazy" src="../shared/img/gift-mockup.png" alt="浪人1年 逆転計画テンプレ"></div>
+    <p class="line-gift-name">「浪人1年 逆転計画テンプレ」プレゼント<small>浪人1年で逆転するための年間計画テンプレを無料進呈</small></p>
   </div>
   <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="line-cta-button">公式LINEで友だち追加 <span class="line-cta-arrow" aria-hidden="true">›</span></a>
 </section>
@@ -1259,6 +1376,22 @@ if ('IntersectionObserver' in window) {
   </div>
 </footer>
 
+<!-- 診断誘導モーダル（後半再導入の少し下でスクロール検知 / 戻る操作でも表示） -->
+<div class="shindan-modal" id="shindanModal" aria-hidden="true">
+  <div class="shindan-modal-overlay" id="shindanModalOverlay"></div>
+  <div class="shindan-modal-box" role="dialog" aria-modal="true" aria-labelledby="shindanModalTitle">
+    <button type="button" class="shindan-modal-close" id="shindanModalClose" aria-label="閉じる">×</button>
+    <span class="shindan-modal-eyebrow">1分でわかる</span>
+    <h3 class="shindan-modal-title" id="shindanModalTitle">いまの<em>第一志望合格可能性</em>、<br>診断してみませんか？</h3>
+    <p class="shindan-modal-lead">3つの質問に答えるだけ。結果に合わせて<b>浪人の逆転計画</b>を無料プレゼント。</p>
+    <a href="#shindan" class="shindan-modal-cta" id="shindanModalCta">診断を受ける（無料）<span aria-hidden="true">›</span></a>
+    <button type="button" class="shindan-modal-later" id="shindanModalLater">あとで見る</button>
+  </div>
+</div>
+
+<!-- 診断フロート（中盤スクロール域のみ表示・LINE/診断が画面内では自動非表示） -->
+<a href="#shindan" id="shindanFloat" class="shindan-float" hidden>＼第一志望合格の可能性が1分でわかる／<b>診断を受ける</b></a>
+
 <!-- スマホ用 sticky CTA -->
 <div class="sticky-cta">
   <a href="https://liff.line.me/1661481351-x5lAkQZW?follow=%40157qewfh&lp=0Qzdig&liff_id=1661481351-x5lAkQZW" class="header-cta">
@@ -1273,5 +1406,99 @@ if ('IntersectionObserver' in window) {
 
 <script src="../shared/lp.js"></script>
 <script src="../shared/liff-redirect.js"></script>
+<script>/* 埋め込み診断（第一志望合格可能性診断）＋診断フロート制御 */
+(function(){
+  var form = document.getElementById('shindanForm');
+  if(!form) return;
+  var answers = {1:null,2:null,3:null};
+  var submit = document.getElementById('shindanSubmit');
+  var qs = form.querySelectorAll('.shindan-q');
+  for(var i=0;i<qs.length;i++){
+    (function(q){
+      var qi = q.getAttribute('data-q');
+      var opts = q.querySelectorAll('.shindan-opt');
+      for(var j=0;j<opts.length;j++){
+        opts[j].addEventListener('click', function(){
+          for(var k=0;k<opts.length;k++){ opts[k].classList.remove('is-on'); }
+          this.classList.add('is-on');
+          answers[qi] = this.getAttribute('data-v');
+          submit.disabled = !(answers[1]!==null && answers[2]!==null && answers[3]!==null);
+        });
+      }
+    })(qs[i]);
+  }
+  submit.addEventListener('click', function(){
+    var hs = parseInt(answers[1],10);
+    var mo = parseInt(answers[3],10);
+    var weak = answers[2];
+    var poss = 50 + [-8,4,16,24][hs] + [-6,2,10,16][mo] + (weak==='eng'?-4:weak==='jpn'?-2:weak==='non'?6:0);
+    if(poss<38)poss=38; if(poss>92)poss=92;
+    var verdict = poss>=75 ? '十分に狙えます。あとは合格点までの積み上げだけ。'
+                : poss>=55 ? '戦略次第で、十分に届きます。伸ばす順番が鍵。'
+                : '今が分岐点。正しいルートなら、ここから逆転できます。';
+    var focus = weak==='eng' ? '英語（配点が高く、合否を分ける）'
+              : weak==='jpn' ? '国語（現代文・古文の得点安定）'
+              : weak==='sel' ? '社会・数学（暗記と演習の型づくり）'
+              : '演習量と時間配分の最適化';
+    document.getElementById('shindanVerdict').textContent = verdict;
+    document.getElementById('shindanFocus').textContent = focus;
+    document.getElementById('shindanBar').style.width = poss + '%';
+    document.getElementById('shindanResult').hidden = false;
+    form.setAttribute('hidden','');
+    var pctEl = document.getElementById('shindanPct'), cur = 0;
+    var t = setInterval(function(){ cur += Math.max(1, Math.round((poss-cur)/6)); if(cur>=poss){cur=poss;clearInterval(t);} pctEl.textContent = cur; }, 40);
+    document.getElementById('shindanResult').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  document.getElementById('shindanRetry').addEventListener('click', function(){
+    document.getElementById('shindanResult').hidden = true;
+    form.removeAttribute('hidden');
+    var opts = form.querySelectorAll('.shindan-opt');
+    for(var k=0;k<opts.length;k++){ opts[k].classList.remove('is-on'); }
+    answers = {1:null,2:null,3:null}; submit.disabled = true;
+    form.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  var links = document.querySelectorAll('a[href="#shindan"]');
+  for(var m=0;m<links.length;m++){
+    links[m].addEventListener('click', function(e){ e.preventDefault(); document.getElementById('shindan').scrollIntoView({behavior:'smooth', block:'start'}); });
+  }
+  var fl = document.getElementById('shindanFloat');
+  if(fl){
+    var zones = ['#shindan','#line-cta','#final-cta'];
+    var upd = function(){
+      var y = window.scrollY || window.pageYOffset, vh = window.innerHeight, show = y > vh*0.9;
+      if(show){ for(var z=0;z<zones.length;z++){ var el=document.querySelector(zones[z]); if(!el)continue; var r=el.getBoundingClientRect(); if(r.top<vh && r.bottom>0){ show=false; break; } } }
+      fl.hidden = !show;
+    };
+    window.addEventListener('scroll', upd, {passive:true});
+    window.addEventListener('resize', upd);
+    upd();
+  }
+  /* 診断誘導モーダル：後半再導入の少し下でスクロール検知 ＋ 戻る操作 */
+  var modal = document.getElementById('shindanModal');
+  if(modal){
+    var modalShown = false;   /* スクロール/戻る 合計で1回だけ表示 */
+    var openModal = function(){ if(modalShown) return; modalShown = true; modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false'); };
+    var closeModal = function(){ modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true'); };
+    document.getElementById('shindanModalClose').addEventListener('click', closeModal);
+    document.getElementById('shindanModalLater').addEventListener('click', closeModal);
+    document.getElementById('shindanModalOverlay').addEventListener('click', closeModal);
+    document.getElementById('shindanModalCta').addEventListener('click', function(e){ e.preventDefault(); closeModal(); document.getElementById('shindan').scrollIntoView({behavior:'smooth', block:'start'}); });
+    /* ① スクロール検知：後半再導入の少し下で表示（まだ未表示のときのみ） */
+    var deep = document.querySelector('.deep-intro');
+    if(deep){
+      var onScrollModal = function(){
+        if(deep.getBoundingClientRect().bottom < -120){ openModal(); window.removeEventListener('scroll', onScrollModal); }
+      };
+      window.addEventListener('scroll', onScrollModal, {passive:true});
+    }
+    /* ② 戻る操作(exit intent)：まだ1回も表示していない時のみ表示。表示済み(スクロール等)なら通常どおり戻る＝再表示しない。最上部ジャンプ防止に手動スクロール復元 */
+    if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+    history.pushState({sd:1}, '', location.href);
+    window.addEventListener('popstate', function(){
+      if(!modalShown){ openModal(); history.pushState({sd:1}, '', location.href); }
+    });
+  }
+})();
+</script>
 </body>
 </html>
