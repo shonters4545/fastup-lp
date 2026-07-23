@@ -77,17 +77,17 @@ body{font-family:"Noto Sans JP",sans-serif;background:#efe9e3;color:#222;line-he
   <div class="shindan-head">
     <span class="shindan-eyebrow">1分でわかる</span>
     <h2 class="shindan-title">早慶合格可能性<em>診断</em></h2>
-    <p class="shindan-lead">4つの質問に答えるだけで、いまの合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。</p>
+    <p class="shindan-lead">4つの質問に答えるだけで、いまの早慶合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。</p>
   </div>
   <form class="shindan-form" id="form">
     <p class="shindan-progress" id="prog">0 / 4 問</p>
     <div class="shindan-q" data-q="1">
       <p class="shindan-q-label"><span>Q1.</span>いまの偏差値は？</p>
       <div class="shindan-opts">
-        <button type="button" class="shindan-opt" data-v="0">〜45</button>
-        <button type="button" class="shindan-opt" data-v="1">46〜55</button>
-        <button type="button" class="shindan-opt" data-v="2">56〜65</button>
-        <button type="button" class="shindan-opt" data-v="3">66〜</button>
+        <button type="button" class="shindan-opt" data-v="0">〜50</button>
+        <button type="button" class="shindan-opt" data-v="1">51〜60</button>
+        <button type="button" class="shindan-opt" data-v="2">61〜70</button>
+        <button type="button" class="shindan-opt" data-v="3">71〜</button>
       </div>
     </div>
     <div class="shindan-q" data-q="2">
@@ -160,7 +160,7 @@ body{font-family:"Noto Sans JP",sans-serif;background:#efe9e3;color:#222;line-he
   var QN=4;
   var ans={}; for(var i=1;i<=QN;i++) ans[i]=null;
   var form=document.getElementById('form'), submit=document.getElementById('submit'), prog=document.getElementById('prog');
-  var HENSA=['偏差値45以下','偏差値46〜55','偏差値56〜65','偏差値66以上'];
+  var HENSA=['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上'];
   var MONTH=['残り3ヶ月以内','残り4〜6ヶ月','残り7〜12ヶ月','残り13ヶ月以上'];
   var SUBJ={eng:'英語',jpn:'国語',soc:'社会',mat:'数学'};
   form.querySelectorAll('.shindan-q').forEach(function(q){

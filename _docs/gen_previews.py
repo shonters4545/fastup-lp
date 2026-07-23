@@ -327,6 +327,7 @@ DEF = {
  "D_LOW":"合格ラインとはまだ差がありますが、%(TG)sに合格することは十分にできます。ただ、全部の範囲を勉強する時間はありません。出るところだけを勉強する必要があります。",
  "D_LOW_LONG":"合格ラインとはまだ差がありますが、時間はたっぷり残っています。差がつくのは、%(TG)sに必要な勉強をいつから始めるかです。早く始めた人ほど、合格に近づきます。",
  "LEAD":"4つの質問に答えるだけで、いまの合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
+ "LEAD_B":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
  "CHECK2":"<b>感動する！</b>圧倒的な分かりやすさ",
  "CHECK3":"<b>セクションごとの確認テスト</b>で、定着まで",
 }
@@ -345,6 +346,26 @@ OVERRIDE = {
  },
 }
 
+
+OVERRIDE["03-ronin"] = {
+ "LEAD": "4つの質問に答えるだけで、この1年で合格できるかと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
+ "V_LOW":"この1年で、合格できます。",
+ "D_LOW":"合格ラインとはまだ差がありますが、この1年で%(TG)sに合格することは十分にできます。ただ、全部の範囲を勉強する時間はありません。出るところだけを勉強する必要があります。",
+ "CHECK1_A":"私大専門で<b>7年</b>、<b>浪人生の伸び方</b>を分析して作成",
+}
+OVERRIDE["05-soukei"] = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの早慶合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["06-waseda"] = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの早稲田合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["07-keio"]   = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの慶應合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["08-gmarch"] = {"LEAD":"4つの質問に答えるだけで、いまのGMARCH合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["09-march-each"] = {"LEAD":"4つの質問に答えるだけで、いまのMARCH合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["12-kankandoritsu"] = {"LEAD":"4つの質問に答えるだけで、いまの関関同立合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["13-nittokomasen"] = {"H":['〜40', '41〜50', '51〜60', '61〜'],"HENSA_JS":"['偏差値40以下','偏差値41〜50','偏差値51〜60','偏差値61以上']","LEAD":"4つの質問に答えるだけで、いまの日東駒専合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["04a-koachi"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合うコーチング塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["04b-online"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合うオンライン塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["10a-juku-comparison"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
+OVERRIDE["10b-cost-perf"] = {"LEAD_B":"5つの質問に答えるだけで、費用に見合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。","CHECK1_B":"私大専門で<b>7年</b>、出題傾向を分析し続けて作成（<b>追加費用ゼロ</b>）"}
+OVERRIDE["11-jigaku-fixed-online"] = {"LEAD_B":"5つの質問に答えるだけで、自学に足りないものと、合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。","CHECK1_B":"私大専門で<b>7年</b>、<b>出る順の参考書ルート</b>として作成"}
+
 files=[]
 
 for lp,dname,title_html,eye,tg,tokka,check1 in A_LPS:
@@ -358,7 +379,7 @@ for lp,dname,title_html,eye,tg,tokka,check1 in A_LPS:
       "LP":lp,"DNAME":dname,"CSS":CSS,"GRP":"A","GRPNAME":"合格可能性診断","QN":4,"HENSA_JS":cfg["HENSA_JS"],
       "TITLE_HTML":title_html,"LEAD":cfg["LEAD"],"QUESTIONS":q,
       "RESULT_TOP":A_RESULT_TOP % {"EYE":eye},
-      "OFFER":OFFER % {"TOKKA":tokka,"CHECK1":check1,"CHECK2":cfg["CHECK2"],"CHECK3":cfg["CHECK3"]},
+      "OFFER":OFFER % {"TOKKA":tokka,"CHECK1":cfg.get("CHECK1_A",check1),"CHECK2":cfg["CHECK2"],"CHECK3":cfg["CHECK3"]},
       "LOGIC":logic,"REVEAL":A_REVEAL,
     }
     io.open(os.path.join(OUT,lp+"-shindan.html"),"w",encoding="utf-8").write(html)
@@ -372,15 +393,15 @@ for lp,dname,title_html,q4label,q4opts in B_LPS:
 %s
       </div>
     </div>""" % (q4label,opts)
-    cfg=dict(DEF)
+    cfg=dict(DEF); cfg.update(OVERRIDE.get(lp,{}))
     q = (BASE_Q % {"H0":cfg["H"][0],"H1":cfg["H"][1],"H2":cfg["H"][2],"H3":cfg["H"][3]}) + chr(10) + q4 + chr(10) + (SUBJ_Q % {"n":5})
     html = PAGE % {
-      "LP":lp,"DNAME":dname,"CSS":CSS,"GRP":"B","GRPNAME":"塾タイプ診断","QN":5,"HENSA_JS":DEF["HENSA_JS"],
+      "LP":lp,"DNAME":dname,"CSS":CSS,"GRP":"B","GRPNAME":"塾タイプ診断","QN":5,"HENSA_JS":cfg["HENSA_JS"],
       "TITLE_HTML":title_html,
-      "LEAD":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
+      "LEAD":cfg["LEAD_B"],
       "QUESTIONS":q,
       "RESULT_TOP":B_RESULT_TOP,
-      "OFFER":OFFER % {"TOKKA":"私大特化","CHECK1":"私大専門で<b>7年</b>、出題傾向を分析し続けて作成","CHECK2":cfg["CHECK2"],"CHECK3":cfg["CHECK3"]},
+      "OFFER":OFFER % {"TOKKA":cfg.get("TOKKA_B","私大特化"),"CHECK1":cfg.get("CHECK1_B","私大専門で<b>7年</b>、出題傾向を分析し続けて作成"),"CHECK2":cfg["CHECK2"],"CHECK3":cfg["CHECK3"]},
       "LOGIC":B_LOGIC % {"TGB":"私大"},
       "REVEAL":B_REVEAL,
     }
