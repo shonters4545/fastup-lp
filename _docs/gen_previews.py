@@ -188,7 +188,7 @@ PAGE = """<!DOCTYPE html>
   submit.addEventListener('click',function(){
 %(LOGIC)s
     document.getElementById('offerSubtitle').textContent='%(BOOK)s'+sj+'%(BOOK_SUFFIX)s　無料プレゼント';
-    document.getElementById('offerNote').innerHTML='全科目そろう独自教材の中から、あなたが選んだ<b>'+sj+'</b>をお渡しします。';
+    document.getElementById('offerNote').innerHTML='このシリーズの全科目の中から、あなたが選んだ<b>'+sj+'</b>をお渡しします。';
     document.getElementById('detail').textContent=detail;
     document.getElementById('advice').textContent=advice;
     form.hidden=true; document.getElementById('result').hidden=false;
@@ -327,8 +327,8 @@ DEF = {
  "D_LOW":"合格ラインとはまだ差がありますが、%(TG)sに合格することは十分にできます。ただ、全部の範囲を勉強する時間はありません。出るところだけを勉強する必要があります。",
  "D_LOW_LONG":"合格ラインとはまだ差がありますが、時間はたっぷり残っています。差がつくのは、%(TG)sに必要な勉強をいつから始めるかです。早く始めた人ほど、合格に近づきます。",
  "LEAD":"4つの質問に答えるだけで、いまの合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
- "BOOK":"FAST-UP",
- "BOOK_SUFFIX":"総合",
+ "BOOK":"FAST-UP 私大逆転 ",
+ "BOOK_SUFFIX":"",
  "LEAD_B":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
  "CHECK2":"<b>感動する！</b>圧倒的な分かりやすさ",
  "CHECK3":"<b>セクションごとの確認テスト</b>で、定着まで",
