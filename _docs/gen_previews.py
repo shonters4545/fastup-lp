@@ -109,7 +109,7 @@ OFFER = """      <div class="offer">
           <div class="offer-img">教材モックアップ<span>（画像を後ではめ込み）</span></div>
           <ul class="offer-checks">
             <li>%(CHECK1)s</li>
-            <li>%(CHECK2)s</li>
+            <li id="offerCheck2">%(CHECK2)s</li>
             <li>%(CHECK3)s</li>
           </ul>
         </div>
@@ -282,6 +282,11 @@ B_LOGIC = """    var h=+ans[1], m=+ans[2], k=+ans[3], t4=ans[4], w=ans[5];
       detail='いまは'+hs+'・'+mo+'です。勉強する時間は足りていても、どこが弱いか分からないままだと伸びは止まります。感覚で振り返ると、得意なところばかり繰り返しがちです。数値で見えれば、順番が変わります。';
       advice=(LONG?'いまから、弱点':'弱点')+'を数値で把握してください。伸びが止まる原因は、どこが弱いか分からないことです。理解度が数値で見えれば、何から手をつけるかが決まり、'+(LONG?'早く始めるほど合格率は大きく上がります。':'最短で合格点に届きます。');
     }
+    var C2={plan:'<b>今日やるべき範囲</b>が、一目でわかる',
+            lib:'<b>何をどの順でやるか</b>が、決まっている',
+            test:'<b>間違えたところだけ</b>、もう一度戻れる',
+            log:'<b>どこが弱いか</b>が、数値でわかる'};
+    document.getElementById('offerCheck2').innerHTML=C2[ty];
     document.getElementById('typeName').textContent=TYPE[ty];
     document.getElementById('verdict').textContent=verdict;"""
 
