@@ -1312,6 +1312,11 @@ if ('IntersectionObserver' in window) {
   .sticky-cta .header-cta-body{flex:0 0 auto;}
 }
 @media(max-width:400px){.shindan-title{font-size:24px;}.shindan-gauge-num{font-size:54px;}}
+/* 見出しを他セクション（.section-title h2）の実測値に合わせる。
+   ③481〜767px=28px ／ ④≤480px=24px。この2行は他の指定より後に置くこと
+   （既存の max-width:420px / 400px より後でないと順序で負ける） */
+@media(max-width:767px){.shindan-title{font-size:28px;}}
+@media(max-width:480px){.shindan-title{font-size:24px;}}
 .shindan-modal{--sd-acc:#722F37;position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;}
 .shindan-modal.is-open{display:flex;}
 .shindan-modal-overlay{position:absolute;inset:0;background:rgba(20,10,12,.6);animation:sdFade .2s ease;}
