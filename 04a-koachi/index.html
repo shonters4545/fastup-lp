@@ -1209,7 +1209,7 @@ if ('IntersectionObserver' in window) {
 .shindan-opt{font-size:13.5px;font-weight:700;color:#333;background:#f4f4f6;border:2px solid #f4f4f6;border-radius:0;padding:13px 8px;cursor:pointer;transition:.15s;font-family:inherit;line-height:1.4;}
 .shindan-opt:hover{border-color:var(--sd-acc);}
 .shindan-opt.is-on{background:var(--sd-acc);border-color:var(--sd-acc);color:#fff;}
-.shindan-submit{width:100%;margin-top:6px;font-size:16px;font-weight:800;color:#fff;background:#333;border:none;border-radius:12px;padding:16px;cursor:pointer;font-family:inherit;transition:.2s;}
+.shindan-submit{width:100%;margin-top:6px;font-size:16px;font-weight:800;color:#fff;background:#333;border:none;border-radius:0;padding:16px;cursor:pointer;font-family:inherit;transition:.2s;}
 .shindan-submit:disabled{background:#c9c2c3;cursor:not-allowed;}
 .shindan-note{font-size:11px;color:#999;text-align:center;margin-top:12px;}
 .shindan-result{text-align:left;}
@@ -1259,7 +1259,58 @@ if ('IntersectionObserver' in window) {
 .shindan-float b{font-size:14px;font-weight:900;}
 .shindan-float[hidden]{display:none;}
 @keyframes sdFloatIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-@media(min-width:768px){.shindan-float{bottom:24px;right:24px;}}
+/* ①②768px以上：診断フロートを下部の全幅バーにする。
+   この帯はヘッダーに相談CTAが出ているため、下部は診断への導線に充てる
+   （相談用の .sticky-cta は shared/design.css 側で非表示にしている）。
+   表示/非表示は既存のスクロール連動（#shindanFloat のJS）をそのまま使う。 */
+@media(min-width:768px){
+  .shindan-float{left:0;right:0;bottom:0;width:100%;border-radius:0;padding:14px 20px;gap:3px;font-size:13px;box-shadow:0 -6px 24px rgba(0,0,0,.18);}
+  .shindan-float b{font-size:18px;}
+}
+/* ③④(≤767px)：診断フロートのピルは撤去。
+   ③は下部バーに診断ボタンを横並びで入れ、④は相談CTA1本に絞る。
+   ④の診断導線は本文インラインCTAと診断誘導モーダルが担う。 */
+/* セレクタは a.〜 まで書く：styles.css の .sticky-cta a (0,1,1) の方が
+   .sticky-cta-shindan (0,1,0) より詳細度が高く、負けてしまうため */
+.sticky-cta a.sticky-cta-shindan{display:none;}
+@media(max-width:767px){
+  .shindan-float{display:none;}
+  /* 下部バーのボタンは角丸なし（①②の全幅バーと揃える） */
+  .sticky-cta a, .sticky-cta .header-cta{border-radius:0;}
+}
+/* ④(≤480px)：相談CTAはバー幅いっぱいに広げる
+   （design.css の @media(max-width:767px) が width:fit-content にしているのを上書き） */
+@media(max-width:480px){
+  .sticky-cta .header-cta{width:100%;margin:0;}
+}
+/* ③(481〜767px)：診断45% / 相談55% の横並び。
+   バー全体を1つの塗りにして、境目は縦の区切り線で示す。
+   個々のボタンは背景・角丸・余白を持たせず、バーの塗りを透かす。 */
+@media(min-width:481px) and (max-width:767px){
+  /* バーは白地に戻し、2つを独立したボタンとして間隔をあける（区切り線は不要） */
+  .sticky-cta{display:flex;gap:10px;align-items:stretch;padding:10px 16px;}
+  /* バー内は明朝（Zen Old Mincho）で統一 */
+  .sticky-cta, .sticky-cta *{font-family:var(--fu-font-serif);}
+  /* 左：診断＝従。塗らずにアウトラインにして主従を付ける（面積36% / 影なし）
+     色は !important 必須：styles.css の .sticky-cta a{color:#fff !important} を上書きするため */
+  .sticky-cta a.sticky-cta-shindan{order:1;flex:1 1 40%;min-width:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:1px;text-align:center;
+    background:#fff;border:1.5px solid var(--fu-accent,#722F37);border-radius:0;
+    padding:6px 8px;margin:0;box-shadow:none;
+    color:var(--fu-accent,#722F37) !important;text-decoration:none;letter-spacing:.02em;line-height:1.3;}
+  /* ＼／を外して11文字にし、ボタン幅も40%へ広げたぶん文字を大きくできる。
+     上限は相談側（main 18px）を超えないようにして主従を保つ。 */
+  .sticky-cta-shindan-sub{font-size:clamp(12px,2.6vw,15px);font-weight:700;}
+  .sticky-cta-shindan-main{font-size:clamp(14px,2.8vw,16px);font-weight:700;}
+  /* 右：相談＝主。塗り・角丸・余白は元の指定（design.css）に戻す */
+  .sticky-cta .header-cta{order:2;flex:1 1 60%;width:auto;min-width:0;margin:0;gap:6px;padding:6px 12px 6px 6px;}
+  /* バッジと矢印は縮ませない。42pxのままだと本文が足りなくなるので、
+     ③では円を34pxに落として真円を保つ（縮小で楕円化するのを防ぐ） */
+  .sticky-cta .header-cta-badge{flex:0 0 auto;width:34px;height:34px;font-size:13px;}
+  .sticky-cta .header-cta-arrow{flex:0 0 auto;}
+  /* 本文は内容幅より縮ませない（縮むとメイン文字が枠外にはみ出し、eyebrowと軸がずれる） */
+  .sticky-cta .header-cta-body{flex:0 0 auto;}
+}
 @media(max-width:400px){.shindan-title{font-size:24px;}.shindan-gauge-num{font-size:54px;}}
 .shindan-modal{--sd-acc:#722F37;position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;}
 .shindan-modal.is-open{display:flex;}
@@ -1432,6 +1483,11 @@ if ('IntersectionObserver' in window) {
     </span>
     <span class="header-cta-arrow" aria-hidden="true">›</span>
   </a>
+  <!-- ③(481〜767px)だけ表示：相談と横並びにする診断ボタン -->
+  <a href="#shindan" class="sticky-cta-shindan">
+    <span class="sticky-cta-shindan-sub">あなたに合う塾がわかる</span>
+    <span class="sticky-cta-shindan-main">1分で無料診断</span>
+  </a>
 </div>
 
 <script src="../shared/lp.js"></script>
@@ -1508,8 +1564,14 @@ if ('IntersectionObserver' in window) {
   var fl = document.getElementById('shindanFloat');
   if(fl){
     var zones = ['#shindan','#line-cta','#final-cta'];
+    /* 上方向スクロールでは隠す（下方向で再表示）。
+       lastY との差が閾値を超えたときだけ向きを更新して、微小な揺れでの点滅を防ぐ。 */
+    var lastY = window.scrollY || window.pageYOffset, goingUp = false;
     var upd = function(){
-      var y = window.scrollY || window.pageYOffset, vh = window.innerHeight, show = y > vh*0.9;
+      var y = window.scrollY || window.pageYOffset, vh = window.innerHeight;
+      var dy = y - lastY;
+      if(Math.abs(dy) > 4){ goingUp = dy < 0; lastY = y; }
+      var show = y > vh*0.9 && !goingUp;
       if(show){ for(var z=0;z<zones.length;z++){ var el=document.querySelector(zones[z]); if(!el)continue; var r=el.getBoundingClientRect(); if(r.top<vh && r.bottom>0){ show=false; break; } } }
       fl.hidden = !show;
     };

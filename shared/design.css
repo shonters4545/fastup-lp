@@ -2293,3 +2293,44 @@
   #fit .fit-close strong,
   #fit .fit-close-sub { font-size: 22px; }
 }
+
+/* ============================================================
+   ②タブレット〜ノートPC（768〜980px）：ヘッダーにCTAを表示
+   ------------------------------------------------------------
+   styles.css はヘッダーの分岐が 980px（tier境界の900pxとズレている）で、
+   980px以下は .header-nav と .header-cta が display:none になる。
+   そのため 768px以上はCTAを再表示する。上限を980pxにしてあるのは、
+   981px以上では元からCTAが出ており、ナビも並ぶため調整不要だから。
+   この帯はナビが非表示なので、バーガーの隣にCTAを寄せる。
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 980px) {
+  /* ナビが非表示のため space-between だと中央に浮く。右のバーガー隣に寄せる */
+  .header > .header-cta { display: inline-flex; margin-left: auto; margin-right: 12px; }
+
+  /* styles.css の @media (max-width:900px) がCTAを縮小するが、それは
+     ドロワー／スティッキー用の指定。ヘッダー直下のCTAだけデスクトップ寸法に戻す。
+     .nav-drawer / .sticky-cta 内のCTAは対象外（.header の直下ではないため）。 */
+  .header > .header-cta { gap: 5px; padding: 3px 16px 3px 5px; }
+  .header > .header-cta .header-cta-eyebrow { font-size: 11px; gap: normal; margin-bottom: 3px; }
+  .header > .header-cta .header-cta-eyebrow::before,
+  .header > .header-cta .header-cta-eyebrow::after { width: auto; }
+  .header > .header-cta .header-cta-main { font-size: 17px; letter-spacing: 0.06em; }
+  .header > .header-cta .header-cta-arrow { font-size: 21px; }
+}
+
+/* ============================================================
+   ①②768px以上：下部CTAは「診断」にする
+   ------------------------------------------------------------
+   この帯はヘッダーに相談CTAが出ているため、下部は診断への導線に充てる。
+   診断バー本体の見た目は各LPの #shindanFloat 側
+   （index.html 内 <style id="shindan-css">）で指定している。
+   ここでは重複する相談用スティッキーを畳む。
+   ③④（≤767px）はヘッダーCTAが出ないため、従来どおり
+   相談用スティッキー＋診断フロート（小さいピル）のままにする。
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 900px) {
+  /* styles.css の @media (max-width:900px) で表示される相談用スティッキーを隠す */
+  .sticky-cta { display: none; }
+  /* そのスティッキー用に確保されていた下余白も戻す（診断バーは重ねて表示するため） */
+  body { padding-bottom: 0; }
+}

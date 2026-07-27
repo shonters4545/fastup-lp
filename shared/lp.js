@@ -160,9 +160,15 @@
   if (!el || !fv) return;
   el.classList.add('sticky-cta--dynamic');
   var ticking = false;
+  /* 上方向スクロールでは隠す（下方向で再表示）。
+     lastY との差が閾値を超えたときだけ向きを更新して、微小な揺れでの点滅を防ぐ。 */
+  var lastY = window.pageYOffset, goingUp = false;
   function update() {
+    var y = window.pageYOffset;
+    var dy = y - lastY;
+    if (Math.abs(dy) > 4) { goingUp = dy < 0; lastY = y; }
     var trigger = fv.offsetTop + fv.offsetHeight - 80;
-    el.classList.toggle('is-visible', window.pageYOffset > trigger);
+    el.classList.toggle('is-visible', y > trigger && !goingUp);
     ticking = false;
   }
   function onScroll() {
