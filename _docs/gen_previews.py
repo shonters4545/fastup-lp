@@ -63,15 +63,21 @@ body{font-family:"Noto Sans JP",sans-serif;background:#efe9e3;color:#222;line-he
 .retry{display:block;margin:14px auto 0;background:none;border:none;color:#999;font-size:13px;text-decoration:underline;cursor:pointer;font-family:inherit;}
 @media(max-width:420px){.shindan-title{font-size:23px;}.res-num{font-size:54px;}.res-type{font-size:28px;}.offer-body{flex-direction:column;}.offer-img{flex:none;width:60%;aspect-ratio:4/3;}}"""
 
-SUBJ_Q = """    <div class="shindan-q" data-q="%(n)s">
-      <p class="shindan-q-label"><span>Q%(n)s.</span>一番の苦手科目は？</p>
+FIELD_Q = """    <div class="shindan-q" data-q="%(n)s">
+      <p class="shindan-q-label"><span>Q%(n)s.</span>英語で、いちばん困っているのは？</p>
       <div class="shindan-opts">
-        <button type="button" class="shindan-opt" data-v="eng">英語</button>
-        <button type="button" class="shindan-opt" data-v="jpn">国語</button>
-        <button type="button" class="shindan-opt" data-v="soc">社会</button>
-        <button type="button" class="shindan-opt" data-v="mat">数学</button>
+        <button type="button" class="shindan-opt" data-v="word">単語を覚えても、すぐ忘れる</button>
+        <button type="button" class="shindan-opt" data-v="gram">文法問題で、いつも間違える</button>
+        <button type="button" class="shindan-opt" data-v="syntax">単語は分かるのに、意味が取れない</button>
+        <button type="button" class="shindan-opt" data-v="long">長文が、時間内に読み終わらない</button>
       </div>
     </div>"""
+
+def note_fact_js(tg):
+    return ("{word:'%sの英語は、知らない単語が1つあるだけで文の意味が変わります。',"
+            "gram:'入試の英文法で問われるルールの数は、限られています。',"
+            "syntax:'単語も文法も分かるのに読めないのは、一文の構造が取れていないからです。',"
+            "long:'%sの英語は、配点の大半が長文です。'}") % (tg, tg)
 
 BASE_Q = """    <div class="shindan-q" data-q="1">
       <p class="shindan-q-label"><span>Q1.</span>いまの偏差値は？</p>
@@ -102,7 +108,7 @@ BASE_Q = """    <div class="shindan-q" data-q="1">
     </div>"""
 
 OFFER = """      <div class="offer">
-        <p class="offer-title">%(TOKKA)sの独自教材を、<em>体感してみませんか？</em></p>
+        <p class="offer-title">%(TOKKA)sの英語教材を、<em>体感してみませんか？</em></p>
         <p class="offer-subtitle" id="offerSubtitle"></p>
         <p class="offer-note" id="offerNote"></p>
         <div class="offer-body">
@@ -131,7 +137,7 @@ PAGE = """<!DOCTYPE html>
 <body>
 <div class="review-bar">
   <span class="rv-title">【レビュー用プレビュー】%(LP)s「%(DNAME)s」</span>
-  グループ%(GRP)s（%(GRPNAME)s）／設問%(QN)s問。回答を変えると結果・あなたの現状・これからやるべきこと・プレゼント科目がすべて変わります。<br>
+  グループ%(GRP)s（%(GRPNAME)s）／設問%(QN)s問。回答を変えると結果・あなたの現状・これからやるべきこと・プレゼント分野がすべて変わります。<br>
   ※本番LPには未反映。 <a href="./index.html">← 全LP一覧へ</a>
 </div>
 <div class="stage">
@@ -172,7 +178,8 @@ PAGE = """<!DOCTYPE html>
   var form=document.getElementById('form'), submit=document.getElementById('submit'), prog=document.getElementById('prog');
   var HENSA=%(HENSA_JS)s;
   var MONTH=['残り3ヶ月以内','残り4〜6ヶ月','残り7〜12ヶ月','残り13ヶ月以上'];
-  var SUBJ={eng:'英語',jpn:'国語',soc:'社会',mat:'数学'};
+  var FIELD={word:'英単語',gram:'英文法',syntax:'英文解釈',long:'英語長文'};
+  var NOTE_FACT=%(NOTE_FACT_JS)s;
   form.querySelectorAll('.shindan-q').forEach(function(q){
     var qi=q.getAttribute('data-q'), opts=q.querySelectorAll('.shindan-opt');
     opts.forEach(function(b){
@@ -187,8 +194,8 @@ PAGE = """<!DOCTYPE html>
   });
   submit.addEventListener('click',function(){
 %(LOGIC)s
-    document.getElementById('offerSubtitle').textContent='%(BOOK)s'+sj+'%(BOOK_SUFFIX)s　無料プレゼント';
-    document.getElementById('offerNote').innerHTML='このシリーズの全科目の中から、あなたが選んだ<b>'+sj+'</b>をお渡しします。';
+    document.getElementById('offerSubtitle').textContent='%(BOOK)s'+fj+'%(BOOK_SUFFIX)s　無料プレゼント';
+    document.getElementById('offerNote').innerHTML='英語4分野（単語／文法／解釈／長文）の中から、あなたに必要な<b>'+fj+'</b>をお渡しします。<br>'+NOTE_FACT[fw];
     document.getElementById('detail').textContent=detail;
     document.getElementById('advice').textContent=advice;
     form.hidden=true; document.getElementById('result').hidden=false;
@@ -213,39 +220,39 @@ A_RESULT_TOP = """      <span class="res-eyebrow">あなたの%(EYE)s 可能性<
       <div class="res-bar"><span class="res-bar-fill" id="bar"></span></div>
       <p class="res-verdict" id="verdict"></p>"""
 
-A_LOGIC = """    var h=+ans[1], m=+ans[2], k=+ans[3], w=ans[4];
-    var pH=%(PH)s[h], pM=[-8,0,8,14][m], pK=[-10,-4,4,10][k], pW=(w==='eng'?-6:w==='jpn'?-3:w==='mat'?-2:-1);
-    var poss=50+pH+pM+pK+pW;
+A_LOGIC = """    var h=+ans[1], m=+ans[2], k=+ans[3], fw=ans[4];
+    var pH=%(PH)s[h], pM=[-8,0,8,14][m], pK=[-10,-4,4,10][k], pF={word:-6,gram:-4,syntax:-3,long:-1}[fw];
+    var poss=50+pH+pM+pK+pF;
     if(poss<35)poss=35; if(poss>92)poss=92;
-    var sj=SUBJ[w], hs=HENSA[h], mo=MONTH[m];
+    var fj=FIELD[fw], hs=HENSA[h], mo=MONTH[m];
     var LONG=(m>=2);
     var verdict, detail, advice;
     if(poss>=75){
       verdict='%(V_HI)s';
       if(LONG){
         detail='いまは'+hs+'・'+mo+'です。基礎の力はもう十分にあり、時間にも余裕があります。ここで差がつくのは、%(TG)sに必要なところを早めに仕上げておけるかどうかです。';
-        advice='%(TG)sに必要なところから、先に仕上げてください。%(TG)s入試で出るところは決まっています。時間があるうちに'+sj+'をそこまで引き上げておけば、合格率は大きく上がります。';
+        advice='%(TG)sに必要なところから、先に仕上げてください。%(TG)s入試で出るところは決まっています。時間があるうちに'+fj+'をそこまで引き上げておけば、合格率は大きく上がります。';
       } else {
         detail='いまは'+hs+'・'+mo+'です。基礎の力はもう十分にあります。ここから合否を分けるのは、%(TG)sが実際に出す問題にどれだけ慣れているかです。学力よりも、%(TG)sに向けた準備があるかで決まります。';
-        advice='%(TG)sが出す問題に合わせて勉強してください。基礎ができている人の差は、出る形式とテーマに慣れているかで決まります。'+sj+'もそこに絞って勉強すれば、合格点を確実に超えられます。';
+        advice='%(TG)sが出す問題に合わせて勉強してください。基礎ができている人の差は、出る形式とテーマに慣れているかで決まります。'+fj+'も、%(TG)sで実際に出るところに絞れば、合格点を確実に超えられます。';
       }
     } else if(poss>=55){
       verdict='%(V_MID)s';
       if(LONG){
         detail='いまは'+hs+'・'+mo+'です。%(TG)s合格は十分にねらえて、時間にも余裕があります。ここで差がつくのは、なんとなく勉強を続けるか、%(TG)sに必要なところから勉強するかです。';
-        advice='%(TG)sに必要なところから勉強してください。%(TG)s入試で出るところは決まっています。早いうちから'+sj+'をそこに向けて仕上げていけば、合格率は大きく上がります。';
+        advice='%(TG)sに必要なところから勉強してください。%(TG)s入試で出るところは決まっています。早いうちから'+fj+'をそこに向けて仕上げていけば、合格率は大きく上がります。';
       } else {
         detail='いまは'+hs+'・'+mo+'です。%(TG)s合格は十分にねらえます。ここから差がつくのは、勉強する量ではなく、どこを勉強するかです。出るところに絞れているかで決まります。';
-        advice='勉強する範囲を、これ以上広げないでください。%(TG)s入試で合否を分けるのは、範囲の広さではなく、出るところをどこまで仕上げたかです。'+sj+'のよく出るテーマから先に仕上げれば、合格点は安定します。';
+        advice='勉強する範囲を、これ以上広げないでください。%(TG)s入試で合否を分けるのは、範囲の広さではなく、出るところをどこまで仕上げたかです。'+fj+'も、出るところから先に仕上げれば、合格点は安定します。';
       }
     } else {
       verdict='%(V_LOW)s';
       if(LONG){
         detail='いまは'+hs+'・'+mo+'です。%(D_LOW_LONG)s';
-        advice='いまから%(TG)sに必要な勉強を始めてください。%(TG)s入試で出るところは決まっています。早いうちから'+sj+'をそこに向けて勉強すれば、合格率は大きく上がります。';
+        advice='いまから%(TG)sに必要な勉強を始めてください。%(TG)s入試で出るところは決まっています。早いうちから'+fj+'をそこに向けて勉強すれば、合格率は大きく上がります。';
       } else {
         detail='いまは'+hs+'・'+mo+'です。%(D_LOW)s';
-        advice='勉強する範囲を絞ってください。%(TG)s入試で出るところは決まっています。苦手な'+sj+'も、出るところだけを勉強すれば、最短で合格点に届きます。';
+        advice='勉強する範囲を絞ってください。%(TG)s入試で出るところは決まっています。苦手な'+fj+'も、出るところだけを勉強すれば、最短で合格点に届きます。';
       }
     }
     document.getElementById('verdict').textContent=verdict;
@@ -259,8 +266,8 @@ B_RESULT_TOP = """      <span class="res-eyebrow">あなたに合うのは</span
       <div class="res-type" id="typeName"></div>
       <p class="res-verdict" id="verdict"></p>"""
 
-B_LOGIC = """    var h=+ans[1], m=+ans[2], k=+ans[3], t4=ans[4], w=ans[5];
-    var sj=SUBJ[w], hs=HENSA[h], mo=MONTH[m];
+B_LOGIC = """    var h=+ans[1], m=+ans[2], k=+ans[3], t4=ans[4], fw=ans[5];
+    var fj=FIELD[fw], hs=HENSA[h], mo=MONTH[m];
     var LONG=(m>=2);
     var TYPE={plan:'毎日管理型',lib:'教材特化型',test:'テスト反復型',log:'データ分析型'};
     var ty=t4;
@@ -295,16 +302,16 @@ B_REVEAL = ""
 # ============ LP設定 ============
 A_LPS = [
  # lp, 診断名, タイトルHTML, EYE(結果見出し), TG(コピー内の対象語), 特化ラベル, check1
- ("01-brand","私大逆転合格 可能性診断","私大逆転合格 可能性<em>診断</em>","私大逆転合格","私大","私大特化","私大専門で<b>7年</b>、出題傾向を分析し続けて作成"),
- ("02-gyakuten","逆転合格可能性診断","逆転合格可能性<em>診断</em>","逆転合格","私大","逆転合格特化","私大専門で<b>7年</b>、<b>逆転合格者の伸び方</b>を分析して作成"),
- ("03-ronin","浪人逆転合格 可能性診断","浪人逆転合格 可能性<em>診断</em>","浪人逆転合格","私大","私大特化","私大専門で<b>7年</b>、出題傾向を分析し続けて作成"),
- ("05-soukei","早慶合格可能性診断","早慶合格可能性<em>診断</em>","早慶合格","早慶","早慶特化","私大専門で<b>7年</b>、<b>早慶</b>の出題傾向を分析し続けて作成"),
- ("06-waseda","早稲田合格可能性診断","早稲田合格可能性<em>診断</em>","早稲田合格","早稲田","早稲田特化","私大専門で<b>7年</b>、<b>早稲田</b>の出題傾向を分析し続けて作成"),
- ("07-keio","慶應合格可能性診断","慶應合格可能性<em>診断</em>","慶應合格","慶應","慶應特化","私大専門で<b>7年</b>、<b>慶應</b>の出題傾向を分析し続けて作成"),
- ("08-gmarch","GMARCH合格可能性診断","GMARCH合格可能性<em>診断</em>","GMARCH合格","GMARCH","GMARCH特化","私大専門で<b>7年</b>、<b>GMARCH</b>の出題傾向を分析し続けて作成"),
- ("09-march-each","MARCH合格可能性診断","MARCH合格可能性<em>診断</em>","MARCH合格","MARCH","MARCH特化","私大専門で<b>7年</b>、<b>MARCH各校</b>の出題傾向を分析し続けて作成"),
- ("12-kankandoritsu","関関同立合格可能性診断","関関同立合格可能性<em>診断</em>","関関同立合格","関関同立","関関同立特化","私大専門で<b>7年</b>、<b>関関同立</b>の出題傾向を分析し続けて作成"),
- ("13-nittokomasen","日東駒専合格可能性診断","日東駒専合格可能性<em>診断</em>","日東駒専合格","日東駒専","日東駒専特化","私大専門で<b>7年</b>、<b>日東駒専</b>の出題傾向を分析し続けて作成"),
+ ("01-brand","私大逆転合格 可能性診断","私大逆転合格 可能性<em>診断</em>","私大逆転合格","私大","私大特化","私大専門で<b>7年</b>、<b>私大英語</b>の出題傾向を分析し続けて作成"),
+ ("02-gyakuten","逆転合格可能性診断","逆転合格可能性<em>診断</em>","逆転合格","私大","逆転合格特化","私大専門で<b>7年</b>、<b>逆転合格者の英語の伸び方</b>を分析して作成"),
+ ("03-ronin","浪人逆転合格 可能性診断","浪人逆転合格 可能性<em>診断</em>","浪人逆転合格","私大","私大特化","私大専門で<b>7年</b>、<b>私大英語</b>の出題傾向を分析し続けて作成"),
+ ("05-soukei","早慶合格可能性診断","早慶合格可能性<em>診断</em>","早慶合格","早慶","早慶特化","私大専門で<b>7年</b>、<b>早慶</b>の英語の出題傾向を分析し続けて作成"),
+ ("06-waseda","早稲田合格可能性診断","早稲田合格可能性<em>診断</em>","早稲田合格","早稲田","早稲田特化","私大専門で<b>7年</b>、<b>早稲田</b>の英語の出題傾向を分析し続けて作成"),
+ ("07-keio","慶應合格可能性診断","慶應合格可能性<em>診断</em>","慶應合格","慶應","慶應特化","私大専門で<b>7年</b>、<b>慶應</b>の英語の出題傾向を分析し続けて作成"),
+ ("08-gmarch","GMARCH合格可能性診断","GMARCH合格可能性<em>診断</em>","GMARCH合格","GMARCH","GMARCH特化","私大専門で<b>7年</b>、<b>GMARCH</b>の英語の出題傾向を分析し続けて作成"),
+ ("09-march-each","MARCH合格可能性診断","MARCH合格可能性<em>診断</em>","MARCH合格","MARCH","MARCH特化","私大専門で<b>7年</b>、<b>MARCH各校</b>の英語の出題傾向を分析し続けて作成"),
+ ("12-kankandoritsu","関関同立合格可能性診断","関関同立合格可能性<em>診断</em>","関関同立合格","関関同立","関関同立特化","私大専門で<b>7年</b>、<b>関関同立</b>の英語の出題傾向を分析し続けて作成"),
+ ("13-nittokomasen","日東駒専合格可能性診断","日東駒専合格可能性<em>診断</em>","日東駒専合格","日東駒専","日東駒専特化","私大専門で<b>7年</b>、<b>日東駒専</b>の英語の出題傾向を分析し続けて作成"),
 ]
 
 B_LPS = [
@@ -331,10 +338,10 @@ DEF = {
  "V_LOW":"合格できます。あとは勉強する範囲を絞れるかです。",
  "D_LOW":"合格ラインとはまだ差がありますが、%(TG)sに合格することは十分にできます。ただ、全部の範囲を勉強する時間はありません。出るところだけを勉強する必要があります。",
  "D_LOW_LONG":"合格ラインとはまだ差がありますが、時間はたっぷり残っています。差がつくのは、%(TG)sに必要な勉強をいつから始めるかです。早く始めた人ほど、合格に近づきます。",
- "LEAD":"4つの質問に答えるだけで、いまの合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
+ "LEAD":"4つの質問に答えるだけで、いまの合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。",
  "BOOK":"FAST-UP 私大逆転 ",
  "BOOK_SUFFIX":"",
- "LEAD_B":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
+ "LEAD_B":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。",
  "CHECK2":"<b>感動する！</b>圧倒的な分かりやすさ",
  "CHECK3":"<b>セクションごとの確認テスト</b>で、定着まで",
 }
@@ -347,7 +354,7 @@ OVERRIDE = {
    "V_LOW":"E判定からでも、逆転は可能です。",
    "D_LOW":"E判定や偏差値30台からの逆転は、毎年実際に起きています。ただ、全部の範囲を勉強する時間はありません。出るところだけを勉強する必要があります。",
    "D_LOW_LONG":"E判定や偏差値30台からの逆転は、毎年実際に起きています。時間もたっぷり残っています。差がつくのは、%(TG)sに必要な勉強をいつから始めるかです。早く始めた人ほど、合格に近づきます。",
-   "LEAD":"4つの質問に答えるだけで、<b>いまE判定でも逆転できるのか</b>と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
+   "LEAD":"4つの質問に答えるだけで、<b>いまE判定でも逆転できるのか</b>と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。",
    "CHECK2":"<b>感動する！</b>基礎から分かる圧倒的な分かりやすさ",
    "CHECK3":"<b>セクションごとの確認テスト</b>で、抜けを残さない",
  },
@@ -355,23 +362,23 @@ OVERRIDE = {
 
 
 OVERRIDE["03-ronin"] = {
- "LEAD": "4つの質問に答えるだけで、この1年で合格できるかと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。",
+ "LEAD": "4つの質問に答えるだけで、この1年で合格できるかと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。",
  "V_LOW":"この1年で、合格できます。",
  "D_LOW":"合格ラインとはまだ差がありますが、この1年で%(TG)sに合格することは十分にできます。ただ、全部の範囲を勉強する時間はありません。出るところだけを勉強する必要があります。",
- "CHECK1_A":"私大専門で<b>7年</b>、<b>浪人生の伸び方</b>を分析して作成",
+ "CHECK1_A":"私大専門で<b>7年</b>、<b>浪人生の英語の伸び方</b>を分析して作成",
 }
-OVERRIDE["05-soukei"] = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの早慶合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["06-waseda"] = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの早稲田合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["07-keio"]   = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの慶應合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["08-gmarch"] = {"LEAD":"4つの質問に答えるだけで、いまのGMARCH合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["09-march-each"] = {"LEAD":"4つの質問に答えるだけで、いまのMARCH合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["12-kankandoritsu"] = {"LEAD":"4つの質問に答えるだけで、いまの関関同立合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["13-nittokomasen"] = {"H":['〜40', '41〜50', '51〜60', '61〜'],"HENSA_JS":"['偏差値40以下','偏差値41〜50','偏差値51〜60','偏差値61以上']","LEAD":"4つの質問に答えるだけで、いまの日東駒専合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["04a-koachi"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合うコーチング塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["04b-online"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合うオンライン塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["10a-juku-comparison"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。"}
-OVERRIDE["10b-cost-perf"] = {"LEAD_B":"5つの質問に答えるだけで、費用に見合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。","CHECK1_B":"私大専門で<b>7年</b>、出題傾向を分析し続けて作成（<b>追加費用ゼロ</b>）"}
-OVERRIDE["11-jigaku-fixed-online"] = {"LEAD_B":"5つの質問に答えるだけで、自学に足りないものと、合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたの苦手科目の独自教材</b>を無料プレゼント。","CHECK1_B":"私大専門で<b>7年</b>、<b>出る順の参考書ルート</b>として作成"}
+OVERRIDE["05-soukei"] = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの早慶合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["06-waseda"] = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの早稲田合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["07-keio"]   = {"H":['〜50', '51〜60', '61〜70', '71〜'],"HENSA_JS":"['偏差値50以下','偏差値51〜60','偏差値61〜70','偏差値71以上']","LEAD":"4つの質問に答えるだけで、いまの慶應合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["08-gmarch"] = {"LEAD":"4つの質問に答えるだけで、いまのGMARCH合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["09-march-each"] = {"LEAD":"4つの質問に答えるだけで、いまのMARCH合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["12-kankandoritsu"] = {"LEAD":"4つの質問に答えるだけで、いまの関関同立合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["13-nittokomasen"] = {"H":['〜40', '41〜50', '51〜60', '61〜'],"HENSA_JS":"['偏差値40以下','偏差値41〜50','偏差値51〜60','偏差値61以上']","LEAD":"4つの質問に答えるだけで、いまの日東駒専合格可能性と、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["04a-koachi"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合うコーチング塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["04b-online"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合うオンライン塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["10a-juku-comparison"] = {"LEAD_B":"5つの質問に答えるだけで、あなたに合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。"}
+OVERRIDE["10b-cost-perf"] = {"LEAD_B":"5つの質問に答えるだけで、費用に見合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。","CHECK1_B":"私大専門で<b>7年</b>、<b>私大英語</b>の出題傾向を分析し続けて作成（<b>追加費用ゼロ</b>）"}
+OVERRIDE["11-jigaku-fixed-online"] = {"LEAD_B":"5つの質問に答えるだけで、自学に足りないものと、合う塾のタイプと、次に何をやればいいかがわかります。<br>結果に合わせて<b>あなたに必要な英語教材</b>を無料プレゼント。","CHECK1_B":"私大専門で<b>7年</b>、<b>出る順の英語参考書ルート</b>として作成"}
 
 OVERRIDE.setdefault("05-soukei",{}); OVERRIDE["05-soukei"]["BOOK"]="FAST-UP 早慶必出 "; OVERRIDE["05-soukei"]["BOOK_SUFFIX"]=""
 OVERRIDE.setdefault("06-waseda",{}); OVERRIDE["06-waseda"]["BOOK"]="FAST-UP 早稲田必出 "; OVERRIDE["06-waseda"]["BOOK_SUFFIX"]=""
@@ -387,11 +394,11 @@ for lp,dname,title_html,eye,tg,tokka,check1 in A_LPS:
     cfg=dict(DEF); cfg.update(OVERRIDE.get(lp,{}))
     vhi=cfg["V_HI"] % {"TG":tg} if "%(TG)s" in cfg["V_HI"] else cfg["V_HI"]
     dlow=cfg["D_LOW"] % {"TG":tg} if "%(TG)s" in cfg["D_LOW"] else cfg["D_LOW"]
-    q = (BASE_Q % {"H0":cfg["H"][0],"H1":cfg["H"][1],"H2":cfg["H"][2],"H3":cfg["H"][3]}) + chr(10) + (SUBJ_Q % {"n":4})
+    q = (BASE_Q % {"H0":cfg["H"][0],"H1":cfg["H"][1],"H2":cfg["H"][2],"H3":cfg["H"][3]}) + chr(10) + (FIELD_Q % {"n":4})
     dlong=cfg["D_LOW_LONG"] % {"TG":tg} if "%(TG)s" in cfg["D_LOW_LONG"] else cfg["D_LOW_LONG"]
     logic = A_LOGIC % {"TG":tg,"HENSA_JS":cfg["HENSA_JS"],"PH":cfg["PH"],"V_HI":vhi,"V_MID":cfg["V_MID"],"V_LOW":cfg["V_LOW"],"D_LOW":dlow,"D_LOW_LONG":dlong}
     html = PAGE % {
-      "LP":lp,"DNAME":dname,"CSS":CSS,"GRP":"A","GRPNAME":"合格可能性診断","QN":4,"HENSA_JS":cfg["HENSA_JS"],"BOOK":cfg["BOOK"],"BOOK_SUFFIX":cfg["BOOK_SUFFIX"],
+      "LP":lp,"DNAME":dname,"CSS":CSS,"GRP":"A","GRPNAME":"合格可能性診断","QN":4,"HENSA_JS":cfg["HENSA_JS"],"BOOK":cfg["BOOK"],"BOOK_SUFFIX":cfg["BOOK_SUFFIX"],"NOTE_FACT_JS":note_fact_js(tg),
       "TITLE_HTML":title_html,"LEAD":cfg["LEAD"],"QUESTIONS":q,
       "RESULT_TOP":A_RESULT_TOP % {"EYE":eye},
       "OFFER":OFFER % {"TOKKA":tokka,"CHECK1":cfg.get("CHECK1_A",check1),"CHECK2":cfg["CHECK2"],"CHECK3":cfg["CHECK3"]},
@@ -409,14 +416,14 @@ for lp,dname,title_html,q4label,q4opts in B_LPS:
       </div>
     </div>""" % (q4label,opts)
     cfg=dict(DEF); cfg.update(OVERRIDE.get(lp,{}))
-    q = (BASE_Q % {"H0":cfg["H"][0],"H1":cfg["H"][1],"H2":cfg["H"][2],"H3":cfg["H"][3]}) + chr(10) + q4 + chr(10) + (SUBJ_Q % {"n":5})
+    q = (BASE_Q % {"H0":cfg["H"][0],"H1":cfg["H"][1],"H2":cfg["H"][2],"H3":cfg["H"][3]}) + chr(10) + q4 + chr(10) + (FIELD_Q % {"n":5})
     html = PAGE % {
-      "LP":lp,"DNAME":dname,"CSS":CSS,"GRP":"B","GRPNAME":"塾タイプ診断","QN":5,"HENSA_JS":cfg["HENSA_JS"],"BOOK":cfg["BOOK"],"BOOK_SUFFIX":cfg["BOOK_SUFFIX"],
+      "LP":lp,"DNAME":dname,"CSS":CSS,"GRP":"B","GRPNAME":"塾タイプ診断","QN":5,"HENSA_JS":cfg["HENSA_JS"],"BOOK":cfg["BOOK"],"BOOK_SUFFIX":cfg["BOOK_SUFFIX"],"NOTE_FACT_JS":note_fact_js("私大"),
       "TITLE_HTML":title_html,
       "LEAD":cfg["LEAD_B"],
       "QUESTIONS":q,
       "RESULT_TOP":B_RESULT_TOP,
-      "OFFER":OFFER % {"TOKKA":cfg.get("TOKKA_B","私大特化"),"CHECK1":cfg.get("CHECK1_B","私大専門で<b>7年</b>、出題傾向を分析し続けて作成"),"CHECK2":cfg["CHECK2"],"CHECK3":cfg["CHECK3"]},
+      "OFFER":OFFER % {"TOKKA":cfg.get("TOKKA_B","私大特化"),"CHECK1":cfg.get("CHECK1_B","私大専門で<b>7年</b>、<b>私大英語</b>の出題傾向を分析し続けて作成"),"CHECK2":cfg["CHECK2"],"CHECK3":cfg["CHECK3"]},
       "LOGIC":B_LOGIC % {"TGB":"私大"},
       "REVEAL":B_REVEAL,
     }
