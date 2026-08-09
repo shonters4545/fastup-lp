@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Lステップ 広告パラメータ検証ページ</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px 14px 60px;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    background: #f4f6f8; color: #1a2027; line-height: 1.7;
+    font-size: 15px;
+  }
+  h1 { font-size: 19px; margin: 0 0 4px; }
+  .sub { font-size: 13px; color: #5b6773; margin: 0 0 20px; }
+  h2 {
+    font-size: 15px; margin: 26px 0 10px; padding-left: 9px;
+    border-left: 4px solid #06c755;
+  }
+  .card {
+    background: #fff; border: 1px solid #dfe4e9; border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 12px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td {
+    border-bottom: 1px solid #eceff1; padding: 7px 6px;
+    text-align: left; vertical-align: top;
+  }
+  th { width: 34%; color: #5b6773; font-weight: 600; }
+  td { word-break: break-all; font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
+  .empty { color: #b0bac2; font-family: inherit; }
+  .url {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size: 11.5px; word-break: break-all; color: #35424e;
+    background: #f7f9fa; border-radius: 5px; padding: 8px 9px; margin-top: 6px;
+  }
+  .btn {
+    display: block; text-align: center; text-decoration: none;
+    background: #06c755; color: #fff; font-weight: 700;
+    padding: 14px; border-radius: 8px; margin: 0 0 4px;
+  }
+  .btn.b { background: #0b7ec4; }
+  .btn.c { background: #7a4fc0; }
+  .label { font-size: 12px; color: #5b6773; margin: 0 0 6px; }
+  .tools { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tools button {
+    flex: 1 1 auto; padding: 11px 14px; font-size: 13px; font-weight: 600;
+    border: 1px solid #c3ccd4; background: #fff; border-radius: 7px; cursor: pointer;
+  }
+  .step { font-size: 13.5px; }
+  .step ol { padding-left: 20px; margin: 6px 0; }
+  .step li { margin-bottom: 5px; }
+  .step a { color: #0b7ec4; word-break: break-all; }
+  .note {
+    background: #fff8e6; border: 1px solid #f0d99b; border-radius: 7px;
+    padding: 10px 12px; font-size: 13px; margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Lステップ 広告パラメータ検証</h1>
+<p class="sub">流入経路「TEST_パラメータ検証」／広告挿入タグ UZFxIw</p>
+
+<h2>1. このページのURLパラメータ</h2>
+<div class="card">
+  <table id="tbl-url"></table>
+</div>
+
+<h2>2. localStorage に保存された値（lm_param）</h2>
+<div class="card">
+  <table id="tbl-ls"></table>
+  <div class="tools" style="margin-top:10px">
+    <button type="button" id="btn-clear">localStorage をクリア</button>
+    <button type="button" id="btn-reload">再読み込み</button>
+  </div>
+</div>
+
+<h2>3. LINE登録ボタン（3種）</h2>
+
+<div class="card">
+  <p class="label">A：素の流入経路URL（パラメータ手書きなし）</p>
+  <a class="btn" id="lnk-a" href="https://liff.line.me/1661481351-x5lAkQZW/landing?follow=%40916kpbhf&lp=UZFxIw&liff_id=1661481351-x5lAkQZW">A から LINE登録</a>
+  <div class="url" id="url-a"></div>
+</div>
+
+<div class="card">
+  <p class="label">B：test_btn=footer を手書きで付与</p>
+  <a class="btn b" id="lnk-b" href="https://liff.line.me/1661481351-x5lAkQZW/landing?follow=%40916kpbhf&lp=UZFxIw&liff_id=1661481351-x5lAkQZW&test_btn=footer">B から LINE登録</a>
+  <div class="url" id="url-b"></div>
+</div>
+
+<div class="card">
+  <p class="label">C：test_btn=sticky を手書きで付与</p>
+  <a class="btn c" id="lnk-c" href="https://liff.line.me/1661481351-x5lAkQZW/landing?follow=%40916kpbhf&lp=UZFxIw&liff_id=1661481351-x5lAkQZW&test_btn=sticky">C から LINE登録</a>
+  <div class="url" id="url-c"></div>
+</div>
+
+<h2>4. テスト手順</h2>
+<div class="card step">
+  <ol>
+    <li><b>localStorage をクリア</b>してから、下のパターン1を開く</li>
+    <li>3ボタンの実URL（灰色の枠）に <code>test_btn</code> がどう入るか確認</li>
+    <li>いずれかのボタンから実際にLINE登録</li>
+    <li>Lステップ管理画面 → 友だちリスト → 該当の友だち → 友だち情報欄を確認</li>
+    <li><b>localStorage をクリア</b>してから、パターン2で同じことを繰り返す</li>
+  </ol>
+  <p class="label" style="margin-top:12px">パターン1：test_btn あり</p>
+  <a id="pat1" href="#">（リンク生成中）</a>
+  <p class="label" style="margin-top:10px">パターン2：test_btn なし</p>
+  <a id="pat2" href="#">（リンク生成中）</a>
+  <div class="note">
+    パラメータが一度でも入ると localStorage に保存され、次回以降パラメータなしで来ても復元されます。
+    パターンを切り替えるときは必ず localStorage をクリアしてください。
+  </div>
+</div>
+
+<script>
+  // 広告挿入タグが実行される前に、元の href を控えておく
+  window.__origHref = {};
+  ['a', 'b', 'c'].forEach(function (k) {
+    var el = document.getElementById('lnk-' + k);
+    if (el) window.__origHref[k] = el.getAttribute('href');
+  });
+</script>
+
+<!-- ▼ Lステップ 広告挿入タグ（</body> 直前に設置） -->
+<script src="https://ltag.jp/lc/UZFxIw"></script>
+<!-- ▲ Lステップ 広告挿入タグ -->
+
+<script>
+(function () {
+  var TRACKED = [
+    'gclid', 'gbraid', 'wbraid', 'fbclid', 'lclid', 'yclid',
+    'test_src', 'test_cmp', 'test_lp', 'test_btn'
+  ];
+
+  function render(tableId, sp) {
+    var rows = TRACKED.map(function (key) {
+      var v = sp.get(key);
+      var cell = v
+        ? '<td>' + escapeHtml(v) + '</td>'
+        : '<td class="empty">（なし）</td>';
+      return '<tr><th>' + key + '</th>' + cell + '</tr>';
+    }).join('');
+    document.getElementById(tableId).innerHTML = rows;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function showUrls() {
+    ['a', 'b', 'c'].forEach(function (k) {
+      var el = document.getElementById('lnk-' + k);
+      var box = document.getElementById('url-' + k);
+      if (!el || !box) return;
+      var now = el.getAttribute('href');
+      var orig = window.__origHref[k];
+      var changed = now !== orig;
+      box.innerHTML =
+        '<b>書き換え後：</b>' + escapeHtml(now) +
+        (changed ? '' : '<br><span class="empty">※ タグによる書き換えなし</span>');
+    });
+  }
+
+  render('tbl-url', new URLSearchParams(location.search));
+  render('tbl-ls', new URLSearchParams(localStorage.getItem('lm_param') || ''));
+  showUrls();
+
+  var base = location.origin + location.pathname;
+  var common = 'test_src=meta_feed&test_cmp=cp_summer&test_lp=01-brand';
+  var p1 = base + '?' + common + '&test_btn=hero';
+  var p2 = base + '?' + common;
+  var a1 = document.getElementById('pat1');
+  var a2 = document.getElementById('pat2');
+  a1.href = p1; a1.textContent = p1;
+  a2.href = p2; a2.textContent = p2;
+
+  document.getElementById('btn-clear').addEventListener('click', function () {
+    localStorage.removeItem('lm_param');
+    location.href = base;
+  });
+  document.getElementById('btn-reload').addEventListener('click', function () {
+    location.reload();
+  });
+})();
+</script>
+
+</body>
+</html>
