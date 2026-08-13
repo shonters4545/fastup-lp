@@ -1,0 +1,10 @@
+# 広告専用LP。自然検索にはインデックスさせない（fast-up.jp 本体と競合させないため）。
+# Google広告のクローラ（AdsBot）は明示的に許可する＝広告の品質チェック・LP審査に影響させない。
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+User-agent: *
+Disallow: /

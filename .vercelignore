@@ -1,0 +1,7 @@
+# Vercel に配信しないファイル（公開すると内部情報が出るもの）
+_docs/
+_v3_reapply/
+test-param/
+**/design.md
+**/_summary_v4.md
+README.md
