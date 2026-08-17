@@ -2,6 +2,10 @@
 _docs/
 _v3_reapply/
 test-param/
+tasks/
+scripts/
+**/audit/
 **/design.md
+**/revision_audit*.md
 **/_summary_v4.md
 README.md
