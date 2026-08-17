@@ -1988,7 +1988,7 @@ em { font-style: normal; color: var(--fu-main); font-weight: 700; }
   height: 94%;
   width: auto;
 }
-/* 永井くん（case-06）のみ少し小さく */
+/* N.Rさん（case-06）のみ少し小さく */
 .case-person[src*="case-06"] {
   height: 90%;
   object-fit: contain;
